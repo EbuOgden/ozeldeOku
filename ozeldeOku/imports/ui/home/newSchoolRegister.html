@@ -1,7 +1,25 @@
 <template name="newSchoolRegister">
     <div class="container">
-      Anasayfa - Yeni Üyelik
-
+      <div class="row">
+          <div class="col-md-6">
+              <div class="pull-left">
+                <ol class="breadcrumb" style="background-color:white;">
+                    <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+                    <li>Yeni Üyelik</li>
+                  </ol>
+              </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-3">
+            <form id="schoolSearch">
+                <div class="form-group has-feedback">
+                  <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+            </form>
+          </div>
+      </div>
       <div class="page-header">
         <h3 class="homeCarouselFirstPageFontColor">Kurumsal Okul Üyeliği</h3>
         <small>Okulunuzu sitemizde detaylı tanıtarak öğrenci aday ve velilerine en sağlıklı şekilde ulaşabilirsiniz</small>
@@ -18,7 +36,7 @@
               <input type="text" class="input-lg form-control" placeholder="Ticari Unvan">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <select class="form-control input-lg" id="sel1">
               <option selected disabled>Okul Türü</option>
@@ -45,7 +63,7 @@
               <input type="text" class="input-lg form-control" placeholder="Yetkili Kişi">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <input type="text" class="input-lg form-control" placeholder="Yetkili Ünvanı">
           </div>
@@ -91,11 +109,9 @@
             <div class="form-group">
               <select class="form-control input-lg">
                 <option selected disabled>Şehir</option>
-                <option>Üniversite</option>
-                <option>Lise</option>
-                <option>İlkokul ve Ortaöğretim</option>
-                <option>Anaokulu</option>
-                <option>Yurt</option>
+                <option>İstanbul</option>
+                <option>İzmir</option>
+                <option>Ankara</option>
               </select>
             </div>
         </div>
@@ -103,11 +119,6 @@
             <div class="form-group">
               <select class="form-control input-lg">
                 <option selected disabled>İlçe</option>
-                <option>Üniversite</option>
-                <option>Lise</option>
-                <option>İlkokul ve Ortaöğretim</option>
-                <option>Anaokulu</option>
-                <option>Yurt</option>
               </select>
             </div>
         </div>
@@ -124,7 +135,7 @@
               <input type="phone" class="input-lg form-control" placeholder="Fax">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <input type="url" class="input-lg form-control" placeholder="İnternet Sitesi">
           </div>
@@ -132,7 +143,26 @@
       </div>
 
       <div class="row">
-        RECAPTCHA GELECEK!
+        <div class="col-md-4">
+          {{> reCAPTCHA}}
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="...">
+              </span>
+              <a role="button" data-toggle="modal" data-target="#myModal"><h5> Üyelik sözleşmesini okudum, kabul ediyorum</h5></a>
+          </div><!-- /input-group -->
+          
+        </div>
+      </div>
+
+      <br><br>
+      <div class="row">
+        <div class="col-md-4">
+          <button type="button" class="btn btn-default btn-lg newSchoolRegisterButton">Üyelik İçin Başvuru Yap</button>
+        </div>
       </div>
     </div>
+
 </template>

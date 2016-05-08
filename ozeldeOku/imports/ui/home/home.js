@@ -1,16 +1,33 @@
+/* PACKAGE IMPORTS */
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+/*          */
 
+/* DATABASE VARIABLES IMPORTS */
+import { Comments } from '../../../imports/api/collections/comments.js';
+/*          */
+
+/* HTML IMPORTS */
 import './aboutUs/aboutUs.html';
 import './home.html';
 import './homeLayout.html';
 import './homeCenter.html';
 import './homeBottom.html';
 import './newSchoolRegister.html';
+import './licenseAgreement.html';
+/*          */
+
+/* JAVASCRIPT IMPORTS */
+import '../../startup/client/config.js'
 import '../../../client/lib/jquery.raty.js';
+/*          */
 
 Template.home.events({
 
+})
+
+Template.home.onRendered(() => {
+  console.log(Comments.find().count());
 })
 
 Template.homeLayout.events({
@@ -62,4 +79,10 @@ Template.homeCenter.events({
     $(target).css('color', 'rgb(157,197,15)');
   },
 
+})
+
+Template.newSchoolRegister.events({
+  'click #anaSayfaRoute'(event){
+    BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+  }
 })

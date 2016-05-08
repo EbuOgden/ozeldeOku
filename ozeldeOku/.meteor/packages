@@ -27,3 +27,8 @@ kadira:blaze-layout
 twbs:bootstrap
 shcherbin:slickjs
 fortawesome:fontawesome
+altapp:recaptcha
+flemay:less-autoprefixer
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
