@@ -1,0 +1,30 @@
+.fitImage {
+  max-width:100%;
+  max-height:100%;
+}
+
+.backgroundImagesForHomeText {
+  background-image: url('homeBack.png');
+}
+
+.carousel-indicators{
+   bottom:0px;
+}
+
+.homeCarouselFirstPageFontColor{
+  color : rgb(157,197,15);
+}
+
+.carousel-inner{
+  width:100%;
+  max-height: 200px !important;
+}
+
+.slick-dots {
+  display : none;
+  color : green;
+}
+
+textarea {
+    resize: none;
+}
