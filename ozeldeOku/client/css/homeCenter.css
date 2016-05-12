@@ -29,6 +29,10 @@ textarea {
     resize: none;
 }
 
+.btn {
+  border-radius : 0;
+}
+
 .newSchoolRegisterButton {
   background-color: rgb(157,197,15);
   color : white;
@@ -37,4 +41,19 @@ textarea {
 .input-group-addon {
   background-color: rgb(255, 255, 255);
   border : none;
+}
+
+.loginFacebookButton {
+  background-color: rgb(48, 78, 142);
+  color : white;
+}
+
+.loginGooglePlusButton {
+  background-color: rgb(223, 59, 51);
+  color : white;
+}
+
+.loginNewSignButton { 
+  background-color: rgb(180, 178, 180);
+  color : white;
 }

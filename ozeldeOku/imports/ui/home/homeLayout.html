@@ -1,25 +1,50 @@
 <template name="homeLayout">
 
   {{#if currentUser}}
-  <nav class="navbar">
-    <div class="container-fluid">
+  <nav class="navbar navbar-default">
+    <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/"><img src="logo.png"></a>
-      </div>
-      <ul class="nav navbar-nav">
+        <a class="navbar-brand" role="button" id="logoHome"><img src="logo.png"></a>
+        <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Okul Türü</a>
+          <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Okul Türü</a>
           <ul class="dropdown-menu">
-            <li><a>Üniversite</a></li>
-            <li><a>Lise</a></li>
-            <li><a>Ortaokul</a></li>
-            <li><a>İlköğretim</a></li>
-            <li><a>Anaokulu</a></li>
+            <li><a role="button">Üniversite</a></li> <!-- role button for mouse type change -->
+            <li><a role="button">Lise</a></li>
+            <li><a role="button">Ortaokul</a></li>
+            <li><a role="button">İlköğretim</a></li>
+            <li><a role="button">Anaokulu</a></li>
           </ul>
         </li>
-      </ul>
+
+        <li><a role="button">Okul Karşılaştır</a></li>
+        <li><a role="button">Tercih Robotu</a></li>
+        <li><a role="button">Burs ve Yurtlar</a></li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Diğer</a>
+          <ul class="dropdown-menu">
+            <li><a role="button" id="aboutUs">Hakkımızda</a></li>
+            <li><a role="button">Diğer 2</a></li>
+            <li><a role="button">Diğer 3</a></li>
+            <li><a role="button">Diğer 4</a></li>
+            <li><a role="button">Diğer 5</a></li>
+          </ul>
+        </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-envelope" title="Mesajlar" aria-hidden="true"></span><span class="badge">4</span></button></li>
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button></li>
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button></li>
+        </ul>
+
+
+      </div>
     </div>
   </nav>
+
 
   {{else}}
 
@@ -53,16 +78,13 @@
             <li><a role="button">Diğer 5</a></li>
           </ul>
         </li>
-
         </ul>
-        
+
+
         <ul class="nav navbar-nav navbar-right">
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-envelope" title="Mesajlar" aria-hidden="true"></span><span class="badge">4</span></button></li>
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button></li>
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button></li>
+
+          <li><a role="button" id="logInBut"><b>Giriş Yap</b></a></li>
         </ul>
-
-
       </div>
     </div>
   </nav>

@@ -1,0 +1,86 @@
+<template name="login">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+            <div class="pull-left">
+              <ol class="breadcrumb" style="background-color:white;">
+                  <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+                  <li>Giriş Yap</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+          <form id="schoolSearch">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+          </form>
+        </div>
+      </div>
+      <div class="page-header">
+        <h3 class="homeCarouselFirstPageFontColor">Üye Girişi</h3>
+        <small>Hoşgeldiniz! Şimdi giriş yapın ve sayfamızda okulları araştırın</small>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" class="input-lg form-control" placeholder="E-mail adresinizi giriniz">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" class="input-lg form-control" placeholder="Şifrenizi Giriniz">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="...">
+              </span>
+              <h5>Beni Hatırla</h5>
+          </div><!-- /input-group -->
+        </div>
+
+        <div class="col-md-2">
+          <a role="button" data-toggle="modal" data-target="#forgotPassword"><h5>Şifremi Unuttum</h5></a>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="row">
+        <div class="col-md-4">
+          <button type="button" class="btn btn-lg btn-block newSchoolRegisterButton"><b>Giriş Yap</b></button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-lg btn-block loginFacebookButton"><b>Facebook ile Bağlan</b></button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-lg btn-block loginGooglePlusButton"><b>Google Plus ile Bağlan</b></button>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row">
+          <div class="container">
+
+            <h4>Üye Değil Misiniz?</h4>
+            <small>Hemen şimdi üye olarak dilediğiniz gibi okulları araştırabilir ve favorilerinize ekleyebilirsiniz</small>
+
+          </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          <button type="button" data-toggle="modal" data-target="#signUp" class="btn btn-lg btn-block loginNewSignButton"><b>Hemen Üye Ol</b></button>
+        </div>
+      </div>
+    </div>
+</template>
