@@ -28,17 +28,17 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Okul Adı">
+              <input type="text" class="input-lg form-control" placeholder="Okul Adı" id="schoolName">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Ticari Unvan">
+              <input type="text" class="input-lg form-control" placeholder="Ticari Unvan" id="tradeName">
             </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <select class="form-control input-lg" id="sel1">
+            <select class="form-control input-lg" id="schoolTypeSelect">
               <option selected disabled>Okul Türü</option>
               <option>Üniversite</option>
               <option>Lise</option>
@@ -55,17 +55,17 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <input type="number" class="input-lg form-control" maxlength="10" placeholder="Vergi Numarası">
+              <input type="text" class="input-lg form-control" maxlength="10" placeholder="Vergi Numarası" id="taxNum">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Yetkili Kişi">
+              <input type="text" class="input-lg form-control" placeholder="Yetkili Kişi" id="authorizePersonName">
             </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" class="input-lg form-control" placeholder="Yetkili Ünvanı">
+            <input type="text" class="input-lg form-control" placeholder="Yetkili Ünvanı" id="authorizeCaption">
           </div>
         </div>
       </div>
@@ -73,12 +73,12 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <input type="email" class="input-lg form-control" placeholder="E-Mail">
+              <input type="email" class="input-lg form-control" placeholder="E-Mail" id="schoolEmail">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <input type="email" class="input-lg form-control" placeholder="E-Mail Tekrarı">
+              <input type="email" class="input-lg form-control" placeholder="E-Mail Tekrarı" id="schoolrEmail">
             </div>
         </div>
       </div>
@@ -86,12 +86,12 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <input type="password" class="input-lg form-control" placeholder="Şifre belirleyiniz">
+              <input type="password" class="input-lg form-control" placeholder="Şifre belirleyiniz" id="schoolPassword">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <input type="password" class="input-lg form-control" placeholder="Şifre Tekrarı">
+              <input type="password" class="input-lg form-control" placeholder="Şifre Tekrarı" id="schoolrPassword">
             </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
       <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-              <textarea class="form-control" rows="5" placeholder="Adres"></textarea>
+              <textarea class="form-control" rows="5" placeholder="Adres" id="schoolAddress"></textarea>
             </div>
         </div>
       </div>
@@ -107,17 +107,14 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <select class="form-control input-lg">
+              <select class="form-control input-lg" id="city">
                 <option selected disabled>Şehir</option>
-                <option>İstanbul</option>
-                <option>İzmir</option>
-                <option>Ankara</option>
               </select>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <select class="form-control input-lg">
+              <select class="form-control input-lg" id="county">
                 <option selected disabled>İlçe</option>
               </select>
             </div>
@@ -127,17 +124,17 @@
       <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-              <input type="phone" class="input-lg form-control" placeholder="Telefon Numarası">
+              <input type="phone" class="input-lg form-control" placeholder="Telefon Numarası" id="schoolPhoneNum">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-              <input type="phone" class="input-lg form-control" placeholder="Fax">
+              <input type="phone" class="input-lg form-control" placeholder="Fax" id="schoolFaxNum">
             </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="url" class="input-lg form-control" placeholder="İnternet Sitesi">
+            <input type="url" class="input-lg form-control" placeholder="İnternet Sitesi" id="schoolWebSite">
           </div>
         </div>
       </div>
@@ -149,7 +146,7 @@
         <div class="col-md-4">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" aria-label="...">
+                <input type="checkbox" aria-label="..." id="agreementCheck">
               </span>
               <a role="button" data-toggle="modal" data-target="#licenseAgreement"><h5> Üyelik sözleşmesini okudum, kabul ediyorum</h5></a>
           </div><!-- /input-group -->
@@ -160,7 +157,7 @@
       <br><br>
       <div class="row">
         <div class="col-md-4">
-          <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton"><b>Üyelik İçin Başvuru Yap</b></button>
+          <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="newSchoolRegister"><b>Üyelik İçin Başvuru Yap</b></button>
         </div>
       </div>
     </div>

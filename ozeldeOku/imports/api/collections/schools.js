@@ -10,13 +10,13 @@ Schools.attachSchema(new SimpleSchema({
       optional : false,
     },
 
-    businessName : {
+    tradeName : {
       type : String,
       max : 256,
       optional : false,
     },
 
-    type : {
+    schoolType : {
       type : String,
       optional : false
     },
@@ -52,23 +52,33 @@ Schools.attachSchema(new SimpleSchema({
       optional : false
     },
 
-    address : {
+    schoolAddress : {
       type : String,
-      max : 512,
+      max : 1024,
       optional : false
     },
 
-    city : {
-      type : String,
-      optional : false
-    },
-
-    county : {
+    schoolCity : {
       type : String,
       optional : false
     },
 
-    webSite : {
+    schoolCounty : {
+      type : String,
+      optional : false
+    },
+
+    schoolPhoneNumber : {
+      type : String,
+      optional : false
+    },
+
+    schoolFaxNumber : {
+      type : String,
+      optional : false
+    },
+
+    schoolWebSite : {
       type : String,
       regEx : SimpleSchema.RegEx.Domain
     },

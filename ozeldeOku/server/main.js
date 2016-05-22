@@ -1,12 +1,21 @@
 import { Meteor } from 'meteor/meteor';
+//import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 
 import { Roles } from '../imports/api/collections/roles.js';
 import { Schools } from '../imports/api/collections/schools.js';
 import { News } from '../imports/api/collections/news.js';
 import { Comments } from '../imports/api/collections/comments.js';
+import { CityCounty} from '../imports/api/collections/cityCounty.js';
+
 //import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
 //import { Messages } from '../imports/api/collections/messages.js';
 
+import '../imports/api/server/getCounties.js';
+import '../imports/api/server/reCaptch.js';
+
 Meteor.startup(() => {
+  // reCAPTCHA.config({
+  //   publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
+  // })
 });

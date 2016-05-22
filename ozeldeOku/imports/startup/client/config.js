@@ -1,4 +1,4 @@
-import { reCAPTCHA } from 'meteor/altapp:recaptcha';
+import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   reCAPTCHA.config({
