@@ -41,11 +41,16 @@ Meteor.users.attachSchema(new SimpleSchema({
     },
 
     createdAt : {
-      type : Date
+      type : Date,
+      autoValue : function(){
+        if(this.isInsert){
+          return new Date();
+        }
+      }
     },
 
     profile : {
-      type : UserProfile,  
+      type : UserProfile,
     },
 
     services : {

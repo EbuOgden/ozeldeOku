@@ -11,7 +11,8 @@ import { News } from '../../../imports/api/collections/news.js';
 //import { SchoolVideos } from '../../../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../../../imports/api/collections/SchoolImages.js';
 import { Comments } from '../../../imports/api/collections/comments.js';
-import { userInfo } from '../../api/userClass.js';
+import { schoolInfo } from '../../api/client/schoolClass.js';
+import { userInfo } from '../../api/client/userClass.js';
 
 /*          */
 
@@ -194,12 +195,28 @@ Template.newSchoolRegister.events({
       alert("Lütfen Captcha işlemini yapınız!");
       return;
     }
+
+    if(!isEqual(schoolEmail, schoolrEmail)){
+      alert("Girdiğiniz e-mailler eşit değildir. Lütfen kontrol ediniz.");
+      return;
+    }
+    else{
+      if(!isEmail(schoolrEmail)){
+        alert("Girdiğiniz e-mail geçersizdir. Lütfen kontrol ediniz.");
+        return;
+      }
+    }
+
+    if(!isEqual(schoolPassword, schoolrPassword)){
+      alert("Girdiğiniz şifreler eşit değildir. Lütfen kontrol ediniz.");
+      return;
+    }
     else{
 
-      const _newSchoolO = new userInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
+      const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
       schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
 
-      const _schoolN = _newSchoolO.user;
+      const _schoolN = __newSchoolO.school;
 
       Meteor.call('recaptchControl', captchaData, _schoolN, (err, result) => {
 
@@ -222,4 +239,21 @@ Template.login.events({
   'click #anaSayfaRoute'(event){
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
+})
+
+Template.login.events({
+  'click #loginUser'(event){
+
+    const email = $('#usrEmail').val();
+    const password = $('#usrPassword').val();
+
+    Meteor.loginWithPassword(email, password, (err) => {
+      if(err){
+        alert(err);
+      }
+      else{
+        BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+      }
+    })
+  }
 })

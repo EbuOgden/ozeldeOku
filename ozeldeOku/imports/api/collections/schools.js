@@ -80,7 +80,8 @@ Schools.attachSchema(new SimpleSchema({
 
     schoolWebSite : {
       type : String,
-      regEx : SimpleSchema.RegEx.Domain
+      regEx : SimpleSchema.RegEx.Domain,
+      optional : true
     },
 
     isValidate : {

@@ -7,14 +7,21 @@
           <h4 class="modal-title" id="myModalLabel">Yeni Üyelik</h4>
         </div>
         <div class="modal-body">
-          <input type="text" class="input-lg form-control" placeholder="E-mail adresinizi giriniz">
-          <input type="password" class="input-lg form-control" placeholder="Şifrenizi giriniz">
-          <input type="password" class="input-lg form-control" placeholder="Şifre tekrarı">
+          <input type="text" class="input-lg form-control" placeholder="Adınız" id="nameUNew">
+          <br>
+          <input type="text" class="input-lg form-control" placeholder="Soyadınız" id="surnameUNew">
+          <br>
+          <input type="text" class="input-lg form-control" placeholder="E-mail adresinizi giriniz" id="emailUNew">
+          <br>
+          <input type="password" class="input-lg form-control" placeholder="Şifrenizi giriniz" id="passwordUNew">
+          <br>
+          <input type="password" class="input-lg form-control" placeholder="Şifre tekrarı" id="passwordURNew">
+          <br>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-          <button type="button" class="btn btn-success">Üye Ol</button>
+          <button type="button" class="btn btn-success" onclick="signFunc()">Üye Ol</button>
         </div>
       </div>
     </div>

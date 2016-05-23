@@ -7,12 +7,16 @@ import { News } from '../imports/api/collections/news.js';
 import { Comments } from '../imports/api/collections/comments.js';
 import { CityCounty} from '../imports/api/collections/cityCounty.js';
 
+import '../imports/api/collections/users.js';
+
+import '../imports/startup/server/index.js'
+
+
 //import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
 //import { Messages } from '../imports/api/collections/messages.js';
 
-import '../imports/api/server/getCounties.js';
-import '../imports/api/server/reCaptch.js';
+
 
 Meteor.startup(() => {
   // reCAPTCHA.config({
