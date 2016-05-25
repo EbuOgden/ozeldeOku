@@ -22,4 +22,18 @@ Meteor.startup(() => {
   // reCAPTCHA.config({
   //   publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
   // })
+
+  adminControl = Meteor.users.findOne({"username" : "admin"})
+  if(!adminControl){
+    console.log("undefined");
+    Accounts.createUser({
+      username : "admin",
+      password : 'asdasd',
+      profile : {
+        name : 'admin',
+        surname : 'admin',
+        role : 'admin'
+      }
+    })
+  }
 });

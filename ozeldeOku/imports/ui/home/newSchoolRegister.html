@@ -25,135 +25,138 @@
         <small>Okulunuzu sitemizde detaylı tanıtarak öğrenci aday ve velilerine en sağlıklı şekilde ulaşabilirsiniz</small>
       </div>
 
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Okul Adı" id="schoolName">
+      <form id="newSchoolRegisterForm">
+          <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="input-lg form-control" placeholder="Okul Adı" id="schoolName">
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Ticari Unvan" id="tradeName">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="input-lg form-control" placeholder="Ticari Unvan" id="tradeName">
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <select class="form-control input-lg" id="schoolTypeSelect">
-              <option selected disabled>Okul Türü</option>
-              <option>Üniversite</option>
-              <option>Lise</option>
-              <option>İlkokul ve Ortaöğretim</option>
-              <option>Anaokulu</option>
-              <option>Yurt</option>
-            </select>
+            <div class="col-md-3">
+              <div class="form-group">
+                <select class="form-control input-lg" id="schoolTypeSelect">
+                  <option selected disabled>Okul Türü</option>
+                  <option>Üniversite</option>
+                  <option>Lise</option>
+                  <option>İlkokul ve Ortaöğretim</option>
+                  <option>Anaokulu</option>
+                  <option>Yurt</option>
+                </select>
+              </div>
+
+
+            </div>
           </div>
 
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="input-lg form-control" maxlength="10" placeholder="Vergi Numarası" id="taxNum">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="input-lg form-control" maxlength="10" placeholder="Vergi Numarası" id="taxNum">
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="input-lg form-control" placeholder="Yetkili Kişi" id="authorizePersonName">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="input-lg form-control" placeholder="Yetkili Kişi" id="authorizePersonName">
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <input type="text" class="input-lg form-control" placeholder="Yetkili Ünvanı" id="authorizeCaption">
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="text" class="input-lg form-control" placeholder="Yetkili Ünvanı" id="authorizeCaption">
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="email" class="input-lg form-control" placeholder="E-Mail" id="schoolEmail">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="email" class="input-lg form-control" placeholder="E-Mail" id="schoolEmail">
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="email" class="input-lg form-control" placeholder="E-Mail Tekrarı" id="schoolrEmail">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="email" class="input-lg form-control" placeholder="E-Mail Tekrarı" id="schoolrEmail">
+                </div>
             </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="input-lg form-control" placeholder="Şifre belirleyiniz" id="schoolPassword">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="input-lg form-control" placeholder="Şifre Tekrarı" id="schoolrPassword">
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-            <div class="form-group">
-              <textarea class="form-control" rows="5" placeholder="Adres" maxlength="1024" id="schoolAddress"></textarea>
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <select class="form-control input-lg" id="city">
-                <option selected disabled>Şehir</option>
-              </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <select class="form-control input-lg" id="county">
-                <option selected disabled>İlçe</option>
-              </select>
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="phone" class="input-lg form-control" placeholder="Telefon Numarası" id="schoolPhoneNum">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <input type="phone" class="input-lg form-control" placeholder="Fax" id="schoolFaxNum">
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <input type="url" class="input-lg form-control" placeholder="İnternet Sitesi" id="schoolWebSite">
           </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          {{> reCAPTCHA}}
-        </div>
-        <div class="col-md-4">
-          <div class="input-group">
-              <span class="input-group-addon">
-                <input type="checkbox" aria-label="..." id="agreementCheck">
-              </span>
-              <a role="button" data-toggle="modal" data-target="#licenseAgreement"><h5> Üyelik sözleşmesini okudum, kabul ediyorum</h5></a>
-          </div><!-- /input-group -->
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="password" class="input-lg form-control" placeholder="pass" id="schoolPassword">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="password" class="input-lg form-control" placeholder="r-pass" id="schoolrPassword">
+                </div>
+            </div>
+          </div>
 
-        </div>
-      </div>
+          <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                  <textarea class="form-control" rows="5" placeholder="Adres" maxlength="1024" id="schoolAddress"></textarea>
+                </div>
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <select class="form-control input-lg" id="city">
+                    <option selected disabled>Şehir</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <select class="form-control input-lg" id="county">
+                    <option selected disabled>İlçe</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="phone" class="input-lg form-control" placeholder="Telefon Numarası" id="schoolPhoneNum">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <input type="phone" class="input-lg form-control" placeholder="Fax" id="schoolFaxNum">
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="url" class="input-lg form-control" placeholder="İnternet Sitesi" id="schoolWebSite">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              {{> reCAPTCHA}}
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="..." id="agreementCheck">
+                  </span>
+                  <a role="button" data-toggle="modal" data-target="#licenseAgreement"><h5> Üyelik sözleşmesini okudum, kabul ediyorum</h5></a>
+              </div><!-- /input-group -->
+
+            </div>
+          </div>
+
+    </form>
       <br><br>
       <div class="row">
         <div class="col-md-4">

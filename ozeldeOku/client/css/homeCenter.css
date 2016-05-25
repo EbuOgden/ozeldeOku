@@ -61,3 +61,24 @@ textarea {
 .buttonGreen:hover{
   color: rgb(157,197,15);
 }
+
+.buttonRed:hover{
+  color: rgb(255,0,8);
+}
+
+.profileButton:hover{
+  color : rgb(34,110,174);
+}
+
+.favButton:hover{
+  color : rgb(255,194,37);
+}
+
+.messagesButton:hover{
+  color : rgb(157,197,15);
+}
+
+.map-container {
+  max-width: 100%;
+  height: 500px;
+}

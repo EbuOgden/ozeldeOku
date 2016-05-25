@@ -1,6 +1,7 @@
 <template name="homeLayout">
 
   {{#if currentUser}}
+
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -35,9 +36,14 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-envelope" title="Mesajlar" aria-hidden="true"></span><span class="badge">4</span></button></li>
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button></li>
-          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button></li>
+          <li><button class="btn btn-lg btn-link "><span class="glyphicon glyphicon-envelope messagesButton" title="Mesajlar" aria-hidden="true"></span><span class="badge">4</span></button></li>
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-star-empty favButton" title="Favoriler" aria-hidden="true"></span></button></li>
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user profileButton" title="Profil" aria-hidden="true"></span></button></li>
+          {{#if roleControl userRole}}
+          <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-dashboard profileButton" id="adminDash" title="Admin Dashboard" aria-hidden="true"></span></button></li>
+          {{/if}}
+          <li><button class="btn btn-lg btn-link" id="logOut"><span class="glyphicon glyphicon-off buttonRed" title="Çıkış" aria-hidden="true"></span></button></li>
+
         </ul>
 
 

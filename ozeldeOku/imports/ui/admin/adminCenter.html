@@ -1,0 +1,12 @@
+<template name="adminCenter">
+  <div class="container">
+    Onaylı Olmayan Okullar
+
+    <ul>
+        {{#each schools}}
+          <li role="button" id="{{_id}}" class="schoolInfo">{{schoolName}}</li>
+        {{/each}}
+    </ul>
+  </div>
+
+</template>

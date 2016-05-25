@@ -2,6 +2,8 @@
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
+import { GoogleMaps } from 'meteor/dburles:google-maps';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 /*          */
 
 /* DATABASE VARIABLES IMPORTS */
@@ -28,6 +30,7 @@ import './login.html';
 import './forgotPassword.html';
 import './signupModal.html';
 import './favorites.html';
+import './map.html';
 /*          */
 
 /* JAVASCRIPT IMPORTS */
@@ -51,6 +54,7 @@ Template.home.helpers({
 
 Template.homeLayout.events({
   'click #logoHome'(event){
+    FlowRouter.go('/');
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
 
@@ -60,6 +64,29 @@ Template.homeLayout.events({
 
   'click #logInBut'(event){
     BlazeLayout.render('home', {top: 'homeLayout', center : 'login', bottom: 'homeBottom'});
+  },
+
+  'click #adminDash'(event){
+    if(Meteor.user().profile.role == 'admin'){
+      FlowRouter.go('/admin');
+    }
+  },
+
+  'click #logOut'(event){
+    Meteor.logout(() => {
+      FlowRouter.go('/');
+    });
+
+  }
+})
+
+Template.homeLayout.onRendered(() => {
+
+})
+
+Template.homeLayout.helpers({
+  userRole(){
+    return Meteor.user().profile.role;
   }
 })
 
@@ -86,11 +113,6 @@ Template.homeCenter.onRendered(() => {
 })
 
 Template.homeCenter.events({
-  'click .centerMenu'(event){
-    $(".centerMenu").css('color','black');
-    var target = event.currentTarget;
-    $(target).css('color', 'rgb(157,197,15)');
-  },
 
 })
 
@@ -102,8 +124,14 @@ Template.homeBottom.events({
     BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom: 'homeBottom'});
   },
   'click #newSchoolReg'(event){
+    FlowRouter.go('/');
     window.scrollTo(0, 0);
     BlazeLayout.render('home', {top: 'homeLayout', center : 'newSchoolRegister', bottom: 'homeBottom'});
+  },
+
+  'click #touchU'(event){
+    window.scrollTo(0, 0);
+    BlazeLayout.render('home', {top : 'homeLayout', center : 'map', bottom: 'homeBottom'});
   }
 })
 
@@ -177,7 +205,6 @@ Template.newSchoolRegister.events({
     const schoolWebSite = $('#schoolWebSite').val();
     const captchaData = grecaptcha.getResponse()
 
-
     // if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
     //   isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
     //   isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
@@ -196,40 +223,53 @@ Template.newSchoolRegister.events({
       return;
     }
 
-    if(!isEqual(schoolEmail, schoolrEmail)){
-      alert("Girdiğiniz e-mailler eşit değildir. Lütfen kontrol ediniz.");
-      return;
-    }
-    else{
-      if(!isEmail(schoolrEmail)){
+    if(isEqual(schoolEmail, schoolrEmail)){
+      if(isEmail(schoolrEmail)){
+      }
+      else{
         alert("Girdiğiniz e-mail geçersizdir. Lütfen kontrol ediniz.");
         return;
       }
     }
-
-    if(!isEqual(schoolPassword, schoolrPassword)){
-      alert("Girdiğiniz şifreler eşit değildir. Lütfen kontrol ediniz.");
+    else{
+      console.log( "schoolEmail : " + schoolEmail);
+      console.log( "schoolrEmail : " + schoolrEmail);
+      alert("Girdiğiniz e-mailler eşit değildir. Lütfen kontrol ediniz.");
       return;
     }
-    else{
 
+
+    if(isEqual(schoolPassword, schoolrPassword)){
       const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
-      schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
+      schoolrEmail, schoolAddress, schoolrPassword, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
 
       const _schoolN = __newSchoolO.school;
 
-      Meteor.call('recaptchControl', captchaData, _schoolN, (err, result) => {
-
-        grecaptcha.reset();
-
+      Meteor.call('encryptPass', _schoolN, (err, result) => {
         if(err){
           alert(err.reason);
         }
         else{
-          alert("Başvurunuz başarıyla alınmıştır.");
+          Meteor.call('recaptchControl', captchaData, _schoolN, result, (err, result) => {
+
+            grecaptcha.reset();
+
+            if(err){
+              alert(err.reason);
+            }
+            else{
+              document.getElementById("newSchoolRegisterForm").reset();
+              alert("Başvurunuz başarıyla alınmıştır.");
+            }
+          })
         }
       })
 
+
+    }
+    else{
+      alert("Girdiğiniz şifreler eşit değildir. Lütfen kontrol ediniz.");
+      return;
     }
 
   }
@@ -247,13 +287,50 @@ Template.login.events({
     const email = $('#usrEmail').val();
     const password = $('#usrPassword').val();
 
+    if(isEmpty(email) || isEmpty(password)){
+      alert("Lütfen tüm alanları doldurunuz");
+      return;
+    }
+
     Meteor.loginWithPassword(email, password, (err) => {
       if(err){
-        alert(err);
+        if(err.error == 403){
+          alert("Kullanıcı bulunamadı");
+        }
+        else{
+          alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+        }
       }
       else{
         BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
       }
     })
+  }
+})
+
+Template.map.onRendered(() => {
+  GoogleMaps.create({
+    name: 'mapHere',
+    element: document.getElementById('mapHere'),
+    options: {
+      center: new google.maps.LatLng(41.0082, 28.9784),
+      zoom: 8
+    }
+  });
+
+})
+
+Template.map.events({
+  'click #anaSayfaRoute'(event){
+    BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+  },
+})
+
+Template.registerHelper('roleControl', function(role){
+  if(role == 'admin'){
+    return true;
+  }
+  else{
+    return false;
   }
 })

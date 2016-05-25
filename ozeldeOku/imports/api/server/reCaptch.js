@@ -2,7 +2,7 @@ import { Schools } from '../collections/schools.js';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 
 Meteor.methods({
-  recaptchControl(recaptchData, userInfo){
+  recaptchControl(recaptchData, userInfo, pass){
     this.unblock();
 
     // var verifyCaptcha  = reCAPTCHA.verifyCaptcha(this.connection.clientAddress, recaptchData);
@@ -43,7 +43,7 @@ Meteor.methods({
       authorizedPerson : userInfo.__authorizePersonName,
       authorizedCaption : userInfo.__authorizeCaption,
       schoolEmail : userInfo.__schoolEmail,
-      schoolPassword : userInfo.__schoolPassword,
+      schoolPassword : pass,
       schoolAddress : userInfo.__schoolAddress,
       schoolCity : userInfo.__schoolCity,
       schoolCounty : userInfo.__schoolCounty,
@@ -53,7 +53,7 @@ Meteor.methods({
     })
 
     if(newSchool == ""){
-      throw new Meteor.Error('school.insert.fail', "Şu anda teknik bir problem yaşanmaktadır. Lütfen daha sonra tekrar deneyiniz");
+      throw new Meteor.Error('school.insert.fail', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
     }
     else{
     }

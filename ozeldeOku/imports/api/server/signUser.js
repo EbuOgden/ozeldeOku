@@ -1,4 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
+import { Template } from 'meteor/templating';
 
 Meteor.methods({
   signUser(user){
@@ -9,7 +10,7 @@ Meteor.methods({
       profile : {
         name : user.__name,
         surname : user.__surname,
-        role : 'Veli'
+        role : user.__role
       }
     })
 
@@ -19,7 +20,5 @@ Meteor.methods({
     else{
 
     }
-
-    //user geldiginde insertte role veli olacak
   }
 })

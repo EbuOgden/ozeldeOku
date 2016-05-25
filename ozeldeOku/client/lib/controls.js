@@ -57,7 +57,7 @@ signFunc = function(){
   const name = $('#nameUNew').val();
   const surname = $('#surnameUNew').val();
 
-  const __userC = new userInfo(email, passwordR, name, surname);
+  const __userC = new userInfo(email, passwordR, name, surname, 'Veli');
 
   const __user = __userC.user;
 
@@ -75,4 +75,8 @@ signFunc = function(){
       $('#surnameUNew').val("");
     }
   })
+}
+
+schoolConfirm = function(a){
+	console.log(a);
 }
