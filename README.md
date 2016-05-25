@@ -4,6 +4,7 @@ Completed Design
 
 AboutUs</br>
 Home - 50%</br>
+Map</br>
 New School Register 100% (Insert reCAPTCHA - DONE) - (License Agreement Modal - DONE)</br>
 
 Packages : 
