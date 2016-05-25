@@ -232,16 +232,15 @@ Template.newSchoolRegister.events({
       }
     }
     else{
-      console.log( "schoolEmail : " + schoolEmail);
-      console.log( "schoolrEmail : " + schoolrEmail);
       alert("Girdiğiniz e-mailler eşit değildir. Lütfen kontrol ediniz.");
       return;
     }
 
 
     if(isEqual(schoolPassword, schoolrPassword)){
+
       const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
-      schoolrEmail, schoolAddress, schoolrPassword, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
+      schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
 
       const _schoolN = __newSchoolO.school;
 

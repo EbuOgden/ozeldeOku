@@ -54,7 +54,7 @@ Schools.attachSchema(new SimpleSchema({
 
     schoolPassword : {
       type : String,
-      optional : false
+      optional : true
     },
 
     schoolAddress : {

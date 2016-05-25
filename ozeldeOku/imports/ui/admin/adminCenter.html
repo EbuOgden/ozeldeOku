@@ -2,11 +2,17 @@
   <div class="container">
     Onaylı Olmayan Okullar
 
-    <ul>
-        {{#each schools}}
-          <li role="button" id="{{_id}}" class="schoolInfo">{{schoolName}}</li>
-        {{/each}}
-    </ul>
+    <div class="row">
+      <div class="col-md-1">
+        <ul>
+            {{#each schools}}
+              <li role="button" id="{{_id}}" title="Okul Bilgilerini görmek için tıklayınız" class="schoolInfo">{{schoolName}}</li>
+              <br>
+            {{/each}}
+        </ul>
+      </div>
+    </div>
+
   </div>
 
 </template>

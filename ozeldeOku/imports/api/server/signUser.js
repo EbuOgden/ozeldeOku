@@ -1,8 +1,9 @@
 import { Accounts } from 'meteor/accounts-base';
-import { Template } from 'meteor/templating';
 
 Meteor.methods({
   signUser(user){
+
+    this.unblock();
 
     const newUser = Accounts.createUser({
       email : user.__email,
@@ -10,7 +11,7 @@ Meteor.methods({
       profile : {
         name : user.__name,
         surname : user.__surname,
-        role : user.__role
+        role : 'Veli'
       }
     })
 

@@ -57,7 +57,7 @@ signFunc = function(){
   const name = $('#nameUNew').val();
   const surname = $('#surnameUNew').val();
 
-  const __userC = new userInfo(email, passwordR, name, surname, 'Veli');
+  const __userC = new userInfo(email, passwordR, name, surname);
 
   const __user = __userC.user;
 
@@ -77,6 +77,14 @@ signFunc = function(){
   })
 }
 
-schoolConfirm = function(a){
-	console.log(a);
+schoolConfirm = function(schoolName){
+	Meteor.call('confirmSchool', schoolName, (err, result) => {
+		if(err){
+			alert(err.reason);
+		}
+		else{
+			$('#schoolInfo').modal('hide');
+			alert(schoolName + "'in üyeliği aktif edilmiştir.");
+		}
+	})
 }

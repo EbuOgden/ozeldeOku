@@ -2,6 +2,8 @@ import { CryptoJS } from 'meteor/altapp:aes';
 
 Meteor.methods({
   encryptPass(schoolInfo){
+    this.unblock();
+    
     const encrypted = CryptoJS.AES.encrypt(schoolInfo.__schoolPassword, schoolInfo.__schoolName);
 
     if(encrypted == ""){
