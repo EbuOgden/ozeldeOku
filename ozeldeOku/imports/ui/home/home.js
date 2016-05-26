@@ -187,6 +187,8 @@ Template.newSchoolRegister.events({
 
   'click #newSchoolRegister'(event, instance){
 
+    event.preventDefault();
+
     const schoolName = trimInput($('#schoolName').val());
     const tradeName = trimInput($('#tradeName').val());
     const schoolType = $('#schoolTypeSelect').val();
@@ -276,12 +278,16 @@ Template.newSchoolRegister.events({
 
 Template.login.events({
   'click #anaSayfaRoute'(event){
+    event.preventDefault();
+    FlowRouter.go('/');
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
 })
 
 Template.login.events({
   'click #loginUser'(event){
+
+    event.preventDefault();
 
     const email = $('#usrEmail').val();
     const password = $('#usrPassword').val();
@@ -321,8 +327,14 @@ Template.map.onRendered(() => {
 
 Template.map.events({
   'click #anaSayfaRoute'(event){
+    event.preventDefault();
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
+
+  'click #mailSend'(event){
+    event.preventDefault();
+    window.location.href = "mailto:bilgi@ozeldeoku.com";
+  }
 })
 
 Template.registerHelper('roleControl', function(role){
@@ -333,3 +345,31 @@ Template.registerHelper('roleControl', function(role){
     return false;
   }
 })
+
+signFunc = function(){
+
+  const email = $('#emailUNew').val();
+  const password = $('#passwordUNew').val();
+  const passwordR = $('#passwordURNew').val();
+  const name = $('#nameUNew').val();
+  const surname = $('#surnameUNew').val();
+
+  const __userC = new userInfo(email, passwordR, name, surname);
+
+  const __user = __userC.user;
+
+  Meteor.call('signUser', __user, (err,result) => {
+    if(err){
+      alert(err.reason);
+    }
+    else{
+      alert("Başarıyla kayıt oldunuz!");
+      $('#signUp').modal('hide');
+      $('#emailUNew').val("");
+      $('#passwordUNew').val("");
+      $('#passwordURNew').val("");
+      $('#nameUNew').val("");
+      $('#surnameUNew').val("");
+    }
+  })
+}

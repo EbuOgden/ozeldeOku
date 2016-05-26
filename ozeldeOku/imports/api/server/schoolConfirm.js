@@ -34,7 +34,7 @@ Meteor.methods({
       })
 
       if(schoolUpdate == ""){
-        throw new Meteor.Error('cant.sign.up', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
+        throw new Meteor.Error('cant.update.school', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
       }
       else{
       }
