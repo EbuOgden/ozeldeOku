@@ -9,7 +9,6 @@ import './schoolInfo.html';
 
 
 Template.admin.onRendered(() => {
-
 })
 
 Template.adminCenter.helpers({

@@ -100,6 +100,11 @@ Schools.attachSchema(new SimpleSchema({
       }
     },
 
+    imgSrc : {
+      type : String,
+      optional : true
+    },
+
     requestTime : {
       type : Date,
 

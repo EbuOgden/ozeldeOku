@@ -46,11 +46,12 @@
             <div>
               <img src="https://unsplash.it/500/300?image=2" alt="image 2">
             </div>
+
           </div>
       </div>
       <div class="col-md-5"> <!--SEARCH ! -->
         <div clas="sa">
-          SA
+
         </div>
       </div>
   </div>
@@ -91,6 +92,17 @@
 
   </div>
 
+  <div class="row">
+
+    <input type="search">
+    <div class="col">
+      {{#each school}}
+        <div class="col-md-4">
+          <img class="schoolImages" src="{{imgSrc}}">
+        </div>
+      {{/each}}
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-4">
       <img class="schoolImages" src="schoolImage.png">

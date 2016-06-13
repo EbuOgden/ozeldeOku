@@ -2,7 +2,6 @@
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
-import { GoogleMaps } from 'meteor/dburles:google-maps';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 /*          */
 
@@ -31,12 +30,15 @@ import './forgotPassword.html';
 import './signupModal.html';
 import './favorites.html';
 import './map.html';
+import './aboutUs/empty.html';
 /*          */
 
 /* JAVASCRIPT IMPORTS */
 import '../../../client/lib/jquery.raty.js';
 import '../../../client/lib/controls.js';
-import '../../startup/client/config.js'
+import '../../startup/client/config.js';
+import '../../api/client/registerHelpers.js';
+import '../../api/client/clientFuncs.js'
 /*          */
 
 
@@ -45,7 +47,6 @@ Template.home.events({
 })
 
 Template.home.onRendered(() => {
-
 })
 
 Template.home.helpers({
@@ -54,29 +55,49 @@ Template.home.helpers({
 
 Template.homeLayout.events({
   'click #logoHome'(event){
+    event.preventDefault();
     FlowRouter.go('/');
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
 
-  'click #aboutUs'(event, instance){
-    BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom: 'homeBottom'});
+  'click #aboutUs'(event){
+    event.preventDefault();
+    BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom : 'empty'});
   },
 
   'click #logInBut'(event){
+    event.preventDefault()
     BlazeLayout.render('home', {top: 'homeLayout', center : 'login', bottom: 'homeBottom'});
   },
 
   'click #adminDash'(event){
+    event.preventDefault();
     if(Meteor.user().profile.role == 'admin'){
       FlowRouter.go('/admin');
     }
   },
 
   'click #logOut'(event){
+    event.preventDefault();
     Meteor.logout(() => {
       FlowRouter.go('/');
     });
 
+  },
+
+  'click #profilePage'(event){
+    event.preventDefault();
+    if(Meteor.userId()){
+        FlowRouter.go('/profil');
+    }
+
+  },
+
+  'click #schoolProfilePage'(event){
+    event.preventDefault();
+    if(Meteor.user().profile.role == "School"){
+        FlowRouter.go('/okulProfil');
+    }
   }
 })
 
@@ -114,6 +135,12 @@ Template.homeCenter.onRendered(() => {
 
 Template.homeCenter.events({
 
+})
+
+Template.homeCenter.helpers({
+  school : function(){
+    return Schools.find();
+  }
 })
 
 Template.homeBottom.events({
@@ -207,13 +234,13 @@ Template.newSchoolRegister.events({
     const schoolWebSite = $('#schoolWebSite').val();
     const captchaData = grecaptcha.getResponse()
 
-    // if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
-    //   isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
-    //   isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
-    //   isEmpty(schoolCounty) || isEmpty(schoolPhoneNum) || isEmpty(schoolFaxNum) || isEmpty(schoolWebSite) )){
-    //     alert("Lütfen tüm alanları doldurunuz!");
-    //     return;
-    // }
+    if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
+      isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
+      isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
+      isEmpty(schoolCounty) || isEmpty(schoolPhoneNum) || isEmpty(schoolFaxNum) || isEmpty(schoolWebSite) )){
+        alert("Lütfen tüm alanları doldurunuz!");
+        return;
+    }
 
     if(!$('#agreementCheck').prop('checked')){
       alert("Lütfen üyelik sözleşmesini kabul ediniz!");
@@ -314,14 +341,17 @@ Template.login.events({
 })
 
 Template.map.onRendered(() => {
-  GoogleMaps.create({
-    name: 'mapHere',
-    element: document.getElementById('mapHere'),
-    options: {
-      center: new google.maps.LatLng(41.0082, 28.9784),
-      zoom: 8
-    }
+
+  var map = new google.maps.Map(document.getElementById('mapHere'), {
+    center: {lat: 41.0082, lng: 28.9784},
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
 
 })
 
@@ -336,40 +366,3 @@ Template.map.events({
     window.location.href = "mailto:bilgi@ozeldeoku.com";
   }
 })
-
-Template.registerHelper('roleControl', function(role){
-  if(role == 'admin'){
-    return true;
-  }
-  else{
-    return false;
-  }
-})
-
-signFunc = function(){
-
-  const email = $('#emailUNew').val();
-  const password = $('#passwordUNew').val();
-  const passwordR = $('#passwordURNew').val();
-  const name = $('#nameUNew').val();
-  const surname = $('#surnameUNew').val();
-
-  const __userC = new userInfo(email, passwordR, name, surname);
-
-  const __user = __userC.user;
-
-  Meteor.call('signUser', __user, (err,result) => {
-    if(err){
-      alert(err.reason);
-    }
-    else{
-      alert("Başarıyla kayıt oldunuz!");
-      $('#signUp').modal('hide');
-      $('#emailUNew').val("");
-      $('#passwordUNew').val("");
-      $('#passwordURNew').val("");
-      $('#nameUNew').val("");
-      $('#surnameUNew').val("");
-    }
-  })
-}

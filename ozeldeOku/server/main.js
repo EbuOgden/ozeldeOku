@@ -25,7 +25,6 @@ Meteor.startup(() => {
 
   adminControl = Meteor.users.findOne({"username" : "admin"})
   if(!adminControl){
-    console.log("undefined");
     Accounts.createUser({
       username : "admin",
       password : 'asdasd',
