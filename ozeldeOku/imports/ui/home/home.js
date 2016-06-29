@@ -34,7 +34,6 @@ import './aboutUs/empty.html';
 /*          */
 
 /* JAVASCRIPT IMPORTS */
-import '../../../client/lib/jquery.raty.js';
 import '../../../client/lib/controls.js';
 import '../../startup/client/config.js';
 import '../../api/client/registerHelpers.js';
@@ -127,7 +126,7 @@ Template.homeCenter.onRendered(() => {
   });
 
   $('#rate').raty({
-    readOnly : true,
+    readOnly : false,
     score : 4
   });
 
@@ -165,7 +164,7 @@ Template.homeBottom.events({
 Template.newSchoolRegister.onRendered(() => {
   Meteor.call('getCities', (err, result) => {
     if(err){
-
+      alert(err.reason);
     }
     else{
       const cities = result;

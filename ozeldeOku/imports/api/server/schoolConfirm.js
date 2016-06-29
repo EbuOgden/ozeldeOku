@@ -29,7 +29,8 @@ Meteor.methods({
       const schoolUpdate = Schools.update({"_id" : school._id}, {
         $set : {
           isValidate : true,
-          schoolPassword : " "
+          schoolPassword : " ",
+          authorizedPersonUserId : newSchoolAccount
         }
       })
 

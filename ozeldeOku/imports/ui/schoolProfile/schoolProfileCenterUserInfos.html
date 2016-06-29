@@ -1,0 +1,180 @@
+<template name="schoolProfileCenterUserInfos">
+
+  <div class="col-md-7">
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Okul İsmi
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{schoolName}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Ticari Ünvan
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{tradeName}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Vergi Numarası
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{taxNo}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Yetkili Kişi
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            E-mail
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            E-mail Tekrarı
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Telefon
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{schoolPhoneNumber}}">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Fax
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <input type="text" class="form-control input-lg" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Adres
+          </li>
+          <li style="padding-bottom: 5px;">
+            {{#each school}}
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
+                </div>
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton"><b>Bilgilerimi Güncelle</b></button>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <h5><i class="fa fa-circle-o-notch" aria-hidden="true"></i>&nbsp;Şifremi değiştirmek istiyorum</h5>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Mevcut Şifre
+        <input type="password" class="form-control input-lg" placeholder="Mevcut Şifre" style="heigth : 45px;">
+      </div>
+
+      <div class="col-md-4">
+        Yeni Şifre
+        <input type="text" class="form-control input-lg" placeholder="Yeni Şifre" style="heigth : 45px;">
+      </div>
+
+      <div class="col-md-4">
+        Yeni Şifre Tekrarı
+        <input type="text" class="form-control input-lg" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton"><b>Şifreyi Değiştir</b></button>
+      </div>
+    </div>
+
+    <br>
+  </div>
+
+
+</template>

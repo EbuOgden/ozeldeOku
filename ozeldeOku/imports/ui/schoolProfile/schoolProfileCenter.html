@@ -1,29 +1,6 @@
 <template name="schoolProfileCenter">
-  <!-- <div class="container"> PROFILE CENTER OLACAK
-    <div class="row">
-      <div class="pull-left">
-        <ol class="breadcrumb" style="background-color:white;">
-            <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
-            <li>Hesabım</li>
-            <li>Üyelik Bilgilerim</li>
-          </ol>
-      </div>
 
-        <div class="col-md-offset-5 col-md-3">
-          <form id="schoolSearch">
-              <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
-                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-              </div>
-          </form>
-        </div>
-    </div>
-    <div class="page-header">
-      <h3 class="homeCarouselFirstPageFontColor">Üyelik Bilgilerim</h3>
-      <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
-    </div>
-
-  </div> -->
+  {{> Template.dynamic template=schoolProfileCenterInfosTop}}
 
   <div class="container">
     <div class="row">
@@ -50,6 +27,57 @@
       <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
     </div>
 
-    <input type="filepicker" data-fp-apikey="AiSwWHxVSY2JK7ggFvzgcz" onchange="fileU(event.fpfile.url)">
+    <!-- <input type="filepicker" data-fp-apikey="AiSwWHxVSY2JK7ggFvzgcz" onchange="fileU(event.fpfile.url)"> -->
+
+    <div class="row">
+      <div class="col-md-3">
+        <p class="userMenuBack" style="padding: 15px"><b style="color:white">Kullanıcı Menüsü</b></p>
+        <ul class="nav nav-sidebar">
+          <li>
+            Hoşgeldiniz<br>
+            <h5 class="profileUserNameColor">{{userName}}</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="userInfos" class="buttonGreen"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Üyelik Bilgilerim</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="schoolInfos" class="buttonGreen"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;Okul Bilgilerim</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="messages" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" class="buttonGreen"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Favorilerim</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" class="buttonGreen"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Destek Merkezi</h5>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" class="buttonGreen"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;Güvenli Çıkış</h5>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-5">
+        <input type="text" class="form-control input-lg" placeholder="Okul adına veya gönderen adına göre arama yapın" >
+      </div>
+
+      <div class="col-md-1">
+        <button type="button" class="btn btn-default btn-lg newSchoolRegisterButton"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Ara</button>
+      </div>
+
+      <div class="col-md-3">
+        <button type="button" class="btn btn-default btn-lg newMessageButtonBack"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Yeni Mesaj</button>
+      </div>
+
+        {{> Template.dynamic template=schoolProfileCenterInfosDynamic}}
+    </div>
+
   </div>
 </template>

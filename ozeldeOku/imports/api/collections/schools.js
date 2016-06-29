@@ -113,5 +113,21 @@ Schools.attachSchema(new SimpleSchema({
           return new Date();
         }
       }
+    },
+
+    authorizedPersonUserId : {
+      type : String,
+      optional : true
+    },
+
+    haveSchoolDetailInfo : {
+      type : Boolean,
+      optional : false,
+
+      autoValue : function(){
+        if(this.isInsert){
+          return false;
+        }
+      }
     }
 }), {replace : true});

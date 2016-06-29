@@ -9,7 +9,7 @@ FacultyDepartments.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
     optional : false
-  }
+  },
 
   facultyId : {
     type : String,

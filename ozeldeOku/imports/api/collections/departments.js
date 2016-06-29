@@ -13,6 +13,6 @@ Departments.attachSchema(new SimpleSchema({
   departmentDescription : {
     type : String,
     max : 256,
-    optional : false
+    optional : true
   }
 }), { replace : true})

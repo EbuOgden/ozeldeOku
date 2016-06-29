@@ -1,0 +1,242 @@
+<template name="schoolProfileSchoolInfos">
+  <div class="col-md-8">
+    <br>
+
+    {{#if firstTime}}
+
+    <div class="alert alert-warning" role="alert">Lütfen okulunuzla ilgili detaylı bilgileri giriniz.</div>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 1. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+                <input type="text" class="form-control" placeholder="">
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 2. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+                <input type="text" class="form-control" placeholder="">
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 3. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+                <input type="text" class="form-control" placeholder="">
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Fakülte Sayısı
+          </li>
+
+          <li style="padding-bottom: 5px;">
+                <input type="number" class="form-control" placeholder="">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Departman Sayısı
+          </li>
+
+          <li style="padding-bottom: 5px;">
+
+                <input type="number" class="form-control" placeholder="">
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+<form id="insUpSch">
+    <div class="row">
+      <div class="col-md-5">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Fakülte Ekle
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <select class="form-control input-lg chosen-select" id="uniFaculties">
+                <option disabled selected="selected">Fakülte Ekle</option>
+                {{#each faculty}}
+                  <option value="{{_id}}">{{facultyName}}</option>
+                {{/each}}
+                <option id="anotherFaculty">Diğer...</option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-5">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Departman Ekle
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <select class="form-control input-lg chosen-select" id="facDepartments" multiple data-placeholder="Departman Seçiniz">
+                {{#each department}}
+                  <option value={{_id}}>{{departmentName}}</option>
+                {{/each}}
+                <option id="anotherDepartment">Diğer...</option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="col-md-1">
+        <br>
+
+        <button type="submit" class="btn btn-default"  title="Fakülteyi Ekle" id="addFacultyWithDepartments">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+
+      </div>
+
+      <div class="col-md-1">
+        <br>
+        <button type="button" class="btn btn-default" title="Bitir" id="addFacultyFinish">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+      </form>
+    {{else}}
+
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 1. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each schoolInfos}}
+                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
+            {{/each}}
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 2. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each schoolInfos}}
+                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
+            {{/each}}
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Popüler 3. Bölüm
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each schoolInfos}}
+                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
+            {{/each}}
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Fakülte Sayısı
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each schoolInfos}}
+                <input type="number" class="form-control" placeholder="{{faculty.facultyCount}}">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Departman Sayısı
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            {{#each schoolInfos}}
+                <input type="number" class="form-control" placeholder="{{faculty.departmentCount}}">
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Departman Kontenjanı
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <select class="form-control input-lg" id="uniDepartments">
+                <option selected disabled>Şehir</option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {{/if}}
+  </div>
+</template>

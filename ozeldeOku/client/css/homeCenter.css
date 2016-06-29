@@ -82,3 +82,20 @@ textarea {
   max-width: 100%;
   height: 500px;
 }
+
+.userMenuBack {
+  background-color: rgb(157,197,15);
+}
+
+.newMessageButtonBack {
+  background-color: rgb(255,195,37);
+  color : white;
+}
+
+.profileUserNameColor {
+  color : rgb(157,197,15);
+}
+
+.sa {
+  border-color : transparent;
+}

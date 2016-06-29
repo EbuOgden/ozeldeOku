@@ -7,7 +7,7 @@ Faculties.attachSchema(new SimpleSchema({
 
   facultyName : {
     type : String,
-    max : 256
+    max : 256,
     optional : false
   }
 

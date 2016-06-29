@@ -10,6 +10,11 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
+  popularDepartments : {
+    type : [String],
+    optional : true
+  },
+
   studentCountInfos : {
     type : Object,
     optional : false
@@ -38,7 +43,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
   "studentCountInfos.stuCountPerProf" : {
     type : Number,
     optional : false
-  }
+  },
 
   academicInfos : {
     type : Object,
@@ -116,7 +121,8 @@ SchoolInfos.attachSchema(new SimpleSchema({
   },
 
   "scholarShipInfos.sdfasf" : {
-
+    type : String,
+    optional : true
   },
 
   "scholarShipInfos.athleteScholar" : {
@@ -127,7 +133,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
   "scholarShipInfos.siblingScholar" : {
     type : Boolean,
     optional : false
-  }
+  },
 
   "scholarShipInfos.firstSelectScholar" : {
     type : Boolean,
