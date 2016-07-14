@@ -45,8 +45,20 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
+
+
   academicInfos : {
     type : Object,
+    optional : false
+  },
+
+  "academicInfos.facultyCount" : {
+    type : Number,
+    optional : false
+  },
+
+  "academicInfos.departmentCount" : {
+    type : Number,
     optional : false
   },
 
@@ -55,49 +67,69 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
-  "academicInfos.faculty.facultyCount" : {
+  "academicInfos.faculty.facultyId" : {
     type : Number,
     optional : false
   },
 
-  "academicInfos.faculty.departmentCount" : {
-    type : Number,
-    optional : false
-  },
-
-  "academicInfos.department" : {
+  "academicInfos.faculty.department" : {
     type : [Object],
     optional : false
   },
 
-  "academicInfos.department.$.depId" : {
+  "academicInfos.faculty.department.$.depId" : {
     type : String,
     optional : false
   },
 
-  "academicInfos.department.$.quota" : {
+  "academicInfos.faculty.department.$.quota" : {
     type : Number,
-    optional : false
+    optional : false,
+    autoValue : function(){
+      if(this.isInsert){
+        return 0
+      }
+    }
   },
 
-  "academicInfos.department.$.fullScholarQuota" : {
+  "academicInfos.faculty.department.$.fullScholarQuota" : {
     type : Number,
-    optional : false
+    optional : false,
+    autoValue : function(){
+      if(this.isInsert){
+        return 0
+      }
+    }
   },
 
-  "academicInfos.department.$.75ScholarQuota" : {
+  "academicInfos.faculty.department.$.75ScholarQuota" : {
     type : Number,
-    optional : true
+    optional : true,
+    autoValue : function(){
+      if(this.isInsert){
+        return 0
+      }
+    }
   },
 
-  "academicInfos.department.$.50ScholarQuota" : {
+  "academicInfos.faculty.department.$.50ScholarQuota" : {
     type : Number,
-    optional : true
+    optional : true,
+    autoValue : function(){
+      if(this.isInsert){
+        return 0
+      }
+    }
   },
 
-  "academicInfos.department.$.25ScholarQuota" : {
+  "academicInfos.faculty.department.$.25ScholarQuota" : {
     type : Number,
-    optional : true
+    optional : true,
+    autoValue : function(){
+      if(this.isInsert){
+        return 0
+      }
+    }
   },
 
   financialInfos : {

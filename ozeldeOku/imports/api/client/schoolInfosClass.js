@@ -1,26 +1,23 @@
 export const schoolInfosForComp = {
-  __popularFDepart : "",
-  __popularSDepart : "",
-  __popularTDepart : "",
-  __facultyCount : "",
-  __departmentCount : "",
-  __facultyIds : [""],
+  __facultyInfos : [{
+    facultyId : "",
+    departmentIds : []
+  }],
 
-
-
-  get doctorateCount(){
-    return this.__doctorateCount;
+  set setFacultyInfos(__obj_){
+    this.__facultyInfos.push({
+      facultyId : __obj_.facId,
+      departmentIds : __obj_.departmentIdsFrom
+    });
   },
 
-  set doctorateCount(b){
-    this.__doctorateCount = b;
+  get getFacultyInfos(){
+    return this.__facultyInfos;
   },
 
-  get infos1(){
-    return this._b;
-  },
+  getFacultyInfosLength : function() {
+    return (this.__facultyInfos.length) - 1;
 
-  set info1(c){
-    this._b = c
   }
+
 }

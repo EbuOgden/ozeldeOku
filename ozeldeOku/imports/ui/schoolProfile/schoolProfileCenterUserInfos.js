@@ -8,6 +8,6 @@ import './schoolProfileSchoolInfos.js'
 
 Template.schoolProfileCenterUserInfos.helpers({
   school(){
-    return Schools.find();
+    return Schools.find({"authorizedPersonUserId" : Meteor.userId()});
   }
 })

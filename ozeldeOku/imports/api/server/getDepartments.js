@@ -15,5 +15,5 @@ Meteor.methods({
       return departmentNames;
     }
 
-  }
+  },
 })

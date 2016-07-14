@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 import './schoolProfileSchoolInfos.html';
 
@@ -9,12 +10,20 @@ import { Departments } from '/imports/api/collections/departments.js';
 import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js';
 
 import { schoolInfosForComp } from '/imports/api/client/schoolInfosClass.js'
+import { departmentQuotasInfos } from '/imports/api/client/departmentQuotaInfos.js';
+import { depObjForRet } from '/imports/api/client/departmentObjClassForReturn.js';
 
 import '../../../client/lib/chosen.jquery.min.js';
 
+Template.schoolProfileSchoolInfos.onCreated(function schoolProfileSchoolInfosOnCreated() {
+
+  this.__c__Control = new ReactiveVar(0);
+
+})
+
 Template.schoolProfileSchoolInfos.helpers({
   firstTime(){
-    if(!Schools.findOne().haveSchoolDetailInfo){
+    if(!Schools.find({"authorizedPersonUserId" : Meteor.userId()}).haveSchoolDetailInfo){
         return true;
     }
     else{
@@ -24,7 +33,7 @@ Template.schoolProfileSchoolInfos.helpers({
 
   schoolInfos(){
 
-    return SchoolInfos.find({"schoolId" : Schools.findOne()._id});
+    return SchoolInfos.find({"schoolId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id});
 
   },
 
@@ -34,10 +43,20 @@ Template.schoolProfileSchoolInfos.helpers({
 
   department(){
     return Departments.find({});
+  },
+
+  facultyInfosLength(){
+    if(Template.instance().__c__Control.get() == 1){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 })
 
 Template.schoolProfileSchoolInfos.onRendered(() => {
+
 
   if(!Schools.findOne().haveSchoolDetailInfo){
     $(".chosen-select").chosen({
@@ -46,7 +65,7 @@ Template.schoolProfileSchoolInfos.onRendered(() => {
 
   }
   else{
-    Meteor.call('getUniDepartments', Schools.findOne()._id, (err, result) => {
+    Meteor.call('getUniDepartments', Schools.find({"authorizedPersonUserId" : Meteor.userId()})._id, (err, result) => {
       if(err){
         alert(err.reason);
       }
@@ -82,24 +101,78 @@ Template.schoolProfileSchoolInfos.events({
 
     const departmentIds = $('#facDepartments').val();
 
-    const schoolId = Schools.findOne()._id;
-
-
-
-    if(localInsert != ""){
-
-      $('#uniFaculties').prop('selectedIndex',0); /* single select reset */
-
-      $("#facDepartments option:selected").removeAttr("selected"); /* multiple select reset */
-
+    const facInfos = {
+      facId : facultyId,
+      departmentIdsFrom : departmentIds
     }
-    else{
 
-    }
+    schoolInfosForComp.setFacultyInfos = facInfos;
+
+    $('#uniFaculties').prop('selectedIndex',0); /* single select reset */
+
+    $("#facDepartments option:selected").removeAttr("selected"); /* multiple select reset */
   },
 
   'click #addFacultyFinish'(event, instance){
     event.preventDefault();
 
+    const schoolInfos = schoolInfosForComp.getFacultyInfos;
+
+    if(schoolInfosForComp.getFacultyInfosLength() >= 1){
+
+      instance.__c__Control.set(1);
+
+      const facultyInfos = schoolInfosForComp.getFacultyInfos;
+
+      Meteor.call('getFaculties', facultyInfos, (err, result) => {
+        if(err){
+          alert(err.reason);
+        }
+        else{
+          for(let i = 0; i < result.length; i++){
+            $('#facultyQuota').append('<option>' + result[i] + '</option>');
+          }
+        }
+
+      })
+
+    }
+
+  },
+
+  'change #facultyQuota'(event, instance){
+    const facName = $('#facultyQuota').val();
+
+    const facInfos = schoolInfosForComp.getFacultyInfos;
+
+    const faculty = {
+      facultyName : facName,
+      facultyInfos : facInfos
+    }
+
+    if(isEmpty(faculty)){
+
+    }
+    else{
+      Meteor.call('getDepartmentsByFacName', faculty, (err, result) => {
+        if(err){
+          alert(err.reason);
+        }
+        else{
+
+          $('#departmentQuota').empty();
+
+          $('#departmentQuota').append('<option disabled selected>Departman Seçiniz</option>');
+          for(let i = 0; i < result.length; i++){
+            depObjForRet.setDepInfos = result[i];
+            $('#departmentQuota').append('<option>' + result[i].departmentName + '</option>');
+          }
+
+          console.log(depObjForRet.getDepInfos);
+        }
+      })
+    }
   }
+
+
 })
