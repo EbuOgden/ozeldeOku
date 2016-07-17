@@ -45,8 +45,6 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
-
-
   academicInfos : {
     type : Object,
     optional : false
@@ -68,7 +66,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
   },
 
   "academicInfos.faculty.facultyId" : {
-    type : Number,
+    type : String,
     optional : false
   },
 
@@ -102,7 +100,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
     }
   },
 
-  "academicInfos.faculty.department.$.75ScholarQuota" : {
+  "academicInfos.faculty.department.$.Scholar75Quota" : {
     type : Number,
     optional : true,
     autoValue : function(){
@@ -112,7 +110,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
     }
   },
 
-  "academicInfos.faculty.department.$.50ScholarQuota" : {
+  "academicInfos.faculty.department.$.Scholar50Quota" : {
     type : Number,
     optional : true,
     autoValue : function(){
@@ -122,7 +120,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
     }
   },
 
-  "academicInfos.faculty.department.$.25ScholarQuota" : {
+  "academicInfos.faculty.department.$.Scholar25Quota" : {
     type : Number,
     optional : true,
     autoValue : function(){
@@ -152,11 +150,6 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : true
   },
 
-  "scholarShipInfos.sdfasf" : {
-    type : String,
-    optional : true
-  },
-
   "scholarShipInfos.athleteScholar" : {
     type : Boolean,
     optional : false
@@ -177,13 +170,13 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
-  "scholarShipInfos.commonCollegeScholar" : {
+  "scholarShipInfos.academicScholar" : {
     type : Boolean,
     optional : false
   },
 
-  "scholarShipInfos.academicScholar" : {
-    type : Boolean,
-    optional : false
+  sumSalary : {
+    type : String,
+    optional : true
   }
 }), {replace : true})

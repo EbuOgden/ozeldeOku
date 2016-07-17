@@ -19,7 +19,7 @@
           </li>
 
           <li style="padding-bottom: 5px;">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" id="pop1Dep">
           </li>
 
         </ul>
@@ -33,7 +33,7 @@
           </li>
 
           <li style="padding-bottom: 5px;">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" id="pop2Dep">
           </li>
 
         </ul>
@@ -46,7 +46,7 @@
           </li>
 
           <li style="padding-bottom: 5px;">
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" class="form-control" id="pop3Dep">
           </li>
 
         </ul>
@@ -63,7 +63,7 @@
           </li>
 
           <li style="padding-bottom: 5px;">
-                <input type="number" class="form-control" placeholder="">
+                <input type="number" class="form-control" id="facultyCount">
           </li>
         </ul>
       </div>
@@ -76,7 +76,7 @@
 
           <li style="padding-bottom: 5px;">
 
-                <input type="number" class="form-control" placeholder="">
+                <input type="number" class="form-control" id="departmentCount">
           </li>
         </ul>
       </div>
@@ -162,7 +162,7 @@
             </li>
 
             <li style="padding-bottom: 5px;">
-                  <input type="text" class="form-control" placeholder="">
+                  <input type="text" class="form-control" id="licStuCount">
             </li>
 
           </ul>
@@ -175,7 +175,7 @@
             </li>
 
             <li style="padding-bottom: 5px;">
-                  <input type="text" class="form-control" placeholder="">
+                  <input type="text" class="form-control" id="masStuCount">
             </li>
 
           </ul>
@@ -188,7 +188,7 @@
             </li>
 
             <li style="padding-bottom: 5px;">
-                  <input type="text" class="form-control" placeholder="">
+                  <input type="text" class="form-control" id="docStuCount">
             </li>
 
           </ul>
@@ -201,7 +201,7 @@
             </li>
 
             <li style="padding-bottom: 5px;">
-                  <input type="text" class="form-control" placeholder="">
+                  <input type="text" class="form-control" id="profCount">
             </li>
 
           </ul>
@@ -252,8 +252,190 @@
 
       </div>
 
+      <br>
+
+      {{#if quotaInfos}}
+
+      <div class="row">
+          <div class="col-md-6">
+            <span class="label label-primary">Departman Kontenjan Bilgileri</span>
+          </div>
+
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              Toplam
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="fullQuota">
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              %100 Burs
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="quota100">
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              %75 Burs
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="quota75">
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              %50 Burs
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="quota50">
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              %25 Burs
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="quota25">
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              Ekle
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <button class="btn btn-default"  title="Kontenjan Ekle" id="addDepartmentQuotaInfos">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <br>
+
       {{/if}}
 
+      {{/if}}
+
+      <div class="row">
+          <div class="col-md-6">
+            <span class="label label-primary">Burs Bilgileri</span>
+          </div>
+
+      </div>
+
+      <br>
+
+<form id="scholarInfosChecks">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." id="athleteScholar">
+              </span>
+              <h5>Sporcu Bursu</h5>
+          </div><!-- /input-group -->
+        </div>
+
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." id="siblingScholar">
+              </span>
+              <h5>Kardeş Bursu</h5>
+          </div><!-- /input-group -->
+        </div>
+
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." id="firstSelectScholar">
+              </span>
+              <h5>İlk Tercih Bursu</h5>
+          </div><!-- /input-group -->
+        </div>
+
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." id="academicScholar">
+              </span>
+              <h5>Akademik Burs</h5>
+          </div><!-- /input-group -->
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." id="retiredScholar">
+              </span>
+              <h5>Emekli Bursu</h5>
+          </div><!-- /input-group -->
+        </div>
+
+      </div>
+
+    </form>
+
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="nav nav-sidebar">
+            <li style="padding-bottom: 5px;">
+              Mezuniyet sonrası ortalama maaş
+            </li>
+
+            <li style="padding-bottom: 5px;">
+              <input type="text" class="form-control" id="sumSalary">
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 pull-right">
+          <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="sendSchoolInfos"><b>Okul Bilgilerini Gönder</b></button>
+        </div>
+      </div>
     {{else}}
 
     <div class="row">

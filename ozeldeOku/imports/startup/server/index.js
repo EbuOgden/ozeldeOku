@@ -7,5 +7,6 @@ import '../../api/server/imgUpload.js';
 import '../../api/server/getDepartments.js';
 import '../../api/server/getUniDepartments.js';
 import '../../api/server/getFaculties.js';
-import '../../api/server/addUniDepartments.js';
 import '../../api/server/getDepartmentsByFacName.js';
+import '../../api/server/depIdFromName.js';
+import '../../api/server/addSchoolInfosToDb.js';

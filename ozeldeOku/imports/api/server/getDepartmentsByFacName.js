@@ -24,7 +24,7 @@ Meteor.methods({
 
       if(depIds.length >= 1){
         for(let i = 0; i < depIds.length; i++){
-            deps.push(Departments.findOne({"_id" : depIds[i]}));
+            deps.push(Departments.findOne({"_id" : depIds[i]}).departmentName);
         }
 
         return deps;

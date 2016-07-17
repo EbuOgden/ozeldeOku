@@ -19,6 +19,8 @@ Template.schoolProfileSchoolInfos.onCreated(function schoolProfileSchoolInfosOnC
 
   this.__c__Control = new ReactiveVar(0);
 
+  this.__deq__Control = new ReactiveVar(0);
+
 })
 
 Template.schoolProfileSchoolInfos.helpers({
@@ -52,6 +54,15 @@ Template.schoolProfileSchoolInfos.helpers({
     else{
       return false;
     }
+  },
+
+  quotaInfos(){
+    if(Template.instance().__deq__Control.get() == 1){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 })
 
@@ -65,7 +76,7 @@ Template.schoolProfileSchoolInfos.onRendered(() => {
 
   }
   else{
-    Meteor.call('getUniDepartments', Schools.find({"authorizedPersonUserId" : Meteor.userId()})._id, (err, result) => {
+    Meteor.call('getUniDepartments', Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id, (err, result) => {
       if(err){
         alert(err.reason);
       }
@@ -164,14 +175,106 @@ Template.schoolProfileSchoolInfos.events({
 
           $('#departmentQuota').append('<option disabled selected>Departman Seçiniz</option>');
           for(let i = 0; i < result.length; i++){
-            depObjForRet.setDepInfos = result[i];
-            $('#departmentQuota').append('<option>' + result[i].departmentName + '</option>');
+            $('#departmentQuota').append('<option>' + result[i] + '</option>');
           }
-
-          console.log(depObjForRet.getDepInfos);
         }
       })
     }
+  },
+
+  'change #departmentQuota'(event, instance){
+    $('#fullQuota').val("");
+    $('#quota100').val("");
+    $('#quota75').val("");
+    $('#quota50').val("");
+    $('#quota25').val("");
+    instance.__deq__Control.set(1);
+
+  },
+
+  'click #addDepartmentQuotaInfos'(event, instance){
+    event.preventDefault();
+
+    const quota = $('#fullQuota').val();
+    const quota100 = $('#quota100').val();
+    const quota75 = $('#quota75').val();
+    const quota50 = $('#quota50').val();
+    const quota25 = $('#quota25').val();
+
+    const depName = $('#departmentQuota').val();
+
+    Meteor.call('depIdFromName', depName, (err, result) => {
+      if(err){
+        alert(err.reason);
+        console.log(err);
+      }
+      else{
+        const detailedQuotas = {
+          departmentName : depName,
+          _id : result,
+          quota : quota,
+          quotaFull : quota100,
+          quota75 : quota75,
+          quota50 : quota50,
+          quota25 : quota25
+        }
+
+        depObjForRet.setDepInfos = detailedQuotas;
+
+        instance.__deq__Control.set(0);
+
+        $('#departmentQuota option:selected').remove();
+      }
+    })
+
+  },
+
+  'click #sendSchoolInfos'(event, instance){
+    event.preventDefault();
+
+    const checkedScholars = $('#scholarInfosChecks input:checkbox:checked');
+    const quotasInfos = depObjForRet.getDepInfos;
+    const schoolInfos = schoolInfosForComp.getFacultyInfos;
+
+    const popDeps = [$('#pop1Dep').val(), $('#pop2Dep').val(), $('#pop3Dep').val()];
+
+    for(let i = 0; i < popDeps.length; i++){
+      if(isEmpty(popDeps[i])){ popDeps[i] = "Yok"}
+    }
+
+    const counts = {
+      facultyCount : $('#facultyCount').val(),
+      departmentCount : $('#departmentCount').val(),
+      licenseSCount : $('#licStuCount').val(),
+      masterSCount : $('#masStuCount').val(),
+      docSCount : $('#docStuCount').val(),
+      profCount : $('#profCount').val()
+    }
+
+    for(var key in counts){
+      if(isEmpty(counts[key])){ counts[key] = 0}
+    }
+
+    const sumSal = $('#sumSalary').val();
+
+    const schoolInfosSendObj = {
+      scholars : checkedScholars,
+      quotas : quotasInfos,
+      schoolInfos : schoolInfos,
+      popDeps : popDeps,
+      counts : counts,
+      sumSalary : sumSal,
+      school : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id
+    }
+
+    Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
+      if(err){
+        alert(err.reason);
+      }
+      else{
+
+      }
+    })
   }
 
 
