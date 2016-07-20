@@ -60,74 +60,44 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
-  "academicInfos.faculty" : {
-    type : Object,
-    optional : false
-  },
-
-  "academicInfos.faculty.facultyId" : {
-    type : String,
-    optional : false
-  },
-
-  "academicInfos.faculty.department" : {
+  quotaInfos : {
     type : [Object],
     optional : false
   },
 
-  "academicInfos.faculty.department.$.depId" : {
+  "quotaInfos.$.departmentId" : {
     type : String,
     optional : false
   },
 
-  "academicInfos.faculty.department.$.quota" : {
+  "quotaInfos.$.quota" : {
     type : Number,
     optional : false,
-    autoValue : function(){
-      if(this.isInsert){
-        return 0
-      }
-    }
+
   },
 
-  "academicInfos.faculty.department.$.fullScholarQuota" : {
+  "quotaInfos.$.fullScholarQuota" : {
     type : Number,
     optional : false,
-    autoValue : function(){
-      if(this.isInsert){
-        return 0
-      }
-    }
+
   },
 
-  "academicInfos.faculty.department.$.Scholar75Quota" : {
+  "quotaInfos.$.Scholar75Quota" : {
     type : Number,
     optional : true,
-    autoValue : function(){
-      if(this.isInsert){
-        return 0
-      }
-    }
+
   },
 
-  "academicInfos.faculty.department.$.Scholar50Quota" : {
+  "quotaInfos.$.Scholar50Quota" : {
     type : Number,
     optional : true,
-    autoValue : function(){
-      if(this.isInsert){
-        return 0
-      }
-    }
+
   },
 
-  "academicInfos.faculty.department.$.Scholar25Quota" : {
+  "quotaInfos.$.Scholar25Quota" : {
     type : Number,
     optional : true,
-    autoValue : function(){
-      if(this.isInsert){
-        return 0
-      }
-    }
+
   },
 
   financialInfos : {

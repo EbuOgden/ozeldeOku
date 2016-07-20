@@ -97,6 +97,11 @@ Template.homeLayout.events({
     if(Meteor.user().profile.role == "School"){
         FlowRouter.go('/okulProfil');
     }
+  },
+
+  'click #schoolComp'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulKarsilastir');
   }
 })
 

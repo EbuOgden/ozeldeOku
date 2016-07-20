@@ -102,7 +102,12 @@ Schools.attachSchema(new SimpleSchema({
 
     imgSrc : {
       type : String,
-      optional : true
+      optional : true,
+      autoValue : function(){
+        if(this.isInsert){
+          return "schoolImage.png";
+        }
+      }
     },
 
     requestTime : {

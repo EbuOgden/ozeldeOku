@@ -1,0 +1,126 @@
+<template name="schoolCompareCenter">
+
+  {{> Template.dynamic template=schoolCompareCenterTop}}
+
+  <div class="container">
+    <div class="row">
+      <div class="pull-left">
+        <ol class="breadcrumb" style="background-color:white;">
+            <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+            <li>Karşılaştırma</li>
+          </ol>
+      </div>
+
+        <div class="col-md-offset-6 col-md-3">
+          <form id="schoolSearch">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+          </form>
+        </div>
+
+    </div>
+
+    <div class="page-header">
+      <h3 class="homeCarouselFirstPageFontColor">Sayfa üst içerik bilgi alanı</h3>
+      <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav nav-sidebar">
+          <li>
+            <h5 role="button" id="preSchool" class="buttonGreen">Anaokulu</h5>
+
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="primarySchool" class="buttonGreen" data-toggle="collapse" data-target="#ilkOkulCol">İlköğretim Okulu&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+            <div id="ilkOkulCol" class="collapse">
+              <ul>
+                <li role="button">
+                  ilkOkulCol
+                </li>
+              </ul>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="middleSchool" class="buttonGreen" data-toggle="collapse" data-target="#ortaOkulCol">Orta Okul&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+            <div id="ortaOkulCol" class="collapse">
+              <ul>
+                <li role="button">
+                  ortaOkulCol
+                </li>
+              </ul>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="highSchool" class="buttonGreen" data-toggle="collapse" data-target="#liseCol">Lise - Orta Öğretim&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+            <div id="liseCol" class="collapse">
+              <ul>
+                <li role="button">
+                  liseCol
+                </li>
+              </ul>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="university" class="buttonGreen" data-toggle="collapse" data-target="#uniCol">Üniversite&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+            <div id="uniCol" class="collapse">
+              <ul>
+                <li role="button">
+                  uniCol
+                </li>
+              </ul>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <h5 role="button" id="dormitory" class="buttonGreen" data-toggle="collapse" data-target="#yurtCol">Yurtlar&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+            <div id="yurtCol" class="collapse">
+              <ul>
+                <li role="button">
+                  yurtCol
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <form class="horiList">
+        {{#if cH_ct}}
+
+          <ul class="media-list" id="cpooomL">
+                {{#each _cmprL}}
+                <li class="media">
+                  <div class="media-left">
+                  <a>
+                    <img class="media-object" src="{{schoolImg}}" style="height:64px; width:64px;">
+                  </a>
+                </div>
+                <div class="media-body">
+                  {{schoolName}}
+                </div>
+                </li>
+                {{/each}}
+          </ul>
+        <br>
+
+        {{#if cH_min2}}
+        <button type="button" class="btn btn-default newMessageButtonBack" id="" style="width:20%;"><b>Okulları Favorilerine Ekle</b></button>
+        <button type="button" class="btn btn-default newSchoolRegisterButton " id="" style="width:50%;"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
+        {{/if}}
+
+        <hr>
+      {{/if}}
+    </form>
+        {{> Template.dynamic template=schoolCompareCenterDynamic}}
+    </div>
+  </div>
+
+</template>

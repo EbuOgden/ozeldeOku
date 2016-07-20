@@ -96,6 +96,6 @@ textarea {
   color : rgb(157,197,15);
 }
 
-.sa {
-  border-color : transparent;
+ul#cpmL li {
+  display : inline;
 }

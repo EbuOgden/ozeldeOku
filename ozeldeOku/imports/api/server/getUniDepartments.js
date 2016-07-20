@@ -10,7 +10,7 @@ Meteor.methods({
       throw new Meteor.Error('cant.get.schoolInfo', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
     }
     else{
-      const departments = schoolInfo[0].department;
+      //const departments = schoolInfo[0].department;
 
       if(departments.length == 0){
         throw new Meteor.Error('dont.have.department', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");

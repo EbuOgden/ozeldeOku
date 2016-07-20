@@ -1,0 +1,32 @@
+<template name="schoolCompareCenterList">
+
+<div class="row">
+  <div class="col">
+  <form class="compList">
+    <div class="row">
+      <div class="col">
+      {{#each schools}}
+          <div class="media">
+              <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="{{imgSrc}}" style="width:200px; height:150px;" alt="...">
+                  </a>
+              </div>
+              <div class="media-body">
+                  <a role="button"><h4 class="media-heading">{{schoolName}}</h4></a>
+                  {{schoolCity}} - {{schoolCounty}}<br><br>
+                  Okul Türü : {{schoolType}}<br><br>
+                  Telefon : {{schoolPhoneNumber}} &nbsp; Mail : {{schoolEmail}}<br><br>
+                  <input type="checkbox" class="schoolCompCheck" data-img="{{imgSrc}}" data-name="{{schoolName}}" id="{{_id}}">Bu okulu karşılaştır
+              </div>
+          </div>
+          <hr>
+      {{/each}}
+
+    </div>
+  </div>
+  </form>
+</div>
+</div>
+
+</template>

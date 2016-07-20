@@ -25,11 +25,11 @@ Template.schoolProfileSchoolInfos.onCreated(function schoolProfileSchoolInfosOnC
 
 Template.schoolProfileSchoolInfos.helpers({
   firstTime(){
-    if(!Schools.find({"authorizedPersonUserId" : Meteor.userId()}).haveSchoolDetailInfo){
-        return true;
+    if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).haveSchoolDetailInfo){
+        return false;
     }
     else{
-        return false;
+        return true;
     }
   },
 
@@ -223,7 +223,6 @@ Template.schoolProfileSchoolInfos.events({
 
         instance.__deq__Control.set(0);
 
-        $('#departmentQuota option:selected').remove();
       }
     })
 
@@ -232,9 +231,18 @@ Template.schoolProfileSchoolInfos.events({
   'click #sendSchoolInfos'(event, instance){
     event.preventDefault();
 
-    const checkedScholars = $('#scholarInfosChecks input:checkbox:checked');
+    const checkedScholars = {
+      athleteScholar : $('#athleteScholar').prop('checked'),
+      siblingScholar : $('#siblingScholar').prop('checked'),
+      firstSelectScholar : $('#firstSelectScholar').prop('checked'),
+      academicScholar : $('#academicScholar').prop('checked'),
+      retiredScholar : $('#retiredScholar').prop('checked')
+    };
+
     const quotasInfos = depObjForRet.getDepInfos;
     const schoolInfos = schoolInfosForComp.getFacultyInfos;
+
+    console.log(quotasInfos);
 
     const popDeps = [$('#pop1Dep').val(), $('#pop2Dep').val(), $('#pop3Dep').val()];
 
@@ -255,7 +263,9 @@ Template.schoolProfileSchoolInfos.events({
       if(isEmpty(counts[key])){ counts[key] = 0}
     }
 
-    const sumSal = $('#sumSalary').val();
+    var sumSal = $('#sumSalary').val();
+
+    if(isEmpty(sumSal)) { sumSal = "0"}
 
     const schoolInfosSendObj = {
       scholars : checkedScholars,
@@ -272,7 +282,7 @@ Template.schoolProfileSchoolInfos.events({
         alert(err.reason);
       }
       else{
-
+        console.log("result : " + result);
       }
     })
   }

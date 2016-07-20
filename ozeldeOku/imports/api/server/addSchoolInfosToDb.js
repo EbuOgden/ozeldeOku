@@ -1,15 +1,17 @@
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
+import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js';
 
 Meteor.methods({
   _sch_in_d(__facultyInfos_){
 
-    const schoolId = __facultyInfos_.school;
-    const scholars = __facultyInfos_.checkedScholars; /* scholar quota infos with department ids */
+    const schoolId = __facultyInfos_.school; /* school Id */
+    const scholars = __facultyInfos_.scholars; /* quota infos boolean */
     const popDeps = __facultyInfos_.popDeps; /* popular departments */
     const counts = __facultyInfos_.counts; /* student, faculty, department and professor counts */
     const sumSalary = __facultyInfos_.sumSalary;
-    const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids */
+    const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids (department ids is array!)*/
+    const quotaInfos = __facultyInfos_.quotas; /* quota infos with department ids */
 
     const countStudentTotal = parseInt(counts.docSCount) + parseInt(counts.masterSCount) + parseInt(counts.licenseSCount);
 
@@ -19,7 +21,31 @@ Meteor.methods({
       studentCountPerProf = countStudentTotal / parseInt(counts.profCount);
     }
 
-    SchoolInfos.insert({
+    const quotaArr = [];
+
+    for(let i = 1; i < schoolInfos.length; i++){
+        FacultyDepartments.insert({
+          schoolId : schoolId,
+          facultyId : schoolInfos[i].facultyId,
+          departmentIds : schoolInfos[i].departmentIds
+        })
+    }
+
+    for(let i = 1; i < quotaInfos.length; i++){
+      const quotaObj = {
+        departmentId : quotaInfos[i]._departmentId__,
+        quota : parseInt(quotaInfos[i].quota),
+        fullScholarQuota : parseInt(quotaInfos[i].quotaFull),
+        Scholar75Quota : parseInt(quotaInfos[i].quota75),
+        Scholar50Quota : parseInt(quotaInfos[i].quota50),
+        Scholar25Quota : parseInt(quotaInfos[i].quota25)
+
+      }
+
+      quotaArr.push(quotaObj);
+    }
+
+    const insertResult = SchoolInfos.insert({
       schoolId : schoolId,
       popularDepartments : popDeps,
       studentCountInfos : {
@@ -32,24 +58,33 @@ Meteor.methods({
       academicInfos : {
         facultyCount : parseInt(counts.facultyCount),
         departmentCount : parseInt(counts.departmentCount),
-        faculty : {
-          facultyId : "a",
-          department : depArrdemi /* make object and push it to an array */
-        }
       },
+      quotaInfos : quotaArr,
       financialInfos : {
         price : 5
       },
       scholarShipInfos : {
-        athleteScholar : true,
-        siblingScholar : false,
-        firstSelectScholar : true,
-        retiredScholar : false,
-        academicScholar : true
+        athleteScholar : scholars.athleteScholar,
+        siblingScholar : scholars.siblingScholar,
+        firstSelectScholar : scholars.firstSelectScholar,
+        retiredScholar : scholars.retiredScholar,
+        academicScholar : scholars.academicScholar
       },
 
-      sumSalary : "5"
+      sumSalary : sumSalary
     })
+
+    if(insertResult != ""){
+      const updateResult = Schools.update({"_id" : schoolId}, {
+        $set : {
+          haveSchoolDetailInfo : true
+        }
+      })
+
+      if(updateResult != ""){
+        return true;
+      }
+    }
 
   }
 })
