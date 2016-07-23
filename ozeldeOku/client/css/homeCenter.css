@@ -99,3 +99,19 @@ textarea {
 ul#cpmL li {
   display : inline;
 }
+
+.wellOver {
+  padding: 5px;
+  background-color: white;
+}
+
+.cmpListImg {
+  height : 64px;
+  width : 64px;
+}
+
+.cmpListClose {
+  position:absolute;
+  top:0px;
+  right:10%;
+}

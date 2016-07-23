@@ -92,34 +92,40 @@
         </ul>
       </div>
 
-      <form class="horiList">
         {{#if cH_ct}}
 
-          <ul class="media-list" id="cpooomL">
-                {{#each _cmprL}}
-                <li class="media">
-                  <div class="media-left">
-                  <a>
-                    <img class="media-object" src="{{schoolImg}}" style="height:64px; width:64px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  {{schoolName}}
-                </div>
+          <ul id="cpmL" style="overflow-y: hidden; overflow-x: auto;">
+            {{#each _cmprL}}
+
+                <li>
+
+                  <div class="col-md-3">
+                    <div class="well wellOver">
+                      <img src="{{schoolImg}}" class="cmpListImg">
+                      <a role="button">{{schoolName}}</a>
+                      <a role="button" class="cmpListClose" id="{{schoolId}}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+              </div>
+
                 </li>
+
                 {{/each}}
           </ul>
         <br>
 
         {{#if cH_min2}}
         <button type="button" class="btn btn-default newMessageButtonBack" id="" style="width:20%;"><b>Okulları Favorilerine Ekle</b></button>
-        <button type="button" class="btn btn-default newSchoolRegisterButton " id="" style="width:50%;"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
+        <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolCompBut" style="width:50%;"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
+        <hr>
         {{/if}}
 
-        <hr>
       {{/if}}
-    </form>
-        {{> Template.dynamic template=schoolCompareCenterDynamic}}
+
+      <div class="row">
+        <div class="col-md-6">
+            {{> Template.dynamic template=schoolCompareCenterDynamic}}
+      </div>
+      </div>
     </div>
   </div>
 

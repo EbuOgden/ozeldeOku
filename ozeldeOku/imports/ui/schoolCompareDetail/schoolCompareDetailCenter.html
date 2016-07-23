@@ -1,0 +1,55 @@
+<template name="schoolCompareDetailCenter">
+
+  <div class="container">
+  <div class="row">
+    {{#each school in eachSchool}}
+
+    <div class="col-md-3">
+
+        <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
+
+        <a>{{school.school.schoolName}}</a><br>
+
+        {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
+
+        {{school.school.schoolType}}<br>
+
+        {{school.school.schoolWebsite}}
+
+  </div>
+  {{/each}}
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well"><b>Detaylı Bilgiler</b></div>
+    </div>
+  </div>
+
+  <div class="row">
+    {{#each school in eachSchool}}
+
+    <div class="col-md-4">
+    <ul>
+      <li>
+        Popüler 1. Departman : {{school.popularDepartments.[0]}}
+      </li>
+      <li>
+        Popüler 2. Departman : {{school.popularDepartments.[1]}}
+      </li>
+      <li>
+        Popüler 3. Departman : {{school.popularDepartments.[2]}}
+      </li>
+    </ul>
+    {{school.quotaInfos.[0].quota}}
+
+  </div>
+
+
+    {{/each}}
+  </div>
+</div>
+
+</template>

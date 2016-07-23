@@ -148,5 +148,40 @@ SchoolInfos.attachSchema(new SimpleSchema({
   sumSalary : {
     type : String,
     optional : true
+  },
+
+  school : {
+    type : Object,
+    optional : true
+  },
+
+  "school.schoolImg" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolName" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolCity" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolCounty" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolType" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolWebSite" : {
+    type : String,
+    optional : true
   }
 }), {replace : true})

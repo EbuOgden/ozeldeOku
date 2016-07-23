@@ -90,6 +90,40 @@ Template.schoolCompareCenter.helpers({
   }
 })
 
+Template.schoolCompareCenter.events({
+  'click .cmpListClose'(event){
+    event.preventDefault();
+    var target = event.currentTarget;
+
+    $('.compList').find('#' + target.id).prop('checked', false);
+
+    CompareList.remove({"_id" : this._id});
+
+    const arrL = $('.compList input:checkbox:checked');
+
+    if(arrL.length >= 1){
+        _cHsC__.set(1);
+    }
+    else{
+        _cHsC__.set(0);
+    }
+
+    if(arrL.length >= 2){
+      __CHMin___.set(1);
+    }
+    else{
+      __CHMin___.set(0);
+    }
+
+  },
+
+  'click #schoolCompBut'(event){
+    event.preventDefault();
+
+    FlowRouter.go('/okulKarsilastir/detay');
+  }
+})
+
 Template.schoolCompareCenterList.helpers({
   schools(){
     return Schools.find({"schoolType" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
