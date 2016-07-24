@@ -3,7 +3,7 @@
     {
       "host": "46.101.189.205",
       "username": "root",
-      "password": "3sp0ngeb0b8",
+      "password": "**********",
       "pem": "~/.ssh/id_rsa"
     }
   ],
