@@ -13,6 +13,8 @@ Meteor.methods({
     const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids (department ids is array!)*/
     const quotaInfos = __facultyInfos_.quotas; /* quota infos with department ids */
 
+    const otherQuotaInfos = __facultyInfos_.otherQuotas;
+
     const countStudentTotal = parseInt(counts.docSCount) + parseInt(counts.masterSCount) + parseInt(counts.licenseSCount);
 
     var studentCountPerProf = 0;
@@ -21,6 +23,7 @@ Meteor.methods({
       studentCountPerProf = countStudentTotal / parseInt(counts.profCount);
     }
 
+    const otherQuotaArr = [];
     const quotaArr = [];
 
     for(let i = 1; i < schoolInfos.length; i++){
@@ -34,6 +37,7 @@ Meteor.methods({
     for(let i = 1; i < quotaInfos.length; i++){
       const quotaObj = {
         departmentId : quotaInfos[i]._departmentId__,
+        departmentName : quotaInfos[i].__departmentName_,
         quota : parseInt(quotaInfos[i].quota),
         fullScholarQuota : parseInt(quotaInfos[i].quotaFull),
         Scholar75Quota : parseInt(quotaInfos[i].quota75),
@@ -43,6 +47,22 @@ Meteor.methods({
       }
 
       quotaArr.push(quotaObj);
+    }
+
+    if(otherQuotaInfos != 1){
+        for(let i = 1; i < otherQuotaInfos.length; i++){
+
+          const otherQuotaObj = {
+            otherScholarName : otherQuotaInfos[i].__otherScholarName,
+            quotaRate : otherQuotaInfos[i]._otherScholarRate__
+
+          }
+          otherQuotaArr.push(otherQuotaObj);
+        }
+    }
+
+    for(var key in scholars){
+      if(scholars[key].quotaRate == "" || scholars[key].quotaRate === "") { scholars[key].quotaRate = 0}
     }
 
     const insertResult = SchoolInfos.insert({
@@ -64,12 +84,32 @@ Meteor.methods({
         price : 5
       },
       scholarShipInfos : {
-        athleteScholar : scholars.athleteScholar,
-        siblingScholar : scholars.siblingScholar,
-        firstSelectScholar : scholars.firstSelectScholar,
-        retiredScholar : scholars.retiredScholar,
-        academicScholar : scholars.academicScholar
+        athleteScholar : {
+            isHave : scholars.athleteScholar.isHave,
+            quotaRate : parseInt(scholars.athleteScholar.quotaRate)
+        },
+        siblingScholar : {
+          isHave : scholars.siblingScholar.isHave,
+          quotaRate : parseInt(scholars.siblingScholar.quotaRate)
+        },
+
+        firstSelectScholar : {
+          isHave : scholars.firstSelectScholar.isHave,
+          quotaRate : parseInt(scholars.firstSelectScholar.quotaRate)
+        },
+
+        retiredScholar : {
+          isHave : scholars.retiredScholar.isHave,
+          quotaRate : parseInt(scholars.retiredScholar.quotaRate)
+        },
+        academicScholar : {
+          isHave : scholars.academicScholar.isHave,
+          quotaRate : parseInt(scholars.academicScholar.quotaRate)
+        },
+
+        others : otherQuotaArr
       },
+
 
       sumSalary : sumSalary
     })

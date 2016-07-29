@@ -1,9 +1,9 @@
 import { Templating } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import { Schools } from '../../../imports/api/collections/schools.js'
+import { Schools } from '/imports/api/collections/schools.js'
 
-import { CompareList } from '../../../imports/api/collections/local/schoolCompareList.js'
+import { CompareList } from '/imports/api/collections/local/schoolCompareList.js'
 
 import './schoolCompareCenter.html';
 import './schoolCompare.html';
@@ -64,6 +64,10 @@ Template.schoolCompareCenter.events({
   },
 
 
+})
+
+Template.schoolCompareCenter.onRendered(() => {
+  __CHMin___.set(0);
 })
 
 Template.schoolCompareCenter.helpers({

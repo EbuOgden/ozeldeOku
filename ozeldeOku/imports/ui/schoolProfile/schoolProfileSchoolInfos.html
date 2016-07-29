@@ -362,37 +362,41 @@
         <div class="col-md-3">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" id="athleteScholar">
+                <input type="checkbox"  class="scholarInfosChecksControl" id="athleteScholar">
               </span>
               <h5>Sporcu Bursu</h5>
-          </div><!-- /input-group -->
+          </div>
+          <input type="text" style="display:none;" id="athleteScholarRate" placeholder="Sporcu Bursu Oranı">
         </div>
 
         <div class="col-md-3">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" id="siblingScholar">
+                <input type="checkbox" class="scholarInfosChecksControl" id="siblingScholar">
               </span>
               <h5>Kardeş Bursu</h5>
-          </div><!-- /input-group -->
+          </div>
+          <input type="text" style="display:none;" id="siblingScholarRate" placeholder="Kardeş Bursu Oranı">
         </div>
 
         <div class="col-md-3">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" id="firstSelectScholar">
+                <input type="checkbox" class="scholarInfosChecksControl" id="firstSelectScholar">
               </span>
               <h5>İlk Tercih Bursu</h5>
-          </div><!-- /input-group -->
+          </div>
+          <input type="text" style="display:none;" id="firstSelectScholarRate" placeholder="İlk Tercih Bursu Oranı">
         </div>
 
         <div class="col-md-3">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" id="academicScholar">
+                <input type="checkbox" class="scholarInfosChecksControl" id="academicScholar">
               </span>
               <h5>Akademik Burs</h5>
-          </div><!-- /input-group -->
+          </div>
+          <input type="text" style="display:none;" id="academicScholarRate" placeholder="Akademik Burs Oranı">
         </div>
 
 
@@ -403,10 +407,25 @@
         <div class="col-md-3">
           <div class="input-group">
               <span class="input-group-addon">
-                <input type="checkbox" id="retiredScholar">
+                <input type="checkbox" class="scholarInfosChecksControl" id="retiredScholar">
               </span>
               <h5>Emekli Bursu</h5>
-          </div><!-- /input-group -->
+          </div>
+          <input type="text" style="display:none;" id="retiredScholarRate" placeholder="Emekli Bursu Oranı">
+        </div>
+
+        <div class="col-md-3">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" class="scholarInfosChecksControl" id="otherScholar">
+              </span>
+              <h5>Diğer (Lütfen belirtiniz)</h5>
+          </div>
+          <div id="otherScholarRate" style="display:none">
+              <input type="text" id="otherScholarName" placeholder="Bursun İsmi">
+              <input type="text" id="otherScholarText" placeholder="Bursun Oranı">
+              <input type="button" class="btn" id="otherScholarInfoAdd">
+          </div>
         </div>
 
       </div>

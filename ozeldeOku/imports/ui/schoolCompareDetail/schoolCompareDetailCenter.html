@@ -1,55 +1,221 @@
 <template name="schoolCompareDetailCenter">
 
   <div class="container">
-  <div class="row">
-    {{#each school in eachSchool}}
+      {{#if schoolC_conT}}
 
-    <div class="col-md-3">
+      {{#if count__ schoolC_}} <!-- COUNT 2 -->
 
-        <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
+      <div class="row">
 
-        <a>{{school.school.schoolName}}</a><br>
-
-        {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
-
-        {{school.school.schoolType}}<br>
-
-        {{school.school.schoolWebsite}}
-
-  </div>
-  {{/each}}
-  </div>
-
-  <br><br>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="well"><b>Detaylı Bilgiler</b></div>
-    </div>
-  </div>
-
-  <div class="row">
-    {{#each school in eachSchool}}
-
-    <div class="col-md-4">
-    <ul>
-      <li>
-        Popüler 1. Departman : {{school.popularDepartments.[0]}}
-      </li>
-      <li>
-        Popüler 2. Departman : {{school.popularDepartments.[1]}}
-      </li>
-      <li>
-        Popüler 3. Departman : {{school.popularDepartments.[2]}}
-      </li>
-    </ul>
-    {{school.quotaInfos.[0].quota}}
-
-  </div>
+        {{#each school in eachSchool}}
 
 
-    {{/each}}
-  </div>
+        <div class="col-md-6">
+          <center>
+                <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
+
+                <br>
+                <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.schoolId}}">{{school.school.schoolName}}</a><br>
+
+                {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
+
+                {{school.school.schoolType}}<br>
+
+                {{school.school.schoolWebsite}}
+            </center>
+          </div>
+
+      {{/each}}
+
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="well" style="text-align:center;"><b>Detaylı Bilgiler</b></div>
+        </div>
+      </div>
+
+
+      <div class="row">
+          {{#each school in eachSchool}}
+
+              <div class="col-md-6">
+                    <center>
+                        <span class="label label-primary">Popüler Departmanlar</span><br>
+                        <ul class="nav nav-sidebar">
+                            <li>
+                              Popüler 1. Departman : {{school.popularDepartments.[0]}}
+                            </li>
+                            <li>
+                              Popüler 2. Departman : {{school.popularDepartments.[1]}}
+                            </li>
+                            <li>
+                              Popüler 3. Departman : {{school.popularDepartments.[2]}}
+                            </li>
+                        </ul>
+
+                    <br>
+                    <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+                    <ul class="nav nav-sidebar">
+                        {{#with school.studentCountInfos}}
+                        <li>
+                          Lisans Öğrenci Sayısı : {{license}}
+                        </li>
+                        <li>
+                          Master Öğrenci Sayısı : {{postGraduate}}
+                        </li>
+                        <li>
+                          Doktora Öğrenci Sayısı : {{doctorate}}
+                        </li>
+                        <li>
+                          Öğrenci Başına Profesör : {{stuCountPerProf}}
+                        </li>
+                        {{/with}}
+                    </ul>
+                    <br>
+
+                    <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+
+                    {{#each school.quotaInfos}}
+                        
+                    {{/each}}
+                </center>
+            </div>
+
+
+          {{/each}}
+      </div>
+
+      {{/if}}
+
+
+      {{#if count___ schoolC_}} <!-- COUNT 3 -->
+
+      <div class="row">
+
+        {{#each school in eachSchool}}
+
+
+        <div class="col-md-4">
+          <center>
+            <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
+
+            <br>
+            <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.schoolId}}">{{school.school.schoolName}}</a><br>
+
+            {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
+
+            {{school.school.schoolType}}<br>
+
+            {{school.school.schoolWebsite}}
+          </center>
+      </div>
+      {{/each}}
+
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="well" style="text-align:center;"><b>Detaylı Bilgiler</b></div>
+        </div>
+      </div>
+
+      <div class="row">
+        {{#each school in eachSchool}}
+
+        <div class="col-md-4">
+          <center>
+        <ul class="nav nav-sidebar">
+          <li>
+            Popüler 1. Departman : {{school.popularDepartments.[0]}}
+          </li>
+          <li>
+            Popüler 2. Departman : {{school.popularDepartments.[1]}}
+          </li>
+          <li>
+            Popüler 3. Departman : {{school.popularDepartments.[2]}}
+          </li>
+        </ul>
+
+        {{school.quotaInfos.[0].quota}}
+      </center>
+      </div>
+
+
+        {{/each}}
+      </div>
+      {{/if}}
+
+      {{#if count____ schoolC_}} <!-- COUNT 4 -->
+
+      <div class="row">
+
+        {{#each school in eachSchool}}
+
+        <div class="col-md-3">
+          <center>
+            <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
+
+            <br>
+            <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.schoolId}}">{{school.school.schoolName}}</a><br>
+
+            {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
+
+            {{school.school.schoolType}}<br>
+
+            {{school.school.schoolWebsite}}
+          </center>
+      </div>
+
+      {{/each}}
+
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="well" style="text-align:center;"><b>Detaylı Bilgiler</b></div>
+        </div>
+      </div>
+
+      <div class="row">
+        {{#each school in eachSchool}}
+
+        <div class="col-md-3">
+            <center>
+        <ul class="nav nav-sidebar">
+          <li>
+            Popüler 1. Departman : {{school.popularDepartments.[0]}}
+          </li>
+          <li>
+            Popüler 2. Departman : {{school.popularDepartments.[1]}}
+          </li>
+          <li>
+            Popüler 3. Departman : {{school.popularDepartments.[2]}}
+          </li>
+        </ul>
+
+        {{school.quotaInfos.[0].quota}}
+      </center>
+      </div>
+
+
+        {{/each}}
+      </div>
+      {{/if}}
+
+
+      {{else}}
+
+        <div class="row">
+          Lütfen karşılaştırabilmek için 'Okul Karşılaştır' menüsünden okul seçiniz
+        </div>
+      {{/if}}
 </div>
 
 </template>

@@ -24,6 +24,19 @@ Template.schoolCompareDetailCenter.helpers({
     }
 
     return forList;
+  },
+
+  schoolC_conT(){
+    if(CompareList.find().count() > 0){
+      return true;
+    }
+    else{
+      return false;
+    }
+  },
+
+  schoolC_(){
+    return CompareList.find().count();
   }
 })
 
@@ -34,4 +47,22 @@ Template.homeLayout.events({
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
 
+})
+
+Template.registerHelper('count__', (c) => {
+  if(c == 2){
+    return true;
+  }
+})
+
+Template.registerHelper('count___', (c) => {
+  if(c == 3){
+    return true;
+  }
+})
+
+Template.registerHelper('count____', (c) => {
+  if(c == 4){
+    return true;
+  }
 })

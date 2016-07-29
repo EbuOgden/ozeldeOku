@@ -3,15 +3,16 @@ import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Accounts } from 'meteor/accounts-base';
 /*          */
 
 /* DATABASE VARIABLES IMPORTS */
-import { Schools } from '../../../imports/api/collections/schools.js';
-import { Dormitories } from '../../../imports/api/collections/dormitories.js';
-import { News } from '../../../imports/api/collections/news.js';
+import { Schools } from '../../api/collections/schools.js';
+import { Dormitories } from '../../api/collections/dormitories.js';
+import { News } from '../../api/collections/news.js';
 //import { SchoolVideos } from '../../../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../../../imports/api/collections/SchoolImages.js';
-import { Comments } from '../../../imports/api/collections/comments.js';
+import { Comments } from '../../api/collections/comments.js';
 import { schoolInfo } from '../../api/client/schoolClass.js';
 import { userInfo } from '../../api/client/userClass.js';
 
@@ -45,15 +46,14 @@ Template.home.events({
 
 })
 
-Template.home.onRendered(() => {
-})
-
-Template.home.helpers({
+Template.home.onCreated(function homeOnCreated(){
+  document.title = "Özelde Oku";
 
 })
 
 Template.homeLayout.events({
   'click #logoHome'(event){
+    event.stopPropagation();
     event.preventDefault();
     FlowRouter.go('/');
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
@@ -251,10 +251,10 @@ Template.newSchoolRegister.events({
       return;
     }
 
-    if(isEmpty(captchaData)){
-      alert("Lütfen Captcha işlemini yapınız!");
-      return;
-    }
+    // if(isEmpty(captchaData)){
+    //   alert("Lütfen Captcha işlemini yapınız!");
+    //   return;
+    // }
 
     if(isEqual(schoolEmail, schoolrEmail)){
       if(isEmail(schoolrEmail)){

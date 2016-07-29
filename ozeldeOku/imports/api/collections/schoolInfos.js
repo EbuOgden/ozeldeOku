@@ -70,6 +70,11 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : false
   },
 
+  "quotaInfos.$.departmentName" : {
+    type : String,
+    optional : false
+  },
+
   "quotaInfos.$.quota" : {
     type : Number,
     optional : false,
@@ -121,28 +126,93 @@ SchoolInfos.attachSchema(new SimpleSchema({
   },
 
   "scholarShipInfos.athleteScholar" : {
+    type : Object,
+    optional : false
+  },
+
+  "scholarShipInfos.athleteScholar.isHave" : {
     type : Boolean,
+    optional : false
+  },
+
+  "scholarShipInfos.athleteScholar.quotaRate" : {
+    type : Number,
     optional : false
   },
 
   "scholarShipInfos.siblingScholar" : {
+    type : Object,
+    optional : false
+  },
+
+  "scholarShipInfos.siblingScholar.isHave" : {
     type : Boolean,
+    optional : false
+  },
+
+  "scholarShipInfos.siblingScholar.quotaRate" : {
+    type : Number,
     optional : false
   },
 
   "scholarShipInfos.firstSelectScholar" : {
+    type : Object,
+    optional : false
+  },
+
+  "scholarShipInfos.firstSelectScholar.isHave" : {
     type : Boolean,
+    optional : false
+  },
+
+  "scholarShipInfos.firstSelectScholar.quotaRate" : {
+    type : Number,
     optional : false
   },
 
   "scholarShipInfos.retiredScholar" : {
+    type : Object,
+    optional : false
+  },
+
+  "scholarShipInfos.retiredScholar.isHave" : {
     type : Boolean,
     optional : false
   },
 
+  "scholarShipInfos.retiredScholar.quotaRate" : {
+    type : Number,
+    optional : false
+  },
+
   "scholarShipInfos.academicScholar" : {
+    type : Object,
+    optional : false
+  },
+
+  "scholarShipInfos.academicScholar.isHave" : {
     type : Boolean,
     optional : false
+  },
+
+  "scholarShipInfos.academicScholar.quotaRate" : {
+    type : Number,
+    optional : false
+  },
+
+  "scholarShipInfos.others" : {
+    type : [Object],
+    optional : true
+  },
+
+  "scholarShipInfos.others.$.otherScholarName" : {
+    type : String,
+    optional : true
+  },
+
+  "scholarShipInfos.others.$.quotaRate" : {
+    type : Number,
+    optional : true
   },
 
   sumSalary : {

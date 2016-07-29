@@ -5,4 +5,4 @@ import './schoolRoute.js';
 import './notFoundRoute.js';
 import './schoolProfileRoute.js';
 import './schoolCompare.js';
-import './schoolList.js';
+import './schoolType.js';

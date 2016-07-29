@@ -1,4 +1,10 @@
 {
+  "galaxy.meteor.com" : {
+      "env" : {
+        "MONGO_URL" : "mongodb://phantasoex:3sp0ngeb0b8@ds029655.mlab.com:29655/try",
+        "MAIL_URL" : "smtp://creater.x16op@gmail.com:12345trewq12345trewq@smtp.gmail.com:465"
+      }
+  },
   "public": {
 
   }

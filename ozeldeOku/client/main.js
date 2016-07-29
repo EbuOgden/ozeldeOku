@@ -1,1 +1,1 @@
-import '../imports/startup/client/routes/routes.js'
+import '../imports/startup/client/routes/routes.js';
