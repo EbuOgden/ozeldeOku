@@ -253,5 +253,49 @@ SchoolInfos.attachSchema(new SimpleSchema({
   "school.schoolWebSite" : {
     type : String,
     optional : true
+  },
+
+  "school.schoolLat" : {
+    type : String,
+    optional : true,
+
+    autoValue : function(){
+      if(this.isInsert){
+        return "";
+      }
+    }
+  },
+
+  "school.schoolLng" : {
+    type : String,
+    optional : true,
+
+    autoValue : function(){
+      if(this.isInsert){
+        return "";
+      }
+    }
+  },
+
+  "school.nearestDormitories" : {
+    type : [Object],
+    optional : true
+  },
+
+  "school.nearestDormitories.$.lat" : {
+    type : String,
+    optional : true
+  },
+
+  "school.nearestDormitories.$.lng" : {
+    type : String,
+    optional : true
+  },
+
+  "school.nearestDormitories.$.dormiName" : {
+    type : String,
+    optional : true
   }
+
+
 }), {replace : true})

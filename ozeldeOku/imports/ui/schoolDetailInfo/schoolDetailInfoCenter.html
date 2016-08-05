@@ -1,8 +1,47 @@
 <template name="schoolDetailInfoCenter">
   <div class="container">
-    {{#with schoolInfo}}
-      {{sumSalary}}
-      {{popularDeparments}}
-    {{/with}}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="pull-left">
+              <ol class="breadcrumb" style="background-color:white;">
+                  <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+                  {{#with schoolInfo}}
+                  <li>{{school.schoolName}}</li>
+                  {{/with}}
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+          <form id="schoolSearch">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+          </form>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        {{#with schoolInfo}}
+        {{popularDepartments}}
+          {{#each popularDepartments}}
+            Popüler Departman : {{this}}<br>
+          {{/each}}
+        {{/with}}
+      </div>
+    </div>
+
+    <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
+
+    <div id="mapForSchool" class="map-container">
+
+    </div>
+
   </div>
+
+
 </template>

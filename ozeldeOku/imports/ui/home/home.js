@@ -4,6 +4,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Accounts } from 'meteor/accounts-base';
+import { HTTP } from 'meteor/http';
 /*          */
 
 /* DATABASE VARIABLES IMPORTS */
@@ -102,6 +103,17 @@ Template.homeLayout.events({
   'click #schoolComp'(event){
     event.preventDefault();
     FlowRouter.go('/okulKarsilastir');
+  },
+
+  'mouseenter .dropHov'(event){
+    $('.hovCenter').css('opacity', '0.7');
+    $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.5)');
+
+  },
+
+  'mouseleave .dropHov'(event){
+    $('.hovCenter').css('opacity', '1.0');
+    $('.hovCenter').css('background', 'rgb(250, 250, 250)');
   }
 })
 
@@ -351,11 +363,6 @@ Template.map.onRendered(() => {
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
 
 })
 

@@ -276,7 +276,7 @@ Template.schoolProfileSchoolInfos.events({
     event.preventDefault();
     const target = event.currentTarget;
     if($('#' + target.id).prop('checked')){
-      $('#' + target.id + "Rate").css('display', 'inline');
+      $('#' + target.id + "Rate").css('display', 'block');
     }
     else{
       $('#' + target.id + "Rate").css('display', 'none');
@@ -367,6 +367,23 @@ Template.schoolProfileSchoolInfos.events({
 
     if(isEmpty(sumSal)) { sumSal = "0"}
 
+    var geocoder = new google.maps.Geocoder();
+
+    const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+    geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
+      if(status == "OK"){
+        const lat = results[0].geometry.location.lat();
+        const lng = results[0].geometry.location.lng();
+      }
+      else{
+        alert("Teknik bir hata oluştu, lütfen daha sonra tekrar deneyiniz.");
+      }
+    })
+
+    console.log(lat + " " + lng);
+    return;
+
     const schoolInfosSendObj = {
       scholars : checkedScholars,
       quotas : quotasInfos,
@@ -375,7 +392,9 @@ Template.schoolProfileSchoolInfos.events({
       counts : counts,
       sumSalary : sumSal,
       otherQuotas : otherQuotaInfos,
-      school : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id
+      school : school._id,
+      lat : lat,
+      lng : lng
     }
 
     Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {

@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
+import { HTTP } from 'meteor/http';
 //import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 
 import { Roles } from '../imports/api/collections/roles.js';
+import { Dormitories } from '../imports/api/collections/dormitories.js';
 import { Schools } from '../imports/api/collections/schools.js';
 import { News } from '../imports/api/collections/news.js';
 import { Comments } from '../imports/api/collections/comments.js';
@@ -24,7 +26,23 @@ import '../imports/startup/server/index.js'
 
 Meteor.startup(() => {
 
+  Schools.find().observeChanges({
+    added(id, object, field){
+      const school = Schools.findOne(id);
 
+      const addres = school.schoolAddress;
+
+
+    }
+  })
+
+  // HTTP.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=41.43206,-81.38992&destinations=-33.86748,151.20699&key=AIzaSyDSaZ1Tzihq0wZKBiPH05U6o3r1KxzxThQ',(statusCode, data) => {
+  //
+  //   if(data.statusCode == 200){
+  //     console.log(data);
+  //     console.log(data.data.rows[0].elements[0].distance.value);
+  //   }
+  // })
 
   if(CityCounty.find().count() == 0){
     CityCounty.insert({
@@ -43,7 +61,7 @@ Meteor.startup(() => {
       county : ['Akyurt', 'Altındağ', 'Ayaş', 'Balâ', 'Beypazarı']
     })
   }
-  
+
   reCAPTCHA.config({
     publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
   })

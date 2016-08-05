@@ -12,8 +12,12 @@ Meteor.methods({
     const sumSalary = __facultyInfos_.sumSalary;
     const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids (department ids is array!)*/
     const quotaInfos = __facultyInfos_.quotas; /* quota infos with department ids */
+    const lat = __facultyInfos_.lat;
+    const lng = __facultyInfos_.lng;
 
     const otherQuotaInfos = __facultyInfos_.otherQuotas;
+
+    const school = Schools.findOne({"_id" : schoolId});
 
     const countStudentTotal = parseInt(counts.docSCount) + parseInt(counts.masterSCount) + parseInt(counts.licenseSCount);
 
@@ -110,8 +114,18 @@ Meteor.methods({
         others : otherQuotaArr
       },
 
+      school : {
+          schoolImg : school.imgSrc,
+          schoolName : school.schoolName,
+          schoolCity : school.schoolCity,
+          schoolCounty : school.schoolCounty,
+          schoolType : school.schoolType,
+          schoolWebSite : school.schoolWebSite,
+          schoolLat : lat,
+          schoolLng : lng
+      },
+      sumSalary : sumSalary,
 
-      sumSalary : sumSalary
     })
 
     if(insertResult != ""){
@@ -124,6 +138,13 @@ Meteor.methods({
       if(updateResult != ""){
         return true;
       }
+      else{
+        SchoolInfos.remove({"_id" : insertResult});
+        throw new Meteor.Error('cant.insert.detailInfo', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
+      }
+    }
+    else{
+      throw new Meteor.Error('cant.insert.detailInfo', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
     }
 
   }
