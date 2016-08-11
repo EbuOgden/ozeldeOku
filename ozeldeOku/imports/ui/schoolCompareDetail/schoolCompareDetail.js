@@ -6,13 +6,19 @@ import { Schools } from '../../../imports/api/collections/schools.js'
 
 import './schoolCompareDetail.html';
 import './schoolCompareDetailCenter.html';
-import '../home/home.js';
 
-Template.schoolCompareDetail.helpers({
+Template.schoolCompareDetailCenter.onRendered(() => {
+  $(".chosen-select").chosen({
+    no_results_text : "Aradığınız kriterlere uygun seçenek bulunamadı",
+  });
+})
+
+Template.schoolCompareDetailCenter.events({
 
 })
 
 Template.schoolCompareDetailCenter.helpers({
+
   eachSchool(){
 
     const school = CompareList.find().fetch();
@@ -63,6 +69,12 @@ Template.registerHelper('count___', (c) => {
 
 Template.registerHelper('count____', (c) => {
   if(c == 4){
+    return true;
+  }
+})
+
+Template.registerHelper('othersLength', (c) => {
+  if(c.length > 0){
     return true;
   }
 })

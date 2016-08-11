@@ -1,3 +1,4 @@
+/* ***** Methods ***** */
 import '../../api/server/getCounties.js';
 import '../../api/server/reCaptch.js';
 import '../../api/server/signUser.js';
@@ -10,3 +11,10 @@ import '../../api/server/getFaculties.js';
 import '../../api/server/getDepartmentsByFacName.js';
 import '../../api/server/depIdFromName.js';
 import '../../api/server/addSchoolInfosToDb.js';
+/* ***** Methods ***** */
+
+/* ***** Observers ***** */
+import '../../api/server/observeChanges/schoolInfos.js';
+import '../../api/server/observeChanges/dormitoryInfos.js';
+
+/* ***** Observers ****** */

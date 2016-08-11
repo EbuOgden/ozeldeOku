@@ -258,41 +258,62 @@ SchoolInfos.attachSchema(new SimpleSchema({
   "school.schoolLat" : {
     type : String,
     optional : true,
-
-    autoValue : function(){
-      if(this.isInsert){
-        return "";
-      }
-    }
   },
 
   "school.schoolLng" : {
     type : String,
     optional : true,
-
-    autoValue : function(){
-      if(this.isInsert){
-        return "";
-      }
-    }
   },
 
-  "school.nearestDormitories" : {
+  // "school.nearestDormitories" : {
+  //   type : [Object],
+  //   optional : true,
+  //
+  //   autoValue : function(){
+  //     if(this.isInsert){
+  //       const nearestDormy = [
+  //         {
+  //           lat : "",
+  //           lng : "",
+  //           dormiName : ""
+  //         }
+  //       ]
+  //
+  //       return nearestDormy;
+  //     }
+  //   }
+  // },
+
+  nearestDormitories : {
     type : [Object],
-    optional : true
+    optional : true,
+
+      autoValue : function(){
+        if(this.isInsert){
+          const nearestDormy = [
+            {
+              lat : "",
+              lng : "",
+              dormiName : ""
+            }
+          ]
+
+          return nearestDormy;
+        }
+      }
   },
 
-  "school.nearestDormitories.$.lat" : {
+  "nearestDormitories.$.lat" : {
     type : String,
     optional : true
   },
 
-  "school.nearestDormitories.$.lng" : {
+  "nearestDormitories.$.lng" : {
     type : String,
     optional : true
   },
 
-  "school.nearestDormitories.$.dormiName" : {
+  "nearestDormitories.$.dormiName" : {
     type : String,
     optional : true
   }

@@ -22,6 +22,7 @@
                 {{school.school.schoolType}}<br>
 
                 {{school.school.schoolWebsite}}
+
             </center>
           </div>
 
@@ -44,6 +45,7 @@
               <div class="col-md-6">
                     <center>
                         <span class="label label-primary">Popüler Departmanlar</span><br>
+                        <br>
                         <ul class="nav nav-sidebar">
                             <li>
                               Popüler 1. Departman : {{school.popularDepartments.[0]}}
@@ -58,6 +60,7 @@
 
                     <br>
                     <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+                    <br>
                     <ul class="nav nav-sidebar">
                         {{#with school.studentCountInfos}}
                         <li>
@@ -76,11 +79,90 @@
                     </ul>
                     <br>
 
-                    <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+                    <span class="label label-primary">Öğrenci Kontenjan ve Burs Bilgileri</span><br>
+                    <br>
 
-                    {{#each school.quotaInfos}}
-                        
-                    {{/each}}
+                      <div style="height: 300px; overflow-y: scroll;" class="well">
+                          <ul class="nav nav-sidebar">
+                            {{#each school.quotaInfos}}
+                            <li>
+                              Departman İsmi : <span class="label label-info">{{departmentName}}</span>
+                            </li>
+                            <li>
+                              Toplam Öğrenci Kontenjanı : {{quota}}
+                            </li>
+                            <li>
+                              %100 Burs Kontenjan : {{fullScholarQuota}}
+                            </li>
+                            <li>
+                              %75 Burs Kontenjan : {{Scholar75Quota}}
+                            </li>
+                            <li>
+                              %50 Burs Kontenjan : {{Scholar50Quota}}
+                            </li>
+                            <li>
+                              %25 Burs Kontenjan : {{Scholar25Quota}}
+                            </li>
+                            <br>
+                            {{/each}}
+                          </ul>
+                    </div>
+
+                    <span class="label label-primary">Ortalama Ücret</span><br>
+                    <br>
+
+                    {{school.financialInfos.price}}
+                    <br><br>
+
+                    <span class="label label-primary">Burs Bilgileri</span><br>
+                    <br>
+
+                    <ul class="nav nav-sidebar">
+                      {{#with school.scholarShipInfos}}
+                      <li>
+                        {{#if athleteScholar.isHave}}
+                          Atlet Burs Oranı : % {{athleteScholar.quotaRate}}
+                        {{/if}}
+                      </li>
+                      <li>
+                        {{#if siblingScholar.isHave}}
+                          Kardeş Burs Oranı : % {{siblingScholar.quotaRate}}
+                        {{/if}}
+                      </li>
+
+                      <li>
+                        {{#if firstSelectScholar.isHave}}
+                          İlk Tercih Burs Oranı : % {{firstSelectScholar.quotaRate}}
+                        {{/if}}
+                      </li>
+
+                      <li>
+                        {{#if retiredScholar.isHave}}
+                          Emekli Burs Oranı : % {{retiredScholar.quotaRate}}
+                        {{/if}}
+                      </li>
+
+                      <li>
+                        {{#if academicScholar.isHave}}
+                          Akademik Burs Oranı : % {{academicScholar.quotaRate}}
+                        {{/if}}
+                      </li>
+
+                      {{#if othersLength others}}
+                      <br>
+                        <span class="label label-primary">Kuruma Ait Burslar</span><br>
+                        <br>
+                      {{#each others}}
+                        <li>
+                            {{otherScholarName}} : % {{quotaRate}}
+                        </li>
+                      {{/each}}
+                      {{/if}}
+
+                      {{/with}}
+
+                    </ul>
+
                 </center>
             </div>
 
@@ -129,19 +211,125 @@
 
         <div class="col-md-4">
           <center>
-        <ul class="nav nav-sidebar">
-          <li>
-            Popüler 1. Departman : {{school.popularDepartments.[0]}}
-          </li>
-          <li>
-            Popüler 2. Departman : {{school.popularDepartments.[1]}}
-          </li>
-          <li>
-            Popüler 3. Departman : {{school.popularDepartments.[2]}}
-          </li>
-        </ul>
+              <span class="label label-primary">Popüler Departmanlar</span><br>
+              <br>
+              <ul class="nav nav-sidebar">
+                  <li>
+                    Popüler 1. Departman : {{school.popularDepartments.[0]}}
+                  </li>
+                  <li>
+                    Popüler 2. Departman : {{school.popularDepartments.[1]}}
+                  </li>
+                  <li>
+                    Popüler 3. Departman : {{school.popularDepartments.[2]}}
+                  </li>
+              </ul>
 
-        {{school.quotaInfos.[0].quota}}
+          <br>
+          <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+          <br>
+          <ul class="nav nav-sidebar">
+              {{#with school.studentCountInfos}}
+              <li>
+                Lisans Öğrenci Sayısı : {{license}}
+              </li>
+              <li>
+                Master Öğrenci Sayısı : {{postGraduate}}
+              </li>
+              <li>
+                Doktora Öğrenci Sayısı : {{doctorate}}
+              </li>
+              <li>
+                Öğrenci Başına Profesör : {{stuCountPerProf}}
+              </li>
+              {{/with}}
+          </ul>
+          <br>
+
+          <span class="label label-primary">Öğrenci Kontenjan ve Burs Bilgileri</span><br>
+          <br>
+
+            <div style="height: 300px; overflow-y: scroll;" class="well">
+                <ul class="nav nav-sidebar">
+                  {{#each school.quotaInfos}}
+                  <li>
+                    Departman İsmi : <span class="label label-info">{{departmentName}}</span>
+                  </li>
+                  <li>
+                    Toplam Öğrenci Kontenjanı : {{quota}}
+                  </li>
+                  <li>
+                    %100 Burs Kontenjan : {{fullScholarQuota}}
+                  </li>
+                  <li>
+                    %75 Burs Kontenjan : {{Scholar75Quota}}
+                  </li>
+                  <li>
+                    %50 Burs Kontenjan : {{Scholar50Quota}}
+                  </li>
+                  <li>
+                    %25 Burs Kontenjan : {{Scholar25Quota}}
+                  </li>
+                  <br>
+                  {{/each}}
+                </ul>
+          </div>
+
+          <span class="label label-primary">Ortalama Ücret</span><br>
+          <br>
+
+          {{school.financialInfos.price}}
+          <br><br>
+
+          <span class="label label-primary">Burs Bilgileri</span><br>
+          <br>
+
+          <ul class="nav nav-sidebar">
+            {{#with school.scholarShipInfos}}
+            <li>
+              {{#if athleteScholar.isHave}}
+                Atlet Burs Oranı : % {{athleteScholar.quotaRate}}
+              {{/if}}
+            </li>
+            <li>
+              {{#if siblingScholar.isHave}}
+                Kardeş Burs Oranı : % {{siblingScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if firstSelectScholar.isHave}}
+                İlk Tercih Burs Oranı : % {{firstSelectScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if retiredScholar.isHave}}
+                Emekli Burs Oranı : % {{retiredScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if academicScholar.isHave}}
+                Akademik Burs Oranı : % {{academicScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            {{#if othersLength others}}
+            <br>
+              <span class="label label-primary">Kuruma Ait Burslar</span><br>
+              <br>
+            {{#each others}}
+              <li>
+                  {{otherScholarName}} : % {{quotaRate}}
+              </li>
+            {{/each}}
+            {{/if}}
+
+            {{/with}}
+
+          </ul>
+
       </center>
       </div>
 
@@ -187,28 +375,137 @@
         {{#each school in eachSchool}}
 
         <div class="col-md-3">
-            <center>
-        <ul class="nav nav-sidebar">
-          <li>
-            Popüler 1. Departman : {{school.popularDepartments.[0]}}
-          </li>
-          <li>
-            Popüler 2. Departman : {{school.popularDepartments.[1]}}
-          </li>
-          <li>
-            Popüler 3. Departman : {{school.popularDepartments.[2]}}
-          </li>
-        </ul>
+          <center>
+              <span class="label label-primary">Popüler Departmanlar</span><br>
+              <br>
+              <ul class="nav nav-sidebar">
+                  <li>
+                    Popüler 1. Departman : {{school.popularDepartments.[0]}}
+                  </li>
+                  <li>
+                    Popüler 2. Departman : {{school.popularDepartments.[1]}}
+                  </li>
+                  <li>
+                    Popüler 3. Departman : {{school.popularDepartments.[2]}}
+                  </li>
+              </ul>
 
-        {{school.quotaInfos.[0].quota}}
+          <br>
+          <span class="label label-primary">Öğrenci Sayısı Bilgileri</span><br>
+          <br>
+          <ul class="nav nav-sidebar">
+              {{#with school.studentCountInfos}}
+              <li>
+                Lisans Öğrenci Sayısı : {{license}}
+              </li>
+              <li>
+                Master Öğrenci Sayısı : {{postGraduate}}
+              </li>
+              <li>
+                Doktora Öğrenci Sayısı : {{doctorate}}
+              </li>
+              <li>
+                Öğrenci Başına Profesör : {{stuCountPerProf}}
+              </li>
+              {{/with}}
+          </ul>
+          <br>
+
+          <span class="label label-primary">Öğrenci Kontenjan ve Burs Bilgileri</span><br>
+          <br>
+
+            <div style="height: 300px; overflow-y: scroll;" class="well">
+                <ul class="nav nav-sidebar">
+                  {{#each school.quotaInfos}}
+                  <li>
+                    Departman İsmi : <span class="label label-info">{{departmentName}}</span>
+                  </li>
+                  <li>
+                    Toplam Öğrenci Kontenjanı : {{quota}}
+                  </li>
+                  <li>
+                    %100 Burs Kontenjan : {{fullScholarQuota}}
+                  </li>
+                  <li>
+                    %75 Burs Kontenjan : {{Scholar75Quota}}
+                  </li>
+                  <li>
+                    %50 Burs Kontenjan : {{Scholar50Quota}}
+                  </li>
+                  <li>
+                    %25 Burs Kontenjan : {{Scholar25Quota}}
+                  </li>
+                  <br>
+                  {{/each}}
+                </ul>
+          </div>
+
+          <span class="label label-primary">Ortalama Ücret</span><br>
+          <br>
+
+          {{school.financialInfos.price}}
+          <br><br>
+
+          <span class="label label-primary">Burs Bilgileri</span><br>
+          <br>
+
+          <ul class="nav nav-sidebar">
+            {{#with school.scholarShipInfos}}
+            <li>
+              {{#if athleteScholar.isHave}}
+                Atlet Burs Oranı : % {{athleteScholar.quotaRate}}
+              {{/if}}
+            </li>
+            <li>
+              {{#if siblingScholar.isHave}}
+                Kardeş Burs Oranı : % {{siblingScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if firstSelectScholar.isHave}}
+                İlk Tercih Burs Oranı : % {{firstSelectScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if retiredScholar.isHave}}
+                Emekli Burs Oranı : % {{retiredScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            <li>
+              {{#if academicScholar.isHave}}
+                Akademik Burs Oranı : % {{academicScholar.quotaRate}}
+              {{/if}}
+            </li>
+
+            {{#if othersLength others}}
+            <br>
+              <span class="label label-primary">Kuruma Ait Burslar</span><br>
+              <br>
+            {{#each others}}
+              <li>
+                  {{otherScholarName}} : % {{quotaRate}}
+              </li>
+            {{/each}}
+            {{/if}}
+
+            {{/with}}
+
+          </ul>
+
       </center>
       </div>
 
 
         {{/each}}
+
       </div>
       {{/if}}
 
+      <br>
+      <br>
 
       {{else}}
 

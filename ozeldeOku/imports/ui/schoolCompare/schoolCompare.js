@@ -149,11 +149,18 @@ Template.schoolCompareCenterList.events({
     const current = event.currentTarget;
 
     if($(current).prop('checked')){
-      CompareList.insert({
-        schoolId : current.id,
-        schoolImg : $(current).attr('data-img'),
-        schoolName : $(current).attr('data-name'),
-      })
+
+      if(CompareList.find().count() >= 4){
+        alert("Maksimum 4 adet okul karşılaştırabilirsiniz.");
+      }
+      else{
+        CompareList.insert({
+          schoolId : current.id,
+          schoolImg : $(current).attr('data-img'),
+          schoolName : $(current).attr('data-name'),
+        })
+      }
+
     }
     else{
       CompareList.remove({"schoolId" : current.id});

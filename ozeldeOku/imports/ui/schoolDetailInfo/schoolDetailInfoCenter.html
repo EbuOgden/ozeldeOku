@@ -1,6 +1,10 @@
 <template name="schoolDetailInfoCenter">
   <div class="container">
 
+    {{#if authPers.__cont}}
+      <div class="alert alert-info" role="alert"><center>Hoşgeldiniz  {{authPers._usrName__}}. Okul bilgilerinde herhangi bir hata olduğunu düşünüyorsanız, bu sayfa üzerinden düzenleyebilirsiniz.</center></div>
+    {{/if}}
+
     <div class="row">
         <div class="col-md-6">
             <div class="pull-left">
@@ -27,7 +31,6 @@
     <div class="row">
       <div class="col-md-3">
         {{#with schoolInfo}}
-        {{popularDepartments}}
           {{#each popularDepartments}}
             Popüler Departman : {{this}}<br>
           {{/each}}
@@ -37,7 +40,7 @@
 
     <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
 
-    <div id="mapForSchool" class="map-container">
+    <div id="mapForSchool" class="map-container" style='heigth:50px; width:500px;'>
 
     </div>
 

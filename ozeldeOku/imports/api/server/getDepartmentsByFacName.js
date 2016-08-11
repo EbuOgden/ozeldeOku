@@ -5,6 +5,7 @@ import { Departments } from '../collections/departments.js';
 
 Meteor.methods({
   getDepartmentsByFacName(__faculty){
+    this.unblock();
 
     const facultyName = __faculty.facultyName;
 

@@ -4,7 +4,10 @@ import { HTTP } from 'meteor/http';
 
 import { Roles } from '../imports/api/collections/roles.js';
 import { Dormitories } from '../imports/api/collections/dormitories.js';
+import { DormitoryInfos } from '../imports/api/collections/dormitoryInfos.js';
 import { Schools } from '../imports/api/collections/schools.js';
+import { SchoolInfos } from '../imports/api/collections/schoolInfos.js';
+import { Logs } from '/imports/api/collections/logs.js';
 import { News } from '../imports/api/collections/news.js';
 import { Comments } from '../imports/api/collections/comments.js';
 import { CityCounty } from '../imports/api/collections/cityCounty.js';
@@ -22,27 +25,7 @@ import '../imports/startup/server/index.js'
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
 //import { Messages } from '../imports/api/collections/messages.js';
 
-
-
 Meteor.startup(() => {
-
-  Schools.find().observeChanges({
-    added(id, object, field){
-      const school = Schools.findOne(id);
-
-      const addres = school.schoolAddress;
-
-
-    }
-  })
-
-  // HTTP.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=41.43206,-81.38992&destinations=-33.86748,151.20699&key=AIzaSyDSaZ1Tzihq0wZKBiPH05U6o3r1KxzxThQ',(statusCode, data) => {
-  //
-  //   if(data.statusCode == 200){
-  //     console.log(data);
-  //     console.log(data.data.rows[0].elements[0].distance.value);
-  //   }
-  // })
 
   if(CityCounty.find().count() == 0){
     CityCounty.insert({

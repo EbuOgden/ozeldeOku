@@ -4,6 +4,7 @@ import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.
 
 Meteor.methods({
   _sch_in_d(__facultyInfos_){
+    this.unblock();
 
     const schoolId = __facultyInfos_.school; /* school Id */
     const scholars = __facultyInfos_.scholars; /* quota infos boolean */

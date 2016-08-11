@@ -370,41 +370,39 @@ Template.schoolProfileSchoolInfos.events({
     var geocoder = new google.maps.Geocoder();
 
     const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
-
+    
     geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
       if(status == "OK"){
         const lat = results[0].geometry.location.lat();
         const lng = results[0].geometry.location.lng();
+
+        const schoolInfosSendObj = {
+          scholars : checkedScholars,
+          quotas : quotasInfos,
+          schoolInfos : schoolInfos,
+          popDeps : popDeps,
+          counts : counts,
+          sumSalary : sumSal,
+          otherQuotas : otherQuotaInfos,
+          school : school._id,
+          lat : lat,
+          lng : lng
+        }
+
+        Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
+          if(err){
+            alert(err.reason);
+          }
+          else{
+            console.log("result : " + result);
+          }
+        })
       }
       else{
         alert("Teknik bir hata oluştu, lütfen daha sonra tekrar deneyiniz.");
       }
     })
 
-    console.log(lat + " " + lng);
-    return;
-
-    const schoolInfosSendObj = {
-      scholars : checkedScholars,
-      quotas : quotasInfos,
-      schoolInfos : schoolInfos,
-      popDeps : popDeps,
-      counts : counts,
-      sumSalary : sumSal,
-      otherQuotas : otherQuotaInfos,
-      school : school._id,
-      lat : lat,
-      lng : lng
-    }
-
-    Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
-      if(err){
-        alert(err.reason);
-      }
-      else{
-        console.log("result : " + result);
-      }
-    })
   }
 
 

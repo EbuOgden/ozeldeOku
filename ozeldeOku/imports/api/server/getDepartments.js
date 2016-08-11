@@ -2,6 +2,7 @@ import { Departments } from '../collections/departments.js';
 
 Meteor.methods({
   getDepartments(departmentId){
+    this.unblock();
     const departmentNames = [];
 
     if(departmentId.length == 0){
