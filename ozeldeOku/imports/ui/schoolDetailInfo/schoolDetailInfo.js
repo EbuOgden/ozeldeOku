@@ -9,30 +9,36 @@ import { Schools } from '/imports/api/collections/schools.js';
 import './schoolDetailInfo.html';
 import './schoolDetailInfoCenter.html';
 
-const __cAUp__ = new ReactiveVar();
+const __cAUp__ = new ReactiveVar(0);
 
 Template.schoolDetailInfoCenter.helpers({
   schoolInfo(){
     if(Meteor.status().connected){
-        return SchoolInfos.findOne({"schoolId" : FlowRouter.getParam('schoolId')});
+        return SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')});
     }
 
   },
 
   authPers(){
     if(Meteor.status().connected){
+
       const __school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
 
-      if(__school._id == FlowRouter.getParam('schoolId')){
-        __cAUp__.set(1);
-        return  {
-          __cont : true,
-          _usrName__ :  Meteor.user().profile.name
+      if(__school){
+        if(__school._id == FlowRouter.getQueryParam('schld')){
+          __cAUp__.set(1);
+          return  {
+            __cont : true,
+            _usrName__ :  Meteor.user().profile.name
+          }
+        }
+        else{
+          __cAUp__.set(0);
+          return false;
         }
       }
-      else{
-        return false;
-      }
+
+
     }
   }
 })
@@ -46,14 +52,13 @@ Template.schoolDetailInfoCenter.events({
 })
 
 Template.schoolDetailInfoCenter.onRendered(() => {
-  __cAUp__.set(0);
 
   const dormitoryImage = '/marker-32.png'; /* dormitory icon */
 
   Tracker.autorun((c) => { /* if page refresh, we should check server connection reactively */
 
     if(Meteor.status().connected){
-      const school = SchoolInfos.findOne({"schoolId" : FlowRouter.getParam('schoolId')});
+      const school = SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')});
 
       if(school){
         const schoolDetail = school.school;
@@ -72,16 +77,44 @@ Template.schoolDetailInfoCenter.onRendered(() => {
         });
 
         if(__cAUp__.get() == 1){
+
           var marker = new google.maps.Marker({
-            map : map,
-            draggable : true,
-            position : {lat : _schLat__, lng : __schLng_},
+                map : map,
+                draggable : true,
+                position : {lat : _schLat__, lng : __schLng_},
+          })
+
+          marker.addListener('dragend', () => {
+            if(confirm("Okulun konumunu güncellemek istediğinizden emin misiniz? ")){
+              const markerNewLoc = marker.getPosition();
+
+              const news = {
+                newLat : markerNewLoc.lat(),
+                newLng : markerNewLoc.lng()
+              }
+
+              const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+              Meteor.call('_cord__Upd_', news, school._id, (error, result) => {
+                if(error){
+                  alert(error.reason);
+                }
+                else{
+                  alert("Konumunuz başarılı bir şekilde güncellenmiştir. Çevredeki yurtlar da otomatik olarak güncellenecektir.");
+                }
+              })
+            }
+            else{
+              alert("Güncelleme işlemi iptal edilmiştir");
+            }
+
           })
         }
         else{
           var marker = new google.maps.Marker({
-            map : map,
-            position : {lat : _schLat__, lng : _schLat__},
+                map : map,
+                draggable : false,
+                position : {lat : _schLat__, lng : __schLng_},
           })
         }
 

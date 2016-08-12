@@ -21,14 +21,13 @@ schoolType.route('/:schoolType', {
     },
 })
 
-schoolType.route('/:schoolType/:schoolId', {
-  name : 'okul.turu.schoolType.schoolId',
+schoolType.route('/:schoolType/:schoolName', {
+  name : 'okul.turu.schoolType.schoolName',
   triggersEnter : [function(context){
 
   }],
 
-  action (params){
-    
+  action (params, queryParams){
     BlazeLayout.render('schoolDetailInfo', {top : 'homeLayout', center : 'schoolDetailInfoCenter', bottom : 'homeBottom'});
   }
 })

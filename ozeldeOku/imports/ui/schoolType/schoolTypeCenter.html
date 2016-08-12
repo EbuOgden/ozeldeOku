@@ -1,7 +1,7 @@
 <template name="schoolTypeCenter">
   <div class="container">
     {{#each schools}}
-      <a href="/okulTuru/{{schoolType}}/{{_id}}">{{schoolName}}</a>
+      <a href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">{{schoolName}}</a>
     {{/each}}
   </div>
 

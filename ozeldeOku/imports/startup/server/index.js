@@ -11,6 +11,7 @@ import '../../api/server/getFaculties.js';
 import '../../api/server/getDepartmentsByFacName.js';
 import '../../api/server/depIdFromName.js';
 import '../../api/server/addSchoolInfosToDb.js';
+import '../../api/server/updateSchoolLocation.js';
 /* ***** Methods ***** */
 
 /* ***** Observers ***** */
