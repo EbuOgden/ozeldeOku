@@ -1,5 +1,8 @@
 <template name="schoolTypeCenter">
       <div class="container">
+
+        {{#if schoolLengthControl}}
+
         {{#each schools}}
           <div class="row">
             <div class="col-md-10">
@@ -31,5 +34,14 @@
           <br>
 
         {{/each}}
+
+        {{else}}
+          <div class="row">
+            <div class="col-md-12">
+              Şuanda sistemimizde bu türden okul bulunmamaktadır. Lütfen en kısa zamanda tekrar sitemizi ziyaret edip kontrol ediniz.
+            </div>
+
+          </div>
+        {{/if}}
       </div>
 </template>

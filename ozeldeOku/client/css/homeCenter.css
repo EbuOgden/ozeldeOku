@@ -26,6 +26,11 @@
   color : green;
 }
 
+.dropHov {
+  transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
 textarea {
     resize: none;
 }
@@ -124,4 +129,27 @@ a:hover {
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.drowDownWithIcons:hover:before {
+  position: absolute;
+  bottom: -15px;
+  left: 40%;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.drowDownWithIcons:hover:after {
+  position: absolute;
+  bottom: -16px;
+  left: 40%;
+  display: inline-block;
+  border-right: 6px black transparent;
+  border-top: 6px black #ffffff;
+  border-left: 6px black transparent;
+  content: '';
 }

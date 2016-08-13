@@ -17,7 +17,7 @@ schoolType.route('/:schoolType', {
 
     }],
     action (params) {
-        BlazeLayout.render('schoolType', {top : 'homeLayout', center: 'schoolTypeCenter'});
+        BlazeLayout.render('schoolType', {top : 'homeLayout', center: 'schoolTypeCenter', bottom : 'homeBottom'});
     },
 })
 

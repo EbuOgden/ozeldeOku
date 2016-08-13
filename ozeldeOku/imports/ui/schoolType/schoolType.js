@@ -11,6 +11,13 @@ import '/client/lib/jquery.raty.js';
 Template.schoolTypeCenter.helpers({
   schools(){
     return Schools.find({"schoolType" : FlowRouter.getParam("schoolType"), "haveSchoolDetailInfo" : true}, {sort : {rate : -1}});
+  },
+
+  schoolLengthControl(){
+    if(Schools.find({"schoolType" : FlowRouter.getParam("schoolType"), "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}).count() > 0){
+      return true;
+    }
+
   }
 })
 

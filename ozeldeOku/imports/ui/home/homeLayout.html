@@ -1,32 +1,41 @@
 <template name="homeLayout">
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default yamm">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" role="button" id="logoHome" src="/"><img src="/logo.png"></a>
         <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Okul Türü</a>
-          <ul class="dropdown-menu dropdownWithIcons" role="menu">
-            <div class="col-md-4">
-              <li><a role="button" class="dropHov" id="uniDrop" href="/okulTuru/Üniversite">Üniversite</a></li>
-            </div>
+          <a class="dropdown-toggle buttonGreen drowDownWithIcons" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Okul Türü</a>
+          <ul class="dropdown-menu" role="menu" style="width: 100%; left: 0; background-color : rgb(244,244,244)">
+          <li class="dropHov">
+            <div class="yamm-content">
 
-            <div class="col-md-4">
-              <li><a role="button" class="dropHov" id="highDrop" href="/okulTuru/Lise">Lise</a></li>
-            </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <center><a role="button" id="preDrop" href="/okulTuru/Anaokulu"><img src="/anaokuluIcon.png" alt="image 1"></a>
+                      <p style="text-align:center;">Anaokulu</p></center>
+                    </div>
+                    <div class="col-md-3">
+                      <center><a role="button" id="midDrop" href="/okulTuru/Ortaöğretim"><img src="/ilkokulIcon.png" alt="image 1"></a>
+                      <p style="text-align:center;">İlk ve Ortaokul</p></center>
+                    </div>
 
-            <div class="col-md-4">
-              <li><a role="button" class="dropHov" id="midDrop" href="/okulTuru/Ortaöğretim">Ortaokul</a></li>
-            </div>
+                    <div class="col-md-3">
+                      <center><a role="button" id="highDrop" href="/okulTuru/Lise"><img src="/liseIcon.png" alt="image 1"></a>
+                      <p style="text-align:center;">Lise</p></center>
+                    </div>
 
-            <div class="col-md-4">
-              <li><a role="button" class="dropHov" id="firstDrop" href="/okulTuru/İlkokul">İlköğretim</a></li>
-            </div>
+                    <div class="col-md-3">
+                      <center><a role="button" id="uniDrop" href="/okulTuru/Üniversite"><img src="/uniIcon.png" alt="image 1"></a>
+                      <p style="text-align:center;">Üniversite</p></center>
+                    </div>
 
-            <div class="col-md-4">
-              <li><a role="button" class="dropHov" id="preDrop" href="/okulTuru/Anaokulu">Anaokulu</a></li>
+                  </div>
+
             </div>
+          </li>
+
           </ul>
 
         </li>

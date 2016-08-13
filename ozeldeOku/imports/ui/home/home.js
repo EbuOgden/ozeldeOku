@@ -108,13 +108,13 @@ Template.homeLayout.events({
 
   'mouseenter .dropHov'(event){
     $('.hovCenter').css('opacity', '0.7');
-    $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.5)');
+    $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.9)');
 
   },
 
   'mouseleave .dropHov'(event){
     $('.hovCenter').css('opacity', '1.0');
-    $('.hovCenter').css('background', 'rgb(250, 250, 250)');
+    $('.hovCenter').css('background', 'rgba(250, 250, 250, 0.0)');
   },
 
 })
@@ -212,6 +212,11 @@ Template.homeBottom.events({
   'click #dormiBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Yurt');
+  },
+
+  'click #mailSendBottom'(event){
+    event.preventDefault();
+    window.location.href = "mailto:destek@ozeldeoku.com";
   }
 
 })
