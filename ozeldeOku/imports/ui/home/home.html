@@ -1,14 +1,16 @@
 <template name="home">
 
+      {{> Template.dynamic template=top}}
 
-  {{> Template.dynamic template=top}}
+      <div class="hovCenter">
+      {{> Template.dynamic template=center}}
 
-  <div class="hovCenter">
-  {{> Template.dynamic template=center}}
+      <br><br>
 
-  <br><br>
+      {{> Template.dynamic template=bottom}}
 
-  {{> Template.dynamic template=bottom}}
 
-</div>
+
+  </div>
+
 </template>

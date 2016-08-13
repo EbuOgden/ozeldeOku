@@ -28,10 +28,15 @@ import '../imports/startup/server/index.js'
 Meteor.startup(() => {
 
   if(CityCounty.find().count() == 0){
+
+    CityCounty.insert({
+      city : "Adana",
+      county : ["Aladağ", "Ceyhan", "Çukurova","Feke", "İmamoğlu", "Karaisalı", "Karataş", "Kozan", "Pozantı", "Saimbeyli", "Sarıçam", "Seyhan", "Tufanbeyli", "Yumurtalık", "Yüreğir"]
+    })
+
     CityCounty.insert({
         city : 'İstanbul',
-        county : ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar']
-
+        county : ["Adalar", "Arnavutköy", "Ataşehir", "Avcılar", "Bağcılar"]
     })
 
     CityCounty.insert({

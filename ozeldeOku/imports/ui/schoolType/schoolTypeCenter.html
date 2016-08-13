@@ -1,8 +1,35 @@
 <template name="schoolTypeCenter">
-  <div class="container">
-    {{#each schools}}
-      <a href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">{{schoolName}}</a>
-    {{/each}}
-  </div>
+      <div class="container">
+        {{#each schools}}
+          <div class="row">
+            <div class="col-md-10">
 
+              <a href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">
+              <div class="media">
+                <div class="media-left">
+                      <img class="media-object img-rounded" src="/{{imgSrc}}" alt="{{schoolName}} Resim">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{schoolName}}</h4>
+                    <h5 style="color: black;">Okulun Adresi : {{schoolAddress}}</h5>
+                    <h5 style="color: black;">Bulunduğu İl : {{schoolCity}}</h5>
+                    <h5 style="color: black;">Okulun Websitesi : <a href="http://{{schoolWebSite}}" target="_blank">{{schoolWebSite}}</a></h5>
+                    <h5 style="color: black;">Puan : <div class="{{_id}}" style="display:initial"></div>
+                      <script>$("div .{{_id}}").raty({
+                        score : {{rate}},
+                        readOnly : true,
+                        starType : 'img',
+                        path : '/',
+                      })
+                      </script>
+                      </h5>
+                  </div>
+              </div>
+              </a>
+            </div>
+          </div>
+          <br>
+
+        {{/each}}
+      </div>
 </template>

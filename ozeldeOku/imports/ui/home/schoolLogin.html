@@ -1,0 +1,56 @@
+<template name="schoolLogin">
+  <div class="container">
+    <div class="row">
+      <div class="pull-left">
+        <ol class="breadcrumb" style="background-color:white;">
+            <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+            <li>Giriş Yap</li>
+          </ol>
+      </div>
+
+      <div class="col-md-offset-6 col-md-3">
+        <form id="schoolSearch">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <h3 class="homeCarouselFirstPageFontColor">Kurumsal Okul Girişi</h3>
+      <small>Hoşgeldiniz! Hemen giriş yaparak okulunuzun tanıtımını yapıp sayfanızı güncel tutabilirsiniz.</small>
+    </div>
+
+    <form id="schoolLogin">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="input-lg form-control" placeholder="E-mail adresinizi giriniz" id="schoolEmail">
+          </div>
+        </div>
+        <div class="col-md-3">
+
+          <div class="form-group">
+            <input type="password" class="input-lg form-control" placeholder="Şifrenizi Giriniz" id="schoolPassword">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <a role="button" data-toggle="modal" data-target="#forgotPassword" style="color:black;"><h5>Şifremi Unuttum</h5></a>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="schoolLoginButton"><b>Giriş Yap</b></button>
+        </div>
+      </div>
+      <input type="submit" style="visibility: hidden;" />
+    </form>
+  </div>
+</template>

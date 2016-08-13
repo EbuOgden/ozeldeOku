@@ -11,6 +11,7 @@
    bottom:0px;
 }
 
+
 .homeCarouselFirstPageFontColor{
   color : rgb(157,197,15);
 }
@@ -114,4 +115,13 @@ ul#cpmL li {
   position:absolute;
   top:0px;
   right:10%;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

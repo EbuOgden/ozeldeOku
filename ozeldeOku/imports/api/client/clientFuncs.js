@@ -1,3 +1,5 @@
+import { userInfo } from './userClass.js';
+
 signFunc = function(){
 
   const email = $('#emailUNew').val();
@@ -22,6 +24,25 @@ signFunc = function(){
       $('#passwordURNew').val("");
       $('#nameUNew').val("");
       $('#surnameUNew').val("");
+
+      if(Meteor.userId()){
+        Meteor.logout();
+      }
+      Meteor.loginWithPassword(email, passwordR, (err) => {
+        if(err){
+          if(err.error == 403){
+            alert("Kullanıcı bulunamadı");
+          }
+          else{
+            alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+          }
+        }
+        else{
+          FlowRouter.go('/');
+          BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+        }
+      })
+
     }
   })
 }

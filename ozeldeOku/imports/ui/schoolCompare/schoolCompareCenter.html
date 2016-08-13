@@ -92,14 +92,14 @@
         </ul>
       </div>
 
+
         {{#if cH_ct}}
 
-          <ul id="cpmL" style="overflow-y: hidden; overflow-x: auto;">
+          <ul id="cpmL" class="nav nav-sidebar" style="overflow-y: hidden; overflow-x: auto; display:block;">
             {{#each _cmprL}}
 
                 <li>
-
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="well wellOver">
                       <img src="{{schoolImg}}" class="cmpListImg">
                       <a role="button">{{schoolName}}</a>
@@ -121,11 +121,14 @@
 
       {{/if}}
 
-      <div class="row">
-        <div class="col-md-6">
-            {{> Template.dynamic template=schoolCompareCenterDynamic}}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+              {{> Template.dynamic template=schoolCompareCenterDynamic}}
+        </div>
+        </div>
       </div>
-      </div>
+
     </div>
   </div>
 

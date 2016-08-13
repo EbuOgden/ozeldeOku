@@ -8,12 +8,12 @@
       {{#each schools}}
           <div class="media">
               <div class="media-left">
-                  <a href="#">
+                  <a>
                     <img class="media-object" src="{{imgSrc}}" style="width:200px; height:150px;">
                   </a>
               </div>
               <div class="media-body">
-                  <a role="button"><h4 class="media-heading">{{schoolName}}</h4></a>
+                  <a role="button" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}"><h4 class="media-heading">{{schoolName}}</h4></a>
                   {{schoolCity}} - {{schoolCounty}}<br><br>
                   Okul Türü : {{schoolType}}<br><br>
                   Telefon : {{schoolPhoneNumber}} &nbsp; Mail : {{schoolEmail}}<br><br>

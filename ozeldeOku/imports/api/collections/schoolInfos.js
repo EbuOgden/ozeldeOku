@@ -265,25 +265,6 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : true,
   },
 
-  // "school.nearestDormitories" : {
-  //   type : [Object],
-  //   optional : true,
-  //
-  //   autoValue : function(){
-  //     if(this.isInsert){
-  //       const nearestDormy = [
-  //         {
-  //           lat : "",
-  //           lng : "",
-  //           dormiName : ""
-  //         }
-  //       ]
-  //
-  //       return nearestDormy;
-  //     }
-  //   }
-  // },
-
   nearestDormitories : {
     type : [Object],
     optional : true,

@@ -33,6 +33,7 @@ import './signupModal.html';
 import './favorites.html';
 import './map.html';
 import './aboutUs/empty.html';
+import './schoolLogin.html';
 /*          */
 
 /* JAVASCRIPT IMPORTS */
@@ -114,7 +115,8 @@ Template.homeLayout.events({
   'mouseleave .dropHov'(event){
     $('.hovCenter').css('opacity', '1.0');
     $('.hovCenter').css('background', 'rgb(250, 250, 250)');
-  }
+  },
+
 })
 
 Template.homeLayout.onRendered(() => {
@@ -140,11 +142,6 @@ Template.homeCenter.onRendered(() => {
     draggable : false,
     accessibility : false,
     autoplay : true
-  });
-
-  $('#rate').raty({
-    readOnly : false,
-    score : 4
   });
 
 })
@@ -175,7 +172,48 @@ Template.homeBottom.events({
   'click #touchU'(event){
     window.scrollTo(0, 0);
     BlazeLayout.render('home', {top : 'homeLayout', center : 'map', bottom: 'homeBottom'});
+  },
+
+  'click #schoolLogin'(event){
+    event.preventDefault();
+    BlazeLayout.render('home', {top : 'homeLayout', center : 'schoolLogin', bottom : 'homeBottom'});
+  },
+
+  'click #preBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/Anaokulu');
+  },
+
+  'click #firstBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/İlkokul');
+  },
+
+  'click #midBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/Ortaöğretim');
+  },
+
+  'click #highBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/Lise');
+  },
+
+  'click #uniBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/Üniversite');
+  },
+
+  'click #scholarshipBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/burslar');
+  },
+
+  'click #dormiBottom'(event){
+    event.preventDefault();
+    FlowRouter.go('/okulTuru/Yurt');
   }
+
 })
 
 Template.newSchoolRegister.onRendered(() => {
@@ -376,4 +414,49 @@ Template.map.events({
     event.preventDefault();
     window.location.href = "mailto:bilgi@ozeldeoku.com";
   }
+})
+
+Template.schoolLogin.onRendered(() => {
+  if(Meteor.userId()){
+    if(confirm("Üyelik girişi yapılmış durumda. Çıkış yapmak istiyor musunuz ?")){
+        Meteor.logout();
+    }
+    else{
+        BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+    }
+  }
+})
+
+Template.schoolLogin.events({
+  'click #anaSayfaRoute'(event){
+    event.preventDefault();
+    BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+  },
+
+  'submit #schoolLogin, click #schoolLoginButton'(event){
+    event.preventDefault();
+
+    const email = $('#schoolEmail').val();
+    const password = $('#schoolPassword').val();
+
+    if(isEmpty(email) || isEmpty(password)){
+      alert("Lütfen tüm alanları doldurunuz");
+      return;
+    }
+
+    Meteor.loginWithPassword(email, password, (err) => {
+      if(err){
+        if(err.error == 403){
+          alert("Kullanıcı bulunamadı");
+        }
+        else{
+          alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+        }
+      }
+      else{
+        BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+      }
+    })
+  },
+
 })
