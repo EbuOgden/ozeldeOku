@@ -3,13 +3,18 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Messages = new Mongo.Collection('Messages');
 
-Message.attachSchema(new SimpleSchema({
+Messages.attachSchema(new SimpleSchema({
   messageContext : {
     type : String,
     optional : false
   },
 
   senderId : {
+    type : String,
+    optional : false
+  },
+
+  readerId : {
     type : String,
     optional : false
   },
@@ -23,6 +28,22 @@ Message.attachSchema(new SimpleSchema({
       }
     }
   },
+
+  isRead : {
+    type : Boolean,
+    optional : false,
+    autoValue : function(){
+      if(this.isInsert){
+        return false;
+      }
+    }
+
+  },
+
+  roomId : {
+    type : String,
+    optional : false
+  }
 
 
 }))

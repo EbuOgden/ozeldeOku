@@ -131,6 +131,22 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.container {
+    min-height: 100%;
+    /*padding-bottom: 10px;*/
+}
+
+.footer {
+  bottom : 0px;
+  right : 0px;
+  left : 0px;
+  padding : 0.7em;
+  margin : 0;
+  background-color: black;
+  text-align: left;
+  position : static;
+}
+
 .drowDownWithIcons:hover:before {
   position: absolute;
   bottom: -15px;
@@ -152,4 +168,8 @@ body {
   border-top: 6px black #ffffff;
   border-left: 6px black transparent;
   content: '';
+}
+
+.messageTitleColor{
+  color:rgb(157,197,15);
 }

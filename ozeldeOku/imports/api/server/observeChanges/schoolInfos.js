@@ -2,6 +2,9 @@ import { HTTP } from 'meteor/http';
 
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { DormitoryInfos } from '/imports/api/collections/dormitoryInfos.js';
+
+import { Messages } from '/imports/api/collections/messages.js';
+import { MessageRooms } from '/imports/api/collections/messageRooms.js';
 import { Logs } from '/imports/api/collections/logs.js';
 
 
@@ -9,6 +12,8 @@ SchoolInfos.find().observeChanges({
   /* If new SchoolDetailInfos insert we take schoolLat and schoolLng for compare dormitories latlng if is nearest than 10km so we add nearest dormitory in db */
   added(id, field){
     const schoolInfos = SchoolInfos.findOne(id);
+
+    const schoolId = schoolInfos.schoolId;
 
     const schoolDetailInfos = schoolInfos.school;
 
@@ -75,6 +80,51 @@ SchoolInfos.find().observeChanges({
     else{
 
     }
+
+    /* INITIAL SYSTEM MESSAGE */
+
+    /* create new message room with system and school */
+
+    var newRoomId = MessageRooms.insert({
+      memberId : schoolId,
+      ownerId : 'ozeldeoku',
+      ownerName : "Özelde Oku"
+    })
+
+    if(newRoomId){
+      var newMessageId = Messages.insert({
+          messageContext : "Sistemimize hoşgeldiniz. Okulunuzla alakalı detaylı bilgileri 'Okul Bilgilerim' menüsünden doldurabilirsiniz.",
+          senderId : 'ozeldeoku',
+          readerId : schoolId,
+          roomId : newRoomId
+      })
+
+      if(newMessageId){
+        Logs.insert({
+          schoolId : schoolId,
+          dormitoryId : "NULL",
+          logMessage : "Mesaj başarıyla eklendi."
+        })
+      }
+      else{
+        Logs.insert({
+          schoolId : schoolId,
+          dormitoryId : "NULL",
+          logMessage : "Mesaj eklenemedi."
+        })
+      }
+    }
+    else{
+      Logs.insert({
+        schoolId : schoolId,
+        dormitoryId : "NULL",
+        logMessage : "Sisteme yeni kayıt olmuş okul için, yeni mesaj odası oluşturulamadı."
+      })
+    }
+
+
+
+    /*          */
   },
 
   changed(id, field){

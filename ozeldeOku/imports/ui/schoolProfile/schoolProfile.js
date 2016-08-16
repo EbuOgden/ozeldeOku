@@ -5,6 +5,8 @@ import { Schools } from '/imports/api/collections/schools.js';
 import { Faculties } from '/imports/api/collections/faculties.js';
 import { Departments } from '/imports/api/collections/departments.js';
 import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js';
+import { Messages } from '/imports/api/collections/messages.js';
+import { MessageRooms } from '/imports/api/collections/messageRooms.js';
 
 import { schoolInfosForComp } from '/imports/api/client/schoolInfosClass.js'
 import { depObjForRet } from '/imports/api/client/departmentObjClassForReturn.js';
@@ -14,6 +16,7 @@ import './schoolProfile.html';
 import './schoolProfileCenter.html';
 import './schoolProfileSchoolInfos.html';
 import './schoolProfileCenterUserInfos.html';
+import './schoolProfileMessages.html';
 
 import '../../../client/lib/chosen.jquery.min.js';
 
@@ -49,6 +52,10 @@ Template.schoolProfileCenter.helpers({
         return Meteor.user().profile.name;
     }
 
+  },
+
+  unreadeMessagesCount(){
+    return Messages.find({"readerId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}, {isRead : false}).count();
   }
 })
 
@@ -370,7 +377,7 @@ Template.schoolProfileSchoolInfos.events({
     var geocoder = new google.maps.Geocoder();
 
     const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
-    
+
     geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
       if(status == "OK"){
         const lat = results[0].geometry.location.lat();
@@ -405,5 +412,44 @@ Template.schoolProfileSchoolInfos.events({
 
   }
 
+
+})
+
+Template.schoolProfileMessages.helpers({
+  messageRooms(){
+    if(Meteor.status().connected){
+        return MessageRooms.find({"memberId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id});
+    }
+
+  },
+
+  messageRoomsLength(){
+    if(Meteor.status().connected){
+      if(MessageRooms.find({"memberId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}).count() > 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+  }
+
+})
+
+Template.registerHelper('lastMessage', (e) => {
+  const message = Messages.find({"roomId" : e}, { sort : { sendTime : -1}}).fetch();
+
+  if(message){
+    return message[0].messageContext;
+  }
+  else{
+    return "Sistemde hata var";
+  }
+
+})
+
+Template.registerHelper('timeZoneTr', (e) => {
+  return moment(e).locale('tr').format('LLLL');
 
 })

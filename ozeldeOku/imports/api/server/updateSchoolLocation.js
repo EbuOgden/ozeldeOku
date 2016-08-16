@@ -2,8 +2,9 @@ import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 
 Meteor.methods({
   _cord__Upd_(__new_Loc, __schoolId_){
-    this.unblock();
     
+    this.unblock();
+
     const markerNewLoc = __new_Loc;
 
     var updateResult = SchoolInfos.update({"schoolId" : __schoolId_}, {

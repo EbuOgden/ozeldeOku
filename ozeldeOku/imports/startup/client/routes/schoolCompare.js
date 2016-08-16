@@ -13,7 +13,7 @@ const schoolCompRoute = FlowRouter.group({ prefix : '/okulKarsilastir',
 schoolCompRoute.route('/', {
   name : 'school.compare./',
   action : function(){
-    BlazeLayout.render('schoolCompare', {top : 'homeLayout', center : 'schoolCompareCenter'});
+    BlazeLayout.render('schoolCompare', {top : 'homeLayout', center : 'schoolCompareCenter', bottom: 'homeBottom'});
     document.title = "Okul Karşılaştır";
   },
 })
@@ -21,7 +21,7 @@ schoolCompRoute.route('/', {
 schoolCompRoute.route('/detay', {
   name : 'school.compare./.detay',
   action : function(){
-    BlazeLayout.render('schoolCompareDetail', {top : 'homeLayout', center : 'schoolCompareDetailCenter'});
+    BlazeLayout.render('schoolCompareDetail', {top : 'homeLayout', center : 'schoolCompareDetailCenter', bottom : 'homeBottom'});
   },
 
   triggersExit : [function(context){

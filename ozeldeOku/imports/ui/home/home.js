@@ -17,6 +17,8 @@ import { Comments } from '../../api/collections/comments.js';
 import { schoolInfo } from '../../api/client/schoolClass.js';
 import { userInfo } from '../../api/client/userClass.js';
 
+import { Messages } from '/imports/api/collections/messages.js';
+
 /*          */
 
 /* HTML IMPORTS */
@@ -32,7 +34,6 @@ import './forgotPassword.html';
 import './signupModal.html';
 import './favorites.html';
 import './map.html';
-import './aboutUs/empty.html';
 import './schoolLogin.html';
 /*          */
 
@@ -53,6 +54,10 @@ Template.home.onCreated(function homeOnCreated(){
 
 })
 
+Template.home.onDestroyed(() => {
+  console.log("destroyed!");
+})
+
 Template.homeLayout.events({
   'click #logoHome'(event){
     event.stopPropagation();
@@ -63,7 +68,7 @@ Template.homeLayout.events({
 
   'click #aboutUs'(event){
     event.preventDefault();
-    BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom : 'empty'});
+    BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom : 'homeBottom'});
   },
 
   'click #logInBut'(event){
@@ -126,6 +131,24 @@ Template.homeLayout.onRendered(() => {
 Template.homeLayout.helpers({
   userRole(){
     return Meteor.user().profile.role;
+  },
+
+  unreadeMessagesCount(){
+    if(Meteor.status().connected){
+      if(Meteor.user().profile.role == "School"){
+
+        const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+        if(school){
+            const readerId = school._id;
+            return Messages.find({"readerId" : readerId}, {isRead : false}).count();
+        }
+
+      }
+      if(Meteor.user().profile.role == "Parent"){
+        return Messages.find({"readerId" : Meteor.userId()}, {isRead : false}).count();
+      }
+    }
+
   }
 })
 

@@ -2,18 +2,21 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 //import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 
-import { Roles } from '../imports/api/collections/roles.js';
-import { Dormitories } from '../imports/api/collections/dormitories.js';
-import { DormitoryInfos } from '../imports/api/collections/dormitoryInfos.js';
-import { Schools } from '../imports/api/collections/schools.js';
-import { SchoolInfos } from '../imports/api/collections/schoolInfos.js';
+import { Roles } from '/imports/api/collections/roles.js';
+import { Dormitories } from '/imports/api/collections/dormitories.js';
+import { DormitoryInfos } from '/imports/api/collections/dormitoryInfos.js';
+import { Schools } from '/imports/api/collections/schools.js';
+import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Logs } from '/imports/api/collections/logs.js';
-import { News } from '../imports/api/collections/news.js';
-import { Comments } from '../imports/api/collections/comments.js';
-import { CityCounty } from '../imports/api/collections/cityCounty.js';
-import { Departments } from '../imports/api/collections/departments.js';
-import { Faculties } from '../imports/api/collections/faculties.js';
-import { FacultyDepartments } from '../imports/api/collections/facultyDepartments.js';
+import { News } from '/imports/api/collections/news.js';
+import { Comments } from '/imports/api/collections/comments.js';
+import { CityCounty } from '/imports/api/collections/cityCounty.js';
+import { Departments } from '/imports/api/collections/departments.js';
+import { Faculties } from '/imports/api/collections/faculties.js';
+import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js';
+
+import { Messages } from '/imports/api/collections/messages.js';
+import { MessageRooms } from '/imports/api/collections/messageRooms.js';
 
 import '../imports/api/collections/users.js';
 
@@ -23,7 +26,7 @@ import '../imports/startup/server/index.js'
 
 //import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
-//import { Messages } from '../imports/api/collections/messages.js';
+
 
 Meteor.startup(() => {
 

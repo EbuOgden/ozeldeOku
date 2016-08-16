@@ -5,6 +5,7 @@ import { Schools } from '/imports/api/collections/schools.js';
 
 import '/imports/ui/schoolType/schoolType.js';
 import '/imports/ui/schoolDetailInfo/schoolDetailInfo.js';
+import '/imports/ui/home/home.js';
 
 const schoolType = FlowRouter.group({prefix : '/okulTuru',
   name : 'okul.turu'
@@ -14,7 +15,7 @@ schoolType.route('/:schoolType', {
     name : 'okul.turu.schoolType',
     triggersEnter : [function(context){
         document.title = context.params.schoolType;
-
+        console.log("came");
     }],
     action (params) {
         BlazeLayout.render('schoolType', {top : 'homeLayout', center: 'schoolTypeCenter', bottom : 'homeBottom'});

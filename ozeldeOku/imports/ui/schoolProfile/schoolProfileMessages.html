@@ -1,6 +1,58 @@
 <template name="schoolProfileMessages">
-  <div class="col-md-7">
+  <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
     <br>
-    
+    {{#if messageRoomsLength}}
+      {{#each messageRooms}}
+
+        <div class="list-group">
+            <a href="" class="list-group-item">
+              <div class="media">
+                  <div class="media-left">
+
+                    <a href="#">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <input type="checkbox" style="position:absolute; top:15px;">
+                        </div>
+                        <div class="col-md-3">
+                          <img class="media-object" src="/schoolIcon.png">
+                        </div>
+                      </div>
+
+
+                    </a>
+                  </div>
+
+                  <div class="media-body">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-1">
+                          <i class="fa fa-envelope-o fa-2x" aria-hidden="true" style="position:absolute; top: 15px;"></i>
+                        </div>
+                        <div class="col-md-3">
+                          <h4 class="media-heading messageTitleColor">Konu : {{roomTitle}}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-offset-2 col-md-11">
+                          {{ownerName}}
+                          <!-- {{lastMessage _id}} -->
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-offset-2 col-md-11">
+                        {{timeZoneTr createdAt}}
+                      </div>
+                    </div>
+
+
+                  </div>
+              </div>
+
+            </a>
+        </div>
+      {{/each}}
+    {{/if}}
   </div>
 </template>

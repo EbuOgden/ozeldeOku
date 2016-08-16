@@ -1,5 +1,9 @@
 import { Accounts } from 'meteor/accounts-base';
 
+import { Messages } from '/imports/api/collections/messages.js';
+import { MessageRooms } from '/imports/api/collections/messageRooms.js';
+import { Logs } from '/imports/api/collections/logs.js';
+
 Meteor.methods({
   signUser(user){
 
@@ -11,7 +15,7 @@ Meteor.methods({
       profile : {
         name : user.__name,
         surname : user.__surname,
-        role : 'Veli'
+        role : 'Parent'
       }
     })
 
@@ -19,7 +23,38 @@ Meteor.methods({
       throw new Meteor.Error('cant.sign.up', "Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz");
     }
     else{
+      var newMessageRoomId = MessageRooms.insert({
+        memberId : newUser,
+        ownerId : 'ozeldeoku',
+        ownerName : 'Özelde Oku'
+      })
 
+      if(newMessageRoomId){
+        var newMessageId = Messages.insert({
+          messageContext : "Sistemimize hoşgeldiniz. Özelokulları araştırabilir ve karşılaştırabilirsiniz.",
+          senderId : 'ozeldeoku',
+          readerId : newUser,
+          roomId : newMessageRoomId
+        })
+
+        if(newMessageId){
+          return true;
+        }
+        else{
+          Logs.insert({
+            schoolId : "NULL",
+            dormitoryId : "NULL",
+            logMessage : "Yeni üye velinin : '" + newUser + " ' odası oluştu, mesaj oluşturulamadı"
+          })
+        }
+      }
+      else{
+        Logs.insert({
+          schoolId : "NULL",
+          dormitoryId : "NULL",
+          logMessage : "Yeni üye velinin : '" + newUser + " ' odası oluşturulamadi"
+        })
+      }
     }
   }
 })
