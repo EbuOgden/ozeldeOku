@@ -53,6 +53,8 @@ Template.schoolDetailInfoCenter.events({
 
 Template.schoolDetailInfoCenter.onRendered(() => {
 
+  window.scrollTo(0, 0);
+
   const dormitoryImage = '/marker-32.png'; /* dormitory icon */
 
   Tracker.autorun((c) => { /* if page refresh, we should check server connection reactively */
@@ -118,7 +120,7 @@ Template.schoolDetailInfoCenter.onRendered(() => {
           })
         }
 
-        if(nearestDormitories.length > 0){
+        if(nearestDormitories.length > 1){
 
           for(let i = nearestDormitories.length; i--;){
             new google.maps.Marker({

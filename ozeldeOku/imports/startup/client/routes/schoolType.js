@@ -15,7 +15,7 @@ schoolType.route('/:schoolType', {
     name : 'okul.turu.schoolType',
     triggersEnter : [function(context){
         document.title = context.params.schoolType;
-        console.log("came");
+        
     }],
     action (params) {
         BlazeLayout.render('schoolType', {top : 'homeLayout', center: 'schoolTypeCenter', bottom : 'homeBottom'});

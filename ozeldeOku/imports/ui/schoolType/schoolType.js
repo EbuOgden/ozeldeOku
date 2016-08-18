@@ -25,11 +25,16 @@ Template.schoolTypeCenter.helpers({
     }
 
 
+  },
+
+  connectionControl(){
+    if(Meteor.status().connected){
+      return true;
+    }
   }
 })
 
 Template.schoolTypeCenter.onRendered(() => {
-  console.log('heyyo');
 
 })
 

@@ -54,8 +54,8 @@ Template.home.onCreated(function homeOnCreated(){
 
 })
 
-Template.home.onDestroyed(() => {
-  console.log("destroyed!");
+Template.home.onRendered(() => {
+  window.scrollTo(0, 0);
 })
 
 Template.homeLayout.events({
@@ -67,7 +67,7 @@ Template.homeLayout.events({
   },
 
   'click #aboutUs'(event){
-    event.preventDefault();
+    //event.preventDefault();
     BlazeLayout.render('home', {top: 'homeLayout', center : 'aboutUs', bottom : 'homeBottom'});
   },
 
@@ -107,7 +107,7 @@ Template.homeLayout.events({
   },
 
   'click #schoolComp'(event){
-    event.preventDefault();
+    //event.preventDefault();
     FlowRouter.go('/okulKarsilastir');
   },
 
@@ -149,7 +149,7 @@ Template.homeLayout.helpers({
       }
     }
 
-  }
+  },
 })
 
 
@@ -193,48 +193,57 @@ Template.homeBottom.events({
   },
 
   'click #touchU'(event){
-    window.scrollTo(0, 0);
+    event.preventDefault();
     BlazeLayout.render('home', {top : 'homeLayout', center : 'map', bottom: 'homeBottom'});
+    window.scrollTo(0, 0);
   },
 
   'click #schoolLogin'(event){
     event.preventDefault();
     BlazeLayout.render('home', {top : 'homeLayout', center : 'schoolLogin', bottom : 'homeBottom'});
+    window.scrollTo(0, 0);
   },
 
   'click #preBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Anaokulu');
+    window.scrollTo(0, 0);
   },
 
   'click #firstBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/İlkokul');
+    window.scrollTo(0, 0);
   },
 
   'click #midBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Ortaöğretim');
+    window.scrollTo(0, 0);
   },
 
   'click #highBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Lise');
+    window.scrollTo(0, 0);
   },
 
   'click #uniBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Üniversite');
+    window.scrollTo(0, 0);
   },
 
   'click #scholarshipBottom'(event){
     event.preventDefault();
     FlowRouter.go('/burslar');
+    window.scrollTo(0, 0);
   },
 
   'click #dormiBottom'(event){
     event.preventDefault();
     FlowRouter.go('/okulTuru/Yurt');
+    window.scrollTo(0, 0);
   },
 
   'click #mailSendBottom'(event){

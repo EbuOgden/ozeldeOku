@@ -68,6 +68,8 @@ Template.schoolCompareCenter.events({
 
 Template.schoolCompareCenter.onRendered(() => {
   __CHMin___.set(0);
+
+  CompareList.remove({});
 })
 
 Template.schoolCompareCenter.helpers({
@@ -156,7 +158,7 @@ Template.schoolCompareCenterList.events({
       else{
         CompareList.insert({
           schoolId : current.id,
-          schoolImg : $(current).attr('data-img'),
+          schoolImg : "/" + $(current).attr('data-img'),
           schoolName : $(current).attr('data-name'),
         })
       }

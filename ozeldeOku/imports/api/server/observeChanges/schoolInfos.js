@@ -81,50 +81,7 @@ SchoolInfos.find().observeChanges({
 
     }
 
-    /* INITIAL SYSTEM MESSAGE */
-
-    /* create new message room with system and school */
-
-    var newRoomId = MessageRooms.insert({
-      memberId : schoolId,
-      ownerId : 'ozeldeoku',
-      ownerName : "Özelde Oku"
-    })
-
-    if(newRoomId){
-      var newMessageId = Messages.insert({
-          messageContext : "Sistemimize hoşgeldiniz. Okulunuzla alakalı detaylı bilgileri 'Okul Bilgilerim' menüsünden doldurabilirsiniz.",
-          senderId : 'ozeldeoku',
-          readerId : schoolId,
-          roomId : newRoomId
-      })
-
-      if(newMessageId){
-        Logs.insert({
-          schoolId : schoolId,
-          dormitoryId : "NULL",
-          logMessage : "Mesaj başarıyla eklendi."
-        })
-      }
-      else{
-        Logs.insert({
-          schoolId : schoolId,
-          dormitoryId : "NULL",
-          logMessage : "Mesaj eklenemedi."
-        })
-      }
-    }
-    else{
-      Logs.insert({
-        schoolId : schoolId,
-        dormitoryId : "NULL",
-        logMessage : "Sisteme yeni kayıt olmuş okul için, yeni mesaj odası oluşturulamadı."
-      })
-    }
-
-
-
-    /*          */
+    
   },
 
   changed(id, field){
