@@ -107,8 +107,19 @@ Template.homeLayout.events({
   },
 
   'click #schoolComp'(event){
-    //event.preventDefault();
+    event.preventDefault();
     FlowRouter.go('/okulKarsilastir');
+  },
+
+  'click .messagesButton'(event){
+    event.preventDefault();
+    if(Meteor.user().profile.role == "School"){
+        FlowRouter.go('/okulProfil');
+    }
+    if(Meteor.user().profile.role == "Parent"){
+      FlowRouter.go('profil');
+    }
+
   },
 
   'mouseenter .dropHov'(event){
@@ -140,7 +151,7 @@ Template.homeLayout.helpers({
         const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
         if(school){
             const readerId = school._id;
-            return Messages.find({"readerId" : readerId}, {isRead : false}).count();
+            return Messages.find({"readerId" : readerId, isRead : false}).count();
         }
 
       }

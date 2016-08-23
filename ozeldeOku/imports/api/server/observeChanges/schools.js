@@ -12,12 +12,12 @@ Schools.find().observeChanges({
     /* create new message room with system and school */
 
 
-    if(!MessageRooms.find({"memberId" : id})){
+    if(!MessageRooms.findOne({"memberId" : id})){
       var newRoomId = MessageRooms.insert({
-        memberId : schoolId,
+        memberId : id,
         ownerId : 'ozeldeoku',
         ownerName : "Özelde Oku",
-        roomImage : '/logo.png',
+        roomImage : '/schoolIcon.png',
         roomTitle : 'Sistemimize hoşgeldiniz.'
       })
 
@@ -25,20 +25,20 @@ Schools.find().observeChanges({
         var newMessageId = Messages.insert({
             messageContext : "Okulunuzla alakalı detaylı bilgileri 'Okul Bilgilerim' menüsünden doldurabilirsiniz.",
             senderId : 'ozeldeoku',
-            readerId : schoolId,
+            readerId : id,
             roomId : newRoomId
         })
 
         if(newMessageId){
           Logs.insert({
-            schoolId : schoolId,
+            schoolId : id,
             dormitoryId : "NULL",
             logMessage : "Mesaj başarıyla eklendi."
           })
         }
         else{
           Logs.insert({
-            schoolId : schoolId,
+            schoolId : id,
             dormitoryId : "NULL",
             logMessage : "Mesaj eklenemedi."
           })

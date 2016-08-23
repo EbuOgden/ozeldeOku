@@ -12,10 +12,12 @@ import '../../api/server/getDepartmentsByFacName.js';
 import '../../api/server/depIdFromName.js';
 import '../../api/server/addSchoolInfosToDb.js';
 import '../../api/server/updateSchoolLocation.js';
+import '../../api/server/nameGetFromMessageId.js';
 /* ***** Methods ***** */
 
 /* ***** Observers ***** */
 import '../../api/server/observeChanges/schoolInfos.js';
 import '../../api/server/observeChanges/dormitoryInfos.js';
+import '../../api/server/observeChanges/schools.js';
 
 /* ***** Observers ****** */

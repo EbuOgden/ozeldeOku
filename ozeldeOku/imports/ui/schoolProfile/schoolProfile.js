@@ -1,4 +1,5 @@
 import { Templating } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
@@ -17,8 +18,11 @@ import './schoolProfileCenter.html';
 import './schoolProfileSchoolInfos.html';
 import './schoolProfileCenterUserInfos.html';
 import './schoolProfileMessages.html';
+import './schoolProfileMessageRead.html';
 
 import '../../../client/lib/chosen.jquery.min.js';
+
+const usNamR = new ReactiveVar();
 
 Template.schoolProfileCenter.events({
   'click #anaSayfaRoute'(event){
@@ -48,16 +52,25 @@ Template.schoolProfileCenter.events({
 
 Template.schoolProfileCenter.helpers({
   userName(){
-    if(Meteor.user()){
+    if(Meteor.status().connected && Meteor.user()){
         return Meteor.user().profile.name;
     }
 
   },
 
   unreadeMessagesCount(){
-    return Messages.find({"readerId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}, {isRead : false}).count();
+    if(Meteor.status().connected){
+
+      const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+      if(school){
+          const readerId = school._id;
+          return Messages.find({"readerId" : readerId, isRead : false}).count();
+      }
+
+    }
   }
 })
+
 
 Template.schoolProfileCenterUserInfos.helpers({
   school(){
@@ -433,8 +446,62 @@ Template.schoolProfileMessages.helpers({
       }
     }
 
+  },
+
+  haveUnreadMessage(id){
+    if(Meteor.status().connected){
+      const message = Messages.findOne({"roomId" : id, "isRead" : false});
+
+      if(message){
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }
   }
 
+})
+
+Template.schoolProfileMessages.events({
+  'click .readMessage'(event){
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessageRead', data : this._id})
+  }
+})
+
+Template.schoolProfileMessageRead.onRendered(() => {
+
+})
+
+Template.schoolProfileMessageRead.helpers({
+  message(c){
+    if(Meteor.status().connected){
+      return Messages.find({"roomId" : c}, {sort : { sendTime : -1}});
+    }
+  },
+
+  title(c){
+    if(Meteor.status().connected){
+      return MessageRooms.findOne({"_id" : c}).roomTitle;
+    }
+  },
+
+  whoSend(c){
+    if(Meteor.status().connected){
+
+      Meteor.call('usN', c, (err, result) => {
+        if(err){
+          alert(err.reason);
+        }
+        else{
+          console.log(result);
+          usNamR.set(result)
+        }
+      })
+      //return usNamR.get();
+    }
+  },
 })
 
 Template.registerHelper('lastMessage', (e) => {
