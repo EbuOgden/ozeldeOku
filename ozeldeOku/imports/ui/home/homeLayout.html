@@ -1,8 +1,140 @@
 <template name="homeLayout">
 
-  {{#if isPhone}}
+  <nav class="navbar navbar-default yamm">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+        <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+        <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+      </button>
+      {{#if isPhone}}
+      <a class="navbar-brand" role="button" id="logoHome" src="/"><img src="/logoMobile.png" class="img-responsive"></a>
+      {{/if}}
+      {{#if isDesktop}}
+      <a class="navbar-brand" role="button" id="logoHome" src="/"><img src="/logo.png"></a>
+      {{/if}}
+    </div>
 
-  <nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle buttonGreen drowDownWithIcons" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Okul Türü</a>
+          <ul class="dropdown-menu" role="menu" style="width: 100%; left: 0; background-color : rgb(244,244,244)">
+          <li class="dropHov">
+            <div class="yamm-content">
+
+                  <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <center><a role="button" id="preDrop" href="{{ pathFor 'okul.turu.schoolType' schoolType='Anaokulu' }}"><img src="/anaokuluIcon.png" alt="Anaokulu" class="img-responsive"></a>
+                      <p style="text-align:center;">Anaokulu</p></center>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <center><a role="button" id="midDrop" href="/okulTuru/Ortaöğretim"><img src="/ilkokulIcon.png" alt="İlk ve Ortaokul " class="img-responsive"></a>
+                      <p style="text-align:center;">İlk ve Ortaokul</p></center>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <center><a role="button" id="highDrop" href="/okulTuru/Lise"><img src="/liseIcon.png" alt="Lise" class="img-responsive"></a>
+                      <p style="text-align:center;">Lise</p></center>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <center><a role="button" id="uniDrop" href="/okulTuru/Üniversite"><img src="/uniIcon.png" alt="Üniversite" class="img-responsive"></a>
+                      <p style="text-align:center;">Üniversite</p></center>
+                    </div>
+
+                  </div>
+
+            </div>
+          </li>
+
+          </ul>
+
+        </li>
+        <li><a role="button" id="schoolComp">Okul Karşılaştır</a></li>
+        <li><a role="button">Tercih Robotu</a></li>
+        <li><a role="button">Burs ve Yurtlar</a></li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown">Diğer <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a role="button" id="aboutUs">Hakkımızda</a></li>
+            <li><a role="button">Diğer 2</a></li>
+            <li><a role="button">Diğer 3</a></li>
+            <li><a role="button">Diğer 4</a></li>
+            <li><a role="button">Diğer 5</a></li>
+          </ul>
+        </li>
+
+
+      </ul>
+
+      {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown" style="color:rgb(157,197,15);">{{userName}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="messagesButton" role="button"><button class="btn btn-lg btn-link messagesButton"><span class="glyphicon glyphicon-envelope" title="Mesajlar" aria-hidden="true"></span><span class="badge">{{unreadeMessagesCount}}</span></button> Mesajlar</li>
+            <li class="favButton" role="button"><button class="btn btn-lg btn-link favButton"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Favoriler</li>
+            {{#if roleControlSchool userRole}}
+                <li id="schoolProfilePage" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button>Okul Profili</li>
+            {{else}}
+                <li id="profilePage" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button>Profil</li>
+            {{/if}}
+            {{#if roleControlAdmin userRole}}
+                <li id="adminDash" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-dashboard" title="Admin Dashboard" aria-hidden="true"></span></button>Admin Paneli</li>
+            {{/if}}
+            <li id="logOut" class="buttonRed" role="button"><button class="btn btn-lg btn-link" ><span class="glyphicon glyphicon-off" title="Çıkış" aria-hidden="true"></span></button>Çıkış</li>
+
+          </ul>
+        </li>
+      </ul>
+
+      {{else}}
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a role="button" id="logInBut"><b>Giriş Yap</b></a></li>
+      </ul>
+
+
+      {{/if}}
+
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-lg btn-link "><span class="glyphicon glyphicon-envelope messagesButton" title="Mesajlar" aria-hidden="true"></span><span class="badge">{{unreadeMessagesCount}}</span></button></li>
+        <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-star-empty favButton" title="Favoriler" aria-hidden="true"></span></button></li>
+        {{#if roleControlSchool userRole}}
+            <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user profileButton" id="schoolProfilePage" title="Profil" aria-hidden="true"></span></button></li>
+        {{else}}
+            <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user profileButton" id="profilePage" title="Profil" aria-hidden="true"></span></button></li>
+        {{/if}}
+        {{#if roleControlAdmin userRole}}
+            <li><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-dashboard profileButton" id="adminDash" title="Admin Dashboard" aria-hidden="true"></span></button></li>
+        {{/if}}
+        <li><button class="btn btn-lg btn-link" id="logOut"><span class="glyphicon glyphicon-off buttonRed" title="Çıkış" aria-hidden="true"></span></button></li>
+
+      </ul>
+
+      {{else}}
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a role="button" id="logInBut"><b>Giriş Yap</b></a></li>
+      </ul> -->
+
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <!-- {{#if isPhone}}
+
+  <nav class="navbar navbar-default" role="navigation">
    <div class="container-fluid" id="navfluid">
        <div class="navbar-header">
            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
@@ -62,13 +194,14 @@
                {{/if}}
 
            </ul>
-      </div><!-- /.navbar-collapse -->
-   </div><!-- /.container-fluid -->
+      </div>
+   </div>
 </nav>
 
   {{/if}}
 
   {{#if isDesktop}}
+
 
   <nav class="navbar navbar-default yamm">
     <div class="container">
@@ -154,5 +287,5 @@
       </div>
     </div>
   </nav>
-  {{/if}}
+  {{/if}} -->
 </template>

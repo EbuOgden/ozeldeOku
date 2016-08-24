@@ -141,7 +141,17 @@ Template.homeLayout.onRendered(() => {
 
 Template.homeLayout.helpers({
   userRole(){
-    return Meteor.user().profile.role;
+    if(Meteor.status().connected){
+        return Meteor.user().profile.role;
+    }
+
+  },
+
+  userName(){
+    if(Meteor.status().connected){
+        return Meteor.user().profile.name;
+    }
+
   },
 
   unreadeMessagesCount(){
