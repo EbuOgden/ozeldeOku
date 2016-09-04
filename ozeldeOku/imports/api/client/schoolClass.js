@@ -1,7 +1,7 @@
 export class schoolInfo {
   constructor(schoolName, tradeName, schoolType, taxNum, authorizePersonName,
      authorizeCaption, schoolEmail, schoolPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum,
-    schoolFaxNum, schoolWebSite){
+    schoolFaxNum, schoolWebSite, schoolFoundation){
     this._schoolName = schoolName;
     this._tradeName = tradeName;
     this._schoolType = schoolType;
@@ -16,6 +16,7 @@ export class schoolInfo {
     this._schoolPhoneNum = schoolPhoneNum;
     this._schoolFaxNum = schoolFaxNum;
     this._schoolWebSite = schoolWebSite;
+    this._schoolFoundation = schoolFoundation;
   }
 
   get school(){
@@ -38,6 +39,7 @@ export class schoolInfo {
       __schoolPhoneNum : this._schoolPhoneNum,
       __schoolFaxNum : this._schoolFaxNum,
       __schoolWebSite : this._schoolWebSite,
+      __schoolFoundation : this._schoolFoundation
     }
     return __obj;
   }

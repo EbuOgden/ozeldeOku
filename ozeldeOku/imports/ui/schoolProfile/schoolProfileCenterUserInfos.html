@@ -2,17 +2,20 @@
 
   <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
     <br>
+    {{#with school}}
+    <form id="schoolInfosForm">
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <ul class="nav nav-sidebar">
+
           <li style="padding-bottom: 5px;">
             Okul İsmi
           </li>
 
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{schoolName}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolName}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -23,9 +26,9 @@
             Ticari Ünvan
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{tradeName}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{tradeName}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -38,9 +41,9 @@
             Vergi Numarası
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{taxNo}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{taxNo}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -51,9 +54,9 @@
             Yetkili Kişi
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -66,9 +69,9 @@
             E-mail
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{schoolEmail}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -79,9 +82,9 @@
             E-mail Tekrarı
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{schoolEmail}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -94,9 +97,9 @@
             Telefon
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{schoolPhoneNumber}}">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolPhoneNumber}}">
+
           </li>
         </ul>
       </div>
@@ -107,9 +110,9 @@
             Fax
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
-                <input type="text" class="form-control input-lg" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
-            {{/each}}
+
+                <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+
           </li>
         </ul>
       </div>
@@ -122,11 +125,11 @@
             Adres
           </li>
           <li style="padding-bottom: 5px;">
-            {{#each school}}
+
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
+                    <textarea class="form-control schoolInfoCnt" rows="5" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
                 </div>
-            {{/each}}
+
           </li>
         </ul>
       </div>
@@ -135,8 +138,8 @@
     <br>
 
     <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton"><b>Bilgilerimi Güncelle</b></button>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled id="updateSchoolInfosBut"><b>Bilgilerimi Güncelle</b></button>
       </div>
     </div>
 
@@ -168,12 +171,14 @@
 
     <br>
     <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton"><b>Şifreyi Değiştir</b></button>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled><b>Şifreyi Değiştir</b></button>
       </div>
     </div>
 
     <br>
+  </form>
+    {{/with}}
   </div>
 
 

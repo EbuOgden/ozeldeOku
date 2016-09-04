@@ -265,6 +265,21 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : true,
   },
 
+  "school.aboutSchool" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolLogo" : {
+    type : String,
+    optional : true
+  },
+
+  "school.schoolCover" : {
+    type : String,
+    optional : true
+  },
+
   nearestDormitories : {
     type : [Object],
     optional : true,

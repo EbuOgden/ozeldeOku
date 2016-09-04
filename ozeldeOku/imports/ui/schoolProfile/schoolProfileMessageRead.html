@@ -3,10 +3,12 @@
 
     <br>
 
-  <h4 class="media-heading messageTitleColor">Konu : {{title data}}</h4>
+  <h4 class="media-heading messageTitleColor">Konu : {{title data._rId}}</h4>
+
+  <br>
 
 
-    {{#each message data}}
+    {{#each message data._rId}}
 
     <div class="panel panel-default">
 
@@ -18,5 +20,16 @@
 
     {{/each}}
 
+    <br><br>
+
+    Mesajınız
+
+    <br>
+
+    <textarea class="form-control" rows="5" placeholder="Yeni Mesaj" maxlength="1024" id="newMessageText"></textarea>
+
+    <button type="button" class="btn btn-default newSchoolRegisterButton pull-right" id="sendNewMessage" ><b>Mesaj Gonder</b></button>
+
+    <br>
   </div>
 </template>

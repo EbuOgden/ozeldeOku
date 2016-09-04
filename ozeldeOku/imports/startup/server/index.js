@@ -12,7 +12,7 @@ import '../../api/server/getDepartmentsByFacName.js';
 import '../../api/server/depIdFromName.js';
 import '../../api/server/addSchoolInfosToDb.js';
 import '../../api/server/updateSchoolLocation.js';
-import '../../api/server/nameGetFromMessageId.js';
+import '../../api/server/sendMessage.js';
 /* ***** Methods ***** */
 
 /* ***** Observers ***** */

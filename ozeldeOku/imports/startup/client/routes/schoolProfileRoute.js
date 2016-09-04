@@ -16,6 +16,6 @@ FlowRouter.route('/okulProfil', {
 
   name : 'school.profile',
   action : function(){
-    BlazeLayout.render('schoolProfile', {top : 'homeLayout', center : 'schoolProfileCenter'});
+    BlazeLayout.render('schoolProfile', {top : 'homeLayout', center : 'schoolProfileCenter', bottom : 'homeBottom'});
   }
 })

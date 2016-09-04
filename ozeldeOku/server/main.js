@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { HTTP } from 'meteor/http';
+import { WebApp } from 'meteor/webapp';
+
 //import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 
 import { Roles } from '/imports/api/collections/roles.js';
@@ -29,6 +30,31 @@ import '../imports/startup/server/index.js'
 
 
 Meteor.startup(() => {
+
+  WebApp.connectHandlers.use('/api/nameGet', (req, res) => {
+    const name = Meteor.users.findOne({"_id" : req.query.userId}, {
+      fields : {
+        _id : 0,
+        'profile.name' : 1
+      }
+    })
+
+    if(name){
+      var json = JSON.stringify(name);
+      res.writeHead(200, {"Content-Type" : "application/json", "Size-of-Document" : json.length});
+      res.end(json);
+    }
+    else{
+      var obj = {
+        result : "NULL"
+      }
+      res.writeHead(200, {"Content-Type" : "application/json"});
+      var json = JSON.stringify(obj);
+      res.end(json);
+    }
+
+
+  })
 
   if(CityCounty.find().count() == 0){
 

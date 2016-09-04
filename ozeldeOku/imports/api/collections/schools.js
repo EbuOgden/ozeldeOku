@@ -89,6 +89,11 @@ Schools.attachSchema(new SimpleSchema({
       optional : true
     },
 
+    schoolFoundation : {
+      type : String,
+      optional : true
+    },
+
     isValidate : {
       type : Boolean,
       optional : false,
@@ -100,7 +105,7 @@ Schools.attachSchema(new SimpleSchema({
       }
     },
 
-    imgSrc : {
+    schoolImg : {
       type : String,
       optional : true,
       autoValue : function(){

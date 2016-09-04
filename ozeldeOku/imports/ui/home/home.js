@@ -166,7 +166,7 @@ Template.homeLayout.helpers({
 
       }
       if(Meteor.user().profile.role == "Parent"){
-        return Messages.find({"readerId" : Meteor.userId()}, {isRead : false}).count();
+        return Messages.find({"readerId" : Meteor.userId(), isRead : false}).count();
       }
     }
 
@@ -344,12 +344,13 @@ Template.newSchoolRegister.events({
     const schoolPhoneNum = $('#schoolPhoneNum').val();
     const schoolFaxNum = $('#schoolFaxNum').val();
     const schoolWebSite = $('#schoolWebSite').val();
+    const schoolFoundation = $('#schoolFoundationyear').val();
     const captchaData = grecaptcha.getResponse()
 
     if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
       isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
       isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
-      isEmpty(schoolCounty) || isEmpty(schoolPhoneNum) || isEmpty(schoolFaxNum) || isEmpty(schoolWebSite) )){
+      isEmpty(schoolCounty) || isEmpty(schoolPhoneNum) || isEmpty(schoolFaxNum) || isEmpty(schoolWebSite)  || isEmpty(schoolFoundation))){
         alert("Lütfen tüm alanları doldurunuz!");
         return;
     }
@@ -381,7 +382,7 @@ Template.newSchoolRegister.events({
     if(isEqual(schoolPassword, schoolrPassword)){
 
       const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
-      schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite);
+      schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite, schoolFoundation);
 
       const _schoolN = __newSchoolO.school;
 

@@ -14,7 +14,11 @@ const __cAUp__ = new ReactiveVar(0);
 Template.schoolDetailInfoCenter.helpers({
   schoolInfo(){
     if(Meteor.status().connected){
-        return SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')});
+        return {
+            schoolInfos : SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')}),
+            school : Schools.findOne(FlowRouter.getQueryParam('schld'))
+        }
+
     }
 
   },
@@ -75,7 +79,8 @@ Template.schoolDetailInfoCenter.onRendered(() => {
         var map = new google.maps.Map(document.getElementById('mapForSchool'), {
           center : {lat : _schLat__, lng : __schLng_},
           zoom : 13,
-          mapTypeId : google.maps.MapTypeId.ROADMAP
+          mapTypeId : google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
         });
 
         if(__cAUp__.get() == 1){

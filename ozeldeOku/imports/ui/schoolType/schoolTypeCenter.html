@@ -10,7 +10,7 @@
           {{#each schools}}
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-block">
             <a href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">
-            <img class="schoolImages img-responsive" src="/{{imgSrc}}">
+            <img class="schoolImages img-responsive" src="{{schoolImg}}">
             <br>
             <h4 class="media-heading">{{schoolName}}</h4>
             <h5 style="color: black;">Bulunduğu İl : {{schoolCity}}</h5>
@@ -69,7 +69,7 @@
               <a href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">
               <div class="media center-block">
                 <div class="media-left">
-                      <img class="media-object img-rounded center-block" src="/{{imgSrc}}" alt="{{schoolName}} Resim" style="z-index:99999">
+                      <img class="media-object img-rounded center-block" src="{{schoolImg}}" alt="{{schoolName}} Resim" style="z-index:99999">
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading">{{schoolName}}</h4>

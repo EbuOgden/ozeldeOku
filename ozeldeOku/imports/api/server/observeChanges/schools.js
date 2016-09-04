@@ -12,9 +12,9 @@ Schools.find().observeChanges({
     /* create new message room with system and school */
 
 
-    if(!MessageRooms.findOne({"memberId" : id})){
+    if(!MessageRooms.findOne({"memberIds" : id})){
       var newRoomId = MessageRooms.insert({
-        memberId : id,
+        memberIds : [id, 'ozeldeoku'],
         ownerId : 'ozeldeoku',
         ownerName : "Özelde Oku",
         roomImage : '/schoolIcon.png',

@@ -13,12 +13,26 @@ Meteor.methods({
     const sumSalary = __facultyInfos_.sumSalary;
     const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids (department ids is array!)*/
     const quotaInfos = __facultyInfos_.quotas; /* quota infos with department ids */
+    const aboutSchool = __facultyInfos_.about; /* About School */
     const lat = __facultyInfos_.lat;
     const lng = __facultyInfos_.lng;
+    const schoolLogo = __facultyInfos_.logo;
+    const schoolImg = __facultyInfos_.img;
+    const schoolCover = __facultyInfos_.cover;
 
     const otherQuotaInfos = __facultyInfos_.otherQuotas;
 
-    const school = Schools.findOne({"_id" : schoolId});
+    const school = Schools.findOne(schoolId);
+
+    if(schoolImg != '/schoolImage.png'){
+      Schools.update({"_id" : school._id}, {
+        $set : {
+          schoolImg : schoolImg
+        }
+      })
+
+
+    }
 
     const countStudentTotal = parseInt(counts.docSCount) + parseInt(counts.masterSCount) + parseInt(counts.licenseSCount);
 
@@ -116,14 +130,17 @@ Meteor.methods({
       },
 
       school : {
-          schoolImg : school.imgSrc,
+          schoolImg : schoolImg,
+          schoolLogo : schoolLogo,
+          schoolCover : schoolCover,
           schoolName : school.schoolName,
           schoolCity : school.schoolCity,
           schoolCounty : school.schoolCounty,
           schoolType : school.schoolType,
           schoolWebSite : school.schoolWebSite,
           schoolLat : lat,
-          schoolLng : lng
+          schoolLng : lng,
+          aboutSchool : aboutSchool,
       },
       sumSalary : sumSalary,
 
@@ -137,7 +154,7 @@ Meteor.methods({
       })
 
       if(updateResult != ""){
-        return true;
+        return "Bilgileriniz başarılı bir şekilde sistemimize eklenmiştir.";
       }
       else{
         SchoolInfos.remove({"_id" : insertResult});

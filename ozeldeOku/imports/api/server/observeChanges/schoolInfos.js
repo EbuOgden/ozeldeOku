@@ -81,7 +81,7 @@ SchoolInfos.find().observeChanges({
 
     }
 
-    
+
   },
 
   changed(id, field){

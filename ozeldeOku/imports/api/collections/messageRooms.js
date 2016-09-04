@@ -4,8 +4,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const MessageRooms = new Mongo.Collection('MessageRooms');
 
 MessageRooms.attachSchema(new SimpleSchema({
-    memberId : {
-      type : String,
+    memberIds : {
+      type : [String],
       optional : false
     },
 

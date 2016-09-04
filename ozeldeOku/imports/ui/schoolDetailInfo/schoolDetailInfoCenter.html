@@ -5,43 +5,107 @@
       <div class="alert alert-info" role="alert"><center>Hoşgeldiniz {{authPers._usrName__}}. Okul harita bilgilerinde hata olduğunu düşünüyorsanız, bu sayfada harita üzerinden kırmızı ikonu oynatarak düzenleyebilirsiniz.</center></div>
     {{/if}}
 
+    {{#with schoolInfo}}
     <div class="row">
 
-            <div class="pull-left">
-              <ol class="breadcrumb" style="background-color:white;">
-                  <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
-                  {{#with schoolInfo}}
-                  <li>{{school.schoolName}}</li>
-                  {{/with}}
-                </ol>
-            </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
-        
-        <div class="col-md-offset-6 col-md-3">
+          <ol class="breadcrumb pull-left" style="background-color:white; ">
+              <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+
+              <li>{{school.schoolName}}</li>
+
+            </ol>
+
+      </div>
+
+      <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-6 col-lg-offset-6 col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <form id="schoolSearch">
               <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
           </form>
-        </div>
+      </div>
     </div>
 
+    <div class="row"> <!-- school cover -->
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            {{#if authPers.__cont}}
+
+                <button type="button" role="button" class="btn newSchoolRegisterButton schoolCoverImageUpload"><i class="fa fa-upload fa-3x" aria-hidden="true"></i></button>
+
+                <img class="fitImage" src="{{schoolInfos.school.schoolCover}}">
+                <div class="schoolProfilePhoto">
+                    <img class="schoolProfilePhotoImg img-thumbnail" src="{{schoolInfos.school.schoolLogo}}">
+                </div>
+
+            {{else}}
+                <img class="fitImage" src="{{schoolInfos.school.schoolCover}}">
+                <div class="schoolProfilePhoto">
+                    <img class="schoolProfilePhotoImg img-thumbnail" src="{{schoolInfos.school.schoolLogo}}">
+                </div>
+
+            {{/if}}
+
+      </div>
+
+    </div>
     <div class="row">
-      <div class="col-md-3">
-        {{#with schoolInfo}}
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hoverStarYellow" role="button" style="padding-top:7%;">
+        <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b > Favorilerime Ekle</b>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-top:1%;">
+        <b><a>{{schoolInfos.school.schoolName}}</a></b><br><br>
+        <b><i class="fa fa-university" aria-hidden="true"></i> {{schoolInfos.school.schoolType}}</b> <br><br>
+        <b><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;&nbsp;{{schoolInfos.school.schoolCity}} - {{schoolInfos.school.schoolCounty}}</b><br><br>
+        <b><i class="fa fa-link" aria-hidden="true"></i> <a href="http://{{schoolInfos.school.schoolWebSite}}" target="_blank">{{schoolInfos.school.schoolWebSite}}</a> - {{school.schoolEmail}}</b><br><br>
+
+      </div>
+
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-top:1%;">
+        <b class="pull-right">Puan : <div id="{{school._id}}" style="display:initial;"></div>
+          <script>$("#{{school._id}}").raty({
+            score : {{school.rate}},
+            readOnly : true,
+            starType : 'img',
+            path : '/'
+          })
+          </script>
+        </b>
+        <br><br>
+          <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum(0)</i><br><br>
+          <b class="pull-right">Sende okul hakkında yorum yaz!</b><br><br>
+          <b class="pull-right">Social Links</b>
+
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
           {{#each popularDepartments}}
             Popüler Departman : {{this}}<br>
           {{/each}}
-        {{/with}}
+
       </div>
     </div>
 
     <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
 
-    <div id="mapForSchool" class="map-container" style='heigth:50px; width:500px;'>
-
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="mapForSchool" class="map-container">
+      </div>
+      </div>
     </div>
+    {{/with}}
 
   </div>
 

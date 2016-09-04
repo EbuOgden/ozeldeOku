@@ -49,7 +49,8 @@ Meteor.methods({
       schoolCounty : userInfo.__schoolCounty,
       schoolPhoneNumber : userInfo.__schoolPhoneNum,
       schoolFaxNumber : userInfo.__schoolFaxNum,
-      schoolWebSite : userInfo.__schoolWebSite
+      schoolWebSite : userInfo.__schoolWebSite,
+      schoolFoundation : userInfo.__schoolFoundation
     })
 
     if(newSchool == ""){

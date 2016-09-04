@@ -174,3 +174,35 @@ body {
 .messageTitleColor{
   color:rgb(157,197,15);
 }
+
+.disableClick {
+  pointer-events : none;
+}
+
+.schoolCoverImageUpload {
+  background:none;
+  border:none;
+  position:absolute;
+  left:50%;
+  top:50%;
+}
+
+.schoolProfilePhoto{
+  position:absolute;
+  bottom:-50px;
+  left:10;
+  heigth : 150px;
+  width: 150px;
+
+}
+
+.schoolProfilePhotoImg{
+  width: 150px;
+  height: 150px;
+
+}
+
+.hoverStarYellow:hover{
+  /*background-color: orange;*/
+  color : orange;
+}

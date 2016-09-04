@@ -22,7 +22,12 @@ import './schoolProfileMessageRead.html';
 
 import '../../../client/lib/chosen.jquery.min.js';
 
-const usNamR = new ReactiveVar();
+const __rId = new ReactiveVar(0);
+filepicker.setKey("A4HBqC4BTSJqn2zLg7FCYz");
+const __sPp = new ReactiveVar(0);
+const __sImg = new ReactiveVar(0);
+const __sCover = new ReactiveVar(0);
+
 
 Template.schoolProfileCenter.events({
   'click #anaSayfaRoute'(event){
@@ -33,17 +38,17 @@ Template.schoolProfileCenter.events({
 
   'click #userInfos'(event){
     event.preventDefault();
-    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileCenterUserInfos'})
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileCenterUserInfos', schoolProfileCenterBottom : 'homeBottom'})
   },
 
   'click #schoolInfos'(event){
     event.preventDefault();
-    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileSchoolInfos'})
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileSchoolInfos', schoolProfileCenterBottom : 'homeBottom'})
   },
 
   'click #messages'(event){
     event.preventDefault();
-    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessages'});
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessages', schoolProfileCenterBottom : 'homeBottom'});
   }
 
 
@@ -74,7 +79,33 @@ Template.schoolProfileCenter.helpers({
 
 Template.schoolProfileCenterUserInfos.helpers({
   school(){
-    return Schools.find({"authorizedPersonUserId" : Meteor.userId()});
+    if(Meteor.status().connected){
+      const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      if(school){
+          return school;
+      }
+    }
+
+  }
+})
+
+Template.schoolProfileCenterUserInfos.events({
+  'keypress .schoolInfoCnt'(event){
+    const form = $('#schoolInfosForm :input');
+    if(form.length > 0){
+      for(let i = form.length; i--;){
+
+        if(form[i].type != "button"){
+          if(isEmpty($(form[i]).val())){
+            console.log("empty");
+          }
+
+
+        }
+
+      }
+    }
   }
 })
 
@@ -127,11 +158,53 @@ Template.schoolProfileSchoolInfos.helpers({
     else{
       return false;
     }
+  },
+
+  schoolImg(){
+    if(__sImg.get() == 0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  },
+
+  schoolImgSrc(){
+    return __sImg.get();
+  },
+
+  schoolLogo(){
+    if(__sPp.get() == 0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  },
+
+  schoolLogoSrc(){
+    return __sPp.get();
+  },
+
+  schoolCover(){
+    if(__sCover.get() == 0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  },
+
+  schoolCoverSrc(){
+    return __sCover.get();
   }
 })
 
 Template.schoolProfileSchoolInfos.onRendered(() => {
 
+  __sPp.set(0);
+  __sImg.set(0);
+  __sCover.set(0);
 
   if(!Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).haveSchoolDetailInfo){
     $(".chosen-select").chosen({
@@ -356,9 +429,12 @@ Template.schoolProfileSchoolInfos.events({
     };
 
     const quotasInfos = depObjForRet.getDepInfos;
+
     var otherQuotaInfos = otherScholarInfos.getOtherScholarInfos;
 
     const schoolInfos = schoolInfosForComp.getFacultyInfos;
+
+    var aboutSchool = $('#aboutSchool').val();
 
     if(otherQuotaInfos.length == 1){
       otherQuotaInfos = 1;
@@ -391,39 +467,132 @@ Template.schoolProfileSchoolInfos.events({
 
     const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
 
-    geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
-      if(status == "OK"){
-        const lat = results[0].geometry.location.lat();
-        const lng = results[0].geometry.location.lng();
+    if(school){
 
-        const schoolInfosSendObj = {
-          scholars : checkedScholars,
-          quotas : quotasInfos,
-          schoolInfos : schoolInfos,
-          popDeps : popDeps,
-          counts : counts,
-          sumSalary : sumSal,
-          otherQuotas : otherQuotaInfos,
-          school : school._id,
-          lat : lat,
-          lng : lng
+      if(isEmpty(aboutSchool)) { aboutSchool = school.schoolName + ' hakkında detaylı bilgiler daha sonra eklenecektir.'; }
+
+      if(isEmpty(__sPp.get()) ){
+        __sPp.set('/schoolIcon.png');
+      }
+
+      if(isEmpty(__sImg.get())){
+        __sImg.set('/schoolImage.png');
+      }
+
+      if(isEmpty(__sCover.get())){
+        __sCover.set('/sa.jpg');
+      }
+
+      geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
+
+        if(status == "OK"){
+          const lat = results[0].geometry.location.lat();
+          const lng = results[0].geometry.location.lng();
+
+          const schoolInfosSendObj = {
+            scholars : checkedScholars,
+            quotas : quotasInfos,
+            schoolInfos : schoolInfos,
+            popDeps : popDeps,
+            counts : counts,
+            sumSalary : sumSal,
+            otherQuotas : otherQuotaInfos,
+            school : school._id,
+            lat : lat,
+            lng : lng,
+            aboutSchool : aboutSchool,
+            img : __sImg.get(),
+            logo : __sPp.get(),
+            cover : __sCover.get(),
+          }
+
+          Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
+            if(err){
+              console.log(err);
+              alert(err.reason);
+            }
+            else{
+              alert(result);
+            }
+          })
         }
+        else{
+          alert("Teknik bir hata oluştu, lütfen daha sonra tekrar deneyiniz.");
+        }
+      })
+    }
 
-        Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
-          if(err){
-            alert(err.reason);
-          }
-          else{
-            console.log("result : " + result);
-          }
-        })
-      }
-      else{
-        alert("Teknik bir hata oluştu, lütfen daha sonra tekrar deneyiniz.");
-      }
-    })
 
+
+
+
+  },
+
+  'click #schoolImage'(event){
+    event.preventDefault();
+    filepicker.pick(
+         {
+            mimetype: 'image/*',
+            container: 'window',
+            services: ['COMPUTER'],
+            maxSize : 200*150,
+            language : 'tr',
+            imageMax : [200, 150]
+          },
+          function(Blob){
+            __sImg.set(Blob.url);
+
+          },
+          function(FPError){
+            console.log(FPError);
+
+          }
+    );
+  },
+
+  'click #schoolLogo'(event){
+    event.preventDefault();
+    filepicker.pick(
+         {
+            mimetype: 'image/*',
+            container: 'window',
+            services: ['COMPUTER'],
+            maxSize : 150*150,
+            language : 'tr',
+            imageMax : [150, 150]
+          },
+          function(Blob){
+            __sPp.set(Blob.url);
+
+          },
+          function(FPError){
+            console.log(FPError);
+          }
+    );
+  },
+
+  'click #schoolCover'(event){
+    event.preventDefault();
+    filepicker.pick(
+         {
+            mimetype: 'image/*',
+            container: 'window',
+            services: ['COMPUTER'],
+            maxSize : 1920*450,
+            language : 'tr',
+            imageMax : [1920, 450]
+          },
+          function(Blob){
+            __sCover.set(Blob.url);
+
+          },
+          function(FPError){
+            console.log(FPError);
+
+          }
+    );
   }
+
 
 
 })
@@ -431,14 +600,14 @@ Template.schoolProfileSchoolInfos.events({
 Template.schoolProfileMessages.helpers({
   messageRooms(){
     if(Meteor.status().connected){
-        return MessageRooms.find({"memberId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id});
+        return MessageRooms.find({"memberIds" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id});
     }
 
   },
 
   messageRoomsLength(){
     if(Meteor.status().connected){
-      if(MessageRooms.find({"memberId" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}).count() > 0){
+      if(MessageRooms.find({"memberIds" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}).count() > 0){
         return true;
       }
       else{
@@ -466,18 +635,41 @@ Template.schoolProfileMessages.helpers({
 
 Template.schoolProfileMessages.events({
   'click .readMessage'(event){
-    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessageRead', data : this._id})
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessageRead', schoolProfileCenterBottom : 'homeBottom', data : {_rId : this._id, _readerId : this.memberIds }})
   }
 })
 
 Template.schoolProfileMessageRead.onRendered(() => {
+  if(__rId.get() != 0){
+    if(Meteor.status().connected){
+      const arr = [];
+        Messages.find({"roomId" : __rId.get()}).map(function(item){
+          arr.push(item._id);
+        })
 
+        if(arr.length > 0){
+          for(let i = arr.length; i--;){
+            Messages.update({"_id" : arr[i]}, {
+              $set : {
+                isRead : true
+              }
+            })
+          }
+        }
+    }
+
+  }
 })
 
 Template.schoolProfileMessageRead.helpers({
   message(c){
     if(Meteor.status().connected){
-      return Messages.find({"roomId" : c}, {sort : { sendTime : -1}});
+      const message = Messages.find({"roomId" : c}, {sort : { sendTime : 1}});
+      if(message){
+        __rId.set(c);
+        return message;
+      }
+
     }
   },
 
@@ -490,18 +682,58 @@ Template.schoolProfileMessageRead.helpers({
   whoSend(c){
     if(Meteor.status().connected){
 
-      Meteor.call('usN', c, (err, result) => {
-        if(err){
-          alert(err.reason);
+      if(c == 'ozeldeoku'){
+        return 'Özelde Oku';
+      }
+      else{
+        const __usR = Meteor.users.findOne(c).profile.name;
+
+        if(__usR){
+          return __usR;
         }
         else{
-          console.log(result);
-          usNamR.set(result)
+          return "Null";
         }
-      })
-      //return usNamR.get();
+      }
+
     }
   },
+
+
+})
+
+Template.schoolProfileMessageRead.events({
+  'click #sendNewMessage'(event){
+    event.preventDefault();
+
+    console.log(this.data());
+
+    // if(!isEmpty($(#newMessageText).val()) && this.data()){
+    //   const obj = {
+    //     __nMes : $('#newMessageText').val(),
+    //     __da : this.data(),
+    //     __seId : Meteor.userId(),
+    //     __reId :
+    //
+    //   }
+    //
+    //
+    //       Meteor.call('_sNewM', obj, (err, result) => {
+    //         if(err){
+    //           alert(err.reason);
+    //         }
+    //         else{
+    //           true;
+    //         }
+    //       })
+    //
+    //
+    // }
+    //
+
+
+
+  }
 })
 
 Template.registerHelper('lastMessage', (e) => {
