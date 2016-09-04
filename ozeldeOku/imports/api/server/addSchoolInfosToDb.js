@@ -10,15 +10,16 @@ Meteor.methods({
     const scholars = __facultyInfos_.scholars; /* quota infos boolean */
     const popDeps = __facultyInfos_.popDeps; /* popular departments */
     const counts = __facultyInfos_.counts; /* student, faculty, department and professor counts */
-    const sumSalary = __facultyInfos_.sumSalary;
+    const sumSalary = __facultyInfos_.sumSalary; /* Student Sum Salary */
     const schoolInfos = __facultyInfos_.schoolInfos; /* faculty ids and department ids (department ids is array!)*/
     const quotaInfos = __facultyInfos_.quotas; /* quota infos with department ids */
     const aboutSchool = __facultyInfos_.about; /* About School */
-    const lat = __facultyInfos_.lat;
-    const lng = __facultyInfos_.lng;
-    const schoolLogo = __facultyInfos_.logo;
-    const schoolImg = __facultyInfos_.img;
-    const schoolCover = __facultyInfos_.cover;
+    const lat = __facultyInfos_.lat; /* School Lat */
+    const lng = __facultyInfos_.lng; /* School Lng */
+    const schoolLogo = __facultyInfos_.logo; /* School Logo URL */
+    const schoolImg = __facultyInfos_.img; /* School Image URL */
+    const schoolCover = __facultyInfos_.cover; /* Cover Photo URL */
+    const socialMedia = __facultyInfos_.socialMedia; /* Social Media Accounts */
 
     const otherQuotaInfos = __facultyInfos_.otherQuotas;
 
@@ -141,6 +142,7 @@ Meteor.methods({
           schoolLat : lat,
           schoolLng : lng,
           aboutSchool : aboutSchool,
+          socialMedias : socialMedia
       },
       sumSalary : sumSalary,
 

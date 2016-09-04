@@ -280,6 +280,11 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : true
   },
 
+  "school.socialMedias" : {
+    type : [String],
+    optional : true
+  },
+
   nearestDormitories : {
     type : [Object],
     optional : true,

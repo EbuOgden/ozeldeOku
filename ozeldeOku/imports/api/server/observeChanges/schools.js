@@ -23,7 +23,7 @@ Schools.find().observeChanges({
 
       if(newRoomId){
         var newMessageId = Messages.insert({
-            messageContext : "Okulunuzla alakalı detaylı bilgileri 'Okul Bilgilerim' menüsünden doldurabilirsiniz.",
+            messageContext : "Okulunuzla alakalı detaylı bilgileri 'Okul Bilgilerim' menüsünden doldurabilir ve görüntüleyebilirsiniz.",
             senderId : 'ozeldeoku',
             readerId : id,
             roomId : newRoomId

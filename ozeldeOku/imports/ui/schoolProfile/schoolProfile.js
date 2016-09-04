@@ -455,8 +455,16 @@ Template.schoolProfileSchoolInfos.events({
       profCount : $('#profCount').val()
     }
 
+    const socialMedias = [$('#schoolFacebook').val(), $('#schoolTwitter').val(), $('#schoolInstagram').val(), $('#schoolGoogleP').val(), $('#schoolYoutube').val(), $('#schoolLinkedin').val()];
+
     for(var key in counts){
       if(isEmpty(counts[key])){ counts[key] = 0}
+    }
+
+    for(let i = socialMedias.length; i--;){
+      if(isEmpty(socialMedias[i])){
+        socialMedias[i] == "#";
+      }
     }
 
     var sumSal = $('#sumSalary').val();
@@ -500,10 +508,11 @@ Template.schoolProfileSchoolInfos.events({
             school : school._id,
             lat : lat,
             lng : lng,
-            aboutSchool : aboutSchool,
+            about : aboutSchool,
             img : __sImg.get(),
             logo : __sPp.get(),
             cover : __sCover.get(),
+            socialMedia : socialMedias
           }
 
           Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
@@ -535,9 +544,9 @@ Template.schoolProfileSchoolInfos.events({
             mimetype: 'image/*',
             container: 'window',
             services: ['COMPUTER'],
-            maxSize : 200*150,
             language : 'tr',
-            imageMax : [200, 150]
+            imageDim : [380, 250]
+
           },
           function(Blob){
             __sImg.set(Blob.url);
@@ -557,7 +566,6 @@ Template.schoolProfileSchoolInfos.events({
             mimetype: 'image/*',
             container: 'window',
             services: ['COMPUTER'],
-            maxSize : 150*150,
             language : 'tr',
             imageMax : [150, 150]
           },
@@ -578,9 +586,9 @@ Template.schoolProfileSchoolInfos.events({
             mimetype: 'image/*',
             container: 'window',
             services: ['COMPUTER'],
-            maxSize : 1920*450,
             language : 'tr',
-            imageMax : [1920, 450]
+            imageDim : [732, 439]
+
           },
           function(Blob){
             __sCover.set(Blob.url);

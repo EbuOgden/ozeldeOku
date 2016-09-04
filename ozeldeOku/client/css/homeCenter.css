@@ -203,6 +203,14 @@ body {
 }
 
 .hoverStarYellow:hover{
-  /*background-color: orange;*/
+
   color : orange;
+}
+
+.ellipsis{
+  text-overflow : ellipsis;
+}
+
+.schoolDetailPageSixComponents{
+  color:black; padding-left:5%;
 }
