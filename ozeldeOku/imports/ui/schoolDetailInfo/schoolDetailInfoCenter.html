@@ -1,4 +1,7 @@
 <template name="schoolDetailInfoCenter">
+
+  {{> Template.dynamic template=schoolDetailInfoCenterTop}}
+
   <div class="container">
 
     {{#if authPers.__cont}}
@@ -69,17 +72,23 @@
 
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-top:1%;">
         <b class="pull-right">Puan : <div id="{{school._id}}" style="display:initial;"></div>
-          <script>$("#{{school._id}}").raty({
-            score : {{school.rate}},
-            readOnly : true,
-            starType : 'img',
-            path : '/'
-          })
+          <script>
+
+            if(Meteor.status().connected){
+
+              $("#{{school._id}}").raty({
+              score : {{school.rate}},
+              readOnly : true,
+              starType : 'img',
+              path : '/'
+              })
+            }
+
           </script>
         </b>
         <br><br>
           <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum(0)</i><br><br>
-          <b class="pull-right">Sende okul hakkında yorum yaz!</b><br><br>
+          <b class="pull-right">Sen de okul hakkında yorum yaz!</b><br><br>
           <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
           <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
           <a href="{{schoolInfos.school.socialMedias.[3]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a>
@@ -107,6 +116,7 @@
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="pull-right">
           <h4>Okulumuz Hakkında</h4>
+
           <h5 style="ellipsis">
               {{schoolInfos.school.schoolAbout}}
           </h5>
@@ -117,6 +127,37 @@
       </div>
     </div>
 
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <b role="button" class="buttonGreen timelineSchool">Zaman Tüneli</b>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <b role="button" class="buttonGreen newsSchool">Duyurular</b>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <b role="button" class="buttonGreen eventsSchool">Etkinlikler</b>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <b role="button" class="buttonGreen photosSchool">Fotoğraflar</b>
+      </div>
+
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <b role="button" class="buttonGreen videosSchool">Videolar</b>
+      </div>
+    </div>
+
+    {{/with}}
+
+    <br>
+    {{> Template.dynamic template=schoolDetailInfoCenterMid}}
+
+    <br><br><br>
+
     <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
 
     <div class="row">
@@ -125,9 +166,15 @@
       </div>
       </div>
     </div>
-    {{/with}}
+
 
   </div>
+
+  <br><br><br>
+
+
+
+  {{> Template.dynamic template=schoolDetailInfoCenterBottom}}
 
 
 </template>

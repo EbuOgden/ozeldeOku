@@ -4,6 +4,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { reCAPTCHA } from 'meteor/altapp:recaptcha';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Accounts } from 'meteor/accounts-base';
+import { ReactiveVar } from 'meteor/reactive-var';
 import { HTTP } from 'meteor/http';
 /*          */
 
@@ -44,7 +45,7 @@ import '../../api/client/registerHelpers.js';
 import '../../api/client/clientFuncs.js'
 /*          */
 
-
+const __schoolStatus = new ReactiveVar();
 Template.home.events({
 
 })
@@ -176,6 +177,8 @@ Template.homeLayout.helpers({
 
 Template.homeCenter.onRendered(() => {
 
+  __schoolStatus.set('allSchools');
+
   $('#carouselSlick').slick({
     slideInterval : 4000,
     swipe : false,
@@ -191,12 +194,63 @@ Template.homeCenter.onRendered(() => {
 })
 
 Template.homeCenter.events({
+  'click #allSchools'(event, instance){
+    event.preventDefault();
+    __schoolStatus.set('allSchools');
+  },
+
+  'click #preSchools'(event){
+    event.preventDefault();
+    __schoolStatus.set('preSchools');
+  },
+
+  'click #eleSchools'(event){
+    event.preventDefault();
+    __schoolStatus.set('eleSchools');
+  },
+
+  'click #highSchools'(event){
+    event.preventDefault();
+    __schoolStatus.set('highSchools');
+  },
+
+  'click #universities'(event){
+    event.preventDefault();
+    __schoolStatus.set('universities');
+  }
 
 })
 
 Template.homeCenter.helpers({
-  school : function(){
-    return Schools.find();
+  school(){
+    if(Meteor.status().connected){
+        switch(__schoolStatus.get()){
+          case 'allSchools':
+              return Schools.find({"haveSchoolDetailInfo" : true}, {limit : 6}, {sort : { rate : - 1}});
+              break;
+
+          case 'preSchools':
+              return Schools.find({"schoolType" : "Anaokulu", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              break;
+
+          case 'eleSchools':
+              return Schools.find({"schoolType" : "İlkokul", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              break;
+
+          case 'highSchools':
+              return Schools.find({"schoolType" : "Lise", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              break;
+
+          case 'universities':
+
+              return Schools.find({"schoolType" : "Üniversite", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              break;
+
+
+        }
+
+    }
+
   }
 })
 

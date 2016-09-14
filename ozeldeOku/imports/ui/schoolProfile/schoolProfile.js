@@ -134,6 +134,53 @@ Template.schoolProfileSchoolInfos.helpers({
 
   },
 
+  schoolTypeUni(){
+    if(Meteor.status().connected){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Üniversite"){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+
+  },
+
+  schoolTypeHigh(){
+    if(Meteor.status().connected){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Lise"){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+
+  },
+
+  schoolTypeMidFirst(){
+    if(Meteor.status().connected){
+        if((Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Ortaöğretim") ||  (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "İlkokul") || (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Anaokulu")){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+
+  },
+
+  schoolTypeDormitory(){
+    if(Meteor.status().connected){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Yurt"){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+  },
+
   faculty(){
     return Faculties.find({});
   },
@@ -491,6 +538,8 @@ Template.schoolProfileSchoolInfos.events({
         __sCover.set('/sa.jpg');
       }
 
+
+
       geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
 
         if(status == "OK"){
@@ -545,7 +594,7 @@ Template.schoolProfileSchoolInfos.events({
             container: 'window',
             services: ['COMPUTER'],
             language : 'tr',
-            imageDim : [380, 250]
+            imageDim : [380, 238]
 
           },
           function(Blob){
@@ -587,7 +636,7 @@ Template.schoolProfileSchoolInfos.events({
             container: 'window',
             services: ['COMPUTER'],
             language : 'tr',
-            imageDim : [732, 439]
+            imageDim : [1500, 938]
 
           },
           function(Blob){

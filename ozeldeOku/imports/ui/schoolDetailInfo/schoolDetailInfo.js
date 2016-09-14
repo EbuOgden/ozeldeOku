@@ -7,6 +7,11 @@ import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
 
 import './schoolDetailInfo.html';
+import './schoolTimeline.html';
+import './schoolNews.html';
+import './schoolEvents.html';
+import './schoolPhotos.html';
+import './schoolVideos.html';
 import './schoolDetailInfoCenter.html';
 
 const __cAUp__ = new ReactiveVar(0);
@@ -53,11 +58,42 @@ Template.schoolDetailInfoCenter.events({
     FlowRouter.go('/');
     BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
+
+  'click .timelineSchool'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolTimeline', schoolDetailInfoCenterBottom: 'homeBottom'});
+  },
+
+  'click .newsSchool'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolNews', schoolDetailInfoCenterBottom: 'homeBottom'});
+  },
+
+  'click .eventsSchool'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolEvents', schoolDetailInfoCenterBottom: 'homeBottom'});
+  },
+
+  'click .photosSchool'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolPhotos', schoolDetailInfoCenterBottom: 'homeBottom'});
+  },
+
+  'click .videosSchool'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolVideos', schoolDetailInfoCenterBottom: 'homeBottom'});
+  }
+})
+
+Template.schoolDetailInfoCenter.onCreated(function schoolDetailInfoCenterOnCreated(){
+  window.scrollTo(0, 0);
 })
 
 Template.schoolDetailInfoCenter.onRendered(() => {
 
-  window.scrollTo(0, 0);
+  BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid : 'schoolTimeline', schoolDetailInfoCenterBottom: 'homeBottom'});
+
+  console.log("hey");
 
   const dormitoryImage = '/marker-32.png'; /* dormitory icon */
 
@@ -142,5 +178,9 @@ Template.schoolDetailInfoCenter.onRendered(() => {
     }
   })
 
+
+})
+
+Template.schoolTimeline.onCreated(function schoolTimelineonCreated() {
 
 })

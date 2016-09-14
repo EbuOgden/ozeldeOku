@@ -149,6 +149,7 @@ Template.schoolCompareCenterList.events({
   'change .schoolCompCheck'(event){
     const arrL = $('.compList input:checkbox:checked');
     const current = event.currentTarget;
+    console.log(current);
 
     if($(current).prop('checked')){
 
@@ -158,7 +159,7 @@ Template.schoolCompareCenterList.events({
       else{
         CompareList.insert({
           schoolId : current.id,
-          schoolImg : "/" + $(current).attr('data-img'),
+          schoolImg : $(current).attr('data-img'),
           schoolName : $(current).attr('data-name'),
         })
       }

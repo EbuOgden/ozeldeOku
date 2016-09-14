@@ -9,12 +9,13 @@ import { DormitoryInfos } from '/imports/api/collections/dormitoryInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Logs } from '/imports/api/collections/logs.js';
-import { News } from '/imports/api/collections/news.js';
-import { Comments } from '/imports/api/collections/comments.js';
-import { CityCounty } from '/imports/api/collections/cityCounty.js';
-import { Departments } from '/imports/api/collections/departments.js';
-import { Faculties } from '/imports/api/collections/faculties.js';
-import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js';
+import { News } from '/imports/api/collections/news.js'; /* for general news */
+import { Comments } from '/imports/api/collections/comments.js'; /* comments for schools */
+import { CityCounty } from '/imports/api/collections/cityCounty.js'; /* for select city and county */
+import { Departments } from '/imports/api/collections/departments.js'; /* for uni departments */
+import { Faculties } from '/imports/api/collections/faculties.js'; /* for uni faculties */
+import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js'; /* for facultyDepartments */
+import { SchoolNews } from '/imports/api/collections/schoolNews.js';
 
 import { Messages } from '/imports/api/collections/messages.js';
 import { MessageRooms } from '/imports/api/collections/messageRooms.js';
