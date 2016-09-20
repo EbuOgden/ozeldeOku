@@ -71,23 +71,20 @@
 
 
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-top:1%;">
-        <b class="pull-right">Puan : <div id="{{school._id}}" style="display:initial;"></div>
+        <b class="pull-right">Puan : <div id="rateSchool" style="display:initial;"></div>
           <script>
 
-            if(Meteor.status().connected){
-
-              $("#{{school._id}}").raty({
+          $("#rateSchool").raty({
               score : {{school.rate}},
               readOnly : true,
               starType : 'img',
               path : '/'
-              })
-            }
+          })
 
           </script>
         </b>
         <br><br>
-          <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum(0)</i><br><br>
+          <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
           <b class="pull-right">Sen de okul hakkında yorum yaz!</b><br><br>
           <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
           <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>

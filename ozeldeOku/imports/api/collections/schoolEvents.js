@@ -1,27 +1,26 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema} from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const Comments = new Mongo.Collection('Comments');
+export const SchoolEvents = new Mongo.Collection('SchoolEvents');
 
-Comments.attachSchema(new SimpleSchema({
+SchoolEvents.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
     optional : false
   },
 
-  comment : {
+  eventMessage : {
     type : String,
     optional : false
   },
 
-  sendTime : {
+  createdAt : {
     type : Date,
     optional : false,
-    autoValue : function() {
+    autoValue : function(){
       if(this.isInsert){
         return new Date;
       }
     }
   }
-
-}), {replace : true});
+}))

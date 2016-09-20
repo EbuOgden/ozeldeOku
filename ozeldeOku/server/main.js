@@ -16,6 +16,7 @@ import { Departments } from '/imports/api/collections/departments.js'; /* for un
 import { Faculties } from '/imports/api/collections/faculties.js'; /* for uni faculties */
 import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js'; /* for facultyDepartments */
 import { SchoolNews } from '/imports/api/collections/schoolNews.js';
+import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
 
 import { Messages } from '/imports/api/collections/messages.js';
 import { MessageRooms } from '/imports/api/collections/messageRooms.js';

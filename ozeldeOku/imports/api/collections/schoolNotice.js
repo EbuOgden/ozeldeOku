@@ -1,30 +1,25 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const SchoolNews = new Mongo.Collection('SchoolNews');
+export const SchoolNotice = new Mongo.Collection('SchoolNotice');
 
-SchoolNews.attachSchema(new SimpleSchema({
+SchoolNotice.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
     optional : false
   },
 
-  newsTitle : {
+  noticeTitle : {
     type : String,
     optional : false
   },
 
-  newsContent : {
+  noticeMessage : {
     type : String,
     optional : false
   },
 
-  newsImage : {
-    type : String,
-    optional : false
-  },
-
-  newsCreated : {
+  createdAt : {
     type : Date,
     optional : false,
     autoValue : function(){
@@ -33,6 +28,4 @@ SchoolNews.attachSchema(new SimpleSchema({
       }
     }
   }
-
-
-}), {replace : true})
+}), {replace : true});

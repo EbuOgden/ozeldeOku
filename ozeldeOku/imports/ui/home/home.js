@@ -226,7 +226,7 @@ Template.homeCenter.helpers({
     if(Meteor.status().connected){
         switch(__schoolStatus.get()){
           case 'allSchools':
-              return Schools.find({"haveSchoolDetailInfo" : true}, {limit : 6}, {sort : { rate : - 1}});
+              return Schools.find({"haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
           case 'preSchools':

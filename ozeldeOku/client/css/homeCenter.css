@@ -209,8 +209,14 @@ body {
 
 .ellipsis{
   text-overflow : ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .schoolDetailPageSixComponents{
   color:black; padding-left:5%;
+}
+
+.modal-body{
+  word-wrap: break-word;
 }

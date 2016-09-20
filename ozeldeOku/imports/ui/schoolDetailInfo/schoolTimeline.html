@@ -1,4 +1,40 @@
 <template name="schoolTimeline">
 
 
+    {{#with schoolNews}}
+
+      {{#if countZero schoolNews.count }}
+      <div class="row">
+        {{#each schoolNews.news}}
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="media">
+                <div class="media-left">
+                  <a href="/okulTuru/{{../school.schoolType}}/{{../school.schoolName}}/haberler/{{newsTitle}}/{{_id}}">
+                    <img class="media-object" src="{{newsImage}}" alt="Haber Resmi">
+                  </a>
+                </div>
+
+                <div class="media-body">
+                  <h4 class="media-heading">{{newsTitle}}</h4>
+                  <h5 class="ellipsis">{{newsContent}}</h5>
+
+                </div>
+            </div>
+            </div>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Okula Ait Haber Bulunmamaktadır.
+        </div>
+      </div>
+
+      {{/if}}
+
+      {{/with}}
+
+
+
+
 </template>

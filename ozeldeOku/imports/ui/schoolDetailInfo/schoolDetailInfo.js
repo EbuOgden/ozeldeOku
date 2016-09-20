@@ -5,10 +5,13 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
+import { SchoolNews } from '/imports/api/collections/schoolNews.js';
+import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
+import { Comments } from '/imports/api/collections/comments.js';
 
 import './schoolDetailInfo.html';
 import './schoolTimeline.html';
-import './schoolNews.html';
+import './schoolNotifsDetailPage.html';
 import './schoolEvents.html';
 import './schoolPhotos.html';
 import './schoolVideos.html';
@@ -16,13 +19,23 @@ import './schoolDetailInfoCenter.html';
 
 const __cAUp__ = new ReactiveVar(0);
 
+const _mI = new ReactiveVar(0);
+
 Template.schoolDetailInfoCenter.helpers({
   schoolInfo(){
     if(Meteor.status().connected){
-        return {
-            schoolInfos : SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')}),
-            school : Schools.findOne(FlowRouter.getQueryParam('schld'))
+
+        const __sInfo = SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')});
+        const __s = Schools.findOne(FlowRouter.getQueryParam('schld'));
+
+        if(__sInfo && __s){
+
+          return {
+              schoolInfos : __sInfo,
+              school : __s
+          }
         }
+
 
     }
 
@@ -49,6 +62,16 @@ Template.schoolDetailInfoCenter.helpers({
 
 
     }
+  },
+
+  commentCount(){
+    if(Meteor.status().connected){
+      const __com = Comments.find({"schoolId" : FlowRouter.getQueryParam('schld')});
+
+      if(__com){
+        return __com.count();
+      }
+    }
   }
 })
 
@@ -66,7 +89,7 @@ Template.schoolDetailInfoCenter.events({
 
   'click .newsSchool'(event){
     event.preventDefault();
-    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolNews', schoolDetailInfoCenterBottom: 'homeBottom'});
+    BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid: 'schoolNotifsDetailPage', schoolDetailInfoCenterBottom: 'homeBottom'});
   },
 
   'click .eventsSchool'(event){
@@ -87,13 +110,13 @@ Template.schoolDetailInfoCenter.events({
 
 Template.schoolDetailInfoCenter.onCreated(function schoolDetailInfoCenterOnCreated(){
   window.scrollTo(0, 0);
+
 })
 
 Template.schoolDetailInfoCenter.onRendered(() => {
+  _mI.set(0);
 
   BlazeLayout.render('schoolDetailInfoCenter', {schoolDetailInfoCenterTop : 'homeLayout', schoolDetailInfoCenterMid : 'schoolTimeline', schoolDetailInfoCenterBottom: 'homeBottom'});
-
-  console.log("hey");
 
   const dormitoryImage = '/marker-32.png'; /* dormitory icon */
 
@@ -183,4 +206,66 @@ Template.schoolDetailInfoCenter.onRendered(() => {
 
 Template.schoolTimeline.onCreated(function schoolTimelineonCreated() {
 
+})
+
+Template.schoolTimeline.helpers({
+  schoolNews(){
+    if(Meteor.status().connected){
+      const __scNews = SchoolNews.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+      const __school = Schools.findOne(FlowRouter.getQueryParam('schld'));
+      if(__scNews && __school){
+        return {
+          school : __school,
+          count : __scNews.count(),
+          news : __scNews
+        }
+      }
+
+    }
+
+  }
+})
+
+Template.schoolNotifsDetailPage.events({
+  'click .schoolNotifModal'(event){
+    event.preventDefault();
+    _mI.set(this._id);
+  }
+})
+
+Template.schoolNotifsDetailPage.helpers({
+  schoolNotifs(){
+    if(Meteor.status().connected){
+      const __sNotifs = SchoolNotice.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+
+      if(__sNotifs){
+        return {
+          notifs : __sNotifs,
+          count : __sNotifs.count()
+        }
+
+
+      }
+    }
+
+  },
+
+  read(){
+    if(Meteor.status().connected){
+
+      const __sN = SchoolNotice.findOne(_mI.get());
+
+      if(__sN){
+        return __sN;
+      }
+
+    }
+  }
+
+})
+
+Template.registerHelper('countZero', (c) => {
+  if(c > 0){
+    return true;
+  }
 })

@@ -1,0 +1,55 @@
+<template name="schoolNotifsDetailPage">
+
+
+  {{#with schoolNotifs}}
+
+    {{#if countZero count}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="list-group">
+            {{#each notifs}}
+              <button type="button" class="list-group-item schoolNotifModal" data-toggle="modal" data-target="#schoolNotifMod"><b>{{noticeTitle}}</b><h5 class="ellipsis">{{noticeMessage}}</h5><small><i class="fa fa-clock-o" aria-hidden="true"></i> {{timeZoneTr createdAt}}</small></button>
+              <br>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="schoolNotifMod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            {{#with read}}
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+              <h4 class="modal-title" id="myModalLabel">{{noticeTitle}}</h4>
+            </div>
+            <div class="modal-body">
+              {{noticeMessage}}
+
+              <br><br>
+              <div class="pull-right" style="color:rgb(157,197,15);;"><small><i class="fa fa-clock-o" aria-hidden="true"></i> {{timeZoneTr createdAt}}</small></div>
+            </div>
+              {{/with}}
+              <br>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    {{else}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Okula Ait Duyuru Bulunmamaktadır.
+        </div>
+      </div>
+
+    {{/if}}
+  {{/with}}
+
+
+</template>
