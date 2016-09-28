@@ -10,6 +10,11 @@ SchoolEvents.attachSchema(new SimpleSchema({
     index : 1
   },
 
+  eventTitle : {
+    type : String,
+    optional : false
+  },
+
   eventMessage : {
     type : String,
     optional : false

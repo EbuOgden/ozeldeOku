@@ -251,6 +251,11 @@ SchoolInfos.attachSchema(new SimpleSchema({
     optional : true
   },
 
+  "school.schoolTypeT" : {
+    type : String,
+    optional : true
+  },
+
   "school.schoolWebSite" : {
     type : String,
     optional : true

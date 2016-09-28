@@ -7,6 +7,7 @@ import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
 import { SchoolNews } from '/imports/api/collections/schoolNews.js';
 import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
+import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
 import { Comments } from '/imports/api/collections/comments.js';
 
 import './schoolDetailInfo.html';
@@ -20,6 +21,8 @@ import './schoolDetailInfoCenter.html';
 const __cAUp__ = new ReactiveVar(0);
 
 const _mI = new ReactiveVar(0);
+
+const __mI = new ReactiveVar(0);
 
 Template.schoolDetailInfoCenter.helpers({
   schoolInfo(){
@@ -264,8 +267,48 @@ Template.schoolNotifsDetailPage.helpers({
 
 })
 
+Template.schoolEvents.helpers({
+  schoolEvents(){
+    if(Meteor.status().connected){
+      const __sEvents = SchoolEvents.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+
+      if(__sEvents){
+        return {
+          events : __sEvents,
+          count : __sEvents.count()
+        }
+      }
+    }
+  },
+
+  read(){
+    if(Meteor.status().connected){
+
+      const __sN = SchoolEvents.findOne(__mI.get());
+
+      if(__sN){
+        return __sN;
+      }
+
+    }
+  }
+})
+
+Template.schoolEvents.events({
+  'click .schoolEventModal'(event){
+    event.preventDefault();
+    __mI.set(this._id);
+  }
+})
+
 Template.registerHelper('countZero', (c) => {
   if(c > 0){
+    return true;
+  }
+})
+
+Template.registerHelper('highControl', (c) => {
+  if(c == "Lise"){
     return true;
   }
 })

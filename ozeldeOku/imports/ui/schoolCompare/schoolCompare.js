@@ -63,6 +63,20 @@ Template.schoolCompareCenter.events({
     BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
   },
 
+  'submit #schoolSearch'(event){
+    event.preventDefault();
+    const schoolName = $('#schoolNameS').val();
+
+    if(isEmpty(schoolName)){
+      alert("Lütfen okul ismi giriniz");
+      return;
+    }
+    else{
+      FlowRouter.go('/aramaSonuclari?okulIsmi=' + schoolName);
+      return;
+    }
+  }
+
 
 })
 

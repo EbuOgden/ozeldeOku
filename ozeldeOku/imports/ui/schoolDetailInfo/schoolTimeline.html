@@ -3,13 +3,13 @@
 
     {{#with schoolNews}}
 
-      {{#if countZero schoolNews.count }}
+      {{#if countZero count}}
       <div class="row">
         {{#each schoolNews.news}}
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="media">
                 <div class="media-left">
-                  <a href="/okulTuru/{{../school.schoolType}}/{{../school.schoolName}}/haberler/{{newsTitle}}/{{_id}}">
+                  <a href="/okulTuru/{{../school.schoolType.schoolT}}/{{../school.schoolName}}/haberler/{{newsTitle}}/{{_id}}">
                     <img class="media-object" src="{{newsImage}}" alt="Haber Resmi">
                   </a>
                 </div>
@@ -26,7 +26,7 @@
       {{else}}
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 style="text-align:center;">Okula Ait Haber Bulunmamaktadır.</h5>
+          <center><h5>Okula Ait Haber Bulunmamaktadır.</h5></center>
         </div>
       </div>
 

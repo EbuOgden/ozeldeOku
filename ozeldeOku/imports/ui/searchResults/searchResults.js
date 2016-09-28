@@ -10,7 +10,13 @@ Template.searchResultsCenter.helpers({
   result(){
     if(Meteor.status().connected){
 
-      if(FlowRouter.getQueryParam('okulTuru') && FlowRouter.getQueryParam('sehir') && FlowRouter.getQueryParam('ilce') && !FlowRouter.getQueryParam('okulIsmi') && !FlowRouter.getQueryParam('okulTuruT')){
+      if(FlowRouter.getQueryParam('okulIsmi') && !FlowRouter.getQueryParam('okulTuru') && !FlowRouter.getQueryParam('sehir') && !FlowRouter.getQueryParam('ilce') && !FlowRouter.getQueryParam('okulTuruT')){
+        return {
+          school : Schools.find({"schoolName" : {'$regex' : FlowRouter.getQueryParam('okulIsmi')}}, {sort : {rate : -1}}),
+          count : Schools.find({"schoolName" : {'$regex' : FlowRouter.getQueryParam('okulIsmi')}}, {sort : {rate : -1}}).count(),
+        }
+      }
+      else if(FlowRouter.getQueryParam('okulTuru') && FlowRouter.getQueryParam('sehir') && FlowRouter.getQueryParam('ilce') && !FlowRouter.getQueryParam('okulIsmi') && !FlowRouter.getQueryParam('okulTuruT')){
 
         return {
           school : Schools.find({"schoolType.schoolT" : FlowRouter.getQueryParam('okulTuru'), "schoolCity" : FlowRouter.getQueryParam('sehir'), "schoolCounty" : FlowRouter.getQueryParam('ilce')}, {sort : {rate : -1}}),
@@ -47,6 +53,10 @@ Template.searchResultsCenter.helpers({
 
     }
   }
+})
+
+Template.searchResultsCenter.onRendered(() => {
+  window.scrollTo(0, 0);
 })
 
 Template.searchResultsCenter.events({

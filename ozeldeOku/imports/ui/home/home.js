@@ -334,20 +334,20 @@ Template.homeCenter.helpers({
               break;
 
           case 'preSchools':
-              return Schools.find({"schoolType" : "Anaokulu", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              return Schools.find({"schoolType.schoolT" : "Anaokulu", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
           case 'eleSchools':
-              return Schools.find({"schoolType" : "İlkokul", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              return Schools.find({"schoolType.schoolT" : "İlkokul", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
           case 'highSchools':
-              return Schools.find({"schoolType" : "Lise", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              return Schools.find({"schoolType.schoolT" : "Lise", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
           case 'universities':
 
-              return Schools.find({"schoolType" : "Üniversite", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              return Schools.find({"schoolType.schoolT" : "Üniversite", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
 
