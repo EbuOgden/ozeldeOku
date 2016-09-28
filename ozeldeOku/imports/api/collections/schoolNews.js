@@ -6,7 +6,8 @@ export const SchoolNews = new Mongo.Collection('SchoolNews');
 SchoolNews.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   newsTitle : {

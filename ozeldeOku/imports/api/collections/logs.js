@@ -6,12 +6,14 @@ export const Logs = new Mongo.Collection('Logs');
 Logs.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   dormitoryId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   logMessage : {

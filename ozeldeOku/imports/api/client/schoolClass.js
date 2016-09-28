@@ -1,10 +1,11 @@
 export class schoolInfo {
-  constructor(schoolName, tradeName, schoolType, taxNum, authorizePersonName,
+  constructor(schoolName, tradeName, schoolType, schoolTypeTwo,taxNum, authorizePersonName,
      authorizeCaption, schoolEmail, schoolPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum,
     schoolFaxNum, schoolWebSite, schoolFoundation){
     this._schoolName = schoolName;
     this._tradeName = tradeName;
     this._schoolType = schoolType;
+    this._schoolTypeT = schoolTypeTwo;
     this._taxNum= taxNum;
     this._authorizePersonName = authorizePersonName;
     this._authorizeCaption = authorizeCaption;
@@ -28,6 +29,7 @@ export class schoolInfo {
       __schoolName : this._schoolName,
       __tradeName : this._tradeName,
       __schoolType : this._schoolType,
+      __schoolTypeT : this._schoolTypeT,
       __taxNum : this._taxNum,
       __authorizePersonName : this._authorizePersonName,
       __authorizeCaption : this._authorizeCaption,

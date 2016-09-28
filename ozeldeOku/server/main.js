@@ -25,7 +25,7 @@ import '../imports/api/collections/users.js';
 
 import '../imports/startup/server/index.js'
 
-//import "\x2F\x69\x6D\x70\x6F\x72\x74\x73\x2F\x61\x70\x69\x2F\x73\x65\x72\x76\x65\x72\x2F\x5F\x5F\x65\x6E\x63\x5F\x41\x5F\x31\x36\x78\x50\x5F\x5F\x30\x31\x30\x31\x2E\x6A\x73"; /*__enc_A import */
+import "\x2F\x69\x6D\x70\x6F\x72\x74\x73\x2F\x61\x70\x69\x2F\x73\x65\x72\x76\x65\x72\x2F\x5F\x5F\x65\x6E\x63\x5F\x41\x5F\x31\x36\x78\x50\x5F\x5F\x30\x31\x30\x31\x2E\x6A\x73"; /*__enc_A */
 
 //import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../imports/api/collections/schoolImages.js';
@@ -33,30 +33,30 @@ import '../imports/startup/server/index.js'
 
 Meteor.startup(() => {
 
-  WebApp.connectHandlers.use('/api/nameGet', (req, res) => {
-    const name = Meteor.users.findOne({"_id" : req.query.userId}, {
-      fields : {
-        _id : 0,
-        'profile.name' : 1
-      }
-    })
-
-    if(name){
-      var json = JSON.stringify(name);
-      res.writeHead(200, {"Content-Type" : "application/json", "Size-of-Document" : json.length});
-      res.end(json);
-    }
-    else{
-      var obj = {
-        result : "NULL"
-      }
-      res.writeHead(200, {"Content-Type" : "application/json"});
-      var json = JSON.stringify(obj);
-      res.end(json);
-    }
-
-
-  })
+  // WebApp.connectHandlers.use('/api/nameGet', (req, res) => {
+  //   const name = Meteor.users.findOne({"_id" : req.query.userId}, {
+  //     fields : {
+  //       _id : 0,
+  //       'profile.name' : 1
+  //     }
+  //   })
+  //
+  //   if(name){
+  //     var json = JSON.stringify(name);
+  //     res.writeHead(200, {"Content-Type" : "application/json", "Size-of-Document" : json.length});
+  //     res.end(json);
+  //   }
+  //   else{
+  //     var obj = {
+  //       result : "NULL"
+  //     }
+  //     res.writeHead(200, {"Content-Type" : "application/json"});
+  //     var json = JSON.stringify(obj);
+  //     res.end(json);
+  //   }
+  //
+  //
+  // })
 
   if(CityCounty.find().count() == 0){
 

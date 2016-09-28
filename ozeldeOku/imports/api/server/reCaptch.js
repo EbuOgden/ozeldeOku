@@ -38,7 +38,10 @@ Meteor.methods({
     const newSchool = Schools.insert({
       schoolName : userInfo.__schoolName,
       tradeName : userInfo.__tradeName,
-      schoolType : userInfo.__schoolType,
+      schoolType : {
+        schoolT : userInfo.__schoolType,
+        schoolTT : userInfo.__schoolTypeT
+      },
       taxNo : userInfo.__taxNum,
       authorizedPerson : userInfo.__authorizePersonName,
       authorizedCaption : userInfo.__authorizeCaption,

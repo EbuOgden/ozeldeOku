@@ -4,6 +4,12 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Schools = new Mongo.Collection('Schools');
 
 Schools.attachSchema(new SimpleSchema({
+    _id : {
+      type : String,
+      optional : false,
+      denyUpdate : true
+    },
+
     schoolName : {
       type : String,
       max : 256,
@@ -17,6 +23,16 @@ Schools.attachSchema(new SimpleSchema({
     },
 
     schoolType : {
+      type : Object,
+      optional : false,
+    },
+
+    "schoolType.schoolT" : {
+      type : String,
+      optional : false,
+    },
+
+    "schoolType.schoolTT" : {
       type : String,
       optional : false
     },
@@ -38,7 +54,8 @@ Schools.attachSchema(new SimpleSchema({
 
     authorizedPerson : {
       type : String,
-      optional : false
+      optional : false,
+      index : 1
     },
 
     authorizedCaption : {
@@ -127,7 +144,8 @@ Schools.attachSchema(new SimpleSchema({
 
     authorizedPersonUserId : {
       type : String,
-      optional : true
+      optional : true,
+      index : 1
     },
 
     haveSchoolDetailInfo : {

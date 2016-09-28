@@ -6,7 +6,8 @@ export const Favorites = new Mongo.Collection('Favorites');
 Favorites.attachSchema(new SimpleSchema({
   userId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   favoriteInfo : {
@@ -14,5 +15,5 @@ Favorites.attachSchema(new SimpleSchema({
     optional : false
   },
 
-  
+
 }))

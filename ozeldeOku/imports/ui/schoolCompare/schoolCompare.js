@@ -132,7 +132,7 @@ Template.schoolCompareCenter.events({
 
 Template.schoolCompareCenterList.helpers({
   schools(){
-    return Schools.find({"schoolType" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
+    return Schools.find({"schoolType.schoolT" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
   },
 
 

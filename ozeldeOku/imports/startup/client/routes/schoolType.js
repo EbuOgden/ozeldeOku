@@ -1,8 +1,6 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
-import { Schools } from '/imports/api/collections/schools.js';
-
 import '/imports/ui/schoolType/schoolType.js';
 import '/imports/ui/schoolDetailInfo/schoolDetailInfo.js';
 import '/imports/ui/home/home.js';

@@ -4,9 +4,16 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const SchoolNotice = new Mongo.Collection('SchoolNotice');
 
 SchoolNotice.attachSchema(new SimpleSchema({
+  _id : {
+    type : String,
+    optional : false,
+    denyUpdate : true
+  },
+
   schoolId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   noticeTitle : {

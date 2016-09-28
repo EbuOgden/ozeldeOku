@@ -35,3 +35,5 @@ import './notFoundRoute.js';
 import './news.js';
 
 /*          */
+
+import './searchResult.js';

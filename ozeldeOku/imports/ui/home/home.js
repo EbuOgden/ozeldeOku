@@ -191,6 +191,18 @@ Template.homeCenter.onRendered(() => {
     autoplay : true
   });
 
+  Meteor.call('getCities', (err, result) => {
+    if(err){
+      alert(err.reason);
+    }
+    else{
+      const cities = result;
+      for(let i = 0; i < cities.length; i++){
+        $('#city').append('<option>' + cities[i] + '</option>');
+      }
+    }
+  })
+
 })
 
 Template.homeCenter.events({
@@ -217,6 +229,98 @@ Template.homeCenter.events({
   'click #universities'(event){
     event.preventDefault();
     __schoolStatus.set('universities');
+  },
+
+  'change #schoolTypeSelect'(event){
+    event.preventDefault();
+    const schoolType = $('#schoolTypeSelect').val();
+
+    if(isEmpty(schoolType)){
+
+    }
+    else{
+
+      $('#schoolTypeTwo').empty();
+      if(schoolType == "Lise"){
+        $('#schoolTypeTwo').append('<option>Lise </option>' );
+        $('#schoolTypeTwo').append('<option>Öğretmen Lisesi </option>' );
+        $('#schoolTypeTwo').append('<option>Endüstri Meslek Lisesi </option>' );
+        $('#schoolTypeTwo').append('<option>Ticaret Meslek Lisesi </option>' );
+        $('#schoolTypeTwo').append('<option>Teknik Lise </option>' );
+        $('#schoolTypeTwo').append('<option>Kız Meslek Lisesi </option>' );
+        $('#schoolTypeTwo').append('<option>Sağlık Meslek Lisesi </option>' );
+        $('#schoolTypeTwo').append('<option>Otelcilik ve Turizm Meslek Lisesi </option>' );
+      }
+      else{
+        $('#schoolTypeTwo').append('<option selected disabled></option>' );
+      }
+    }
+  },
+
+  'change #city'(event){
+    const cityN = $('#city').val();
+    if(isEmpty(cityN)){
+
+    }
+    else{
+      $('#county').empty();
+
+      Meteor.call('getCounties', cityN, (err, result) => {
+        if(err){
+          alert(err.reason);
+        }
+        else{
+          const counties = result;
+          for(let i = 0; i < counties.length; i++){
+            $('#county').append('<option>' + counties[i] + '</option>');
+          }
+          $('#county').append('<option>Diğer...</option>');
+        }
+      });
+    }
+  },
+
+  'click #searchSchool'(event){
+    event.preventDefault();
+
+    const schoolType = $('#schoolTypeSelect').val();
+    const schoolTypeTwo = $('#schoolTypeTwo').val();
+    const city = $('#city').val();
+    const county = $('#county').val();
+    const schoolName = $('#schoolNameS').val();
+
+    if(city == null){
+      alert("Lütfen şehir seçiniz.")
+      return;
+    }
+
+    if(city != null && county == null){
+      alert("Lütfen ilçe seçiniz.")
+      return;
+    }
+
+    if(schoolTypeTwo == null && isEmpty(schoolName)){
+
+      FlowRouter.go('/aramaSonuclari?okulTuru=' + schoolType + "&sehir=" + city + "&ilce=" + county);
+      return;
+    }
+    else if(schoolTypeTwo == null && !isEmpty(schoolName)){
+
+      FlowRouter.go('/aramaSonuclari?okulTuru=' + schoolType + "&sehir=" + city + "&ilce=" + county + "&okulIsmi=" + schoolName);
+      return;
+    }
+    else if(schoolTypeTwo != null && isEmpty(schoolName)){
+
+      FlowRouter.go('/aramaSonuclari?okulTuru=' + schoolType + "&okulTuruT=" + schoolTypeTwo + "&sehir=" + city + "&ilce=" + county);
+      return;
+    }
+    else if(schoolTypeTwo != null && !isEmpty(schoolName)){
+
+      FlowRouter.go('/aramaSonuclari?okulTuru=' + schoolType + "&okulTuruT=" + schoolTypeTwo + "&sehir=" + city + "&ilce=" + county + "&okulIsmi=" + schoolName);
+      return;
+    }
+
+
   }
 
 })
@@ -378,6 +482,23 @@ Template.newSchoolRegister.events({
       }
   },
 
+  'change #schoolTypeSelect'(event){
+    const schoolType = $('#schoolTypeSelect').val();
+
+    $('#schoolTypeTwo').empty();
+    if(schoolType == "Lise"){
+      $('#schoolTypeTwo').append('<option>Lise </option>' );
+      $('#schoolTypeTwo').append('<option>Öğretmen Lisesi </option>' );
+      $('#schoolTypeTwo').append('<option>Endüstri Meslek Lisesi </option>' );
+      $('#schoolTypeTwo').append('<option>Ticaret Meslek Lisesi </option>' );
+      $('#schoolTypeTwo').append('<option>Teknik Lise </option>' );
+      $('#schoolTypeTwo').append('<option>Kız Meslek Lisesi </option>' );
+      $('#schoolTypeTwo').append('<option>Sağlık Meslek Lisesi </option>' );
+      $('#schoolTypeTwo').append('<option>Otelcilik ve Turizm Meslek Lisesi </option>' );
+    }
+
+  },
+
   'click #newSchoolRegister'(event, instance){
 
     event.preventDefault();
@@ -385,6 +506,7 @@ Template.newSchoolRegister.events({
     const schoolName = trimInput($('#schoolName').val());
     const tradeName = trimInput($('#tradeName').val());
     const schoolType = $('#schoolTypeSelect').val();
+    const schoolTypeTwo = $('#schoolTypeTwo').val();
     const taxNum = trimInput($('#taxNum').val());
     const authorizePersonName = trimInput($('#authorizePersonName').val());
     const authorizeCaption = trimInput($('#authorizeCaption').val());
@@ -435,7 +557,7 @@ Template.newSchoolRegister.events({
 
     if(isEqual(schoolPassword, schoolrPassword)){
 
-      const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, taxNum, authorizePersonName, authorizeCaption,
+      const __newSchoolO = new schoolInfo(schoolName, tradeName, schoolType, schoolTypeTwo, taxNum, authorizePersonName, authorizeCaption,
       schoolrEmail, schoolrPassword, schoolAddress, schoolCity, schoolCounty, schoolPhoneNum, schoolFaxNum, schoolWebSite, schoolFoundation);
 
       const _schoolN = __newSchoolO.school;

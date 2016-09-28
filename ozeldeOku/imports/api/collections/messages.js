@@ -42,7 +42,8 @@ Messages.attachSchema(new SimpleSchema({
 
   roomId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   }
 
 

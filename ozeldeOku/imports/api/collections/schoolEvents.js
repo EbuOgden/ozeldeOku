@@ -6,7 +6,8 @@ export const SchoolEvents = new Mongo.Collection('SchoolEvents');
 SchoolEvents.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   eventMessage : {

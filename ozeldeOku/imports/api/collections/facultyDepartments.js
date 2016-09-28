@@ -8,7 +8,8 @@ export const FacultyDepartments = new Mongo.Collection('FacultyDepartments');
 FacultyDepartments.attachSchema(new SimpleSchema({
   schoolId : {
     type : String,
-    optional : false
+    optional : false,
+    index : 1
   },
 
   facultyId : {
