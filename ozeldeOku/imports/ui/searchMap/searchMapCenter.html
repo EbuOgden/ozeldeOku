@@ -1,0 +1,37 @@
+<template name="searchMapCenter">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group">
+              <select class="form-control input-lg" id="city">
+                <option selected disabled>Şehir</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <select class="form-control input-lg" id="county">
+              <option selected disabled>İlçe</option>
+            </select>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div role="button">
+              <div role="button">
+                <h5 class="homeCarouselFirstPageFontColor" type="button" id="searchMap"><img src="/mapIcon.png">Ara</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="map-container" id="mapHere">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</template>

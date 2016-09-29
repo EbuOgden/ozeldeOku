@@ -12,6 +12,7 @@ import { HTTP } from 'meteor/http';
 import { Schools } from '../../api/collections/schools.js';
 import { Dormitories } from '../../api/collections/dormitories.js';
 import { News } from '../../api/collections/news.js';
+import { Faculties } from '/imports/api/collections/faculties.js';
 //import { SchoolVideos } from '../../../imports/api/collections/schoolVideos.js';
 //import { SchoolImages } from '../../../imports/api/collections/SchoolImages.js';
 import { Comments } from '../../api/collections/comments.js';
@@ -57,6 +58,9 @@ Template.home.onCreated(function homeOnCreated(){
 
 Template.home.onRendered(() => {
   window.scrollTo(0, 0);
+
+
+
 })
 
 Template.homeLayout.events({
@@ -271,6 +275,7 @@ Template.homeCenter.events({
         }
         else{
           const counties = result;
+          $('#county').append('<option selected disabled> İlçe </option>');
           for(let i = 0; i < counties.length; i++){
             $('#county').append('<option>' + counties[i] + '</option>');
           }
@@ -321,6 +326,11 @@ Template.homeCenter.events({
     }
 
 
+  },
+
+  'click #searchMap'(event){
+    event.preventDefault();
+    FlowRouter.go('/haritadaAra');
   }
 
 })
@@ -495,6 +505,10 @@ Template.newSchoolRegister.events({
       $('#schoolTypeTwo').append('<option>Kız Meslek Lisesi </option>' );
       $('#schoolTypeTwo').append('<option>Sağlık Meslek Lisesi </option>' );
       $('#schoolTypeTwo').append('<option>Otelcilik ve Turizm Meslek Lisesi </option>' );
+    }
+    else if(schoolType == "Üniversite"){
+      $('#schoolTypeTwo').append('<option>Lisans </option>' );
+      $('#schoolTypeTwo').append('<option>Ön Lisans </option>' );
     }
 
   },

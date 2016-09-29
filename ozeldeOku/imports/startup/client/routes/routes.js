@@ -37,3 +37,4 @@ import './news.js';
 /*          */
 
 import './searchResult.js';
+import './searchMap.js';
