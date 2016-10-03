@@ -20,6 +20,7 @@ Meteor.methods({
     const schoolImg = __facultyInfos_.img; /* School Image URL */
     const schoolCover = __facultyInfos_.cover; /* Cover Photo URL */
     const socialMedia = __facultyInfos_.socialMedia; /* Social Media Accounts */
+    const totalPlace = __facultyInfos_.totalPlace;
 
     const otherQuotaInfos = __facultyInfos_.otherQuotas;
 
@@ -146,6 +147,7 @@ Meteor.methods({
           socialMedias : socialMedia
       },
       sumSalary : sumSalary,
+      totalPlace : totalPlace
 
     })
 

@@ -23,7 +23,7 @@ import './schoolProfileMessageRead.html';
 import '../../../client/lib/chosen.jquery.min.js';
 
 const __rId = new ReactiveVar(0);
-filepicker.setKey("A4HBqC4BTSJqn2zLg7FCYz");
+
 const __sPp = new ReactiveVar(0);
 const __sImg = new ReactiveVar(0);
 const __sCover = new ReactiveVar(0);
@@ -54,6 +54,9 @@ Template.schoolProfileCenter.events({
 
 })
 
+Template.schoolProfile.onRendered(() => {
+})
+
 
 Template.schoolProfileCenter.helpers({
   userName(){
@@ -70,6 +73,20 @@ Template.schoolProfileCenter.helpers({
       if(school){
           const readerId = school._id;
           return Messages.find({"readerId" : readerId, isRead : false}).count();
+      }
+
+    }
+  },
+
+  nonSchool(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role != "School"){
+            return true;
+        }
       }
 
     }
@@ -136,7 +153,7 @@ Template.schoolProfileSchoolInfos.helpers({
 
   schoolTypeUni(){
     if(Meteor.status().connected){
-        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Üniversite"){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "Üniversite"){
           return true;
         }
         else{
@@ -148,7 +165,7 @@ Template.schoolProfileSchoolInfos.helpers({
 
   schoolTypeHigh(){
     if(Meteor.status().connected){
-        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Lise"){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "Lise"){
           return true;
         }
         else{
@@ -160,7 +177,7 @@ Template.schoolProfileSchoolInfos.helpers({
 
   schoolTypeMidFirst(){
     if(Meteor.status().connected){
-        if((Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Ortaöğretim") ||  (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "İlkokul") || (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Anaokulu")){
+        if((Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "Ortaöğretim") ||  (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "İlkokul") || (Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "Anaokulu")){
           return true;
         }
         else{
@@ -172,7 +189,7 @@ Template.schoolProfileSchoolInfos.helpers({
 
   schoolTypeDormitory(){
     if(Meteor.status().connected){
-        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType == "Yurt"){
+        if(Schools.findOne({"authorizedPersonUserId" : Meteor.userId()}).schoolType.schoolT == "Yurt"){
           return true;
         }
         else{
@@ -483,6 +500,12 @@ Template.schoolProfileSchoolInfos.events({
 
     var aboutSchool = $('#aboutSchool').val();
 
+    var schoolTotalPlace = $('#totalPlace').val();
+
+    if(isEmpty(schoolTotalPlace) || schoolTotalPlace == null || schoolTotalPlace < 0){
+      schoolTotalPlace = 0;
+    }
+
     if(otherQuotaInfos.length == 1){
       otherQuotaInfos = 1;
     }
@@ -561,7 +584,8 @@ Template.schoolProfileSchoolInfos.events({
             img : __sImg.get(),
             logo : __sPp.get(),
             cover : __sCover.get(),
-            socialMedia : socialMedias
+            socialMedia : socialMedias,
+            totalPlace : schoolTotalPlace
           }
 
           Meteor.call('_sch_in_d', schoolInfosSendObj, (err, result) => {
@@ -588,6 +612,7 @@ Template.schoolProfileSchoolInfos.events({
 
   'click #schoolImage'(event){
     event.preventDefault();
+
     filepicker.pick(
          {
             mimetype: 'image/*',

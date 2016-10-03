@@ -323,6 +323,11 @@ SchoolInfos.attachSchema(new SimpleSchema({
   "nearestDormitories.$.dormiName" : {
     type : String,
     optional : true
+  },
+
+  totalPlace : {
+    type : String,
+    optional : true
   }
 
 

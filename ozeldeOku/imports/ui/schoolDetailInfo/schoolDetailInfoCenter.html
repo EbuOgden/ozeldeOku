@@ -2,6 +2,236 @@
 
   {{> Template.dynamic template=schoolDetailInfoCenterTop}}
 
+  {{#if isPhone}}
+
+  <div class="container">
+
+    {{#if authPers.__cont}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="alert alert-info" role="alert"><center>Hoşgeldiniz {{authPers._usrName__}}. Okul harita bilgilerinde hata olduğunu düşünüyorsanız, bu sayfada harita üzerinden kırmızı ikonu oynatarak düzenleyebilirsiniz.</center></div>
+      </div>
+    </div>
+
+    {{/if}}
+
+
+    {{#with schoolInfo}}
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <ol class="breadcrumb pull-left" style="background-color:white; ">
+              <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+
+              <li>{{school.schoolName}}</li>
+
+            </ol>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <form id="schoolSearch">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+          </form>
+      </div>
+    </div>
+
+    <div class="row"> <!-- school cover -->
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            {{#if authPers.__cont}}
+
+                <button type="button" role="button" class="btn newSchoolRegisterButton schoolCoverImageUpload"><i class="fa fa-upload" aria-hidden="true"></i></button>
+
+                <img class="fitImage" src="{{schoolInfos.school.schoolCover}}">
+                <div class="schoolProfilePhotoMobile text-center">
+                    <img class="schoolProfilePhotoImgMobile img-thumbnail img-responsive" src="{{schoolInfos.school.schoolLogo}}">
+                </div>
+
+            {{else}}
+
+                <img class="fitImage" src="{{schoolInfos.school.schoolCover}}">
+                <div class="schoolProfilePhotoMobile">
+                    <img class="schoolProfilePhotoImgMobile img-thumbnail" src="{{schoolInfos.school.schoolLogo}}">
+                </div>
+
+            {{/if}}
+
+      </div>
+
+    </div>
+
+    <br><br>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hoverStarYellow text-center" role="button" style="padding-top:7%;">
+        <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b > Favorilerime Ekle</b>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" style="padding-top:1%;">
+        <b><a>{{schoolInfos.school.schoolName}}</a></b><br><br>
+        <b><i class="fa fa-university" aria-hidden="true"></i> {{schoolInfos.school.schoolType}}</b> <br><br>
+        {{#if highControl schoolInfos.school.schoolType}}
+            <b><i class="fa fa-university" aria-hidden="true"></i> {{schoolInfos.school.schoolTypeT}}</b> <br><br>
+        {{/if}}
+        <b><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;&nbsp;{{schoolInfos.school.schoolCity}} - {{schoolInfos.school.schoolCounty}}</b><br><br>
+        <b><i class="fa fa-link" aria-hidden="true"></i> <a href="http://{{schoolInfos.school.schoolWebSite}}" target="_blank">{{schoolInfos.school.schoolWebSite}}</a> - {{school.schoolEmail}}</b><br><br>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" style="padding-top:1%;">
+        <b class="">Puan : <div id="rateSchool" style="display:initial;"></div>
+          <script>
+
+          $("#rateSchool").raty({
+              score : {{school.rate}},
+              readOnly : true,
+              starType : 'img',
+              path : '/'
+          })
+
+          </script>
+        </b>
+        <br><br>
+          <i class="fa fa-comment-o" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
+          <b class="">Sen de okul hakkında yorum yaz!</b><br><br>
+          <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
+          <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
+          <a href="{{schoolInfos.school.socialMedias.[3]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a>
+          <a href="https://instagram.com/{{schoolInfos.school.socialMedias.[2]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/{{schoolInfos.school.socialMedias.[1]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+          <a href="https://facebook.com/{{schoolInfos.school.socialMedias.[0]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a>
+
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        Okul Türü <a style="color:black; padding-left:26%;">:</a> <a class="schoolDetailPageSixComponents pull-right">{{school.schoolType.schoolT}} {{#if highControl chool.schoolType.schoolT}} - {{school.schoolType.schoolTT}} {{/if}}</a><br><br>
+        Şehir - İlçe <a style="color:black; padding-left:24%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.schoolCity}} - {{school.schoolCounty}}</a><br><br>
+        Kuruluş Yılı <a style="color:black; padding-left:24%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.schoolFoundation}}</a><br><br>
+        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.totalPlace}}</a><br><br>
+        Öğrenci Kapasitesi <a style="color:black; padding-left:8%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
+        Bölüm Sayısı <a style="color:black; padding-left:20.5%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <h4 class="text-center">Okulumuz Hakkında</h4>
+          </div>
+
+          <div class="row">
+            <h5 class="modal-body ellipsis">
+                {{schoolInfos.school.aboutSchool}}
+            </h5>
+          </div>
+
+          <div class="row text-center">
+            <h5 style="color:rgb(157,197,15);" role="button" data-toggle="modal" data-target="#schoolDetail"><b>Devamını Okumak İçin Tıklayın</b></h5>
+          </div>
+
+          <div class="modal fade" id="schoolDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                  <h4 class="modal-title" id="myModalLabel">Okulumuz Hakkında</h4>
+                </div>
+                <div class="modal-body">
+                  {{schoolInfos.school.aboutSchool}}
+                  <br><br>
+                </div>
+
+                  <br>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <b role="button" class="buttonGreen timelineSchool">Zaman Tüneli</b>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <b role="button" class="buttonGreen newsSchool">Duyurular</b>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <b role="button" class="buttonGreen eventsSchool">Etkinlikler</b>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <b role="button" class="buttonGreen photosSchool">Fotoğraflar</b>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <b role="button" class="buttonGreen videosSchool">Videolar</b>
+      </div>
+    </div>
+
+    {{/with}}
+
+    
+    <br><br>
+
+    {{> Template.dynamic template=schoolDetailInfoCenterMid}}
+
+    <br><br><br>
+
+    <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="mapForSchool" class="map-container">
+      </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  {{else}} <!-- isPhone ELSE! -->
   <div class="container">
 
     {{#if authPers.__cont}}
@@ -106,8 +336,8 @@
 
         Okul Türü <a style="color:black; padding-left:20%;">:</a> <a class="schoolDetailPageSixComponents">{{school.schoolType.schoolT}} {{#if highControl chool.schoolType.schoolT}} - {{school.schoolType.schoolTT}} {{/if}}</a><br><br>
         Şehir - İlçe <a style="color:black; padding-left:19%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolCity}} - {{school.schoolCounty}}</a><br><br>
-        Kuruluş Yılı <a style="color:black; padding-left:19%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolFoundation}}</a><br><br>
-        Toplan Alan(m²) <a style="color:black; padding-left:14%;">:</a> <a class="schoolDetailPageSixComponents"> Geliyor</a><br><br>
+        Kuruluş Yılı <a style="color:black; padding-left:18%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolFoundation}}</a><br><br>
+        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.totalPlace}}</a><br><br>
         Öğrenci Kapasitesi <a style="color:black; padding-left:10%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
         Bölüm Sayısı <a style="color:black; padding-left:17%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
 
@@ -196,6 +426,7 @@
 
 
   </div>
+  {{/if}} <!-- isPhone END! -->
 
   <br><br><br>
 

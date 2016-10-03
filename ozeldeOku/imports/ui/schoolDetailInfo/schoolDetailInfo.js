@@ -8,6 +8,8 @@ import { Schools } from '/imports/api/collections/schools.js';
 import { SchoolNews } from '/imports/api/collections/schoolNews.js';
 import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
 import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
+import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
+import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
 import { Comments } from '/imports/api/collections/comments.js';
 
 import './schoolDetailInfo.html';
@@ -290,6 +292,36 @@ Template.schoolEvents.helpers({
         return __sN;
       }
 
+    }
+  }
+})
+
+Template.schoolPhotos.helpers({
+  schoolPhotos(){
+    if(Meteor.status().connected){
+      const __sPhotos = SchoolPhotos.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+
+      if(__sPhotos){
+        return {
+          photos : __sPhotos,
+          count : __sPhotos.count()
+        }
+      }
+    }
+  }
+})
+
+Template.schoolVideos.helpers({
+  schoolVideos(){
+    if(Meteor.status().connected){
+      const __sVideos = SchoolVideos.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+
+      if(__sVideos){
+        return {
+          photos : __sVideos,
+          count : __sVideos.count()
+        }
+      }
     }
   }
 })

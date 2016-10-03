@@ -85,19 +85,16 @@ Meteor.startup(() => {
     publickey: "6LeqWx8TAAAAAOf_iLzAXMSXiLGHnq7iyTKuWEiF"
   })
 
-  if(Departments.find().count() == 0){
-    const departments = ['Bilgisayar ve Öğretim Teknolojileri Eğitimi', 'Din Kültürü ve Ahlak Bilgisi', 'Eğitim Bilimleri', 'Güzel Sanatlar Eğitimi',
-    'İlköğretim Bölümü', 'OÖ Fen, Matematik Alanlar', 'OÖ Sosyal Alanlar', 'Özel Eğitim', 'Türkçe Eğitimi', 'Yabancı Diller Eğitimi', 'Pedagojik Formasyon Birimi',
-    'OÖE Uygulama Birimi'];
+  if(Faculties.find().count() == 0){
+    const faculties = ['Atatürk Eğitim', 'Diş Hekimliği', 'Eczacılık', 'Fen-Edebiyat', 'Güzel Sanatlar', 'Hukuk', 'İktisat', 'İlahiyat',
+    'İletişim', 'İşletme', 'Mühendislik', 'Sağlık Bilimleri', 'Siyasal Bilgiler', 'Spor Bilimleri', 'Teknik Eğitim', 'Teknoloji', 'Tıp'];
 
-    for(let i = 0; i < departments.length; i++){
-      Departments.insert({
-        departmentName : departments[i]
+    for(let i = 0; i < faculties.length; i++){
+      Faculties.insert({
+        facultyName : faculties[i]
       })
     }
   }
-
-
 
   adminControl = Meteor.users.findOne({"username" : "admin"})
   if(!adminControl){

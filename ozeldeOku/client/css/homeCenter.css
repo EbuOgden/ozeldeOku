@@ -196,9 +196,24 @@ body {
 
 }
 
+.schoolProfilePhotoMobile{
+  position : absolute;
+  bottom: -50px;
+  left : 35%;
+  heigth : 100px;
+  width: 100px;
+
+}
+
 .schoolProfilePhotoImg{
   width: 150px;
   height: 150px;
+
+}
+
+.schoolProfilePhotoImgMobile{
+  width: 100px;
+  height: 100px;
 
 }
 

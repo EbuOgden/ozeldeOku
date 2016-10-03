@@ -3,6 +3,107 @@
   {{> Template.dynamic template=schoolProfileCenterInfosTop}}
 
   <div class="container">
+
+    {{#if isPhone}}
+
+    <div class="row">
+      <div class="pull-left">
+        <ol class="breadcrumb" style="background-color:white;">
+            <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+            <li>Hesabım</li>
+            <li>Üyelik Bilgilerim</li>
+          </ol>
+      </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <form id="schoolSearch">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+          </form>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="page-header">
+          <h3 class="homeCarouselFirstPageFontColor">Üyelik Bilgilerim</h3>
+          <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <input type="text" class="form-control input-lg" placeholder="Okul adına göre arama yapın" >
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button type="button" class="btn btn-default btn-block btn-lg newSchoolRegisterButton"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Ara</button>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button type="button" class="btn btn-default btn-block btn-lg newMessageButtonBack"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Yeni Mesaj</button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+          <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+          <span class="icon-bar" style="background-color:rgb(157,197,15);"></span>
+        </button>
+
+        <h5 class="navbar-brand">Kullanıcı Menüsü</h5>
+
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        Hoşgeldiniz
+        <h5 class="profileUserNameColor">{{userName}}</h5>
+        <ul class="nav navbar-nav">
+          <li><a role="button" id="userInfos" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Üyelik Bilgilerim</a></li>
+
+          <li><a role="button" id="schoolInfos" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;Okul Bilgilerim</a></li>
+          <li><a role="button" id="messages" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım<span class="badge pull-right">{{unreadeMessagesCount}}</span></a></li>
+          <li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Duyurular - Etkinlikier</a></li>
+          <li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Fotoğraflar - Videolar</a></li>
+          <li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Favorilerim</a></li>
+          <li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Destek Merkezi</a></li>
+          <li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;Güvenli Çıkış</a></li>
+
+
+        </ul>
+      </div>
+
+        {{> Template.dynamic template=schoolProfileCenterInfosDynamic }}
+
+        <br>
+
+
+    </div>
+
+    {{else}}
     <div class="row">
       <div class="pull-left">
         <ol class="breadcrumb" style="background-color:white;">
@@ -71,16 +172,19 @@
       </div>
 
       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-        <input type="text" class="form-control input-lg" placeholder="Okul adına veya gönderen adına göre arama yapın" >
+        <input type="text" class="form-control input-lg" placeholder="Okul adına göre arama yapın" >
       </div>
 
       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
         <button type="button" class="btn btn-default btn-lg newSchoolRegisterButton"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Ara</button>
       </div>
 
+      {{#if nonSchool}}
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
         <button type="button" class="btn btn-default btn-lg newMessageButtonBack"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Yeni Mesaj</button>
       </div>
+
+      {{/if}}
 
         {{> Template.dynamic template=schoolProfileCenterInfosDynamic }}
 
@@ -88,6 +192,8 @@
 
 
     </div>
+
+    {{/if}}
 
   </div>
 
