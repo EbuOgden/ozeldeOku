@@ -3,126 +3,294 @@
   {{> Template.dynamic template=schoolCompareCenterTop}}
 
   <div class="container">
-    <div class="row">
-      <div class="pull-left">
-        <ol class="breadcrumb" style="background-color:white;">
-            <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
-            <li>Karşılaştırma</li>
-          </ol>
-      </div>
 
-        <div class="col-md-offset-6 col-md-3">
-          <form id="schoolSearch">
-              <div class="form-group has-feedback">
-                <input type="text" class="form-control" id="schoolNameS" placeholder="Size en uygun okulu arayınız.."/>
-                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-              </div>
-          </form>
-        </div>
 
+  {{#if isPhone}}
+  <div class="row">
+    <div class="pull-left">
+      <ol class="breadcrumb" style="background-color:white;">
+          <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+          <li>Karşılaştırma</li>
+        </ol>
     </div>
 
-    <div class="page-header">
-      <h3 class="homeCarouselFirstPageFontColor">Sayfa üst içerik bilgi alanı</h3>
-      <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
-    </div>
-
-    <div class="row">
-      <div class="col-md-3">
-        <ul class="nav nav-sidebar">
-          <li>
-            <h5 role="button" id="preSchool" class="buttonGreen">Anaokulu</h5>
-
-          </li>
-          <hr>
-          <li>
-            <h5 role="button" id="primarySchool" class="buttonGreen">İlköğretim Okulu&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
-          </li>
-          <hr>
-          <li>
-            <h5 role="button" id="middleSchool" class="buttonGreen">Orta Okul&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
-          </li>
-          <hr>
-          <li>
-            <h5 role="button" id="highSchool" class="buttonGreen" data-toggle="collapse" data-target="#liseCol">Lise - Orta Öğretim&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
-            <div id="liseCol" class="collapse">
-              <ul>
-                <li role="button">
-                  Hepsi
-                </li>
-                <li role="button">
-                  Öğretmen Lisesi
-                </li>
-                <li role="button">
-                  Endüstri Meslek Lisesi
-                </li>
-                <li role="button">
-                  Ticaret Meslek Lisesi
-                </li>
-                <li role="button">
-                  Teknik Lise
-                </li>
-                <li role="button">
-                  Kız Meslek Lisesi
-                </li>
-                <li role="button">
-                  Sağlık Meslek Lisesi
-                </li>
-                <li role="button">
-                  Otelcilik ve Turizm Meslek Lisesi
-                </li>
-              </ul>
+      <div class="col-md-offset-6 col-md-3">
+        <form id="schoolSearch">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" id="schoolNameS" placeholder="Size en uygun okulu arayınız.."/>
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
             </div>
-          </li>
-          <hr>
-          <li>
-            <h5 role="button" id="university" class="buttonGreen" >Üniversite&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
-          </li>
-          <hr>
-          <li>
-            <h5 role="button" id="dormitory" class="buttonGreen">Yurtlar&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
-          </li>
-        </ul>
+        </form>
       </div>
 
 
-        {{#if cH_ct}}
+  </div>
 
-          <ul id="cpmL" class="nav nav-sidebar" style="overflow-y: hidden; overflow-x: auto; display:block;">
-            {{#each _cmprL}}
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="page-header">
+        <h3 class="homeCarouselFirstPageFontColor">Sayfa üst içerik bilgi alanı</h3>
+        <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1900s</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle text-center" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown" style="color:black;">Okul Türleri <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class=""><button id="preSchool" class="btn btn-lg btn-link"> <span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Anaokulu</li>
+                <li class=""><button id="primarySchool" class="btn btn-lg btn-link"> <span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>İlköğretim Okulu</li>
+                <li class=""><button id="middleSchool" class="btn btn-lg btn-link"> <span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Orta Okul</li>
 
                 <li>
-                  <div class="col-md-4">
-                    <div class="well wellOver">
-                      <img src="{{schoolImg}}" class="cmpListImg">
-                      <a role="button">{{schoolName}}</a>
-                      <button type="button" class="close cmpListClose" id="{{schoolId}}" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-              </div>
-
+                  <button id="highSchool" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#liseColMol"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Lise
+                  <div id="liseColMol" class="collapse">
+                    <ul>
+                      <li class="highType2">
+                        Hepsi
+                      </li>
+                      <li class="highType2">
+                        Öğretmen Lisesi
+                      </li>
+                      <li class="highType2">
+                        Endüstri Meslek Lisesi
+                      </li>
+                      <li class="highType2">
+                        Ticaret Meslek Lisesi
+                      </li >
+                      <li class="highType2">
+                        Teknik Lise
+                      </li>
+                      <li class="highType2">
+                        Kız Meslek Lisesi
+                      </li>
+                      <li class="highType2">
+                        Sağlık Meslek Lisesi
+                      </li>
+                      <li class="highType2">
+                        Otelcilik ve Turizm Meslek Lisesi
+                      </li>
+                    </ul>
+                  </div>
                 </li>
 
-                {{/each}}
-          </ul>
-        <br>
+                <li class=""><button id="university" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#uniColMol"> <span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Üniversite
+                  <div id="uniColMol" class="collapse">
+                    <ul>
+                      <li class="uniType2">
+                        Hepsi
+                      </li>
+                      <li class="uniType2">
+                        Lisans
+                      </li>
+                      <li class="uniType2">
+                        Önlisans
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class=""><button id="dormitory" class="btn btn-lg btn-link"> <span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Yurtlar</li>
 
-        {{#if cH_min2}}
-        <button type="button" class="btn btn-default newMessageButtonBack" id="" style="width:20%;"><b>Okulları Favorilerine Ekle</b></button>
-        <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolCompBut" style="width:50%;"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
-        <hr>
-        {{/if}}
+              </ul>
+            </li>
+        </ul>
+    </div>
+  </div>
 
-      {{/if}}
+  <hr>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-              {{> Template.dynamic template=schoolCompareCenterDynamic}}
+  {{#if cH_ct}}
+
+    <ul id="cpmL" style="overflow-x: scroll ; overflow-y: none; display:inline;">
+      {{#each _cmprL}}
+
+          <li>
+            <div class="col-md-4">
+              <div class="well wellOver">
+                <img src="{{schoolImg}}" class="cmpListImg">
+                <a role="button">{{schoolName}}</a>
+                <button type="button" class="close cmpListClose" id="{{schoolId}}" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
         </div>
-        </div>
+
+          </li>
+
+          {{/each}}
+    </ul>
+  <br>
+
+  {{#if cH_min2}}
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <button type="button" class="btn btn-default btn-block newMessageButtonBack" id=""><b>Okulları Favorilerine Ekle</b></button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="schoolCompBut"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
+    </div>
+  </div>
+
+  <hr>
+  {{/if}} <!-- cH_min2 END! -->
+
+  {{/if}} <!-- cH_cT END!-->
+
+  <div class="row">
+    <div class="col-md-6">
+        {{> Template.dynamic template=schoolCompareCenterDynamic}}
+  </div>
+  </div>
+
+  {{/if}} <!-- isPhone END! -->
+
+  {{#if isDesktop}}
+
+  <div class="row">
+    <div class="pull-left">
+      <ol class="breadcrumb" style="background-color:white;">
+          <li><a id="anaSayfaRoute" role="button">Anasayfa</a></li>
+          <li>Karşılaştırma</li>
+        </ol>
+    </div>
+
+      <div class="col-md-offset-6 col-md-3">
+        <form id="schoolSearch">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" id="schoolNameS" placeholder="Size en uygun okulu arayınız.."/>
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+        </form>
       </div>
 
+  </div>
+
+  <div class="page-header">
+    <h3 class="homeCarouselFirstPageFontColor">Sayfa üst içerik bilgi alanı</h3>
+    <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</small>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav nav-sidebar">
+        <li>
+          <h5 role="button" id="preSchool" class="buttonGreen">Anaokulu</h5>
+
+        </li>
+        <hr>
+        <li>
+          <h5 role="button" id="primarySchool" class="buttonGreen">İlköğretim Okulu&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+        </li>
+        <hr>
+        <li>
+          <h5 role="button" id="middleSchool" class="buttonGreen">Orta Okul&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+        </li>
+        <hr>
+        <li>
+          <h5 role="button" id="highSchool" class="buttonGreen" data-toggle="collapse" data-target="#liseCol">Lise&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+          <div id="liseCol" class="collapse">
+            <ul>
+              <li role="button" class="highType2">
+                Hepsi
+              </li>
+              <li role="button" class="highType2">
+                Öğretmen Lisesi
+              </li>
+              <li role="button" class="highType2">
+                Endüstri Meslek Lisesi
+              </li>
+              <li role="button" class="highType2">
+                Ticaret Meslek Lisesi
+              </li>
+              <li role="button" class="highType2">
+                Teknik Lise
+              </li>
+              <li role="button" class="highType2">
+                Kız Meslek Lisesi
+              </li>
+              <li role="button" class="highType2">
+                Sağlık Meslek Lisesi
+              </li>
+              <li role="button" class="highType2">
+                Otelcilik ve Turizm Meslek Lisesi
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr>
+        <li>
+          <h5 role="button" id="highSchool" class="buttonGreen" data-toggle="collapse" data-target="#uniCol">Üniversite&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+          <div id="uniCol" class="collapse">
+            <ul>
+              <li role="button" class="uniType2">
+                Hepsi
+              </li>
+              <li role="button" class="uniType2">
+                Lisans
+              </li>
+              <li role="button" class="uniType2">
+                Önlisans
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr>
+        <li>
+          <h5 role="button" id="dormitory" class="buttonGreen">Yurtlar&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right pull-right"></span></h5>
+        </li>
+      </ul>
     </div>
+
+
+      {{#if cH_ct}}
+
+        <ul id="cpmL" class="nav nav-sidebar" style="overflow-y: hidden; overflow-x: auto; display:block;">
+          {{#each _cmprL}}
+
+              <li>
+                <div class="col-md-4">
+                  <div class="well wellOver">
+                    <img src="{{schoolImg}}" class="cmpListImg">
+                    <a role="button">{{schoolName}}</a>
+                    <button type="button" class="close cmpListClose" id="{{schoolId}}" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+            </div>
+
+              </li>
+
+              {{/each}}
+        </ul>
+      <br>
+
+      {{#if cH_min2}}
+      <button type="button" class="btn btn-default newMessageButtonBack" id="" style="width:20%;"><b>Okulları Favorilerine Ekle</b></button>
+      <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolCompBut" style="width:50%;"><span class="glyphicon glyphicon-transfer"></span> &nbsp;<b>Okulları Karşılaştır</b></button>
+      <hr>
+      {{/if}}
+
+    {{/if}} <!-- cH_cT END!-->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+            {{> Template.dynamic template=schoolCompareCenterDynamic}}
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+  {{/if}} <!-- isDesktop END! -->
+
+
+
   </div>
 
 </template>

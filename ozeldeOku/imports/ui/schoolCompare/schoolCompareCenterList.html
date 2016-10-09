@@ -1,32 +1,73 @@
 <template name="schoolCompareCenterList">
 
-<div class="row">
-  <div class="col">
-  <form class="compList">
-    <div class="row">
-      <div class="col">
-      {{#each schools}}
-          <div class="media">
-              <div class="media-left">
-                  <a>
-                    <img class="media-object" src="{{schoolImg}}" style="width:200px; height:150px;">
-                  </a>
-              </div>
-              <div class="media-body">
-                  <a role="button" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}"><h4 class="media-heading">{{schoolName}}</h4></a>
-                  {{schoolCity}} - {{schoolCounty}}<br><br>
-                  Okul Türü : {{schoolType.schoolT}}<br><br>
-                  Telefon : {{schoolPhoneNumber}} &nbsp; Mail : {{schoolEmail}}<br><br>
-                  <input type="checkbox" class="schoolCompCheck" data-img="{{schoolImg}}" data-name="{{schoolName}}" id="{{_id}}">Bu okulu karşılaştır
-              </div>
-          </div>
-          <hr>
-      {{/each}}
+  {{#if isPhone}}
 
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <form class="compList">
+
+        {{#each schools}}
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="media">
+                    <div class="media-left">
+                        <a>
+                          <img class="media-object" src="{{schoolImg}}" style="width:90px; height:65px;">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a role="button" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}"><h4 class="media-heading">{{schoolName}}</h4></a>
+                        {{schoolCity}} - {{schoolCounty}}<br>
+                        Okul Türü : {{schoolType.schoolT}}<br>
+                        Telefon : {{schoolPhoneNumber}}<br>
+                        Mail : {{schoolEmail}}<br><br>
+                        <input type="checkbox" class="schoolCompCheck" data-img="{{schoolImg}}" data-name="{{schoolName}}" id="{{_id}}">Bu okulu karşılaştır
+                    </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+        {{/each}}
+
+      </form>
     </div>
   </div>
-  </form>
-</div>
-</div>
+
+  {{/if}} <!-- isPhone END! -->
+
+  {{#if isDesktop}}
+
+  <div class="row">
+      <div class="col">
+      <form class="compList">
+        <div class="row">
+          <div class="col">
+          {{#each schools}}
+              <div class="media">
+                  <div class="media-left">
+                      <a>
+                        <img class="media-object" src="{{schoolImg}}" style="width:200px; height:150px;">
+                      </a>
+                  </div>
+                  <div class="media-body">
+                      <a role="button" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}"><h4 class="media-heading">{{schoolName}}</h4></a>
+                      {{schoolCity}} - {{schoolCounty}}<br><br>
+                      Okul Türü : {{schoolType.schoolT}}<br><br>
+                      Telefon : {{schoolPhoneNumber}} &nbsp; Mail : {{schoolEmail}}<br><br>
+                      <input type="checkbox" class="schoolCompCheck" data-img="{{schoolImg}}" data-name="{{schoolName}}" id="{{_id}}">Bu okulu karşılaştır
+                  </div>
+              </div>
+              <hr>
+          {{/each}}
+
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  {{/if}} <!-- isDesktop END! -->
+
+
 
 </template>

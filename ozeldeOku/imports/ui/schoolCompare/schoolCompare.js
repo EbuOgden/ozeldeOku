@@ -11,6 +11,7 @@ import './schoolCompareCenterList';
 
 const __cLE_ = new ReactiveVar(0);
 const _sTy__ = new ReactiveVar();
+const _sTy2__ = new ReactiveVar();
 const _cHsC__ = new ReactiveVar(0);
 const __CHMin___ = new ReactiveVar(0);
 
@@ -63,6 +64,80 @@ Template.schoolCompareCenter.events({
     BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
   },
 
+  'click .highType2'(event){
+    event.preventDefault();
+
+    var a = event.currentTarget;
+
+    switch($(a)[0].innerText){
+      case "Hepsi" :
+        _sTy__.set("Lise");
+        _sTy2__.set(0);
+        break;
+
+      case "Öğretmen Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Öğretmen Lisesi");
+        break;
+
+      case "Endüstri Meslek Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Endüstri Meslek Lisesi");
+        break;
+
+      case "Ticaret Meslek Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Ticaret Meslek Lisesi");
+        break;
+
+      case "Teknik Lise":
+        _sTy__.set("Lise");
+        _sTy2__.set("Teknik Lise");
+        break;
+
+      case "Kız Meslek Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Kız Meslek Lise");
+        break;
+
+      case "Sağlık Meslek Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Sağlık Meslek Lise");
+        break;
+
+      case "Otelcilik ve Turizm Meslek Lisesi":
+        _sTy__.set("Lise");
+        _sTy2__.set("Otelcilik ve Turizm Meslek Lise");
+        break;
+
+    }
+
+  },
+
+  'click .uniType2'(event){
+    event.preventDefault();
+    const a = event.currentTarget;
+
+    switch($(a)[0].innerText){
+      case "Hepsi":
+          _sTy__.set("Üniversite");
+          _sTy2__.set(0);
+          break;
+
+      case "Lisans":
+          _sTy__.set("Üniversite");
+          _sTy2__.set("Lisans");
+          break;
+
+      case "Önlisans":
+        _sTy__.set("Üniversite");
+        _sTy2__.set("Önlisans");
+        break;
+
+    }
+
+  },
+
   'submit #schoolSearch'(event){
     event.preventDefault();
     const schoolName = $('#schoolNameS').val();
@@ -82,6 +157,10 @@ Template.schoolCompareCenter.events({
 
 Template.schoolCompareCenter.onRendered(() => {
   __CHMin___.set(0);
+
+  _sTy__.set(0);
+
+  _sTy2__.set(0);
 
   CompareList.remove({});
 })
@@ -146,7 +225,17 @@ Template.schoolCompareCenter.events({
 
 Template.schoolCompareCenterList.helpers({
   schools(){
-    return Schools.find({"schoolType.schoolT" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
+    if(Meteor.status().connected){
+
+      if(_sTy__.get() != 0 && _sTy2__.get() != 0){
+        return Schools.find({"schoolType.schoolT" : _sTy__.get(), "schoolType.schoolTT" : _sTy2__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
+      }
+      if(_sTy__.get() != 0){
+        return Schools.find({"schoolType.schoolT" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
+      }
+
+    }
+
   },
 
 

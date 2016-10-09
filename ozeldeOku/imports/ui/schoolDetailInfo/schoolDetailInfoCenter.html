@@ -35,7 +35,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <form id="schoolSearch">
               <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <input type="text" class="form-control" id="schoolNameS" placeholder="Size en uygun okulu arayınız.."/>
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
           </form>
@@ -212,7 +212,7 @@
 
     {{/with}}
 
-    
+
     <br><br>
 
     {{> Template.dynamic template=schoolDetailInfoCenterMid}}
@@ -231,7 +231,10 @@
 
   </div>
 
-  {{else}} <!-- isPhone ELSE! -->
+  {{/if}} <!-- isPhone END! -->
+
+  {{#if isDesktop}}
+
   <div class="container">
 
     {{#if authPers.__cont}}
@@ -255,7 +258,7 @@
       <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-6 col-lg-offset-6 col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <form id="schoolSearch">
               <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Size en uygun okulu arayınız.."/>
+                <input type="text" class="form-control" id="schoolNameS" placeholder="Size en uygun okulu arayınız.."/>
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
           </form>
@@ -426,7 +429,7 @@
 
 
   </div>
-  {{/if}} <!-- isPhone END! -->
+  {{/if}} <!-- isDesktop END! -->
 
   <br><br><br>
 

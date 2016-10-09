@@ -49,6 +49,20 @@ Template.schoolProfileCenter.events({
   'click #messages'(event){
     event.preventDefault();
     BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessages', schoolProfileCenterBottom : 'homeBottom'});
+  },
+
+  'submit #schoolSearch'(event){
+    event.preventDefault();
+    const schoolName = $('#schoolNameS').val();
+
+    if(isEmpty(schoolName)){
+      alert("Lütfen okul ismi giriniz");
+      return;
+    }
+    else{
+      FlowRouter.go('/aramaSonuclari?okulIsmi=' + schoolName);
+      return;
+    }
   }
 
 

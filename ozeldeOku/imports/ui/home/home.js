@@ -127,16 +127,16 @@ Template.homeLayout.events({
 
   },
 
-  'mouseenter .dropHov'(event){
-    $('.hovCenter').css('opacity', '0.7');
-    $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.9)');
-
-  },
-
-  'mouseleave .dropHov'(event){
-    $('.hovCenter').css('opacity', '1.0');
-    $('.hovCenter').css('background', 'rgba(250, 250, 250, 0.0)');
-  },
+  // 'mouseenter .dropHov'(event){
+  //   $('.hovCenter').css('opacity', '0.7');
+  //   $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.9)');
+  //
+  // },
+  //
+  // 'mouseleave .dropHov'(event){
+  //   $('.hovCenter').css('opacity', '1.0');
+  //   $('.hovCenter').css('background', 'rgba(250, 250, 250, 0.0)');
+  // },
 
 })
 

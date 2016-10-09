@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   reCAPTCHA.config({
-    publickey: "6LeqWx8TAAAAAH77Nn1-i3csIZoyM-ozhzdyKJjw"
+    publickey: "6LdYnggUAAAAAFFwwDSnL63JiNpgCtVldeI_-xmk"
   })
+
+  filepicker.setKey("A4HBqC4BTSJqn2zLg7FCYz");
 })

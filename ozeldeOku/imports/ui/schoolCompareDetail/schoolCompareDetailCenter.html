@@ -13,13 +13,510 @@
               <img src="{{school.school.schoolImg}}" style="width: 125px; height: 100px;" class="img-responsive">
 
               <br>
-              <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
+              <a role="button" class="count_2_mob_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
 
-              {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
+              <h5 class="ellipsis">{{school.school.schoolCity}}<br>
+
+              {{school.school.schoolCounty}}
+
+              {{school.school.schoolType}}<br></h5>
+
+              <a href="http://{{school.school.schoolWebSite}}" target="_blank" class="count_2_mob_web">{{school.school.schoolWebSite}}</a>
+
+          </center>
+      </div>
+      {{/each}}
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="well" style="text-align:center;"><b>Detaylı Bilgiler</b></div>
+        </div>
+      </div>
+      <div class="row">
+        {{#each school in eachSchool}}
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table class="table">
+              <caption>{{school.school.schoolName}}</caption>
+              <tr>
+                <th><span class="label label-primary">Popüler Departmanlar</span></th>
+              </tr>
+
+              <br>
+
+              <tr>
+                <td >1.</td>
+                <td class="pull-right">{{school.popularDepartments.[0]}}</td>
+              </tr>
+              <tr>
+                <td >2.</td>
+                <td class="pull-right">{{school.popularDepartments.[1]}}</td>
+              </tr>
+              <tr>
+                <td >3.</td>
+                <td class="pull-right">{{school.popularDepartments.[2]}}</td>
+              </tr>
+
+            </table>
+          </div>
+
+          {{/each}}
+      </div>
+
+      <hr>
+
+      <div class="row">
+
+        {{#each school in eachSchool}}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table class="table">
+            <caption>{{school.school.schoolName}}</caption>
+            <tr>
+              <th><span class="label label-primary">Öğrenci Sayısı Bilgileri</span></th>
+
+            </tr>
+
+            <br>
+
+            {{#with school.studentCountInfos}}
+
+            <tr>
+              <td> Lisans Öğrenci Sayısı :  </td>
+              <td class="pull-right"> {{license}}</td>
+            </tr>
+            <tr>
+              <td> Master Öğrenci Sayısı :  </td>
+              <td class="pull-right"> {{postGraduate}}</td>
+            </tr>
+            <tr>
+              <td>Doktora Öğrenci Sayısı :  </td>
+              <td class="pull-right"> {{doctorate}}</td>
+            </tr>
+            <tr>
+              <td> Öğrenci Başına Profesör :  </td>
+              <td class="pull-right"> {{stuCountPerProf}}</td>
+            </tr>
+
+            {{/with}}
+          </table>
+
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="row">
+        {{#each school in eachSchool}}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table class="table">
+            <tr>
+              <th><span class="label label-primary ellipsis">Öğrenci Kontenjan ve Burs Bilgileri</span></th>
+
+            </tr>
+            <caption>{{school.school.schoolName}}</caption>
+
+            <br>
+
+            <div style="height: 300px; overflow-y: scroll;" class="well">
+                <ul class="nav nav-sidebar">
+                  {{#each school.quotaInfos}}
+                  <li>
+                    <center><span class="label label-info">{{departmentName}}</span></center>
+                  </li>
+                  <li>
+                    Toplam Öğrenci Kontenjanı : <b class="pull-right">{{quota}}</b>
+                  </li>
+                  <li>
+                    %100 Burs Kontenjan : <b class="pull-right">{{fullScholarQuota}}</b>
+                  </li>
+                  <li>
+                    %75 Burs Kontenjan : <b class="pull-right">{{Scholar75Quota}}</b>
+                  </li>
+                  <li>
+                    %50 Burs Kontenjan : <b class="pull-right">{{Scholar50Quota}}</b>
+                  </li>
+                  <li>
+                    %25 Burs Kontenjan : <b class="pull-right">{{Scholar25Quota}}</b>
+                  </li>
+                  <br>
+                  {{/each}}
+                </ul>
+          </div>
+
+          </table>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="row">
+        {{#each school in eachSchool}}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table class="table">
+            <tr>
+              <th><span class="label label-primary ellipsis">Ortalama Ücret</span></th>
+
+            </tr>
+            <caption>{{school.school.schoolName}}</caption>
+
+            <br>
+
+            <tr>
+              <td>{{school.financialInfos.price}}</td>
+            </tr>
+
+          </table>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="row">
+        {{#each school in eachSchool}}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table class="table">
+              <tr>
+                <th><span class="label label-primary ellipsis">Burs Bilgileri</span></th>
+
+              </tr>
+              <caption><b>{{school.school.schoolName}}</b></caption>
+
+              <br>
+
+              {{#with school.scholarShipInfos}}
+
+                {{#if athleteScholar.isHave}}
+                <tr>
+                  <td>Atlet Burs Oranı : </td>
+                  <td>%{{athleteScholar.quotaRate}}</td>
+                </tr>
+                {{/if}}
+
+
+                {{#if siblingScholar.isHave}}
+                <tr>
+                  <td>Kardeş Burs Oranı : </td>
+                  <td>% {{siblingScholar.quotaRate}}</td>
+                </tr>
+                {{/if}}
+
+
+
+                {{#if firstSelectScholar.isHave}}
+                <tr>
+                  <td>İlk Tercih Burs Oranı : </td>
+                  <td>% {{firstSelectScholar.quotaRate}}</td>
+                </tr>
+                {{/if}}
+
+
+
+                {{#if retiredScholar.isHave}}
+                <tr>
+                  <td>Emekli Burs Oranı : </td>
+                  <td>% {{retiredScholar.quotaRate}}</td>
+                </tr>
+                {{/if}}
+
+
+
+                {{#if academicScholar.isHave}}
+                <tr>
+                  <td>Akademik Burs Oranı : </td>
+                  <td>% {{academicScholar.quotaRate}}</td>
+                </tr>
+                {{/if}}
+
+
+              {{#if othersLength others}}
+              <br>
+              <tr>
+                <th><span class="label label-primary ellipsis">Kuruma Ait Burslar</span></th>
+
+              </tr>
+                <br>
+              {{#each others}}
+                <tr>
+                    <td>{{otherScholarName}} : </td>
+                    <td>% {{quotaRate}}</td>
+                </tr>
+              {{/each}}
+              {{/if}}
+
+              {{/with}}
+
+            </table>
+            <hr>
+      </div>
+      {{/each}}
+
+      </div>
+      {{/if}} <!-- COUNT 2 END!-->
+
+
+
+      {{#if count___ schoolC_}} <!-- COUNT 3 -->
+
+
+            {{#each school in eachSchool}}
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              <center>
+
+                    <img src="{{school.school.schoolImg}}" style="width: 100px; height: 75px;" class="img-responsive">
+
+                    <br>
+                    <a role="button" class="count_3_mob_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
+
+                    <h5 class="ellipsis">{{school.school.schoolCity}}<br>
+
+                    {{school.school.schoolCounty}}
+
+                    {{school.school.schoolType}}<br>
+
+                    <a href="http://{{school.school.schoolWebSite}}" target="_blank" class="count_3_mob_web">{{school.school.schoolWebSite}}</a></h5>
+
+                </center>
+            </div>
+            {{/each}}
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="well" style="text-align:center;"><b>Detaylı Bilgiler</b></div>
+              </div>
+            </div>
+            <div class="row">
+              {{#each school in eachSchool}}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <table class="table">
+                    <caption>{{school.school.schoolName}}</caption>
+                    <tr>
+                      <th><span class="label label-primary">Popüler Departmanlar</span></th>
+                    </tr>
+
+                    <br>
+
+                    <tr>
+                      <td >1.</td>
+                      <td class="pull-right">{{school.popularDepartments.[0]}}</td>
+                    </tr>
+                    <tr>
+                      <td >2.</td>
+                      <td class="pull-right">{{school.popularDepartments.[1]}}</td>
+                    </tr>
+                    <tr>
+                      <td >3.</td>
+                      <td class="pull-right">{{school.popularDepartments.[2]}}</td>
+                    </tr>
+
+                  </table>
+                </div>
+
+                {{/each}}
+            </div>
+
+            <div class="row">
+
+              {{#each school in eachSchool}}
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table">
+                  <caption>{{school.school.schoolName}}</caption>
+                  <tr>
+                    <th><span class="label label-primary">Öğrenci Sayısı Bilgileri</span></th>
+
+                  </tr>
+
+                  <br>
+
+                  {{#with school.studentCountInfos}}
+
+                  <tr>
+                    <td> Lisans Öğrenci Sayısı :  </td>
+                    <td class="pull-right"> {{license}}</td>
+                  </tr>
+                  <tr>
+                    <td> Master Öğrenci Sayısı :  </td>
+                    <td class="pull-right"> {{postGraduate}}</td>
+                  </tr>
+                  <tr>
+                    <td>Doktora Öğrenci Sayısı :  </td>
+                    <td class="pull-right"> {{doctorate}}</td>
+                  </tr>
+                  <tr>
+                    <td> Öğrenci Başına Profesör :  </td>
+                    <td class="pull-right"> {{stuCountPerProf}}</td>
+                  </tr>
+
+                  {{/with}}
+                </table>
+
+              </div>
+              {{/each}}
+            </div>
+
+            <div class="row">
+              {{#each school in eachSchool}}
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table">
+                  <tr>
+                    <th><span class="label label-primary ellipsis">Öğrenci Kontenjan ve Burs Bilgileri</span></th>
+
+                  </tr>
+                  <caption>{{school.school.schoolName}}</caption>
+
+                  <br>
+
+                  <div style="height: 300px; overflow-y: scroll;" class="well">
+                      <ul class="nav nav-sidebar">
+                        {{#each school.quotaInfos}}
+                        <li>
+                          <center><span class="label label-info">{{departmentName}}</span></center>
+                        </li>
+                        <li>
+                          Toplam Öğrenci Kontenjanı : <b class="pull-right">{{quota}}</b>
+                        </li>
+                        <li>
+                          %100 Burs Kontenjan : <b class="pull-right">{{fullScholarQuota}}</b>
+                        </li>
+                        <li>
+                          %75 Burs Kontenjan : <b class="pull-right">{{Scholar75Quota}}</b>
+                        </li>
+                        <li>
+                          %50 Burs Kontenjan : <b class="pull-right">{{Scholar50Quota}}</b>
+                        </li>
+                        <li>
+                          %25 Burs Kontenjan : <b class="pull-right">{{Scholar25Quota}}</b>
+                        </li>
+                        <br>
+                        {{/each}}
+                      </ul>
+                </div>
+
+                </table>
+              </div>
+              {{/each}}
+            </div>
+
+            <div class="row">
+              {{#each school in eachSchool}}
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table">
+                  <tr>
+                    <th><span class="label label-primary ellipsis">Ortalama Ücret</span></th>
+
+                  </tr>
+                  <caption>{{school.school.schoolName}}</caption>
+
+                  <br>
+
+                  <tr>
+                    <td>{{school.financialInfos.price}}</td>
+                  </tr>
+
+                </table>
+              </div>
+              {{/each}}
+            </div>
+
+            <div class="row">
+              {{#each school in eachSchool}}
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <table class="table">
+                    <tr>
+                      <th><span class="label label-primary ellipsis">Burs Bilgileri</span></th>
+
+                    </tr>
+                    <caption><b>{{school.school.schoolName}}</b></caption>
+
+                    <br>
+
+                    {{#with school.scholarShipInfos}}
+
+                      {{#if athleteScholar.isHave}}
+                      <tr>
+                        <td>Atlet Burs Oranı : </td>
+                        <td>%{{athleteScholar.quotaRate}}</td>
+                      </tr>
+                      {{/if}}
+
+
+                      {{#if siblingScholar.isHave}}
+                      <tr>
+                        <td>Kardeş Burs Oranı : </td>
+                        <td>% {{siblingScholar.quotaRate}}</td>
+                      </tr>
+                      {{/if}}
+
+
+
+                      {{#if firstSelectScholar.isHave}}
+                      <tr>
+                        <td>İlk Tercih Burs Oranı : </td>
+                        <td>% {{firstSelectScholar.quotaRate}}</td>
+                      </tr>
+                      {{/if}}
+
+
+
+                      {{#if retiredScholar.isHave}}
+                      <tr>
+                        <td>Emekli Burs Oranı : </td>
+                        <td>% {{retiredScholar.quotaRate}}</td>
+                      </tr>
+                      {{/if}}
+
+
+
+                      {{#if academicScholar.isHave}}
+                      <tr>
+                        <td>Akademik Burs Oranı : </td>
+                        <td>% {{academicScholar.quotaRate}}</td>
+                      </tr>
+                      {{/if}}
+
+
+                    {{#if othersLength others}}
+                    <br>
+                    <tr>
+                      <th><span class="label label-primary ellipsis">Kuruma Ait Burslar</span></th>
+
+                    </tr>
+                      <br>
+                    {{#each others}}
+                      <tr>
+                          <td>{{otherScholarName}} : </td>
+                          <td>% {{quotaRate}}</td>
+                      </tr>
+                    {{/each}}
+                    {{/if}}
+
+                    {{/with}}
+
+                  </table>
+                  <hr>
+            </div>
+            {{/each}}
+
+            </div>
+
+
+      {{/if}} <!-- COUNT 3 END! -->
+
+
+
+      {{#if count____ schoolC_}} <!-- COUNT 4  -->
+
+      {{#each school in eachSchool}}
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <center>
+
+              <img src="{{school.school.schoolImg}}" style="width: 75px; height: 50px;" class="img-responsive">
+
+              <br>
+              <a role="button" class="count_4_mob_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}"><h5 class="ellipsis">{{school.school.schoolName}}</h5></a><br>
+
+              <h5 class="ellipsis">{{school.school.schoolCity}}<br>
+
+              {{school.school.schoolCounty}}
 
               {{school.school.schoolType}}<br>
 
-              {{school.school.schoolWebsite}}
+              <a href="http://{{school.school.schoolWebSite}}" target="_blank" class="count_4_mob_web">{{school.school.schoolWebSite}}</a></h5>
 
           </center>
       </div>
@@ -243,7 +740,9 @@
       {{/each}}
 
       </div>
-      {{/if}}
+
+
+      {{/if}} <!-- COUNT 4 END! -->
 
 
     {{/if}}
@@ -269,13 +768,13 @@
                 <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;" class="img-responsive">
 
                 <br>
-                <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
+                <a role="button" class="count_2_web_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
 
                 {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
 
                 {{school.school.schoolType}}<br>
 
-                {{school.school.schoolWebsite}}
+                <a class="count_2_web_web" href="http://{{school.school.schoolWebSite}}" target="_blank">{{school.school.schoolWebSite}}</a>
 
             </center>
           </div>
@@ -446,13 +945,13 @@
             <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;">
 
             <br>
-            <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
+            <a role="button" class="count_3_web_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
 
             {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
 
             {{school.school.schoolType}}<br>
 
-            {{school.school.schoolWebsite}}
+            <a class="count_3_web_web" href="http://{{school.school.schoolWebSite}}" target="_blank">{{school.school.schoolWebSite}}</a>
           </center>
       </div>
       {{/each}}
@@ -610,13 +1109,13 @@
             <img src="{{school.school.schoolImg}}" style="width: 250px; height: 200px;" class="img-responsive">
 
             <br>
-            <a role="button" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
+            <a role="button" class="count_4_web_our" href="/okulTuru/{{school.school.schoolType}}/{{school.school.schoolName}}?isval={{isValidate}}&schld={{school.schoolId}}&trd={{tradeName}}">{{school.school.schoolName}}</a><br>
 
             {{school.school.schoolCity}} - {{school.school.schoolCounty}}<br>
 
             {{school.school.schoolType}}<br>
 
-            {{school.school.schoolWebsite}}
+            <a class="count_4_web_web" href="http://{{school.school.schoolWebSite}}" target="_blank">{{school.school.schoolWebSite}}</a>
           </center>
       </div>
 
