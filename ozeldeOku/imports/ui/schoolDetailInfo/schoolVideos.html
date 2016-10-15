@@ -1,7 +1,20 @@
 <template name="schoolVideos">
 
+  {{#if isPhone}}
+
   {{#with schoolVideos}}
     {{#if countZero count}}
+
+    <div class="owl-carousel-mobile">
+      {{#each videos}}
+          <center><video width="200" controls>
+              <source src="{{videoUrl}}">
+              Lütfen başka bir internet tarayıcısından giriş yapınız.
+          </video></center>
+      {{/each}}
+
+    </div>
+
 
     {{else}}
     <div class="row">
@@ -11,5 +24,33 @@
     </div>
     {{/if}}
   {{/with}}
+
+  {{/if}} <!-- isPhone END! -->
+
+  {{#if isDesktop}}
+
+  {{#with schoolVideos}}
+    {{#if countZero count}}
+
+    <div class="owl-carousel-desktop">
+      {{#each videos}}
+          <center><video height="250" controls>
+              <source src="{{videoUrl}}">
+              Lütfen başka bir internet tarayıcısından giriş yapınız.
+          </video></center>
+      {{/each}}
+
+    </div>
+
+    {{else}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <center><h5>Okula Ait Video Bulunmamaktadır.</h5></center>
+      </div>
+    </div>
+    {{/if}}
+  {{/with}}
+
+  {{/if}} <!-- isDesktop END! -->
 
 </template>

@@ -127,17 +127,6 @@ Template.homeLayout.events({
 
   },
 
-  // 'mouseenter .dropHov'(event){
-  //   $('.hovCenter').css('opacity', '0.7');
-  //   $('.hovCenter').css('background', 'rgba(0, 0, 0, 0.9)');
-  //
-  // },
-  //
-  // 'mouseleave .dropHov'(event){
-  //   $('.hovCenter').css('opacity', '1.0');
-  //   $('.hovCenter').css('background', 'rgba(250, 250, 250, 0.0)');
-  // },
-
 })
 
 Template.homeLayout.onRendered(() => {
@@ -254,6 +243,11 @@ Template.homeCenter.events({
         $('#schoolTypeTwo').append('<option>Kız Meslek Lisesi </option>' );
         $('#schoolTypeTwo').append('<option>Sağlık Meslek Lisesi </option>' );
         $('#schoolTypeTwo').append('<option>Otelcilik ve Turizm Meslek Lisesi </option>' );
+      }
+      if(schoolType == "Üniversite"){
+        $('#schoolTypeTwo').append('<option>Üniversite </option>' );
+        $('#schoolTypeTwo').append('<option>Lisans </option>' );
+        $('#schoolTypeTwo').append('<option>Önlisans </option>' );
       }
       else{
         $('#schoolTypeTwo').append('<option selected disabled></option>' );

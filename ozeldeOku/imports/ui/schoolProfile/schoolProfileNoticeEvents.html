@@ -1,0 +1,219 @@
+<template name="schoolProfileNoticeEvents">
+
+  {{#if isPhone}}
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        {{#with notices}}
+          {{#if countZero count}}
+
+
+            <ul>
+              {{#each notice}}
+                <li style="display:inline;" role="button" class="dn"><b>{{noticeTitle}}</b></li>
+                /
+              {{/each}}
+            </ul>
+
+
+
+          {{/if}}
+        {{/with}}
+
+        <button class="btn btn-block newSchoolRegisterButton" id="notice" data-toggle="modal" data-target="#schoolNoticeAdd">Duyuru Eklemek İçin Tıklayın</button>
+
+        <div class="modal fade" id="schoolNoticeAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <h4 class="modal-title" id="myModalLabel">Duyuru Ekle</h4>
+              </div>
+              <div class="modal-body">
+                <input type="text" placeholder="Duyuru Başlığı" id="noticeTitle">
+                <br>
+                <br>
+                <textarea rows="5" class="form-control" placeholder="Duyuru İçeriği" id="noticeMessage"></textarea>
+
+              </div>
+
+                <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-default" onclick="addNotice(document.getElementById('noticeTitle').value, document.getElementById('noticeMessage').value)">Ekle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        {{#with events}}
+          {{#if countZero count}}
+
+            <ul>
+              {{#each event}}
+                <li style="display:inline;" role="button" class="de">{{eventTitle}}</li>
+                /
+              {{/each}}
+            </ul>
+
+
+          {{/if}}
+        {{/with}}
+
+        <button class="btn btn-block newSchoolRegisterButton" id="event" data-toggle="modal" data-target="#schoolEventAdd">Etkinlik Eklemek İçin Tıklayın</button>
+
+        <div class="modal fade" id="schoolEventAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <h4 class="modal-title" id="myModalLabel">Duyuru Ekle</h4>
+              </div>
+              <div class="modal-body">
+                <input type="text" placeholder="Duyuru Başlığı" id="noticeTitle">
+                <br>
+                <br>
+                <textarea rows="5" class="form-control" placeholder="Duyuru İçeriği" id="noticeMessage"></textarea>
+
+              </div>
+
+                <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-default" onclick="addEvent(document.getElementById('noticeTitle').value, document.getElementById('noticeMessage').value)">Ekle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  </div>
+
+  {{/if}} <!-- isPhone END! -->
+
+  {{#if isDesktop}}
+
+  <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 ">
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        {{#with notices}}
+          {{#if countZero count}}
+
+          <ul>
+            {{#each notice}}
+              <li style="display:inline;" role="button" class="dn">{{noticeTitle}}</li>
+              /
+            {{/each}}
+          </ul>
+          {{/if}}
+        {{/with}}
+
+        <button class="btn btn-block newSchoolRegisterButton" id="notice" data-toggle="modal" data-target="#schoolNoticeAdd">Duyuru Eklemek İçin Tıklayın</button>
+
+        <div class="modal fade" id="schoolNoticeAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <h4 class="modal-title" id="myModalLabel">Duyuru Ekle</h4>
+              </div>
+              <div class="modal-body">
+                <input type="text" placeholder="Duyuru Başlığı" id="noticeTitle">
+                <br>
+                <br>
+                <textarea rows="5" class="form-control" placeholder="Duyuru İçeriği" id="noticeMessage"></textarea>
+              </div>
+
+                <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-default" onclick="addNotice(document.getElementById('noticeTitle').value, document.getElementById('noticeMessage').value)">Ekle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        {{#with events}}
+          {{#if countZero count}}
+
+          <ul>
+            {{#each event}}
+              <li style="display:inline;" role="button" class="de">{{eventTitle}}</li>
+              /
+            {{/each}}
+          </ul>
+
+          {{/if}}
+        {{/with}}
+
+        <button class="btn btn-block newSchoolRegisterButton" id="event" data-toggle="modal" data-target="#schoolEventAdd">Etkinlik Eklemek İçin Tıklayın</button>
+
+        <div class="modal fade" id="schoolEventAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <h4 class="modal-title" id="myModalLabel">Etkinlik Ekle</h4>
+              </div>
+              <div class="modal-body">
+                <input type="text" placeholder="Etkinlik Başlığı" id="eventTitle">
+                <br>
+                <br>
+                <textarea rows="5" class="form-control" placeholder="Etkinlik İçeriği" id="eventMessage"></textarea>
+
+              </div>
+
+                <br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-default" onclick="addEvent(document.getElementById('eventTitle').value, document.getElementById('eventMessage').value)">Ekle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  </div>
+
+
+
+  {{/if}} <!-- isDesktop END! -->
+
+</template>

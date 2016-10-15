@@ -9,6 +9,12 @@ import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.
 import { Messages } from '/imports/api/collections/messages.js';
 import { MessageRooms } from '/imports/api/collections/messageRooms.js';
 
+import { SchoolNews } from '/imports/api/collections/schoolNews.js';
+import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
+import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
+import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
+import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
+
 import { schoolInfosForComp } from '/imports/api/client/schoolInfosClass.js'
 import { depObjForRet } from '/imports/api/client/departmentObjClassForReturn.js';
 import { otherScholarInfos } from '/imports/api/client/otherScholarClass.js';
@@ -19,6 +25,8 @@ import './schoolProfileSchoolInfos.html';
 import './schoolProfileCenterUserInfos.html';
 import './schoolProfileMessages.html';
 import './schoolProfileMessageRead.html';
+import './schoolProfileNoticeEvents.html';
+import './schoolProfilePhotosVideos.html';
 
 import '../../../client/lib/chosen.jquery.min.js';
 
@@ -49,6 +57,16 @@ Template.schoolProfileCenter.events({
   'click #messages'(event){
     event.preventDefault();
     BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileMessages', schoolProfileCenterBottom : 'homeBottom'});
+  },
+
+  'click #noticeEvents'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfileNoticeEvents', schoolProfileCenterBottom : 'homeBottom'});
+  },
+
+  'click #photosVideos'(event){
+    event.preventDefault();
+    BlazeLayout.render('schoolProfileCenter', {schoolProfileCenterInfosTop: 'homeLayout', schoolProfileCenterInfosDynamic : 'schoolProfilePhotosVideos', schoolProfileCenterBottom : 'homeBottom'});
   },
 
   'submit #schoolSearch'(event){
@@ -122,14 +140,21 @@ Template.schoolProfileCenterUserInfos.helpers({
 })
 
 Template.schoolProfileCenterUserInfos.events({
-  'keypress .schoolInfoCnt'(event){
+  'click #updateSchoolInfosBut'(event){
+    event.preventDefault();
     const form = $('#schoolInfosForm :input');
+
+    var a = false;
     if(form.length > 0){
       for(let i = form.length; i--;){
 
         if(form[i].type != "button"){
           if(isEmpty($(form[i]).val())){
-            console.log("empty");
+          }
+          else{
+            a = true;
+            break;
+
           }
 
 
@@ -137,6 +162,147 @@ Template.schoolProfileCenterUserInfos.events({
 
       }
     }
+    if(a){
+      var b = [];
+
+      for(let i = form.length; i--;){
+        if(form[i].type != "button"){
+          if(isEmpty($(form[i]).val())){
+          }
+          else{
+            var obj = {
+              id : $(form[i])[0].id,
+              val : $(form[i]).val()
+            }
+            b.push(obj);
+          }
+
+
+        }
+      }
+
+      if(b.length > 0){
+          const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})
+          for(let i = b.length; i--;){
+            if(b[i].id == "schoolName"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "schoolName" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "tradeName"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "tradeName" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "taxNo"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "taxNo" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "autPerson"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "authorizedPerson" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "autPersonEmail"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "schoolEmail" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "phoneNum"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "schoolPhoneNumber" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "faxNum"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "schoolFaxNumber" : b[i].val
+                }
+              })
+
+            }
+            else if(b[i].id == "address"){
+              Schools.update({
+                "_id" : s._id
+              }, {
+                $set : {
+                  "schoolAddress" : b[i].val
+                }
+              })
+
+            }
+          }
+      }
+
+    }
+
+
+
+  },
+
+  'click #updatePass'(event){
+    event.preventDefault();
+
+    const old = $('#oldPass').val();
+    const newP = $('#newPass').val();
+    const newPR = $('#newPassR').val();
+    if(isEmpty(old) || isEmpty(newP) || isEmpty(newPR)){
+      alert("Lütfen tüm kutucukları doldurunuz.");
+      return;
+    }
+
+    if(isEqual(newP, newPR)){
+      Accounts.changePassword(old, newPR, (error) => {
+        if(error){
+          console.log(error);
+        }
+        else{
+          alert("Şifreniz başarılı bir şekilde güncellenmiştir.");
+          $('#oldPass').val("");
+          $('#newPass').val("");
+          $('#newPassR').val("");
+        }
+      })
+
+    }
+    else{
+      alert("Lütfen yeni şifrenizi tekrar kontrol ediniz.");
+      return;
+    }
+
   }
 })
 
@@ -795,6 +961,217 @@ Template.schoolProfileMessageRead.helpers({
     }
   },
 
+
+})
+
+
+Template.schoolProfileNoticeEvents.events({
+
+
+})
+
+Template.schoolProfilePhotosVideos.onRendered(() => {
+  $(".owl-carousel-desktop").owlCarousel({
+    items : 1,
+  });
+
+  $(".owl-carousel-mobile").owlCarousel({
+    items : 1
+  });
+})
+
+Template.schoolProfilePhotosVideos.helpers({
+  photos(){
+    if(Meteor.status().connected){
+      const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      const a = SchoolPhotos.find({"schoolId" : s._id});
+
+      if(a){
+        return {
+          count : a.count(),
+          photo : a
+        }
+      }
+    }
+  },
+
+  videos(){
+    if(Meteor.status().connected){
+      const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      const a = SchoolVideos.find({"schoolId" : s._id});
+
+      if(a){
+        return {
+          count : a.count(),
+          video : a
+        }
+      }
+    }
+  },
+})
+
+Template.schoolProfilePhotosVideos.events({
+
+  'click .dp'(event){
+    event.preventDefault();
+
+    if(confirm("Fotoğrafı silmek istediğinize emin misiniz?")){
+      SchoolPhotos.remove({"_id" : this._id});
+    }
+    else{
+      return;
+    }
+  },
+
+  'click .dv'(event){
+    event.preventDefault();
+
+    if(confirm("Videoyu silmek istediğinize emin misiniz?")){
+      SchoolVideos.remove({"_id" : this._id});
+    }
+    else{
+      return;
+    }
+  },
+
+  'click #photo'(event){
+    event.preventDefault();
+
+    filepicker.pick(
+         {
+            mimetype: 'image/*',
+            container: 'window',
+            services: ['COMPUTER'],
+            language : 'tr',
+
+          },
+          function(Blob){
+
+            const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+            setTimeout(() => {
+              if(confirm(Blob.filename + " adlı dosyayı yüklemek istediğinizden emin misiniz ?")){
+
+
+                SchoolPhotos.insert({
+                  schoolId : s._id,
+                  photoUrl : Blob.url
+                })
+
+              }
+              else{
+                alert("Dosya yükleme işlemi iptal oldu.");
+              }
+
+            }, 1000);
+
+          },
+          function(FPError){
+
+          }
+    );
+  },
+
+  'click #video'(event){
+    event.preventDefault();
+
+    filepicker.pick(
+         {
+            extensions : ['3g2','3gp','3gp2','3gpp','3gpp2','aac','ac3','eac3','ec3','f4a',
+  'f4b','f4v','flv','highwinds','m4a','m4b','m4r','m4v','mkv','mov',
+  'mp3','mp4','oga','ogg','ogv','ogx','ts','webm','wma','wmv'],
+            container: 'window',
+            services: ['COMPUTER'],
+            language : 'tr',
+
+          },
+          function(Blob){
+            console.log(Blob);
+
+            const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+            setTimeout(() => {
+              if(confirm(Blob.filename + " adlı dosyayı yüklemek istediğinizden emin misiniz ? ")){
+
+                  SchoolVideos.insert({
+                    schoolId : s._id,
+                    videoUrl : Blob.url
+                  })
+
+              }
+              else{
+                alert("Dosya yükleme işlemi iptal oldu.");
+              }
+
+            }, 1000);
+
+
+
+          },
+          function(FPError){
+
+          }
+    );
+  }
+
+
+})
+
+Template.schoolProfileNoticeEvents.helpers({
+  events(){
+    if(Meteor.status().connected){
+      const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      const a = SchoolEvents.find({schoolId : s._id});
+
+      if(a){
+        return {
+          count : a.count(),
+          event : a
+        }
+      }
+    }
+  },
+
+  notices(){
+    if(Meteor.status().connected){
+      const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      const a = SchoolNotice.find({schoolId : s._id});
+
+      if(a){
+        return {
+          count : a.count(),
+          notice : a
+        }
+      }
+    }
+  }
+})
+
+Template.schoolProfileNoticeEvents.events({
+  'click .dn'(event){
+    event.preventDefault();
+
+    if(confirm(this.noticeTitle + " bildirimini silmek istediğinizden emin misiniz?")){
+      SchoolNotice.remove({"_id" : this._id});
+    }
+    else{
+      return;
+    }
+  },
+
+  'click .de'(event){
+    event.preventDefault();
+
+    if(confirm(this.eventTitle + " etkinliğini silmek istediğinizden emin misiniz?")){
+      SchoolEvents.remove({"_id" : this._id});
+    }
+    else{
+      return;
+    }
+  }
 
 })
 

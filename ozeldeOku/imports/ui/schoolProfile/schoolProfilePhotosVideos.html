@@ -1,0 +1,117 @@
+<template name="schoolProfilePhotosVideos">
+
+
+    {{#if isPhone}}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          {{#with photos}}
+            {{#if countZero count}}
+                <div class="owl-carousel-mobile">
+                  {{#each photo}}
+                    <center><img src="{{photoUrl}}" role="button" class="dp fitImage"></center>
+                  {{/each}}
+
+                </div>
+            {{/if}}
+
+          {{/with}}
+
+          <button class="btn btn-block newSchoolRegisterButton" id="photo">Fotoğraf Eklemek İçin Tıklayın</button>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          {{#with videos}}
+            {{#if countZero count}}
+                <div class="owl-carousel-mobile">
+                  {{#each video}}
+                  <center><video width="200" controls class="dv">
+                      <source src="{{videoUrl}}">
+                      Lütfen başka bir internet tarayıcısından giriş yapınız.
+                  </video></center>
+                  {{/each}}
+
+                </div>
+            {{/if}}
+
+          {{/with}}
+
+
+          <button class="btn btn-block newSchoolRegisterButton" id="video">Video Eklemek İçin Tıklayın</button>
+        </div>
+    </div>
+
+    </div>
+
+    {{/if}} <!-- isPhone END! -->
+
+    {{#if isDesktop}}
+
+    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+
+      <br>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          {{#with photos}}
+            {{#if countZero count}}
+
+            <div class="owl-carousel-desktop">
+              {{#each photo}}
+                <center><img src="{{photoUrl}}" role="button" class="dp fitImage"></center>
+              {{/each}}
+
+            </div>
+
+
+
+            {{/if}}
+
+          {{/with}}
+
+          <button class="btn btn-block newSchoolRegisterButton" id="photo">Fotoğraf Eklemek İçin Tıklayın</button>
+        </div>
+
+      </div>
+
+      <br><br>
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          {{#with videos}}
+            {{#if countZero count}}
+                <div class="owl-carousel-mobile">
+                  {{#each video}}
+                  <center><video height="250" controls class="dv">
+                      <source src="{{videoUrl}}">
+                      Lütfen başka bir internet tarayıcısından giriş yapınız.
+                  </video></center>
+                  {{/each}}
+
+                </div>
+            {{/if}}
+
+          {{/with}}
+          <button class="btn btn-block newSchoolRegisterButton" id="video">Video Eklemek İçin Tıklayın</button>
+        </div>
+    </div>
+
+
+    </div>
+
+
+
+    {{/if}} <!-- isDesktop END! -->
+
+
+
+</template>

@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { owlCarousel } from 'meteor/richsilv:owl-carousel';
 
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
 import { Schools } from '/imports/api/collections/schools.js';
@@ -25,6 +26,8 @@ const __cAUp__ = new ReactiveVar(0);
 const _mI = new ReactiveVar(0);
 
 const __mI = new ReactiveVar(0);
+
+const __sP = new ReactiveVar();
 
 Template.schoolDetailInfoCenter.helpers({
   schoolInfo(){
@@ -289,10 +292,13 @@ Template.schoolEvents.helpers({
       const __sEvents = SchoolEvents.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
 
       if(__sEvents){
+        console.log(__sEvents.fetch());
         return {
-          events : __sEvents,
+          event : __sEvents,
           count : __sEvents.count()
         }
+      }
+      else{
       }
     }
   },
@@ -310,10 +316,29 @@ Template.schoolEvents.helpers({
   }
 })
 
+Template.schoolEvents.events({
+  'click .schoolEventModal'(event){
+    event.preventDefault();
+    __mI.set(this._id);
+  }
+})
+
+Template.schoolPhotos.onRendered(() => {
+
+  $(".owl-carousel-desktop").owlCarousel({
+    items : 1,
+  });
+
+  $(".owl-carousel-mobile").owlCarousel({
+    items : 1
+  });
+
+})
+
 Template.schoolPhotos.helpers({
   schoolPhotos(){
     if(Meteor.status().connected){
-      const __sPhotos = SchoolPhotos.find({"schoolId" : FlowRouter.getQueryParam('schld')}, {limit : 6});
+      const __sPhotos = SchoolPhotos.find({"schoolId" : FlowRouter.getQueryParam('schld')});
 
       if(__sPhotos){
         return {
@@ -322,8 +347,22 @@ Template.schoolPhotos.helpers({
         }
       }
     }
+  },
+
+  photo(){
+    return __sP.get();
   }
 })
+
+Template.schoolPhotos.events({
+  'click .h'(event){
+    event.preventDefault();
+
+    const a = event.currentTarget;
+    __sP.set(a.src);
+  }
+})
+
 
 Template.schoolVideos.helpers({
   schoolVideos(){
@@ -332,20 +371,27 @@ Template.schoolVideos.helpers({
 
       if(__sVideos){
         return {
-          photos : __sVideos,
+          videos : __sVideos,
           count : __sVideos.count()
         }
       }
     }
-  }
+  },
+
+
 })
 
-Template.schoolEvents.events({
-  'click .schoolEventModal'(event){
-    event.preventDefault();
-    __mI.set(this._id);
-  }
+Template.schoolVideos.onRendered(() => {
+  $(".owl-carousel-desktop").owlCarousel({
+    items : 1,
+  });
+
+  $(".owl-carousel-mobile").owlCarousel({
+    items : 1
+  });
 })
+
+
 
 Template.registerHelper('countZero', (c) => {
   if(c > 0){

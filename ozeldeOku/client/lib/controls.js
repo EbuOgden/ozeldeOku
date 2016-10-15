@@ -1,3 +1,7 @@
+import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
+import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
+import { Schools } from '/imports/api/collections/schools.js';
+
 isEmpty = function(message){
 	if(message === "" || message == "" || message === "undefined" || message == "undefined"){
 		return true;
@@ -59,4 +63,50 @@ schoolConfirm = function(schoolName){
 			alert(schoolName + "'in üyeliği aktif edilmiştir.");
 		}
 	})
+}
+
+schoolReject = function(schoolName){
+	const s = Schools.findOne({"schoolName" : schoolName});
+
+	if(s){
+		Schools.remove({"_id" : s._id});
+	}
+}
+
+addNotice = function(title, message){
+	if(isEmpty(title) || isEmpty(message)){
+		alert("Lütfen tüm kutuları doldurunuz!");
+	}
+	else{
+		const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+		if(s){
+			SchoolNotice.insert({
+				schoolId : s._id,
+				noticeTitle : title,
+				noticeMessage : message
+			})
+
+			$('#schoolNoticeAdd').modal('hide');
+		}
+	}
+}
+
+addEvent = function(title, message){
+	if(isEmpty(title) || isEmpty(message)){
+		alert("Lütfen tüm kutuları doldurunuz!");
+	}
+	else{
+		const s = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+		if(s){
+			SchoolEvents.insert({
+				schoolId : s._id,
+				eventTitle : title,
+				eventMessage : message
+			})
+
+			$('#schoolEventAdd').modal('hide');
+		}
+	}
 }

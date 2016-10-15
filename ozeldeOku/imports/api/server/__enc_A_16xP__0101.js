@@ -23,7 +23,9 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
         case "mO":
           if(t1 == "o"){
 
-            var c = localStorage.getItem('mO_6d6f625f6f7572');
+
+
+            var c = localStorage.getItem('mO_6d6f625f6f7572' + i.schoolName);
 
             if(c === "undefined" || c === null){
               var mO = {
@@ -35,21 +37,22 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mO), "mobschoolInfo._schoolNameOur");
 
-              localStorage.setItem('mO_6d6f625f6f7572', e.toString());
+              localStorage.setItem('mO_6d6f625f6f7572' + + i.schoolName, e.toString());
 
             }
             else{
 
-              var mOE = CryptoJS.AES.decrypt(localStorage.getItem('mO_6d6f625f6f7572') , "mobschoolInfo._schoolNameOur");
+              var mOE = CryptoJS.AES.decrypt(localStorage.getItem('mO_6d6f625f6f7572' + i.schoolName) , "mobschoolInfo._schoolNameOur");
 
               var mO = JSON.parse(mOE.toString(CryptoJS.enc.Utf8));
+
 
               mO.c_o += 1;
               mO.d.push(dat);
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mO), "mobschoolInfo._schoolNameOur");
 
-              localStorage.setItem('mO_6d6f625f6f7572', e.toString());
+              localStorage.setItem('mO_6d6f625f6f7572' + i.schoolName, e.toString());
 
             }
 
@@ -62,7 +65,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
         case "mW":
           if(t1 == "w"){
 
-            var c = localStorage.getItem('mW_6d6f625f776562');
+            var c = localStorage.getItem('mW_6d6f625f776562' + i.schoolName);
 
             if(c === "undefined" || c === null){
               var mW = {
@@ -74,12 +77,12 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mW), "mobschoolInfo._schoolNameWeb");
 
-              localStorage.setItem('mW_6d6f625f776562', e.toString());
+              localStorage.setItem('mW_6d6f625f776562' + i.schoolName, e.toString());
 
             }
             else{
 
-              var mWE = CryptoJS.AES.decrypt(localStorage.getItem('mW_6d6f625f776562') , "mobschoolInfo._schoolNameWeb");
+              var mWE = CryptoJS.AES.decrypt(localStorage.getItem('mW_6d6f625f776562' + i.schoolName), "mobschoolInfo._schoolNameWeb");
 
               var mW = JSON.parse(mWE.toString(CryptoJS.enc.Utf8));
 
@@ -88,7 +91,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mW), "mobschoolInfo._schoolNameWeb");
 
-              localStorage.setItem('mW_6d6f625f776562', e.toString());
+              localStorage.setItem('mW_6d6f625f776562' + i.schoolName, e.toString());
 
             }
 
@@ -101,7 +104,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
           if(t1 == "o"){
 
-            var c = localStorage.getItem('wO_7765625f6f7572');
+            var c = localStorage.getItem('wO_7765625f6f7572' + i.schoolName);
 
             if(c === "undefined" || c === null){
               var wO = {
@@ -113,12 +116,12 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(wO), "webschoolInfo._schoolNameOur");
 
-              localStorage.setItem('wO_7765625f6f7572', e.toString());
+              localStorage.setItem('wO_7765625f6f7572' + i.schoolName, e.toString());
 
             }
             else{
 
-              var wOE = CryptoJS.AES.decrypt(localStorage.getItem('wO_7765625f6f7572') , "webschoolInfo._schoolNameOur");
+              var wOE = CryptoJS.AES.decrypt(localStorage.getItem('wO_7765625f6f7572' + i.schoolName), "webschoolInfo._schoolNameOur");
 
               var wO = JSON.parse(wOE.toString(CryptoJS.enc.Utf8));
 
@@ -127,7 +130,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(wO), "webschoolInfo._schoolNameOur");
 
-              localStorage.setItem('wO_7765625f6f7572', e.toString());
+              localStorage.setItem('wO_7765625f6f7572' + i.schoolName, e.toString());
 
             }
 
@@ -140,7 +143,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
           if(t1 == "w"){
 
-            var c = localStorage.getItem('wW_7765625f776562');
+            var c = localStorage.getItem('wW_7765625f776562' + i.schoolName);
 
             if(c === "undefined" || c === null){
               var wW = {
@@ -152,12 +155,12 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(wW), "webschoolInfo._schoolNameWeb");
 
-              localStorage.setItem('wW_7765625f776562', e.toString());
+              localStorage.setItem('wW_7765625f776562' + i.schoolName, e.toString());
 
             }
             else{
 
-              var wWE = CryptoJS.AES.decrypt(localStorage.getItem('wW_7765625f776562') , "webschoolInfo._schoolNameWeb");
+              var wWE = CryptoJS.AES.decrypt(localStorage.getItem('wW_7765625f776562' + i.schoolName) , "webschoolInfo._schoolNameWeb");
 
               var wW = JSON.parse(wWE.toString(CryptoJS.enc.Utf8));
 
@@ -166,7 +169,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(wW), "webschoolInfo._schoolNameWeb");
 
-              localStorage.setItem('wW_7765625f776562', e.toString());
+              localStorage.setItem('wW_7765625f776562' + i.schoolName, e.toString());
 
 
 
@@ -179,7 +182,7 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
         case "mapO":
 
           if(t1 == "o"){
-            var c = localStorage.getItem('mapO_6d61705f6f7572');
+            var c = localStorage.getItem('mapO_6d61705f6f7572' + i.schoolName);
 
             if(c === "undefined" || c === null){
               var mapO = {
@@ -191,12 +194,12 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mapO), "mapschoolInfo._schoolNameOur");
 
-              localStorage.setItem('mapO_6d61705f6f7572', e.toString());
+              localStorage.setItem('mapO_6d61705f6f7572' + i.schoolName, e.toString());
 
             }
             else{
 
-              var mapOE = CryptoJS.AES.decrypt(localStorage.getItem('mapO_6d61705f6f7572') , "mapschoolInfo._schoolNameOur");
+              var mapOE = CryptoJS.AES.decrypt(localStorage.getItem('mapO_6d61705f6f7572' + i.schoolName), "mapschoolInfo._schoolNameOur");
 
               var mapO = JSON.parse(mapOE.toString(CryptoJS.enc.Utf8));
 
@@ -205,66 +208,11 @@ var _0x5180=["\x6D\x65\x74\x68\x6F\x64\x73"];Meteor[_0x5180[0]]({
 
               var e = CryptoJS.AES.encrypt(JSON.stringify(mapO), "mapschoolInfo._schoolNameOur");
 
-              localStorage.setItem('mapO_6d61705f6f7572', e.toString());
+              localStorage.setItem('mapO_6d61705f6f7572' + i.schoolName, e.toString());
 
 
 
             }
-          }
-          else{
-            break;
-          }
-
-
-        case "c2MO" : /* FILL! */
-          /* COUNT 2 MOBILE OUR */
-
-          if(t1 == "o"){
-
-          }
-          else{
-            break;
-          }
-
-        case "c2MW" :
-
-          if(t1 == "w"){
-
-          }
-
-        case "c3MO" :
-
-          if(t1 == "o"){
-
-          }
-          else{
-            break;
-          }
-
-        case "c3MW" :
-
-          if(t1 == "w"){
-
-          }
-          else{
-            break;
-          }
-
-        case "c4MO" :
-
-          if(t1 == "o"){
-
-
-          }
-          else{
-            break;
-          }
-
-        case "c4MW" :
-
-          if(t1 == "w"){
-
-
           }
           else{
             break;
@@ -314,4 +262,4 @@ var _0xb110=["\x73\x74\x61\x72\x74\x75\x70"];Meteor[_0xb110[0]](function(){
 
 var _0x5466=["\x73\x65\x74\x49\x6E\x74\x65\x72\x76\x61\x6C"];Meteor[_0x5466[0]](function(){
 
-}, 1000);
+}, 86400000);

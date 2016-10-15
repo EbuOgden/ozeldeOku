@@ -1,9 +1,12 @@
 <template name="adminCenter">
   <div class="container">
-    Onaylı Olmayan Okullar
+
+    <center>Onaylı Olmayan Okullar</center>
+
+    {{#if isPhone}}
 
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <ul>
             {{#each schools}}
               <li role="button" id="{{_id}}" title="Okul Bilgilerini görmek için tıklayınız" class="schoolInfo">{{schoolName}}</li>
@@ -12,6 +15,26 @@
         </ul>
       </div>
     </div>
+
+    {{/if}} <!-- isPhone END! -->
+
+    {{#if isDesktop}}
+
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul>
+            {{#each schools}}
+              <li role="button" id="{{_id}}" title="Okul Bilgilerini görmek için tıklayınız" class="schoolInfo">{{schoolName}}</li>
+              <br>
+            {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    {{/if}} <!-- isDesktop END! -->
+
 
   </div>
 

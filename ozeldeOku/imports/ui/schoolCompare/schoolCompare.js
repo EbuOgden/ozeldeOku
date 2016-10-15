@@ -242,6 +242,7 @@ Template.schoolCompareCenterList.helpers({
 })
 
 Template.schoolCompareCenterList.onCreated(function schoolCompareCenterListOnCreated(){
+
 })
 
 Template.schoolCompareCenterList.events({
@@ -252,7 +253,6 @@ Template.schoolCompareCenterList.events({
   'change .schoolCompCheck'(event){
     const arrL = $('.compList input:checkbox:checked');
     const current = event.currentTarget;
-    console.log(current);
 
     if($(current).prop('checked')){
 

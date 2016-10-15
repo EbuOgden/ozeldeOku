@@ -17,7 +17,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolName}}" style="heigth: 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="schoolName" placeholder="{{schoolName}}" style="heigth: 45px;">
 
               </li>
             </ul>
@@ -34,7 +34,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{tradeName}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="tradeName" placeholder="{{tradeName}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -49,7 +49,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{taxNo}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" placeholder="{{taxNo}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -62,7 +62,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="autPerson" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -77,7 +77,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="autPersonEmail" placeholder="{{schoolEmail}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -105,7 +105,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolPhoneNumber}}">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" placeholder="{{schoolPhoneNumber}}">
 
               </li>
             </ul>
@@ -118,7 +118,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -134,7 +134,7 @@
               <li style="padding-bottom: 5px;">
 
                     <div class="form-group">
-                        <textarea class="form-control schoolInfoCnt" rows="5" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
+                        <textarea class="form-control schoolInfoCnt" rows="5" id="address" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
                     </div>
 
               </li>
@@ -146,7 +146,7 @@
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled id="updateSchoolInfosBut"><b>Bilgilerimi Güncelle</b></button>
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="updateSchoolInfosBut"><b>Bilgilerimi Güncelle</b></button>
           </div>
         </div>
 
@@ -162,24 +162,24 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             Mevcut Şifre
-            <input type="password" class="form-control input-lg" placeholder="Mevcut Şifre" style="heigth : 45px;">
+            <input type="password" class="form-control input-lg" id="oldPass" placeholder="Mevcut Şifre" style="heigth : 45px;">
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             Yeni Şifre
-            <input type="text" class="form-control input-lg" placeholder="Yeni Şifre" style="heigth : 45px;">
+            <input type="text" class="form-control input-lg" id="newPass" placeholder="Yeni Şifre" style="heigth : 45px;">
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             Yeni Şifre Tekrarı
-            <input type="text" class="form-control input-lg" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+            <input type="text" class="form-control input-lg" id="newPassR" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
           </div>
         </div>
 
         <br>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled><b>Şifreyi Değiştir</b></button>
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="updatePass"><b>Şifreyi Değiştir</b></button>
           </div>
         </div>
 
@@ -206,7 +206,7 @@
 
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolName}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="schoolName" placeholder="{{schoolName}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -219,7 +219,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{tradeName}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="tradeName" placeholder="{{tradeName}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -234,7 +234,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{taxNo}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" placeholder="{{taxNo}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -247,7 +247,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="autPerson" placeholder="{{authorizedPerson}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -262,7 +262,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolEmail}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="autPersonEmail" placeholder="{{schoolEmail}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -290,7 +290,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolPhoneNumber}}">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" placeholder="{{schoolPhoneNumber}}">
 
               </li>
             </ul>
@@ -303,7 +303,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -319,7 +319,7 @@
               <li style="padding-bottom: 5px;">
 
                     <div class="form-group">
-                        <textarea class="form-control schoolInfoCnt" rows="5" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
+                        <textarea class="form-control schoolInfoCnt" rows="5" id="address" placeholder="{{schoolAddress}}" maxlength="1024"></textarea>
                     </div>
 
               </li>
@@ -331,7 +331,7 @@
 
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
-            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled id="updateSchoolInfosBut"><b>Bilgilerimi Güncelle</b></button>
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="updateSchoolInfosBut"><b>Bilgilerimi Güncelle</b></button>
           </div>
         </div>
 
@@ -347,24 +347,24 @@
         <div class="row">
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             Mevcut Şifre
-            <input type="password" class="form-control input-lg" placeholder="Mevcut Şifre" style="heigth : 45px;">
+            <input type="password" class="form-control input-lg" id="oldPass" placeholder="Mevcut Şifre" style="heigth : 45px;">
           </div>
 
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             Yeni Şifre
-            <input type="text" class="form-control input-lg" placeholder="Yeni Şifre" style="heigth : 45px;">
+            <input type="text" class="form-control input-lg" id="newPass" placeholder="Yeni Şifre" style="heigth : 45px;">
           </div>
 
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             Yeni Şifre Tekrarı
-            <input type="text" class="form-control input-lg" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+            <input type="text" class="form-control input-lg" id="newPassR" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
           </div>
         </div>
 
         <br>
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
-            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" disabled><b>Şifreyi Değiştir</b></button>
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="updatePass"><b>Şifreyi Değiştir</b></button>
           </div>
         </div>
 
