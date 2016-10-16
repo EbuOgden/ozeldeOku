@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
 
-//import { reCAPTCHA } from 'meteor/altapp:recaptcha';
-
 import { Roles } from '/imports/api/collections/roles.js';
 import { Dormitories } from '/imports/api/collections/dormitories.js';
 import { DormitoryInfos } from '/imports/api/collections/dormitoryInfos.js';
@@ -20,7 +18,8 @@ import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
 import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
 import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
 import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
-
+import { Favorites } from '/imports/api/collections/favorites.js';
+import { HomePageCarousel } from '/imports/api/collections/homePageCarousel.js';
 import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
 
 import { Messages } from '/imports/api/collections/messages.js';
@@ -32,12 +31,10 @@ import '../imports/startup/server/index.js'
 
 import "\x2F\x69\x6D\x70\x6F\x72\x74\x73\x2F\x61\x70\x69\x2F\x73\x65\x72\x76\x65\x72\x2F\x5F\x5F\x65\x6E\x63\x5F\x41\x5F\x31\x36\x78\x50\x5F\x5F\x30\x31\x30\x31\x2E\x6A\x73"; /*__enc_A */
 
-// import { SchoolVideos } from '../imports/api/collections/schoolVideos.js';
-// import { SchoolImages } from '../imports/api/collections/schoolImages.js';
+import { ma_con }  from '/imports/api/server/__enc_A_16xP__0101.js';
 
 
 Meteor.startup(() => {
-
 
   // WebApp.connectHandlers.use('/api/nameGet', (req, res) => {
   //   const name = Meteor.users.findOne({"_id" : req.query.userId}, {

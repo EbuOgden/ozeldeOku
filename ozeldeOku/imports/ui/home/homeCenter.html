@@ -11,50 +11,40 @@
     <br>
 
     <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> <!-- CAROUSEL -->
 
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="max-width:100%;"> <!-- CAROUSEL -->
+              {{#with carousel}}
 
-            <div id="carouselSlick">
-            <div>
+              {{#if countZero count}}
 
-              <h3 class="homeCarouselFirstPageFontColor"><img src="/pieIcon.png">En çok incelenen okullar</h3>
-              <p style="color:black;">Bu ay sizler tarafından en çok oylanan ve yorumlanan ilk 10 okulu derledik!</p>
-              <div class="media">
-                <div class="media-left">
-                  <img class="media-object img-circle" src="/schoolIcon.png">
-                </div>
-                <div class="media-body">
-                  <h5 class="media-heading" style="color:black;">Buraya okul ismi gelecektir - Example School Name</h5>
-                  Üniversite - Ön Lisans
-                </div>
+              <div class="owl-carousel-mobile" >
+              {{#each caro}}
+                  <div>
+                    {{#if isPhone}}
+
+                    <img src="{{imgUrl}}" class="imageFit">
+                    {{else}}
+                    <img src="{{imgUrl}}" class="imageFit" style="height: 300px;">
+                    {{/if}}
+
+                  </div>
+                  {{/each}}
               </div>
-              <div class="media">
-                <div class="media-left">
-                  <img class="media-object img-circle" src="/schoolIcon.png">
-                </div>
-                <div class="media-body">
-                  <h5 class="media-heading" style="color:black;">Buraya okul ismi gelecektir - Example School Name</h5>
-                  Üniversite - Ön Lisans
-                </div>
-              </div>
-              <div class="media">
-                <div class="media-left">
-                  <img class="media-object img-circle" src="/schoolIcon.png">
-                </div>
-                <div class="media-body">
-                  <h5 class="media-heading">Buraya okul ismi gelecektir - Example School Name</h5>
-                  Üniversite - Ön Lisans
-                </div>
-              </div>
-            </div>
-            <div>
-              <img src="https://unsplash.it/500/300?image=1" class="img-responsive" alt="image 1">
-            </div>
-            <div>
-              <img src="https://unsplash.it/500/300?image=2" class="img-responsive" alt="image 2">
-            </div>
 
-          </div>
+                  <script async>
+                    $(".owl-carousel-mobile").owlCarousel({
+                      items : 1,
+                      autoPlay : true,
+                      pagination : false,
+                      responsive : false
+                    });
+                  </script>
+              {{/if}}
+              {{/with}}
+
+
+
+
       </div>
 
       <br>
@@ -181,6 +171,60 @@
         </div>
       {{/each}}
 
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <center><b>Sizin İçin Seçtiklerimiz</b></center>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    {{#with choosenSchools}}
+    {{#if countZero count}}
+    {{#each choosen}}
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <a style="color:black" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">
+            <img class="schoolImages img-responsive" src="{{schoolImg}}">
+            <b style="text-align: center;">{{schoolName}}</b> <br><br>
+            Okul : {{schoolType.schoolT}} &nbsp;<br>Konum : {{schoolCounty}} - {{schoolCity}} <br>
+            </a>
+
+
+      </div>
+      {{/each}}
+
+      {{else}}
+
+      {{/if}}
+        {{/with}}
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <center><b>En Popüler Okullar</b></center>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    {{#each popular}}
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <a style="color:black" href="/okulTuru/{{schoolType}}/{{schoolName}}?isval={{isValidate}}&schld={{_id}}&trd={{tradeName}}">
+          <img class="schoolImages img-responsive" src="{{schoolImg}}">
+          <b style="text-align: center;">{{schoolName}}</b> <br><br>
+          Okul : {{schoolType.schoolT}} &nbsp;<br>Konum : {{schoolCounty}} - {{schoolCity}} <br>
+          <div id="{{_id}}"></div>
+          </a>
+
+
+    </div>
+    {{/each}}
   </div>
 
 </div>

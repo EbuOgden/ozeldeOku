@@ -10,10 +10,10 @@ Favorites.attachSchema(new SimpleSchema({
     index : 1
   },
 
-  favoriteInfo : {
-    type : Object,
+  schoolId : {
+    type : String,
     optional : false
-  },
+  }
 
 
-}))
+}), {replace : true});

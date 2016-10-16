@@ -1,7 +1,10 @@
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
-import { Schools } from '../../api/collections/schools.js'
+import { Schools } from '../../api/collections/schools.js';
+
+import { HomePageCarousel } from '/imports/api/collections/homePageCarousel.js';
+import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
 
 import './admin.html';
 import './adminCenter.html';
@@ -14,6 +17,59 @@ Template.admin.onRendered(() => {
 Template.adminCenter.helpers({
   schools(){
     return Schools.find({"isValidate" : false});
+  },
+
+  photos(){
+    if(Meteor.status().connected){
+      const hpc = HomePageCarousel.find({});
+
+      if(hpc){
+        return {
+          photo : hpc,
+          count : hpc.count()
+        }
+      }
+    }
+
+  },
+
+  choosens(){
+    if(Meteor.status().connected){
+      const choosens = ChoosenSchools.find({}).fetch();
+
+      if(choosens.length > 0){
+        const a = [];
+        const schools = [];
+
+        for(let i = choosens.length; i--;){
+          a.push(choosens[i].schoolId);
+        }
+
+        for(let i = a.length; i--;){
+          schools.push(Schools.findOne({"_id" : a[i]}));
+        }
+
+        return {
+          choosen : schools,
+          count : choosens.length
+        }
+      }
+
+
+    }
+  },
+
+  choose(){
+    if(Meteor.status().connected){
+      const schools = Schools.find({});
+
+      if(schools){
+        return {
+          school : schools,
+          count : schools.count()
+        }
+      }
+    }
   }
 })
 
@@ -23,6 +79,72 @@ Template.adminCenter.events({
 
   },
 
+  'click .chooseDe'(event){
+    if(confirm(this.schoolName + " i silmek istediğinize emin misiniz?")){
+      const a = ChoosenSchools.findOne({"schoolId" : this._id});
+
+      ChoosenSchools.remove({"_id" : a._id});
+    }
+    else{
+      alert("Silme iptal edildi.")
+    }
+  },
+
+  'click .chooseSc'(event){
+
+    const school = Schools.findOne({"_id" : event.currentTarget.id});
+
+    if(confirm(school.schoolName + " i eklemek istediğinize emin misiniz?")){
+      ChoosenSchools.insert({
+        schoolId : school._id
+      })
+
+    }
+    else{
+        alert("Ekleme iptal edildi.")
+    }
+
+  },
+
+  'click #photo1'(event){
+    filepicker.pick(
+         {
+            mimetype: 'image/*',
+            container: 'window',
+            services: ['COMPUTER'],
+            language : 'tr',
+
+          },
+          function(Blob){
+
+            setTimeout(() => {
+              if(confirm(Blob.filename + " adlı dosyayı yüklemek istediğinizden emin misiniz ?")){
+                HomePageCarousel.insert({
+                  imgUrl : Blob.url
+                })
+              }
+              else{
+                alert("Dosya yükleme işlemi iptal oldu.");
+              }
+
+            }, 1000);
+
+          },
+          function(FPError){
+
+          }
+    );
+  },
+
+  'click .adminPhoto'(event){
+
+    if(confirm("Fotoğrafı silmek istediğinize emin misiniz?")){
+        HomePageCarousel.remove({"_id" : event.currentTarget.id});
+    }
+    else{
+
+    }
+  },
   'click .schoolInfo'(event){
     const target = event.currentTarget;
     const school = Schools.findOne(target.id);

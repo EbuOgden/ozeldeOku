@@ -15,6 +15,11 @@ Comments.attachSchema(new SimpleSchema({
     optional : false
   },
 
+  whoSend : {
+    type : String,
+    optional : false
+  },
+
   sendTime : {
     type : Date,
     optional : false,

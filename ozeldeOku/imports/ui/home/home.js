@@ -6,6 +6,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Accounts } from 'meteor/accounts-base';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { HTTP } from 'meteor/http';
+import { owlCarousel } from 'meteor/richsilv:owl-carousel';
+
 /*          */
 
 /* DATABASE VARIABLES IMPORTS */
@@ -13,8 +15,9 @@ import { Schools } from '../../api/collections/schools.js';
 import { Dormitories } from '../../api/collections/dormitories.js';
 import { News } from '../../api/collections/news.js';
 import { Faculties } from '/imports/api/collections/faculties.js';
-//import { SchoolVideos } from '../../../imports/api/collections/schoolVideos.js';
-//import { SchoolImages } from '../../../imports/api/collections/SchoolImages.js';
+import { Favorites } from '/imports/api/collections/favorites.js';
+import { HomePageCarousel } from '/imports/api/collections/homePageCarousel.js';
+import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
 import { Comments } from '../../api/collections/comments.js';
 import { schoolInfo } from '../../api/client/schoolClass.js';
 import { userInfo } from '../../api/client/userClass.js';
@@ -47,6 +50,9 @@ import '../../api/client/clientFuncs.js'
 /*          */
 
 const __schoolStatus = new ReactiveVar();
+
+const caroSta = new ReactiveVar();
+
 Template.home.events({
 
 })
@@ -104,13 +110,6 @@ Template.homeLayout.events({
 
   },
 
-  'click #schoolProfilePage'(event){
-    event.preventDefault();
-    if(Meteor.user().profile.role == "School"){
-        FlowRouter.go('/okulProfil');
-    }
-  },
-
   'click #schoolComp'(event){
     event.preventDefault();
     FlowRouter.go('/okulKarsilastir');
@@ -118,12 +117,7 @@ Template.homeLayout.events({
 
   'click .messagesButton'(event){
     event.preventDefault();
-    if(Meteor.user().profile.role == "School"){
-        FlowRouter.go('/okulProfil');
-    }
-    if(Meteor.user().profile.role == "Parent"){
-      FlowRouter.go('profil');
-    }
+    FlowRouter.go('/profil');
 
   },
 
@@ -165,24 +159,47 @@ Template.homeLayout.helpers({
     }
 
   },
+
+  nonSchool(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role != "School"){
+            return true;
+        }
+      }
+
+    }
+  },
+
+  favs(){
+    if(Meteor.status().connected){
+      const f_ = Favorites.find({"userId" : Meteor.userId()});
+
+      if(f_.count() > 0){
+        const f = f_.fetch();
+        const sc = [];
+        for(let i = f.length; i--;){
+          sc.push(Schools.findOne(f[i].schoolId))
+        }
+        return {
+          count : f_.count(),
+          fav : sc
+        }
+
+      }
+
+
+    }
+  }
 })
 
 
 Template.homeCenter.onRendered(() => {
 
   __schoolStatus.set('allSchools');
-
-  $('#carouselSlick').slick({
-    slideInterval : 4000,
-    swipe : false,
-    touchMove : false,
-    dots : false,
-    initialSlide : 0,
-    arrows : false,
-    draggable : false,
-    accessibility : false,
-    autoplay : true
-  });
 
   Meteor.call('getCities', (err, result) => {
     if(err){
@@ -359,6 +376,59 @@ Template.homeCenter.helpers({
 
     }
 
+  },
+
+  carousel(){
+    if(Meteor.status().connected){
+      const caro = HomePageCarousel.find({});
+
+      if(caro){
+        $(".owl-carousel-mobile").owlCarousel({
+          items : 1,
+          autoPlay : true,
+          pagination : false,
+          responsive : false
+        });
+        return {
+          caro : caro,
+          count : caro.count()
+        }
+
+
+      }
+    }
+  },
+
+  choosenSchools(){
+    if(Meteor.status().connected){
+      const choosens = ChoosenSchools.find({}).fetch();
+
+      if(choosens.length > 0){
+        const a = [];
+        const schools = [];
+
+        for(let i = choosens.length; i--;){
+          a.push(choosens[i].schoolId);
+        }
+
+        for(let i = a.length; i--;){
+          schools.push(Schools.findOne({"_id" : a[i]}));
+        }
+
+        return {
+          choosen : schools,
+          count : choosens.length
+        }
+      }
+
+
+    }
+  },
+
+  popular(){
+    if(Meteor.status().connected){
+      return Schools.find({"haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+    }
   }
 })
 

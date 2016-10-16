@@ -1,7 +1,7 @@
 <template name="adminCenter">
   <div class="container">
 
-    <center>Onaylı Olmayan Okullar</center>
+    Onaylı Olmayan Okullar
 
     {{#if isPhone}}
 
@@ -13,6 +13,104 @@
               <br>
             {{/each}}
         </ul>
+      </div>
+    </div>
+
+
+    {{#with photos}}
+      {{#if countZero count}}
+          <div class="owl-carousel-mobile" >
+          {{#each photo}}
+              <div>
+                <img src="{{imgUrl}}" class="imageFit adminPhoto" id="{{_id}}">
+              </div>
+              {{/each}}
+          </div>
+
+          <script async>
+            $(".owl-carousel-mobile").owlCarousel({
+              items : 1,
+              autoPlay : true,
+              pagination : false,
+              responsive : false
+            });
+          </script>
+      {{/if}}
+
+
+
+    {{/with}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Ana Sayfa Slayt Fotoğrafları
+        <button class="btn btn-block" id="photo1">Fotoğraf Ekle</button>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Sizin İçin Seçtiklerimize Ekleme Yapın
+        <hr>
+        {{#with choose}}
+          {{#if countZero count}}
+              {{#each school}}
+                <h5 id="{{_id}}" class="chooseSc" role="button">{{schoolName}}</h5>
+              {{/each}}
+          {{else}}
+              <center>Gösterilecek Okul Bulunamadı</center>
+          {{/if}}
+        {{/with}}
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    {{#with choosens}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Aktif Olanlar
+        <hr>
+        {{#if countZero count}}
+          {{#each choosen}}
+            <h5 id="{{_id}}" class="chooseDe" role="button">{{schoolName}}</h5>
+          {{/each}}
+        {{else}}
+
+        {{/if}}
+      </div>
+    </div>
+    {{/with}}
+
+    <br>
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-block" data-toggle="modal" data-target="#addNew">Haber Ekle</button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Haber Ekle</h4>
+          </div>
+          <div class="modal-body">
+            <input type="text" placeholder="Haber Başlığı" id="newsTitle">
+            <br><br>
+            <textarea rows="5" placeholder="Haber İçeriği" id="newsMessage"></textarea>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addNews($('#newsTitle').val(), $('#newsMessage').val())">Ekle</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -30,6 +128,110 @@
               <br>
             {{/each}}
         </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        {{#with photos}}
+          {{#if countZero count}}
+              <div class="owl-carousel-mobile" >
+              {{#each photo}}
+                  <div>
+                    <img src="{{imgUrl}}" class="imageFit adminPhoto" height="300px;" id="{{_id}}">
+                  </div>
+                  {{/each}}
+              </div>
+
+              <script async>
+                $(".owl-carousel-mobile").owlCarousel({
+                  items : 1,
+                  autoPlay : true,
+                  pagination : false,
+                  responsive : false
+                });
+              </script>
+          {{/if}}
+
+
+
+        {{/with}}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Ana Sayfa Slayt Fotoğrafları
+        <button class="btn " id="photo1">Fotoğraf Ekle</button>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Sizin İçin Seçtiklerimize Ekleme Yapın
+        <hr>
+        {{#with choose}}
+          {{#if countZero count}}
+              {{#each school}}
+                <h5 id="{{_id}}" class="chooseSc" role="button">{{schoolName}}</h5>
+              {{/each}}
+          {{else}}
+              <center>Gösterilecek Okul Bulunamadı</center>
+          {{/if}}
+        {{/with}}
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    {{#with choosens}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Aktif Olanlar
+        <hr>
+        {{#if countZero count}}
+          {{#each choosen}}
+            <h5 id="{{_id}}" class="chooseDe" role="button">{{schoolName}}</h5>
+          {{/each}}
+        {{else}}
+
+        {{/if}}
+      </div>
+    </div>
+    {{/with}}
+
+    <br>
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-block" data-toggle="modal" data-target="#addNew">Haber Ekle</button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Haber Ekle</h4>
+          </div>
+          <div class="modal-body">
+            <input type="text" placeholder="Haber Başlığı" id="newsTitle">
+            <br><br>
+            <textarea rows="5" placeholder="Haber İçeriği" id="newsMessage"></textarea>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addNews($('#newsTitle').val(), $('#newsMessage').val())">Ekle</button>
+          </div>
+        </div>
       </div>
     </div>
 

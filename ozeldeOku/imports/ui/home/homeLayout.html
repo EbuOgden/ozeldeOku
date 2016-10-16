@@ -78,12 +78,10 @@
           <a class="dropdown-toggle" role="button" aria-haspopup="false" aria-expanded="false" data-toggle="dropdown" style="color:rgb(157,197,15);">{{userName}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="messagesButton" role="button"><button class="btn btn-lg btn-link messagesButton"><span class="glyphicon glyphicon-envelope" title="Mesajlar" aria-hidden="true"></span><span class="badge">{{unreadeMessagesCount}}</span></button> Mesajlar</li>
-            <li class="favButton" role="button"><button class="btn btn-lg btn-link favButton"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true"></span></button>Favoriler</li>
-            {{#if roleControlSchool userRole}}
-                <li id="schoolProfilePage" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button>Okul Profili</li>
-            {{else}}
-                <li id="profilePage" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button>Profil</li>
+            {{#if nonSchool}}
+            <li class="favButton" data-toggle="modal" data-target="#favs" role="button"><button class="btn btn-lg btn-link favButton"><span class="glyphicon glyphicon-star-empty" title="Favoriler" aria-hidden="true" ></span></button>Favoriler</li>
             {{/if}}
+            <li id="profilePage" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-user" title="Profil" aria-hidden="true"></span></button>Profil</li>
             {{#if roleControlAdmin userRole}}
                 <li id="adminDash" class="profileButton" role="button"><button class="btn btn-lg btn-link"><span class="glyphicon glyphicon-dashboard" title="Admin Dashboard" aria-hidden="true"></span></button>Admin Paneli</li>
             {{/if}}
@@ -107,5 +105,30 @@
     </div>
   </div>
 </nav>
+
+<div class="modal fade" id="favs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Favorilerim</h4>
+      </div>
+      {{#with favs}}
+      <div class="modal-body">
+        {{#if countZero count}}
+          {{#each fav}}
+            {{schoolName}}<br>
+          {{/each}}
+          {{else}}
+          <center>Herhangi bir favoriniz bulunmuyor.</center>
+        {{/if}}
+      </div>
+      {{/with}}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </template>

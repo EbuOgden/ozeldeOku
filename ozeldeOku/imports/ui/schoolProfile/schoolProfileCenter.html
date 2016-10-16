@@ -85,7 +85,7 @@
           <li><a role="button" id="userInfos" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Üyelik Bilgilerim</a></li>
 
           <li><a role="button" id="schoolInfos" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;Okul Bilgilerim</a></li>
-          <li><a role="button" id="messages" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım<span class="badge pull-right">{{unreadeMessagesCount}}</span></a></li>
+          <li><a role="button" id="messages" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım<span class="badge pull-right">{{unreadMessagesCount}}</span></a></li>
           <li><a role="button" id="noticeEvents" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><i class="fa fa-bell-o" aria-hidden="true"></i>&nbsp;&nbsp;Duyurular - Etkinlikler</a></li>
           <li><a role="button" id="photosVideos" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;Fotoğraflar - Videolar</a></li>
           {{#if nonSchool}}<li><a role="button" class="buttonGreen" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Favorilerim</a></li>{{/if}}
@@ -141,14 +141,17 @@
             <h5 role="button" id="userInfos" class="buttonGreen"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Üyelik Bilgilerim</h5>
           </li>
           <hr>
+          {{#if school}}
           <li>
             <h5 role="button" id="schoolInfos" class="buttonGreen"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;Okul Bilgilerim</h5>
           </li>
           <hr>
+          {{/if}}
           <li>
-            <h5 role="button" id="messages" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım<span class="badge pull-right">{{unreadeMessagesCount}}</span></h5>
+            <h5 role="button" id="messages" class="buttonGreen"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Mesajlarım<span class="badge pull-right">{{unreadMessagesCount}}</span></h5>
           </li>
           <hr>
+          {{#if school}}
           <li>
             <h5 role="button" id="noticeEvents" class="buttonGreen"><i class="fa fa-bell-o" aria-hidden="true"></i>&nbsp;&nbsp;Duyurular - Etkinlikler</h5>
           </li>
@@ -157,9 +160,10 @@
             <h5 role="button" id="photosVideos" class="buttonGreen"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;Fotoğraflar - Videolar</h5>
           </li>
           <hr>
+          {{/if}}
           {{#if nonSchool}}
           <li>
-            <h5 role="button" class="buttonGreen"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Favorilerim</h5>
+            <h5 role="button" class="buttonGreen" data-toggle="modal" data-target="#favs"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;Favorilerim</h5>
           </li>
           <hr>
 

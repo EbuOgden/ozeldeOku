@@ -12,6 +12,7 @@ import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
 import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
 import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
 import { Comments } from '/imports/api/collections/comments.js';
+import { Favorites } from '/imports/api/collections/favorites.js';
 
 import './schoolDetailInfo.html';
 import './schoolTimeline.html';
@@ -80,6 +81,47 @@ Template.schoolDetailInfoCenter.helpers({
         return __com.count();
       }
     }
+  },
+
+  comments(){
+    if(Meteor.status().connected){
+      const __com = Comments.find({"schoolId" : FlowRouter.getQueryParam('schld')});
+
+      if(__com){
+        return {
+          comment : __com,
+          count : __com.count()
+        }
+
+      }
+    }
+  },
+
+  nonSchool(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role != "School"){
+            return true;
+        }
+      }
+
+    }
+  },
+
+  favorited(){
+    if(Meteor.status().connected){
+      const f = Favorites.findOne({"userId" : Meteor.userId(), "schoolId" : FlowRouter.getQueryParam('schld')});
+
+      if(f){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
   }
 })
 
@@ -127,6 +169,53 @@ Template.schoolDetailInfoCenter.events({
       FlowRouter.go('/aramaSonuclari?okulIsmi=' + schoolName);
       return;
     }
+  },
+
+  'click .commentC'(event){
+    event.preventDefault();
+    const comment = $('#comment').val();
+
+    if(isEmpty(comment)){
+      alert("Lütfen yorum yazınız");
+      return;
+    }
+
+    const user = Meteor.user();
+
+    Comments.insert({
+      schoolId : FlowRouter.getQueryParam('schld'),
+      comment : comment,
+      whoSend : user.profile.name
+    })
+
+    $('#comment').val("");
+
+  },
+
+  'click #rateSchool'(event){
+    event.preventDefault();
+
+    const s__ = Schools.findOne(FlowRouter.getQueryParam('schld'));
+
+    if(s__){
+      const r = (s__.rate + $('#rateSchool').raty('score')) / 2;
+
+      Schools.update({"_id" : s__._id}, { $set : {
+        rate : parseInt(r)
+      }})
+    }
+
+
+  },
+
+  'click .fav'(event){
+    event.preventDefault();
+
+    var a = Favorites.insert({
+      userId : Meteor.userId(),
+      schoolId : FlowRouter.getQueryParam('schld')
+    })
+
   }
 })
 

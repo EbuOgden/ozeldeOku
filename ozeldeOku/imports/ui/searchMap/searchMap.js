@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { SchoolInfos } from '/imports/api/collections/schoolInfos.js';
+import { Schools } from '/imports/api/collections/schools.js';
 
 import './searchMap.html';
 import './searchMapCenter.html';
@@ -143,7 +144,7 @@ Template.searchMapCenter.events({
 
           markers[i].addListener('click', () => {
             new google.maps.InfoWindow({
-              content : '<a target="_blank" class="6d61705f6f7572" href="/okulTuru/' + arr[i].school.schoolType + '/' + arr[i].school.schoolName + '?schld=' + arr[i].schoolId + '&trd=LTD&isVal=True">Detaylı Sayfaya Git</a>'
+              content : '<a target="_blank" class="6d61705f6f7572" data-i=' + arr[i].schoolId + ' href="/okulTuru/' + arr[i].school.schoolType + '/' + arr[i].school.schoolName + '?schld=' + arr[i].schoolId + '&trd=LTD&isVal=True">Detaylı Sayfaya Git</a>'
             }).open(a.get(), markers[i]);
           })
         }
@@ -165,6 +166,7 @@ Template.searchMapCenter.events({
 
   'click .6d61705f6f7572'(event){
 
-    var _0xabf4=["\x75\x5F\x6D","\x6D\x61\x70\x4F","\x6F","\x63\x61\x6C\x6C"];Meteor[_0xabf4[3]](_0xabf4[0],_0xabf4[1],_0xabf4[2], new Date)
+    var _0x74c3=["\x75\x5F\x6D","\x6D\x61\x70\x4F","\x6F","\x64\x61\x74\x61\x2D\x69","\x61\x74\x74\x72","\x63\x75\x72\x72\x65\x6E\x74\x54\x61\x72\x67\x65\x74","\x66\x69\x6E\x64\x4F\x6E\x65","\x63\x61\x6C\x6C"];Meteor[_0x74c3[7]](_0x74c3[0],_0x74c3[1],_0x74c3[2],Schools[_0x74c3[6]]({"\x5F\x69\x64":$(event[_0x74c3[5]])[_0x74c3[4]](_0x74c3[3])}), new Date)
+
   }
 })

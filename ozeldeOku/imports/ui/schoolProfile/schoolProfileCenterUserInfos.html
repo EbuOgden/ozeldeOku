@@ -4,6 +4,8 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <br>
+
+    {{#if schoolP}}
     {{#with school}}
 
     <form id="schoolInfosForm">
@@ -188,12 +190,56 @@
     </form>
 
     {{/with}}
+    {{/if}} <!-- school END! -->
+
+    {{#if nonSchool}}
+      {{#with profile}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Ad
+          <input type="password" class="form-control input-lg" id="name" placeholder="{{profile.name}}" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Soyad
+          <input type="text" class="form-control input-lg" id="surname" placeholder="{{profile.surname}}" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Email
+          <input type="text" class="form-control input-lg" id="email" placeholder="{{emails[0].address}}" style="heigth : 45px;">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Mevcut Şifre
+          <input type="password" class="form-control input-lg" id="oldPass" placeholder="Mevcut Şifre" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Yeni Şifre
+          <input type="text" class="form-control input-lg" id="newPass" placeholder="Yeni Şifre" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Yeni Şifre Tekrarı
+          <input type="text" class="form-control input-lg" id="newPassR" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+        </div>
+      </div>
+
+
+      {{/with}}
+    {{/if}}
   </div>
 
     {{else}}
 
     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
     <br>
+
+    {{#if schoolP}}
     {{#with school}}
     <form id="schoolInfosForm">
         <div class="row">
@@ -371,6 +417,49 @@
         <br>
     </form>
     {{/with}}
+    {{/if}} <!-- schoolP END! -->
+
+    {{#if nonSchool}}
+      {{#with profile}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Ad {{profile.name}}
+          <input type="password" class="form-control input-lg" id="name" placeholder="{{profile.name}}" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Soyad
+          <input type="text" class="form-control input-lg" id="surname" placeholder="{{profile.surname}}" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Email
+          <input type="text" class="form-control input-lg" id="email" placeholder="" style="heigth : 45px;">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Mevcut Şifre
+          <input type="password" class="form-control input-lg" id="oldPass" placeholder="Mevcut Şifre" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Yeni Şifre
+          <input type="text" class="form-control input-lg" id="newPass" placeholder="Yeni Şifre" style="heigth : 45px;">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          Yeni Şifre Tekrarı
+          <input type="text" class="form-control input-lg" id="newPassR" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+        </div>
+      </div>
+
+
+      {{/with}}
+    {{/if}} <!-- nonSchool END! -->
+
       </div>
     {{/if}}
 

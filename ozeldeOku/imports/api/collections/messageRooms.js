@@ -32,7 +32,13 @@ MessageRooms.attachSchema(new SimpleSchema({
 
     roomImage : {
       type : String,
-      optional : false
+      optional : false,
+
+      autoValue : function(){
+        if(this.isInsert){
+          return "/schoolIcon.png"
+        }
+      }
     },
 
     roomTitle : {

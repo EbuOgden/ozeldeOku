@@ -22,7 +22,7 @@ import { Logs } from '/imports/api/collections/logs.js';
             memberIds : [id, 'ozeldeoku'],
             ownerId : 'ozeldeoku',
             ownerName : "Özelde Oku",
-            roomImage : '/logoMobile.png',
+            roomImage : '/schoolIcon.png',
             roomTitle : 'Sistemimize hoşgeldiniz.'
           })
 

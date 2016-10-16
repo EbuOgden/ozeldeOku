@@ -1,6 +1,9 @@
 import { SchoolNotice } from '/imports/api/collections/schoolNotice.js';
 import { SchoolEvents } from '/imports/api/collections/schoolEvents.js';
 import { Schools } from '/imports/api/collections/schools.js';
+import { Messages } from '/imports/api/collections/messages.js';
+import { MessageRooms } from '/imports/api/collections/messageRooms.js';
+import { News } from '/imports/api/collections/news.js';
 
 isEmpty = function(message){
 	if(message === "" || message == "" || message === "undefined" || message == "undefined"){
@@ -109,4 +112,57 @@ addEvent = function(title, message){
 			$('#schoolEventAdd').modal('hide');
 		}
 	}
+}
+
+sendMessage = function(msg, title, school){
+
+	if(isEmpty(msg) || isEmpty(title)){
+		alert("Lütfen tüm alanları doldurunuz");
+		return;
+	}
+
+	const msgRoom = MessageRooms.findOne({"ownerId" : Meteor.userId()});
+	const name = Meteor.user().profile.name;
+
+	if(msgRoom){
+		Messages.insert({
+			messageContext : msg,
+			senderId : Meteor.userId(),
+			readerId : school,
+			roomId : msgRoom._id
+		})
+	}
+	else{
+		var room = MessageRooms.insert({
+			memberIds : [Meteor.userId(), school],
+			ownerId : Meteor.userId(),
+			ownerName : name,
+			roomTitle : title
+		})
+
+		if(room){
+			Messages.insert({
+				messageContext : msg,
+				senderId : Meteor.userId(),
+				readerId : school,
+				roomId : room
+			})
+		}
+		else{
+			console.log("not insert room!");
+		}
+	}
+}
+
+addNews = function(title, message){
+
+	if(isEmpty(message) || isEmpty(title)){
+		alert("Lütfen tüm alanları doldurunuz");
+		return;
+	}
+
+	News.insert({
+		newsMessage : message,
+		newsTitle : title
+	})
 }

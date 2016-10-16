@@ -98,13 +98,16 @@ Template.schoolProfileCenter.helpers({
 
   },
 
-  unreadeMessagesCount(){
+  unreadMessagesCount(){
     if(Meteor.status().connected){
 
       const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
       if(school){
           const readerId = school._id;
           return Messages.find({"readerId" : readerId, isRead : false}).count();
+      }
+      else{
+        return Messages.find({"ownerId" : Meteor.userId(), isRead : false}).count();
       }
 
     }
@@ -122,6 +125,20 @@ Template.schoolProfileCenter.helpers({
       }
 
     }
+  },
+
+  school(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role == "School"){
+            return true;
+        }
+      }
+
+    }
   }
 })
 
@@ -134,6 +151,43 @@ Template.schoolProfileCenterUserInfos.helpers({
       if(school){
           return school;
       }
+
+    }
+
+  },
+
+  schoolP(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role == "School"){
+            return true;
+        }
+      }
+
+    }
+  },
+
+  nonSchool(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+        if(user.profile.role != "School"){
+            return true;
+        }
+      }
+
+    }
+  },
+
+  profile(){
+    if(Meteor.status().connected && Meteor.user()){
+      console.log(Meteor.user());
+      return Meteor.user();
     }
 
   }
@@ -869,12 +923,23 @@ Template.schoolProfileMessages.helpers({
 
   messageRoomsLength(){
     if(Meteor.status().connected){
-      if(MessageRooms.find({"memberIds" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}).count() > 0){
-        return true;
+      if(Meteor.user().profile.role == "School"){
+        if(MessageRooms.find({"memberIds" : Schools.findOne({"authorizedPersonUserId" : Meteor.userId()})._id}).count() > 0){
+          return true;
+        }
+        else{
+          return false;
+        }
       }
-      else{
-        return false;
+      if(Meteor.user().profile.role == "Parent" || Meteor.user().profile.role == "admin"){
+        if(MessageRooms.find({"memberIds" : Meteor.userId()}).count() > 0){
+          return true;
+        }
+        else{
+          return false;
+        }
       }
+
     }
 
   },

@@ -72,7 +72,14 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hoverStarYellow text-center" role="button" style="padding-top:7%;">
-        <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b > Favorilerime Ekle</b>
+        {{#if currentUser}}
+          {{#if favorited}}
+          <i class="fa fa-star-o fa-lg" aria-hidden="true" active></i><b >Favorilerimde</b>
+          {{else}}
+          <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b class="fav"> Favorilerime Ekle</b>
+          {{/if}}
+        {{/if}}
+
       </div>
 
     </div>
@@ -97,6 +104,20 @@
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" style="padding-top:1%;">
         <b class="">Puan : <div id="rateSchool" style="display:initial;"></div>
+
+          {{#if nonSchool}}
+            <script>
+
+            $("#rateSchool").raty({
+                score : {{school.rate}},
+                readOnly : false,
+                starType : 'img',
+                path : '/'
+            })
+
+            </script>
+          {{else}} <!-- nonSchool END! -->
+
           <script>
 
           $("#rateSchool").raty({
@@ -107,10 +128,12 @@
           })
 
           </script>
+
+          {{/if}}
         </b>
         <br><br>
           <i class="fa fa-comment-o" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
-          <b class="">Sen de okul hakkında yorum yaz!</b><br><br>
+          <b>Sen de okul hakkında yorum yaz!</b><br><br>
           <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
           <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
           <a href="{{schoolInfos.school.socialMedias.[3]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a>
@@ -178,6 +201,43 @@
             </div>
           </div>
       </div>
+
+      {{#if currentUser}}
+        {{#if nonSchool}}
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <br><br>
+            <hr>
+            <center><button class="btn newSchoolRegisterButton" data-toggle="modal" data-target="#sendMessage">Okula Mesaj At!</button></center>
+
+            <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                    <h4 class="modal-title" id="myModalLabel">Mesaj Gönder</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" id="title" placeholder="Mesaj Başlığı">
+                    <textarea id="{{school._id}}" rows="5" class="form-control" placeholder="Mesajınız" ></textarea>
+                    <br><br>
+                  </div>
+
+                    <br>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick='sendMessage($("#{{school._id}}").val(), $("#title").val(),$("#{{school._id}}")[0].id)'>Gönder</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+
     </div>
 
     <hr>
@@ -219,6 +279,64 @@
 
     <br><br><br>
 
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h5 class="pull-left">Bu Okul Hakkında Yapılan Yorumlar</h5>
+      </div>
+    </div>
+
+    {{#with comments}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{#if countZero count}}
+
+          <hr>
+          {{#each comment}}
+
+            <h5 style="border: none;" class="list-group-item schoolNotifModal"><b>{{whoSend}}</b><br><small class="" style="color:rgb(157,197,15);"> {{timeZoneTr sendTime}}</small><h5 class="ellipsis">{{comment}}</h5></h5>
+            <hr>
+          {{/each}}
+
+        {{else}}
+        <center>Bu okul hakkında yorum yapılmamıştır.</center>
+
+        {{/if}} <!-- countZero END! -->
+      </div>
+    </div>
+    {{/with}}
+
+    <br>
+
+    <hr>
+
+    {{#if currentUser}}
+      {{#if nonSchool}}
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <textarea id="comment" rows="5" class="form-control" placeholder="Okul Hakkında Yorum Yaz"></textarea>
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <button class="btn pull-right newSchoolRegisterButton commentC">Gönder !</button>
+          </div>
+        </div>
+
+      {{/if}} <!-- nonSchool END! -->
+
+      {{else}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <center>Okul Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
+        </div>
+      </div>
+    {{/if}}<!-- currentUser END! -->
+
+    <br><br>
+
     <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
 
     <div class="row">
@@ -227,6 +345,7 @@
       </div>
       </div>
     </div>
+
 
 
   </div>
@@ -291,7 +410,14 @@
     <div class="row">
 
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hoverStarYellow" role="button" style="padding-top:7%;">
-        <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b > Favorilerime Ekle</b>
+        {{#if currentUser}}
+          {{#if favorited}}
+          <b>Favorilerimde</b>
+          {{else}}
+          <i class="fa fa-star-o fa-lg" aria-hidden="true"></i><b class="fav"> Favorilerime Ekle</b>
+          {{/if}}
+        {{/if}}
+
       </div>
 
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-top:1%;">
@@ -308,16 +434,34 @@
 
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-top:1%;">
         <b class="pull-right">Puan : <div id="rateSchool" style="display:initial;"></div>
-          <script>
 
-          $("#rateSchool").raty({
-              score : {{school.rate}},
-              readOnly : true,
-              starType : 'img',
-              path : '/'
-          })
 
-          </script>
+            {{#if nonSchool}}
+              <script>
+
+              $("#rateSchool").raty({
+                  score : {{school.rate}},
+                  readOnly : false,
+                  starType : 'img',
+                  path : '/'
+              })
+
+              </script>
+            {{else}} <!-- nonSchool END! -->
+
+            <script>
+
+            $("#rateSchool").raty({
+                score : {{school.rate}},
+                readOnly : true,
+                starType : 'img',
+                path : '/'
+            })
+
+            </script>
+
+            {{/if}}
+
         </b>
         <br><br>
           <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
@@ -384,6 +528,42 @@
               </div>
             </div>
           </div>
+
+          {{#if currentUser}}
+            {{#if nonSchool}}
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br>
+                <center><button class="btn newSchoolRegisterButton pull-right" data-toggle="modal" data-target="#sendMessage">Okula Mesaj At!</button></center>
+
+                <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                        <h4 class="modal-title" id="myModalLabel">Mesaj Gönder</h4>
+                      </div>
+                      <div class="modal-body">
+                        <input type="text" id="title" placeholder="Mesaj Başlığı">
+                        <textarea id="{{school._id}}" rows="5" class="form-control" placeholder="Mesajınız" ></textarea>
+                        <br><br>
+                      </div>
+
+                        <br>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick='sendMessage($("#{{school._id}}").val(), $("#title").val(),$("#{{school._id}}")[0].id)'>Gönder</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+          {{/if}}
+
       </div>
     </div>
 
@@ -417,6 +597,65 @@
     {{> Template.dynamic template=schoolDetailInfoCenterMid}}
 
     <br><br><br>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h5 class="pull-left">Bu Okul Hakkında Yapılan Yorumlar</h5>
+      </div>
+    </div>
+
+    {{#with comments}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{#if countZero count}}
+
+          <hr>
+          {{#each comment}}
+
+            <h5 style="border: none;" class="list-group-item schoolNotifModal"><b>{{whoSend}}</b><br><small class="" style="color:rgb(157,197,15);"> {{timeZoneTr sendTime}}</small><h5 class="ellipsis">{{comment}}</h5></h5>
+            <hr>
+          {{/each}}
+
+        {{else}}
+        <center>Bu okul hakkında yorum yapılmamıştır.</center>
+
+        {{/if}} <!-- countZero END! -->
+      </div>
+    </div>
+    {{/with}}
+
+    <br>
+
+    <hr>
+
+    {{#if currentUser}}
+      {{#if nonSchool}}
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <textarea id="comment" rows="5" class="form-control" placeholder="Okul Hakkında Yorum Yaz"></textarea>
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <button class="btn pull-right newSchoolRegisterButton commentC">Gönder !</button>
+          </div>
+        </div>
+
+      {{/if}} <!-- nonSchool END! -->
+
+      {{else}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <center>Okul Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
+        </div>
+      </div>
+    {{/if}}<!-- currentUser END! -->
+
+    <br><br>
 
     <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
 

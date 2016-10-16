@@ -18,7 +18,7 @@ import './homeRoute.js';
 /* SCHOOL */
 
 import './schoolRoute.js';
-import './schoolProfileRoute.js';
+import './profileRoute.js';
 import './schoolCompare.js';
 import './schoolType.js';
 /*          */
