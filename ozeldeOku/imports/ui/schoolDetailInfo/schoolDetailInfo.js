@@ -13,6 +13,7 @@ import { SchoolPhotos } from '/imports/api/collections/schoolPhotos.js';
 import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
 import { Comments } from '/imports/api/collections/comments.js';
 import { Favorites } from '/imports/api/collections/favorites.js';
+import { SchoolRates } from '/imports/api/collections/schoolRate.js';
 
 import './schoolDetailInfo.html';
 import './schoolTimeline.html';
@@ -103,11 +104,50 @@ Template.schoolDetailInfoCenter.helpers({
       var user = Meteor.user();
 
       if(user){
-        if(user.profile.role != "School"){
-            return true;
+
+        const b__ = SchoolRates.findOne({"userId" : Meteor.userId(), "schoolId" : FlowRouter.getQueryParam('schld')});
+        if(b__){
+          return false;
+        }
+        else{
+          return true;
         }
       }
 
+    }
+  },
+
+  nonSchoolComment(){
+    if(Meteor.status().connected){
+
+      var user = Meteor.user();
+
+      if(user){
+
+        if(user.profile.role != "School"){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+
+    }
+  },
+
+  schoolOrRated(){
+    if(Meteor.status().connected){
+      var user = Meteor.user();
+
+      const b__ = SchoolRates.findOne({"userId" : Meteor.userId(), "schoolId" : FlowRouter.getQueryParam('schld')});
+      const s__ = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      if(b__ || s__){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
   },
 
@@ -198,11 +238,19 @@ Template.schoolDetailInfoCenter.events({
     const s__ = Schools.findOne(FlowRouter.getQueryParam('schld'));
 
     if(s__){
+
       const r = (s__.rate + $('#rateSchool').raty('score')) / 2;
 
-      Schools.update({"_id" : s__._id}, { $set : {
+      var a = Schools.update({"_id" : s__._id}, { $set : {
         rate : parseInt(r)
       }})
+
+      if(a){
+        SchoolRates.insert({
+          userId : Meteor.userId(),
+          schoolId : FlowRouter.getQueryParam('schld')
+        })
+      }
     }
 
 

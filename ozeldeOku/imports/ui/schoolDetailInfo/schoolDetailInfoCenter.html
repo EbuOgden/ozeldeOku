@@ -116,8 +116,9 @@
             })
 
             </script>
-          {{else}} <!-- nonSchool END! -->
+          {{/if}} <!-- nonSchool END! -->
 
+          {{#if schoolOrRated}}
           <script>
 
           $("#rateSchool").raty({
@@ -152,7 +153,7 @@
         Okul Türü <a style="color:black; padding-left:26%;">:</a> <a class="schoolDetailPageSixComponents pull-right">{{school.schoolType.schoolT}} {{#if highControl chool.schoolType.schoolT}} - {{school.schoolType.schoolTT}} {{/if}}</a><br><br>
         Şehir - İlçe <a style="color:black; padding-left:24%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.schoolCity}} - {{school.schoolCounty}}</a><br><br>
         Kuruluş Yılı <a style="color:black; padding-left:24%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.schoolFoundation}}</a><br><br>
-        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.totalPlace}}</a><br><br>
+        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.totalPlace}}</a><br><br>
         Öğrenci Kapasitesi <a style="color:black; padding-left:8%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
         Bölüm Sayısı <a style="color:black; padding-left:20.5%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
 
@@ -310,7 +311,7 @@
     <hr>
 
     {{#if currentUser}}
-      {{#if nonSchool}}
+      {{#if nonSchoolComment}}
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -436,31 +437,32 @@
         <b class="pull-right">Puan : <div id="rateSchool" style="display:initial;"></div>
 
 
-            {{#if nonSchool}}
-              <script>
-
-              $("#rateSchool").raty({
-                  score : {{school.rate}},
-                  readOnly : false,
-                  starType : 'img',
-                  path : '/'
-              })
-
-              </script>
-            {{else}} <!-- nonSchool END! -->
-
+          {{#if nonSchool}}
             <script>
 
             $("#rateSchool").raty({
                 score : {{school.rate}},
-                readOnly : true,
+                readOnly : false,
                 starType : 'img',
                 path : '/'
             })
 
             </script>
+          {{/if}} <!-- nonSchool END! -->
 
-            {{/if}}
+          {{#if schoolOrRated}}
+          <script>
+
+          $("#rateSchool").raty({
+              score : {{school.rate}},
+              readOnly : true,
+              starType : 'img',
+              path : '/'
+          })
+
+          </script>
+
+          {{/if}}
 
         </b>
         <br><br>
@@ -484,7 +486,7 @@
         Okul Türü <a style="color:black; padding-left:20%;">:</a> <a class="schoolDetailPageSixComponents">{{school.schoolType.schoolT}} {{#if highControl chool.schoolType.schoolT}} - {{school.schoolType.schoolTT}} {{/if}}</a><br><br>
         Şehir - İlçe <a style="color:black; padding-left:19%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolCity}} - {{school.schoolCounty}}</a><br><br>
         Kuruluş Yılı <a style="color:black; padding-left:18%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolFoundation}}</a><br><br>
-        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.totalPlace}}</a><br><br>
+        Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.totalPlace}}</a><br><br>
         Öğrenci Kapasitesi <a style="color:black; padding-left:10%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
         Bölüm Sayısı <a style="color:black; padding-left:17%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
 
@@ -530,7 +532,7 @@
           </div>
 
           {{#if currentUser}}
-            {{#if nonSchool}}
+            {{#if nonSchoolComment}}
 
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <br>
@@ -630,7 +632,7 @@
     <hr>
 
     {{#if currentUser}}
-      {{#if nonSchool}}
+      {{#if nonSchoolComment}}
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

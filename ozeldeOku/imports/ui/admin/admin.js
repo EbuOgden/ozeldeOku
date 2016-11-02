@@ -19,6 +19,10 @@ Template.adminCenter.helpers({
     return Schools.find({"isValidate" : false});
   },
 
+  schoolsDelete(){
+    return Schools.find({});
+  },
+
   photos(){
     if(Meteor.status().connected){
       const hpc = HomePageCarousel.find({});
@@ -74,6 +78,46 @@ Template.adminCenter.helpers({
 })
 
 Template.adminCenter.events({
+  'click .schoolDelete'(event){
+      event.preventDefault();
+
+      if(confirm(this.schoolName + "'i silmek istediğinize emin misiniz?")){
+        const s = Schools.findOne({"_id" : this._id});
+        var s_ = SchoolInfos.findOne({"schoolId" : s._id});
+
+        if(s){
+
+          if(s_){
+              var a = SchoolInfos.remove({"_id" : s_._id});
+              if(a){
+                var b = Schools.remove({"_id" : s._id});
+
+                if(b){
+                  alert("Silindi.");
+                  return;
+                }
+              }
+          }
+          else{
+            var b = Schools.remove({"_id" : s._id});
+
+            if(b){
+              alert("Silindi.");
+              return;
+            }
+          }
+
+
+        }
+
+
+      }
+      else{
+        alert("İşlem iptal edildi.");
+        return;
+      }
+  },
+
   'click .schoolRegister'(event){
     const target = event.currentTarget;
 
@@ -151,7 +195,8 @@ Template.adminCenter.events({
 
     $('#schoolInfoName').val(school.schoolName);
     $('#schoolInfoTradeName').val(school.tradeName);
-    $('#schoolInfoType').val(school.schoolType);
+    $('#schoolInfoType1').val(school.schoolType.schoolT);
+    $('#schoolInfoType2').val(school.schoolType.schoolTT);
     $('#schoolInfoAuthorizedPerson').val(school.authorizedPerson);
     $('#schoolInfoAuthorizedCaption').val(school.authorizedCaption);
     $('#schoolInfoEmail').val(school.schoolEmail);

@@ -1,7 +1,8 @@
 <template name="adminCenter">
   <div class="container">
 
-    Onaylı Olmayan Okullar
+    <span class="label label-primary">Onaylı Olmayan Okullar</span>
+
 
     {{#if isPhone}}
 
@@ -122,14 +123,39 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <ul>
+        <ul class="nav nav-sidebar">
+            <center>
             {{#each schools}}
               <li role="button" id="{{_id}}" title="Okul Bilgilerini görmek için tıklayınız" class="schoolInfo">{{schoolName}}</li>
               <br>
             {{/each}}
+          </center>
         </ul>
       </div>
     </div>
+
+    <hr>
+
+    <br>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <span class="label label-primary">Silmek İstediğiniz Okulu Seçiniz</span>
+
+        <hr>
+        <ul class="nav nav-sidebar">
+
+            {{#each schoolsDelete}}
+              <li role="button" id="{{_id}}" title="Okul Bilgilerini görmek için tıklayınız" class="schoolDelete">{{schoolName}}</li>
+              <br>
+            {{/each}}
+
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+    <br>
 
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -163,7 +189,8 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        Ana Sayfa Slayt Fotoğrafları
+          <span class="label label-primary">Ana Sayfa Slayt Fotoğrafları</span>
+
         <button class="btn " id="photo1">Fotoğraf Ekle</button>
       </div>
     </div>
@@ -172,7 +199,8 @@
     <hr>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        Sizin İçin Seçtiklerimize Ekleme Yapın
+        <span class="label label-primary">Sizin İçin Seçtiklerimize Ekleme Yapın</span>
+
         <hr>
         {{#with choose}}
           {{#if countZero count}}
@@ -192,7 +220,8 @@
     {{#with choosens}}
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        Aktif Olanlar
+        <span class="label label-primary">Sizin İçin Seçtiklerimizde Aktif Olanlar</span>
+
         <hr>
         {{#if countZero count}}
           {{#each choosen}}

@@ -601,6 +601,11 @@ Template.newSchoolRegister.events({
     const schoolFoundation = $('#schoolFoundationyear').val();
     const captchaData = grecaptcha.getResponse()
 
+    const hasUser = Meteor.users.findOne({"emails" : { $elemMatch : {"address" : schoolrEmail}}});
+
+    console.log(hasUser);
+    return;
+
     if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
       isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
       isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
@@ -619,8 +624,19 @@ Template.newSchoolRegister.events({
     //   return;
     // }
 
+
     if(isEqual(schoolEmail, schoolrEmail)){
+
+
       if(isEmail(schoolrEmail)){
+        console.log("Heyyo!");
+
+
+
+        if(a){
+          alert("Bu e-mail kullanılmaktadır. Lütfen başka deneyiniz.");
+        }
+        return;
       }
       else{
         alert("Girdiğiniz e-mail geçersizdir. Lütfen kontrol ediniz.");
@@ -694,7 +710,7 @@ Template.login.events({
     Meteor.loginWithPassword(email, password, (err) => {
       if(err){
         if(err.error == 403){
-          alert("Kullanıcı bulunamadı");
+          alert("E-mail veya şifre hatalı.");
         }
         else{
           alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");

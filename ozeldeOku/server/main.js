@@ -21,6 +21,7 @@ import { SchoolVideos } from '/imports/api/collections/schoolVideos.js';
 import { Favorites } from '/imports/api/collections/favorites.js';
 import { HomePageCarousel } from '/imports/api/collections/homePageCarousel.js';
 import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
+import { SchoolRates } from '/imports/api/collections/schoolRate.js';
 
 import { Messages } from '/imports/api/collections/messages.js';
 import { MessageRooms } from '/imports/api/collections/messageRooms.js';

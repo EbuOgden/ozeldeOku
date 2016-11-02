@@ -24,9 +24,10 @@ Meteor.methods({
     }
     else{
       var newMessageRoomId = MessageRooms.insert({
-        memberId : newUser,
+        memberIds : [newUser, 'ozeldeoku'],
         ownerId : 'ozeldeoku',
-        ownerName : 'Özelde Oku'
+        ownerName : 'Özelde Oku',
+        roomTitle : "Sistemimize hoşgeldiniz."
       })
 
       if(newMessageRoomId){

@@ -1456,103 +1456,411 @@
 
     {{else}} <!-- isFirstTime END! DESKTOP -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Popüler 1. Bölüm
-          </li>
+    {{#if schoolTypeUni}}
 
-          <li style="padding-bottom: 5px;">
-            {{#each schoolInfos}}
-                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
-            {{/each}}
-          </li>
+    {{#with schoolInfosNotFirst}}
 
-        </ul>
 
-      </div>
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Popüler 1. Bölüm
+              </li>
 
-      <div class="col-md-4">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Popüler 2. Bölüm
-          </li>
+              <li style="padding-bottom: 5px;">
 
-          <li style="padding-bottom: 5px;">
-            {{#each schoolInfos}}
-                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
-            {{/each}}
-          </li>
+                    <input type="text" class="form-control" id="popularDepartment1" placeholder="{{popularDepartments.[0]}}">
 
-        </ul>
-      </div>
+              </li>
+              <button type="button" class="btn btn-default" id="firstPopularDepartment"><b>1. Bilgiyi Güncelle</b></button>
 
-      <div class="col-md-4">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Popüler 3. Bölüm
-          </li>
+            </ul>
 
-          <li style="padding-bottom: 5px;">
-            {{#each schoolInfos}}
-                <input type="text" class="form-control" placeholder="{{faculty.departmentCount}}">
-            {{/each}}
-          </li>
+          </div>
 
-        </ul>
-      </div>
+          <div class="col-md-4">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Popüler 2. Bölüm
+              </li>
 
-    </div>
+              <li style="padding-bottom: 5px;">
+                    <input type="text" class="form-control" id="popularDepartment2" placeholder="{{popularDepartments.[1]}}">
+              </li>
 
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Fakülte Sayısı
-          </li>
+              <button type="button" class="btn btn-default" id="secondPopularDepartment"><b>2. Bilgiyi Güncelle</b></button>
+            </ul>
+          </div>
 
-          <li style="padding-bottom: 5px;">
-            {{#each schoolInfos}}
-                <input type="number" class="form-control" placeholder="{{faculty.facultyCount}}">
-            {{/each}}
-          </li>
-        </ul>
-      </div>
+          <div class="col-md-4">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Popüler 3. Bölüm
+              </li>
 
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Departman Sayısı
-          </li>
+              <li style="padding-bottom: 5px;">
+                    <input type="text" class="form-control" id="popularDepartment3" placeholder="{{popularDepartments.[2]}}">
+              </li>
+              <button type="button" class="btn btn-default" id="thirdPopularDepartment"><b>3. Bilgiyi Güncelle</b></button>
+            </ul>
+          </div>
 
-          <li style="padding-bottom: 5px;">
-            {{#each schoolInfos}}
-                <input type="number" class="form-control" placeholder="{{faculty.departmentCount}}">
-            {{/each}}
-          </li>
-        </ul>
-      </div>
+        </div>
 
-    </div>
+        <hr>
 
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <ul class="nav nav-sidebar">
-          <li style="padding-bottom: 5px;">
-            Departman Kontenjanı
-          </li>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Fakülte Sayısı
+              </li>
 
-          <li style="padding-bottom: 5px;">
-            <div class="form-group">
-              <select class="form-control input-lg" id="uniDepartments">
-                <option selected disabled>Şehir</option>
-              </select>
+              <li style="padding-bottom: 5px;">
+                    <input type="number" class="form-control" id="facultyCountUpdate" placeholder="{{academicInfos.facultyCount}}">
+              </li>
+
+              <button type="button" class="btn btn-default" id="facultyCountUpdateButton"><b>Fakülte Sayısı Güncelle</b></button>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Departman Sayısı
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                    <input type="number" class="form-control" id="departmentCountUpdate" placeholder="{{academicInfos.departmentCount}}">
+              </li>
+              <button type="button" class="btn btn-default" id="departmentCountUpdateButton"><b>Departman Sayısı Güncelle</b></button>
+            </ul>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <ul class="nav nav-sidebar">
+                <li style="padding-bottom: 5px;">
+                  Okul Ücreti
+                </li>
+
+                <li style="padding-bottom: 5px;">
+                      <input type="number" class="form-control" id="priceUpdate" placeholder="{{financialInfos.price}}">
+                </li>
+                <button type="button" class="btn btn-default" id="priceUpdateButton"><b>Okul Ücreti Güncelle</b></button>
+              </ul>
+
+
             </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Toplam Alan
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="totalPlaceUpdate" placeholder="{{totalPlace}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="totalPlaceUpdateButton"><b>Toplam Alan Güncelle</b></button>
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Ortalama Maaş
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="sumSalaryUpdate" placeholder="{{sumSalary}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="sumSalaryUpdateButton"><b>Ortalama Maaş Güncelle</b></button>
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Öğrenci Kapasitesi
+              </li>
+
+              <br>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="doctorateCountUpdate" placeholder="Doktora : {{studentCountInfos.doctorate}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="doctorateCountUpdateButton"><b>Doktora Güncelle</b></button>
+
+                </div>
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="postGraduateCountUpdate" placeholder="Yüksek Lisans :{{studentCountInfos.postGraduate}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="postGraduateCountUpdateButton"><b>Yüksek Lisans Güncelle</b></button>
+
+                </div>
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="licenseCountUpdate" placeholder="Lisans : {{studentCountInfos.license}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="licenseCountUpdateButton"><b>Lisans Güncelle</b></button>
+
+                </div>
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+                  <li style="padding-bottom: 5px;">
+                        <input type="number" class="form-control" id="profCountUpdate" placeholder="Profesör : {{studentCountInfos.profCount}}">
+                  </li>
+                  <button type="button" class="btn btn-default" id="profCountUpdateButton"><b>Profesör Güncelle</b></button>
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="nav nav-sidebar">
+              <li style="padding-bottom: 5px;">
+                Burs Bilgileri
+              </li>
+
+              <li style="padding-bottom: 5px;">
+                <div class="form-group">
+
+                  {{#with scholarShipInfos}}
+
+                  <div class="row">
+                    {{#if scholarShipHave academicScholar.isHave}}
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox" checked class="scholarInfosChecksControl" id="academicScholarHave">
+                              </span>
+                              <h5>Akademik Burs</h5>
+                          </div>
+                          <input type="text" id="academicScholarRateHave" placeholder="Burs Oranı : {{academicScholar.quotaRate}}">
+                          <button type="button" class="btn btn-default" id="academicScholarUpdateButton"><b>Burs Güncelle</b></button>
+                        </div>
+
+                    {{else}}
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox" class="scholarInfosChecksControl" id="academicScholarNew">
+                              </span>
+                              <h5>Akademik Burs</h5>
+                          </div>
+                          <input type="text" id="academicScholarRateNew" placeholder="Burs Oranı">
+                          <button type="button" class="btn btn-default" id="academicScholarNewButton"><b>Burs Ekle</b></button>
+                        </div>
+
+                    {{/if}}
+
+                    {{#if scholarShipHave athleteScholar.isHave}}
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" checked class="scholarInfosChecksControl" id="athleteScholarHave">
+                          </span>
+                          <h5>Atletik Burs</h5>
+                      </div>
+                      <input type="text" id="athleteScholarRateHave" placeholder="Burs Oranı : {{athleteScholar.quotaRate}}">
+                      <button type="button" class="btn btn-default" id="athleteScholarUpdateButton"><b>Burs Güncelle</b></button>
+                    </div>
+
+                    {{else}}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" class="scholarInfosChecksControl" id="athleteScholarNew">
+                          </span>
+                          <h5>Atletik Burs</h5>
+                      </div>
+                      <input type="text" id="athleteScholarRateNew" placeholder="Burs Oranı">
+                      <button type="button" class="btn btn-default" id="athleteScholarNewButton"><b>Burs Ekle</b></button>
+                    </div>
+
+                    {{/if}}
+
+                    {{#if scholarShipHave firstSelectScholar.isHave}}
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" checked class="scholarInfosChecksControl" id="firstSelectScholarHave">
+                          </span>
+                          <h5>İlk Tercih Burs</h5>
+                      </div>
+                      <input type="text" id="firstSelectScholarRateHave" placeholder="Burs Oranı : {{firstSelectScholar.quotaRate}}">
+                      <button type="button" class="btn btn-default" id="firstSelectScholarUpdateButton"><b>Burs Güncelle</b></button>
+                    </div>
+
+                    {{else}}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" class="scholarInfosChecksControl" id="firstSelectScholarNew">
+                          </span>
+                          <h5>İlk Tercih Burs</h5>
+                      </div>
+                      <input type="text" id="firstSelectScholarRateNew" placeholder="Burs Oranı">
+                      <button type="button" class="btn btn-default" id="firstSelectScholarNewButton"><b>Burs Ekle</b></button>
+                    </div>
+
+                    {{/if}}
+
+                    {{#if scholarShipHave retiredScholar.isHave}}
+
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" checked class="scholarInfosChecksControl" id="retiredScholarHave">
+                          </span>
+                          <h5>Emekli Bursu</h5>
+                      </div>
+
+                      <input type="text" id="retiredScholarRateHave" placeholder="Burs Oranı : {{retiredScholar.quotaRate}}">
+                      <button type="button" class="btn btn-default" id="retiredScholarUpdateButton"><b>Burs Güncelle</b></button>
+                    </div>
+
+                    {{else}}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" class="scholarInfosChecksControl" id="retiredScholarNew">
+                          </span>
+                          <h5>Emekli Burs</h5>
+                      </div>
+                      <input type="text" id="retiredScholarRateNew" placeholder="Burs Oranı">
+                      <button type="button" class="btn btn-default" id="retiredScholarNewButton"><b>Burs Ekle</b></button>
+                    </div>
+
+
+                    {{/if}}
+
+
+                  </div>
+
+                  <div class="row">
+
+                    {{#if scholarShipHave sibling.isHave}}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" checked class="scholarInfosChecksControl" id="siblingScholarHave">
+                          </span>
+                          <h5>Kardeş Bursu</h5>
+                      </div>
+                      <input type="text" id="siblingScholarRateHave" placeholder="Burs Oranı : {{siblingScholar.quotaRate}}">
+                      <button type="button" class="btn btn-default" id="siblingScholarUpdateButton"><b>Burs Güncelle</b></button>
+                    </div>
+
+                    {{else}}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" class="scholarInfosChecksControl" id="siblingScholarNew">
+                          </span>
+                          <h5>Kardeş Burs</h5>
+                      </div>
+                      <input type="text" id="siblingScholarRateNew" placeholder="Burs Oranı">
+                      <button type="button" class="btn btn-default" id="siblingScholarNewButton"><b>Burs Ekle</b></button>
+                    </div>
+
+
+                    {{/if}}
+
+                    {{#if scholarShipHaveLength others}}
+
+                      {{#each others}}
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <div class="input-group othersScholarHave" id="{{_id}}">
+                              <span class="input-group-addon">
+                                <input type="checkbox" checked class="scholarInfosChecksControl">
+                              </span>
+                              <h5>{{otherScholarName}} Bursu</h5>
+                          </div>
+                          <input type="text" id="otherScholarRateHave" placeholder="Burs Oranı : {{quotaRate}}">
+                          <button type="button" class="btn btn-default" id="otherScholarUpdateButton"><b>Burs Güncelle</b></button>
+                        </div>
+                      {{/each}}
+
+                    {{else}}
+
+
+                    {{/if}}
+                  </div>
+
+                  {{/with}}
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <h5 id="coverUpdate" role="button">Kapak Fotoğrafı Güncelle</h5>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <h5 id="ppUpdate" role="button">Profil Fotoğrafı Güncelle</h5>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <h5 id="schoolPhotoUpdate" role="button">Okul Fotoğrafı Güncelle</h5>
+          </div>
+        </div>
+
+    {{/with}} <!-- schoolInfosNotFirst END! -->
+    {{/if}} <!-- schoolTypeUni END! -->
 
     {{/if}}
   </div>

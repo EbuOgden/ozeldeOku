@@ -51,7 +51,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" placeholder="{{taxNo}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" maxlength="10" placeholder="{{taxNo}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -107,7 +107,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" placeholder="{{schoolPhoneNumber}}">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" maxlength="10" placeholder="{{schoolPhoneNumber}}">
 
               </li>
             </ul>
@@ -120,7 +120,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" maxlength="10" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -280,7 +280,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" placeholder="{{taxNo}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="taxNo" maxlength="10" placeholder="{{taxNo}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -336,7 +336,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" placeholder="{{schoolPhoneNumber}}">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="phoneNum" maxlength="10" placeholder="{{schoolPhoneNumber}}">
 
               </li>
             </ul>
@@ -349,7 +349,7 @@
               </li>
               <li style="padding-bottom: 5px;">
 
-                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
+                    <input type="text" class="form-control input-lg schoolInfoCnt" id="faxNum" maxlength="10" placeholder="{{schoolFaxNumber}}" style="heigth : 45px;">
 
               </li>
             </ul>
@@ -420,39 +420,57 @@
     {{/if}} <!-- schoolP END! -->
 
     {{#if nonSchool}}
-      {{#with profile}}
+      {{#with profileUser}}
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          Ad {{profile.name}}
-          <input type="password" class="form-control input-lg" id="name" placeholder="{{profile.name}}" style="heigth : 45px;">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          Ad
+          <input type="text" class="form-control input-lg" id="nameNew" placeholder="{{profile.name}}" style="heigth : 45px;">
+          <br>
+          <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="nameNewUpdate"><b>Ad Güncelle</b></button>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           Soyad
-          <input type="text" class="form-control input-lg" id="surname" placeholder="{{profile.surname}}" style="heigth : 45px;">
+          <input type="text" class="form-control input-lg" id="surnameNew" placeholder="{{profile.surname}}" style="heigth : 45px;">
+          <br>
+          <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="surnameNewUpdate"><b>Soyad Güncelle</b></button>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           Email
-          <input type="text" class="form-control input-lg" id="email" placeholder="" style="heigth : 45px;">
+          <input type="text" class="form-control input-lg" id="emailNew" placeholder="{{emails.[0].address}}" style="heigth : 45px;">
+          <br>
+          <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="emailNewUpdate"><b>E-mail Güncelle</b></button>
         </div>
       </div>
 
 
+      <hr>
+      <br>
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           Mevcut Şifre
-          <input type="password" class="form-control input-lg" id="oldPass" placeholder="Mevcut Şifre" style="heigth : 45px;">
+          <input type="password" class="form-control input-lg" id="oldPassUser" placeholder="Mevcut Şifre" style="heigth : 45px;">
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           Yeni Şifre
-          <input type="text" class="form-control input-lg" id="newPass" placeholder="Yeni Şifre" style="heigth : 45px;">
+          <input type="password" class="form-control input-lg" id="newPassUser" placeholder="Yeni Şifre" style="heigth : 45px;">
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           Yeni Şifre Tekrarı
-          <input type="text" class="form-control input-lg" id="newPassR" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+          <input type="password" class="form-control input-lg" id="newPassRUser" placeholder="Yeni Şifre Tekrarı" style="heigth : 45px;">
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 pull-right">
+
+            <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="passwordNewUserUpdate"><b>Şifre Güncelle</b></button>
+
         </div>
       </div>
 

@@ -10,13 +10,32 @@ Meteor.methods({
       const messageRoom = obj.__da;
       const message = obj.__nMes;
       const senderId = obj.__seId;
-      const readerId = obj.__reId;
 
       if(messageRoom){
-        // var newMessage = Messages.insert({
-        //   messageContext = message,
-        //   senderId =
-        // })
+        var a = messageRoom._readerId;
+
+        for(let i = a.length; i--;){
+          if((a[i] == senderId) || (a[i] === senderId)){
+            delete a[i];
+          }
+        }
+
+        a = a.filter(function(str){
+          return /\S/.test(str);
+        })
+
+        const readerId = a[0];
+
+        var newMessage = Messages.insert({
+          messageContext : message,
+          senderId : senderId,
+          readerId : readerId,
+          roomId : messageRoom._rId
+        })
+
+        if(newMessage){
+          return "Mesajınız gönderilmiştir."
+        }
 
       }else{
         throw new Meteor.Error('cant.find.messageroom', 'Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.');
