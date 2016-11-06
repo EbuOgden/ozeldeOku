@@ -20,7 +20,7 @@ Template.dormitoriesCenter.helpers({
   schoolLengthControl(){
     const sch = Schools.find({"schoolType.schoolT" : "Yurt"});
 
-    if(scho.count() > 0){
+    if(sch.count() > 0){
       return true;
     }
     else{

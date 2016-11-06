@@ -7,7 +7,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
 
   schoolId : {
     type : String,
-    optional : false,
+    optional : true,
     index : 1
   },
 
@@ -18,7 +18,7 @@ SchoolInfos.attachSchema(new SimpleSchema({
 
   studentCountInfos : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "studentCountInfos.doctorate" : {
@@ -33,58 +33,58 @@ SchoolInfos.attachSchema(new SimpleSchema({
 
   "studentCountInfos.license" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "studentCountInfos.profCount" : { /* for stuCountPerProf = doctorate+post+license / profCount */
     type : Number,
-    optional : false
+    optional : true
   },
 
   "studentCountInfos.stuCountPerProf" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   academicInfos : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "academicInfos.facultyCount" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "academicInfos.departmentCount" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   quotaInfos : {
     type : [Object],
-    optional : false
+    optional : true
   },
 
   "quotaInfos.$.departmentId" : {
     type : String,
-    optional : false
+    optional : true
   },
 
   "quotaInfos.$.departmentName" : {
     type : String,
-    optional : false
+    optional : true
   },
 
   "quotaInfos.$.quota" : {
     type : Number,
-    optional : false,
+    optional : true,
 
   },
 
   "quotaInfos.$.fullScholarQuota" : {
     type : Number,
-    optional : false,
+    optional : true,
 
   },
 
@@ -108,17 +108,17 @@ SchoolInfos.attachSchema(new SimpleSchema({
 
   financialInfos : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "financialInfos.price" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   scholarShipInfos : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.scholarStudentCount" : {
@@ -128,77 +128,77 @@ SchoolInfos.attachSchema(new SimpleSchema({
 
   "scholarShipInfos.athleteScholar" : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.athleteScholar.isHave" : {
     type : Boolean,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.athleteScholar.quotaRate" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.siblingScholar" : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.siblingScholar.isHave" : {
     type : Boolean,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.siblingScholar.quotaRate" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.firstSelectScholar" : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.firstSelectScholar.isHave" : {
     type : Boolean,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.firstSelectScholar.quotaRate" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.retiredScholar" : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.retiredScholar.isHave" : {
     type : Boolean,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.retiredScholar.quotaRate" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.academicScholar" : {
     type : Object,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.academicScholar.isHave" : {
     type : Boolean,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.academicScholar.quotaRate" : {
     type : Number,
-    optional : false
+    optional : true
   },
 
   "scholarShipInfos.others" : {

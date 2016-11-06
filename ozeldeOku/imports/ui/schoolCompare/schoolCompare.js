@@ -10,8 +10,8 @@ import './schoolCompare.html';
 import './schoolCompareCenterList';
 
 const __cLE_ = new ReactiveVar(0);
-const _sTy__ = new ReactiveVar();
-const _sTy2__ = new ReactiveVar();
+const _sTy__ = new ReactiveVar(0);
+const _sTy2__ = new ReactiveVar(0);
 const _cHsC__ = new ReactiveVar(0);
 const __CHMin___ = new ReactiveVar(0);
 
@@ -19,49 +19,50 @@ Template.schoolCompareCenter.events({
   'click #anaSayfaRoute'(event){
     event.preventDefault();
     FlowRouter.go('/');
-    BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
+    //BlazeLayout.render('home', {top: 'homeLayout', center : 'homeCenter', bottom: 'homeBottom'});
   },
 
   'click #preSchool'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("Anaokulu");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click #primarySchool'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("İlkokul");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click #middleSchool'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("Ortaöğretim");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click #highSchool'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("Lise");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click #university'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("Üniversite");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click #dormitory'(event, instance){
     event.preventDefault();
     __cLE_.set(0);
     _sTy__.set("Yurt");
-    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList'});
+    _sTy2__.set(0);
+    BlazeLayout.render('schoolCompareCenter', {schoolCompareCenterTop: 'homeLayout', schoolCompareCenterDynamic: 'schoolCompareCenterList', schoolCompareCenterBottom : 'homeBottom'});
   },
 
   'click .highType2'(event){
@@ -155,15 +156,15 @@ Template.schoolCompareCenter.events({
 
 })
 
-Template.schoolCompareCenter.onRendered(() => {
-  __CHMin___.set(0);
-
-  _sTy__.set(0);
-
-  _sTy2__.set(0);
-
-  CompareList.remove({});
-})
+// Template.schoolCompareCenter.onCreated(function schoolCompareCenterOnCreated(){
+//   __CHMin___.set(0);
+//
+//   _sTy__.set(0);
+//
+//   _sTy2__.set(0);
+//
+//   CompareList.remove({});
+// })
 
 Template.schoolCompareCenter.helpers({
   cH_ct(){
@@ -230,9 +231,11 @@ Template.schoolCompareCenterList.helpers({
       if(_sTy__.get() != 0 && _sTy2__.get() != 0){
         return Schools.find({"schoolType.schoolT" : _sTy__.get(), "schoolType.schoolTT" : _sTy2__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
       }
+
       if(_sTy__.get() != 0){
         return Schools.find({"schoolType.schoolT" : _sTy__.get(), "haveSchoolDetailInfo" : true}, {limit : 8, skip : __cLE_.get()});
       }
+
 
     }
 

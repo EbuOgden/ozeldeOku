@@ -21,6 +21,7 @@ import './schoolRoute.js';
 import './profileRoute.js';
 import './schoolCompare.js';
 import './schoolType.js';
+import './dormitoriesRoute.js';
 /*          */
 
 /* NOT FOUND */

@@ -671,16 +671,257 @@
     {{/if}} <!-- schoolTypeUni END ! -->
 
     {{#if schoolTypeHigh}}
-
+      HIGH SCHOOL
     {{/if}}
 
     {{#if schoolTypeMidFirst}}
-
+    MID SCHOOL
     {{/if}}
 
     {{#if schoolTypeDormitory}}
 
-    {{/if}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            <center>Öğrenci Kapasitesi</center>
+          </li>
+
+          <br>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <li style="padding-bottom: 5px;">
+                    <input type="number" class="form-control" id="dormitoryCapacity" placeholder="Öğrenci Kapasitesi">
+              </li>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="nav nav-sidebar">
+
+            <li style="padding-bottom: 5px;">
+              <center>Toplam Alan (m²)</center>
+            </li>
+
+            <br>
+
+            <li style="padding-bottom: 5px;">
+              <div class="form-group">
+                <li style="padding-bottom: 5px;">
+                      <input type="number" class="form-control" id="dormitoryTotalPlace" placeholder="Toplam Alan">
+                </li>
+
+              </div>
+            </li>
+
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <center><span class="label label-primary">Yurt Resimleri</span></center>
+        </div>
+
+    </div>
+
+    <br>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            <center>Max Çözünürlük : 200x150</center>
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="schoolImage"><b>Yurt Resmi</b></button>
+          </li>
+
+          {{#if schoolImg}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolImgSrc}}" style="height:72px; width:72px;">
+          </li>
+          {{/if}}
+        </ul>
+
+      </div>
+
+      <br>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            <center>Max Çözünürlük : 150x150</center>
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="schoolLogo"><b>Yurt Logosu</b></button>
+          </li>
+
+          {{#if schoolLogo}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolLogoSrc}}" style="height:72px; width:72px;">
+          </li>
+
+          {{/if}}
+        </ul>
+
+      </div>
+
+      <br>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            <center>Max Çözünürlük : 1500x938</center>
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default btn-block newSchoolRegisterButton" id="schoolCover"><b>Yurt Kapak Fotoğrafı</b></button>
+          </li>
+
+          {{#if schoolCover}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolCoverSrc}}" style="height:72px; width:72px;">
+          </li>
+          {{/if}}
+        </ul>
+
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <center><span class="label label-primary">Sosyal Medya Hesapları</span></center>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Facebook
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryFacebook" placeholder="facebook.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Twitter
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryTwitter" placeholder="twitter.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Instagram
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryInstagram" placeholder="instagram.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Google+
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryGoogleP" placeholder="Google+ Profil Linki">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Youtube
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryYoutube" placeholder="youtube.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Linkedin
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryLinkedin" placeholder="Linkedin Profil Linki">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <center><span class="label label-primary">Yurt Hakkında</span></center>
+        </div>
+
+    </div>
+
+    <br>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <textarea class="form-control" rows="5" placeholder="Yurt Hakkında" maxlength="1024" id="aboutDormitory"></textarea>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="sendDormitoryInfos"><b>Yurt Bilgilerini Gönder</b></button>
+      </div>
+    </div>
+
+    {{/if}} <!-- schoolTypeDormitory END -->
 
     {{else}} <!-- FIRST TIME END MOBILE ! -->
 
@@ -1443,14 +1684,251 @@
     {{/if}} <!-- schoolTypeUni End -->
 
     {{#if schoolTypeHigh}}
-
+    HIGH SCHOOL
     {{/if}}
 
     {{#if schoolTypeMidFirst}}
-
+    MID SCHOOL
     {{/if}}
 
     {{#if schoolTypeDormitory}}
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Öğrenci Kapasitesi
+          </li>
+
+          <br>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <li style="padding-bottom: 5px;">
+                    <input type="number" class="form-control" id="dormitoryCapacity" placeholder="Öğrenci Kapasitesi">
+              </li>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <ul class="nav nav-sidebar">
+
+            <li style="padding-bottom: 5px;">
+              Toplam Alan (m²)
+            </li>
+
+            <br>
+
+            <li style="padding-bottom: 5px;">
+              <div class="form-group">
+                <li style="padding-bottom: 5px;">
+                      <input type="number" class="form-control" id="dormitoryTotalPlace" placeholder="Toplam Alan">
+                </li>
+
+              </div>
+            </li>
+
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <span class="label label-primary">Yurt Resimleri</span>
+        </div>
+
+    </div>
+
+    <br>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Max Çözünürlük : 200x150
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolImage"><b>Yurt Resmi</b></button>
+          </li>
+
+          {{#if schoolImg}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolImgSrc}}" style="height:72px; width:72px;">
+          </li>
+          {{/if}}
+        </ul>
+
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Max Çözünürlük : 150x150
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolLogo"><b>Yurt Logosu</b></button>
+          </li>
+
+          {{#if schoolLogo}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolLogoSrc}}" style="height:72px; width:72px;">
+          </li>
+
+          {{/if}}
+        </ul>
+
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Max Çözünürlük : 1500x938
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-default newSchoolRegisterButton" id="schoolCover"><b>Yurt Kapak Fotoğrafı</b></button>
+          </li>
+
+          {{#if schoolCover}}
+          <li style="padding-bottom: 5px;">
+            <img src="{{schoolCoverSrc}}" style="height:72px; width:72px;">
+          </li>
+          {{/if}}
+        </ul>
+
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <span class="label label-primary">Sosyal Medya Hesapları</span>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Facebook
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryFacebook" placeholder="facebook.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Twitter
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryTwitter" placeholder="twitter.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Instagram
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryInstagram" placeholder="instagram.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Google+
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryGoogleP" placeholder="Google+ Profil Linki">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Youtube
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryYoutube" placeholder="youtube.com/">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+            Linkedin
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <input type="text" class="form-control" id="dormitoryLinkedin" placeholder="Linkedin Profil Linki">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <span class="label label-primary">Yurt Hakkında</span>
+        </div>
+
+    </div>
+
+    <br>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="nav nav-sidebar">
+          <li style="padding-bottom: 5px;">
+
+          </li>
+
+          <li style="padding-bottom: 5px;">
+            <div class="form-group">
+              <textarea class="form-control" rows="5" placeholder="Yurt Hakkında" maxlength="1024" id="aboutDormitory"></textarea>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+        <button type="button" class="btn btn-default btn-lg btn-block newSchoolRegisterButton" id="sendDormitoryInfos"><b>Yurt Bilgilerini Gönder</b></button>
+      </div>
+    </div>
 
     {{/if}}
 

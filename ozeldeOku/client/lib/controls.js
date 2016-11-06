@@ -121,16 +121,23 @@ sendMessage = function(msg, title, school){
 		return;
 	}
 
-	const msgRoom = MessageRooms.findOne({"ownerId" : Meteor.userId()});
+	const msgRoom = MessageRooms.findOne({"ownerId" : Meteor.userId(), "readerId" : school});
 	const name = Meteor.user().profile.name;
 
 	if(msgRoom){
-		Messages.insert({
+		var a = Messages.insert({
 			messageContext : msg,
 			senderId : Meteor.userId(),
 			readerId : school,
 			roomId : msgRoom._id
 		})
+
+		if(a){
+			alert("Mesajınız gönderilmiştir!");
+		}
+		else{
+			alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+		}
 	}
 	else{
 		var room = MessageRooms.insert({
@@ -141,15 +148,23 @@ sendMessage = function(msg, title, school){
 		})
 
 		if(room){
-			Messages.insert({
+
+			var a = Messages.insert({
 				messageContext : msg,
 				senderId : Meteor.userId(),
 				readerId : school,
 				roomId : room
-			})
+			});
+
+			if(a){
+				alert("Mesajınız gönderilmiştir!");
+			}
+			else{
+				alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+			}
 		}
 		else{
-			console.log("not insert room!");
+			alert("Teknik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
 		}
 	}
 }

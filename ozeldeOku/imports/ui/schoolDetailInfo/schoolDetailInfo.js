@@ -51,6 +51,34 @@ Template.schoolDetailInfoCenter.helpers({
 
   },
 
+  schoolTypeUni(){
+    if(Meteor.status().connected){
+
+        const a = Schools.findOne({"authorizedPersonUserId" : Meteor.userId(), "schoolType.schoolT" : "Üniversite"});
+        if(a){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+
+  },
+
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  },
+
   authPers(){
     if(Meteor.status().connected){
 
@@ -237,7 +265,21 @@ Template.schoolDetailInfoCenter.events({
 
     const s__ = Schools.findOne(FlowRouter.getQueryParam('schld'));
 
-    if(s__){
+    if(s__ && (s__.rate == 0)){
+      const r = $('#rateSchool').raty('score');
+
+      var a = Schools.update({"_id" : s__._id}, { $set : {
+        rate : parseInt(r)
+      }})
+
+      if(a){
+        SchoolRates.insert({
+          userId : Meteor.userId(),
+          schoolId : FlowRouter.getQueryParam('schld')
+        })
+      }
+    }
+    else if(s__ && (s__.rate != 0)){
 
       const r = (s__.rate + $('#rateSchool').raty('score')) / 2;
 
@@ -283,6 +325,7 @@ Template.schoolDetailInfoCenter.onRendered(() => {
 
     if(Meteor.status().connected){
       const school = SchoolInfos.findOne({"schoolId" : FlowRouter.getQueryParam('schld')});
+      const sc = Schools.findOne({"schoolId" : FlowRouter.getQueryParam('scld')});
 
       if(school){
         const schoolDetail = school.school;
@@ -309,29 +352,61 @@ Template.schoolDetailInfoCenter.onRendered(() => {
                 position : {lat : _schLat__, lng : __schLng_},
           })
 
+          const type = sc.schoolType.schoolT;
+
           marker.addListener('dragend', () => {
-            if(confirm("Okulun konumunu güncellemek istediğinizden emin misiniz? ")){
-              const markerNewLoc = marker.getPosition();
 
-              const news = {
-                newLat : markerNewLoc.lat(),
-                newLng : markerNewLoc.lng()
+            if(type == "Yurt"){
+              if(confirm("Yurdun konumunu güncellemek istediğinizden emin misiniz? ")){
+                const markerNewLoc = marker.getPosition();
+
+                const news = {
+                  newLat : markerNewLoc.lat(),
+                  newLng : markerNewLoc.lng()
+                }
+
+                const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+                Meteor.call('_cord__Upd_', news, school._id, (error, result) => {
+                  if(error){
+                    alert(error.reason);
+                  }
+                  else{
+
+                    alert("Konumunuz başarılı bir şekilde güncellenmiştir.");
+                  }
+                })
               }
-
-              const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
-
-              Meteor.call('_cord__Upd_', news, school._id, (error, result) => {
-                if(error){
-                  alert(error.reason);
-                }
-                else{
-                  alert("Konumunuz başarılı bir şekilde güncellenmiştir. Çevredeki yurtlar da otomatik olarak güncellenecektir.");
-                }
-              })
+              else{
+                alert("Güncelleme işlemi iptal edilmiştir");
+              }
             }
             else{
-              alert("Güncelleme işlemi iptal edilmiştir");
+              if(confirm("Okulun konumunu güncellemek istediğinizden emin misiniz? ")){
+                const markerNewLoc = marker.getPosition();
+
+                const news = {
+                  newLat : markerNewLoc.lat(),
+                  newLng : markerNewLoc.lng()
+                }
+
+                const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+                Meteor.call('_cord__Upd_', news, school._id, (error, result) => {
+                  if(error){
+                    alert(error.reason);
+                  }
+                  else{
+
+                    alert("Konumunuz başarılı bir şekilde güncellenmiştir. Çevredeki yurtlar da otomatik olarak güncellenecektir.");
+                  }
+                })
+              }
+              else{
+                alert("Güncelleme işlemi iptal edilmiştir");
+              }
             }
+
 
           })
         }
@@ -382,7 +457,21 @@ Template.schoolTimeline.helpers({
 
     }
 
-  }
+  },
+
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  },
 })
 
 Template.schoolNotifsDetailPage.events({
@@ -407,6 +496,20 @@ Template.schoolNotifsDetailPage.helpers({
       }
     }
 
+  },
+
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   },
 
   read(){
@@ -450,7 +553,21 @@ Template.schoolEvents.helpers({
       }
 
     }
-  }
+  },
+
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  },
 })
 
 Template.schoolEvents.events({
@@ -486,6 +603,20 @@ Template.schoolPhotos.helpers({
     }
   },
 
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  },
+
   photo(){
     return __sP.get();
   }
@@ -515,6 +646,19 @@ Template.schoolVideos.helpers({
     }
   },
 
+  isSchool(){
+    if(Meteor.status().connected){
+
+      const __s = Schools.findOne({"_id" : FlowRouter.getQueryParam('schld'), "schoolType.schoolT" : "Yurt"});
+
+      if(__s){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  },
 
 })
 

@@ -34,7 +34,7 @@ Schools.attachSchema(new SimpleSchema({
 
     "schoolType.schoolTT" : {
       type : String,
-      optional : false
+      optional : true
     },
 
     taxNo : {

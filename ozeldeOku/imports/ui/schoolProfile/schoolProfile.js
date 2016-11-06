@@ -1907,6 +1907,94 @@ Template.schoolProfileSchoolInfos.events({
     }
   },
 
+  'click #sendDormitoryInfos'(event){
+      event.preventDefault();
+
+      const capacity = $('#dormitoryCapacity').val();
+
+      const totalPlace = $('#dormitoryTotalPlace').val();
+
+      const socialMedias = [$('#dormitoryFacebook').val(), $('#dormitoryTwitter').val(), $('#dormitoryInstagram').val(), $('#dormitoryGoogleP').val(), $('#dormitoryYoutube').val(), $('#dormitoryLinkedin').val()];
+
+      for(let i = socialMedias.length; i--;){
+        if(isEmpty(socialMedias[i])){
+          socialMedias[i] = "#";
+        }
+      }
+
+      const aboutDormi = $('#aboutDormitory').val();
+
+      if(isEmpty(aboutDormi)){
+        alert("Lütfen Yurt Hakkında kutucuğunu doldurunuz.");
+        return;
+      }
+
+      if(isEmpty(capacity)){
+        alert("Lütfen Kapasite kutucuğunu doldurunuz.");
+        return;
+      }
+
+      if(isEmpty(totalPlace)){
+        alert("Lütfen Toplam Alan kutucuğunu doldurunuz.");
+        return;
+      }
+
+      var geocoder = new google.maps.Geocoder();
+
+      const school = Schools.findOne({"authorizedPersonUserId" : Meteor.userId()});
+
+      if(school){
+
+        if(isEmpty(__sPp.get()) ){
+          __sPp.set('/schoolIcon.png');
+        }
+
+        if(isEmpty(__sImg.get())){
+          __sImg.set('/schoolImage.png');
+        }
+
+        if(isEmpty(__sCover.get())){
+          __sCover.set('/sa.jpg');
+        }
+
+        geocoder.geocode({"address" : school.schoolAddress}, (results, status) => {
+
+          if(status == "OK"){
+            
+            const lat = results[0].geometry.location.lat();
+            const lng = results[0].geometry.location.lng();
+
+            const obj = {
+              capacity : capacity,
+              school : school._id,
+              lat : lat,
+              lng : lng,
+              about : aboutDormi,
+              img : __sImg.get(),
+              logo : __sPp.get(),
+              cover : __sCover.get(),
+              socialMedia : socialMedias,
+              totalPlace : totalPlace
+            };
+
+            Meteor.call('__dor_in_d', obj, (err, result) => {
+              if(err){
+                alert(err.reason);
+              }
+              else{
+                alert(result);
+              }
+            })
+          }
+          else{
+            alert("Teknik bir hata oluştu, lütfen daha sonra tekrar deneyiniz.");
+          }
+        })
+
+      }
+
+  },
+
   'click #sendSchoolInfos'(event, instance){
     event.preventDefault();
 
@@ -1978,7 +2066,7 @@ Template.schoolProfileSchoolInfos.events({
 
     for(let i = socialMedias.length; i--;){
       if(isEmpty(socialMedias[i])){
-        socialMedias[i] == "#";
+        socialMedias[i] = "#";
       }
     }
 

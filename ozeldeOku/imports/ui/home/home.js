@@ -241,6 +241,11 @@ Template.homeCenter.events({
     __schoolStatus.set('universities');
   },
 
+  'click #dormitories'(event){
+    event.preventDefault();
+    __schoolStatus.set('dormitories');
+  },
+
   'change #schoolTypeSelect'(event){
     event.preventDefault();
     const schoolType = $('#schoolTypeSelect').val();
@@ -371,7 +376,9 @@ Template.homeCenter.helpers({
               return Schools.find({"schoolType.schoolT" : "Üniversite", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
               break;
 
-
+          case 'dormitories':
+              return Schools.find({"schoolType.schoolT" : "Yurt", "haveSchoolDetailInfo" : true}, {sort : {rate : -1}}, {limit : 6});
+              break;
         }
 
     }
@@ -601,11 +608,6 @@ Template.newSchoolRegister.events({
     const schoolFoundation = $('#schoolFoundationyear').val();
     const captchaData = grecaptcha.getResponse()
 
-    const hasUser = Meteor.users.findOne({"emails" : { $elemMatch : {"address" : schoolrEmail}}});
-
-    console.log(hasUser);
-    return;
-
     if((isEmpty(schoolName) || isEmpty(tradeName) || isEmpty(schoolType) || isEmpty(taxNum) ||
       isEmpty(authorizePersonName) || isEmpty(authorizeCaption) || isEmpty(schoolEmail) || isEmpty(schoolrEmail) ||
       isEmpty(schoolPassword) || isEmpty(schoolrPassword) || isEmpty(schoolAddress) || isEmpty(schoolCity) ||
@@ -629,19 +631,14 @@ Template.newSchoolRegister.events({
 
 
       if(isEmail(schoolrEmail)){
-        console.log("Heyyo!");
 
-
-
-        if(a){
-          alert("Bu e-mail kullanılmaktadır. Lütfen başka deneyiniz.");
-        }
-        return;
       }
       else{
         alert("Girdiğiniz e-mail geçersizdir. Lütfen kontrol ediniz.");
         return;
       }
+
+
     }
     else{
       alert("Girdiğiniz e-mailler eşit değildir. Lütfen kontrol ediniz.");

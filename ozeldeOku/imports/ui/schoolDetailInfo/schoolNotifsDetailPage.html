@@ -34,7 +34,7 @@
               {{/with}}
               <br>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
             </div>
           </div>
         </div>
@@ -44,7 +44,9 @@
     {{else}}
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 style="text-align:center;">Okula Ait Duyuru Bulunmamaktadır.</h5>
+
+
+          <h5 style="text-align:center;">{{#if isSchool}}Okula {{else}} Yurda {{/if}} Ait Duyuru Bulunmamaktadır.</h5>
         </div>
       </div>
 

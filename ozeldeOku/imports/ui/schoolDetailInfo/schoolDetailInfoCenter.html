@@ -134,7 +134,7 @@
         </b>
         <br><br>
           <i class="fa fa-comment-o" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
-          <b>Sen de okul hakkında yorum yaz!</b><br><br>
+          <b>Sen de {{#if isSchool}} okul {{else}} yurt {{/if}} hakkında yorum yaz!</b><br><br>
           <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
           <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
           <a href="{{schoolInfos.school.socialMedias.[3]}}" target="_blank" class="" style="padding-left:1%;"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a>
@@ -155,7 +155,9 @@
         Kuruluş Yılı <a style="color:black; padding-left:24%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{school.schoolFoundation}}</a><br><br>
         Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.totalPlace}}</a><br><br>
         Öğrenci Kapasitesi <a style="color:black; padding-left:8%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
+        {{#if schoolTypeUni}}
         Bölüm Sayısı <a style="color:black; padding-left:20.5%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
+        {{/if}}
 
       </div>
 
@@ -166,7 +168,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
           <div class="row">
-            <h4 class="text-center">Okulumuz Hakkında</h4>
+            <h4 class="text-center">{{#if isSchool}}Okulumuz {{else}} Yurt {{/if}} Hakkında</h4>
           </div>
 
           <div class="row">
@@ -187,7 +189,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
 
-                  <h4 class="modal-title" id="myModalLabel">Okulumuz Hakkında</h4>
+                  <h4 class="modal-title" id="myModalLabel">{{#if isSchool}}Okulumuz {{else}} Yurt {{/if}} Hakkında</h4>
                 </div>
                 <div class="modal-body">
                   {{schoolInfos.school.aboutSchool}}
@@ -196,7 +198,7 @@
 
                   <br>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                 </div>
               </div>
             </div>
@@ -204,12 +206,12 @@
       </div>
 
       {{#if currentUser}}
-        {{#if nonSchool}}
+        {{#if nonSchoolComment}}
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <br><br>
             <hr>
-            <center><button class="btn newSchoolRegisterButton" data-toggle="modal" data-target="#sendMessage">Okula Mesaj At!</button></center>
+            <center><button class="btn newSchoolRegisterButton" data-toggle="modal" data-target="#sendMessage">{{#if isSchool}} Okula {{else}} Yurda {{/if}}Mesaj At!</button></center>
 
             <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
@@ -229,7 +231,7 @@
 
                     <br>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick='sendMessage($("#{{school._id}}").val(), $("#title").val(),$("#{{school._id}}")[0].id)'>Gönder</button>
                   </div>
                 </div>
@@ -282,7 +284,7 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="pull-left">Bu Okul Hakkında Yapılan Yorumlar</h5>
+          <h5 class="pull-left">Bu {{#if isSchool}}Okul {{else}} Yurt {{/if}}Hakkında Yapılan Yorumlar</h5>
       </div>
     </div>
 
@@ -299,7 +301,7 @@
           {{/each}}
 
         {{else}}
-        <center>Bu okul hakkında yorum yapılmamıştır.</center>
+        <center>Bu {{#if isSchool}} okul {{else}} yurt {{/if}} hakkında yorum yapılmamıştır.</center>
 
         {{/if}} <!-- countZero END! -->
       </div>
@@ -331,14 +333,14 @@
       {{else}}
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <center>Okul Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
+          <center>{{#if isSchool}} Okul {{else}} Yurt {{/if}} Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
         </div>
       </div>
     {{/if}}<!-- currentUser END! -->
 
     <br><br>
 
-    <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
+    <div class="well well-sm"><p style="text-align:center">{{#if isSchool}}Okulun Konumu ve Çevresindeki Yurtlar {{else}} Yurt Konumu {{/if}}</p></div>
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -467,7 +469,7 @@
         </b>
         <br><br>
           <i class="fa fa-comment-o pull-right" aria-hidden="true"> Yorum({{commentCount}}) </i><br><br>
-          <b class="pull-right">Sen de okul hakkında yorum yaz!</b><br><br>
+          <b class="pull-right">Sen de {{#if isSchool}} okul {{else}} yurt {{/if}} hakkında yorum yaz!</b><br><br>
           <a href="{{schoolInfos.school.socialMedias.[5]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
           <a href="https://youtube.com/{{schoolInfos.school.socialMedias.[4]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
           <a href="{{schoolInfos.school.socialMedias.[3]}}" target="_blank" class="pull-right" style="padding-left:1%;"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a>
@@ -488,14 +490,16 @@
         Kuruluş Yılı <a style="color:black; padding-left:18%;">:</a> <a class="schoolDetailPageSixComponents"> {{school.schoolFoundation}}</a><br><br>
         Toplam Alan (m²) <a style="color:black; padding-left:12%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.totalPlace}}</a><br><br>
         Öğrenci Kapasitesi <a style="color:black; padding-left:10%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.studentCountInfos.license}}</a><br><br>
-        Bölüm Sayısı <a style="color:black; padding-left:17%;">:</a> <a class="schoolDetailPageSixComponents"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
+        {{#if schoolTypeUni}}
+        Bölüm Sayısı <a style="color:black; padding-left:20.5%;">:</a> <a class="schoolDetailPageSixComponents pull-right"> {{schoolInfos.academicInfos.departmentCount}}</a><br><br>
+        {{/if}}
 
       </div>
 
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
           <div class="row">
-            <h4 class="pull-right">Okulumuz Hakkında</h4>
+            <h4 class="pull-right">{{#if isSchool}}Okulumuz {{else}} Yurt {{/if}} Hakkında</h4>
           </div>
 
           <div class="row">
@@ -516,7 +520,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
 
-                  <h4 class="modal-title" id="myModalLabel">Okulumuz Hakkında</h4>
+                  <h4 class="modal-title" id="myModalLabel">{{#if isSchool}}Okulumuz {{else}} Yurt {{/if}} Hakkında</h4>
                 </div>
                 <div class="modal-body">
                   {{schoolInfos.school.aboutSchool}}
@@ -525,7 +529,7 @@
 
                   <br>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                 </div>
               </div>
             </div>
@@ -536,7 +540,7 @@
 
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <br>
-                <center><button class="btn newSchoolRegisterButton pull-right" data-toggle="modal" data-target="#sendMessage">Okula Mesaj At!</button></center>
+                <center><button class="btn newSchoolRegisterButton pull-right" data-toggle="modal" data-target="#sendMessage">{{#if isSchool}} Okula {{else}} Yurda {{/if}}Mesaj At!</button></center>
 
                 <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
@@ -556,7 +560,7 @@
 
                         <br>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal" onclick='sendMessage($("#{{school._id}}").val(), $("#title").val(),$("#{{school._id}}")[0].id)'>Gönder</button>
                       </div>
                     </div>
@@ -603,7 +607,7 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="pull-left">Bu Okul Hakkında Yapılan Yorumlar</h5>
+          <h5 class="pull-left">Bu {{#if isSchool}}Okul {{else}} Yurt {{/if}}Hakkında Yapılan Yorumlar</h5>
       </div>
     </div>
 
@@ -620,7 +624,8 @@
           {{/each}}
 
         {{else}}
-        <center>Bu okul hakkında yorum yapılmamıştır.</center>
+
+        <center>Bu {{#if isSchool}}Okul {{else}} Yurt {{/if}}Hakkında Yorum Yapılmamıştır.</center>
 
         {{/if}} <!-- countZero END! -->
       </div>
@@ -652,14 +657,14 @@
       {{else}}
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <center>Okul Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
+          <center>{{#if isSchool}} Okul {{else}} Yurt {{/if}}Hakkında Yorum Yapabilmek İçin Giriş Yapmanız Gerekmektedir.</center>
         </div>
       </div>
     {{/if}}<!-- currentUser END! -->
 
     <br><br>
 
-    <div class="well well-sm"><p style="text-align:center">Okulun Konumu ve Çevresindeki Yurtlar</p></div>
+    <div class="well well-sm"><p style="text-align:center">{{#if isSchool}}Okulun Konumu ve Çevresindeki Yurtlar {{else}} Yurt Konumu {{/if}}</p></div>
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

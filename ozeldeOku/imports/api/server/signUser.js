@@ -57,5 +57,5 @@ Meteor.methods({
         })
       }
     }
-  }
+  },
 })

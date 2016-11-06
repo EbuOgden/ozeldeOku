@@ -13,6 +13,7 @@ import '../../api/server/depIdFromName.js';
 import '../../api/server/addSchoolInfosToDb.js';
 import '../../api/server/updateSchoolLocation.js';
 import '../../api/server/sendMessage.js';
+import '../../api/server/addDormiInfosToDb.js';
 /* ***** Methods ***** */
 
 /* ***** Observers ***** */
