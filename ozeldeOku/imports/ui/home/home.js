@@ -513,7 +513,7 @@ Template.homeBottom.events({
 
 })
 
-Template.newSchoolRegister.onRendered(() => {
+Template.newSchoolRegister.onCreated(function newSchoolRegisterOnCreated() {
   Meteor.call('getCities', (err, result) => {
     if(err){
       alert(err.reason);

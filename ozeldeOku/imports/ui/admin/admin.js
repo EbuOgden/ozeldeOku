@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import { Schools } from '../../api/collections/schools.js';
+import { SchoolInfos } from '../../api/collections/schoolInfos.js';
 
 import { HomePageCarousel } from '/imports/api/collections/homePageCarousel.js';
 import { ChoosenSchools } from '/imports/api/collections/choosenSchools.js';
@@ -83,22 +84,43 @@ Template.adminCenter.events({
 
       if(confirm(this.schoolName + "'i silmek istediğinize emin misiniz?")){
         const s = Schools.findOne({"_id" : this._id});
-        var s_ = SchoolInfos.findOne({"schoolId" : s._id});
+        var s_ = SchoolInfos.findOne({"schoolId" : this._id});
 
         if(s){
 
-          if(s_){
-              var a = SchoolInfos.remove({"_id" : s_._id});
-              if(a){
-                var b = Schools.remove({"_id" : s._id});
+          if(s.isValidate){
 
-                if(b){
-                  alert("Silindi.");
-                  return;
+            const s__ = Meteor.users.findOne(s.authorizedPersonUserId);
+
+            if(s_){
+                var a = SchoolInfos.remove({"_id" : s_._id});
+                if(a && s__){
+                  var b = Schools.remove({"_id" : s._id});
+
+                  if(b){
+                    var c = Meteor.users.remove(s.authorizedPersonUserId);
+                    if(c){
+                      alert("Silindi.");
+                      return;
+                    }
+
+                  }
                 }
+            }
+            else{
+
+              var b = Schools.remove({"_id" : s._id});
+              const s__ = Meteor.users.remove(s.authorizedPersonUserId);
+
+              if(b && s__){
+
+                alert("Silindi.");
+                return;
               }
+            }
           }
           else{
+            // not validete
             var b = Schools.remove({"_id" : s._id});
 
             if(b){
