@@ -18,16 +18,16 @@ ecmascript              <br>
 
 autopublish             <br>
 insecure                <br>
-accounts-base
-accounts-password
-aldeed:collection2
-kadira:flow-router
-kadira:blaze-layout
-twbs:bootstrap
-shcherbin:slickjs
-fortawesome:fontawesome
-altapp:recaptcha
-flemay:less-autoprefixer
-cfs:standard-packages
-cfs:gridfs
-cfs:filesystem
+accounts-base<br>
+accounts-password<br>
+aldeed:collection2<br>
+kadira:flow-router<br>
+kadira:blaze-layout<br>
+twbs:bootstrap<br>
+shcherbin:slickjs<br>
+fortawesome:fontawesome<br>
+altapp:recaptcha<br>
+flemay:less-autoprefixer<br>
+cfs:standard-packages<br>
+cfs:gridfs<br>
+cfs:filesystem<br>
